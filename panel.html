@@ -95,134 +95,163 @@
 
 <body class="w3-light-grey">
 
-<!-- datos adicionales modal y otros-->
-<!-- Page content -->
-<div id="contenido" class="w3-col s12 w3-row" style="padding-bottom: 60px;margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom);padding-top: constant(safe-area-inset-top);padding-top: env(safe-area-inset-top)"></div>
-<!-- // Page content END--> 
+    <!-- datos adicionales modal y otros-->
+ 
+ 
 
 
-  
-<!-- Loader -->
-<div id="loadergif" class="w3-modal noselect" style="background:none">
-  <div class="w3-display-middle">
-  <center>
-      <img src="icon/loader.gif" class="w3-round" width="70">
-  </center>    
-  </div>
-</div>
-<!-- // Loader// -->
 
-<!-- Chat Soporte -->
-<div id="FlotanteModal" class="w3-modal noselect w3-col l5 s12 m12" style="display:none">
-  <div class="w3-display-middle w3-col s11 m11 l11 w3-white w3-round w3-round-xlarge w3-animate-fade">
-    
-    <div class="w3-border-bottom w3-container w3-border-light-grey w3-padding-8"> 
-     <div class="w3-col s2 m2 l2 " id="conectSport">&nbsp;</div>
-     
-      <div class="w3-col s8 m8 l8 w3-center"> 
-       <small onclick="paraAdmin=1;$('#msjagente').html(' Conectado con un agente');$('#Flotante').html(`<div class='w3-container w3-round-xlarge w3-margin-top w3-border w3-border-light-grey w3-round' id='chtid${ultimoid}'>Verifique la disponibilidad observando el color verde en el círculo de arriba. Inicie la conversación escribiendo un mensaje. Responderemos cuando un agente esté disponible.</div>`);" class="w3-round w3-col l12 m12 s12 w3-border w3-border-blue pointer">
-       <i class="fa-solid fa-headset"></i><b id="msjagente"> Contactar un agente.</b></small>
-      </div>
-    
-     <div class="w3-col s2 m2 l2"><i onclick="$('#FlotanteModal').hide();" class="fa-regular fa-circle-xmark w3-text-grey w3-large w3-right "></i></div>
-
-      
-    </div> 
-     
-     
-    <div id="Flotante" class="w3-container" style="overflow-y:scroll;max-height:50vh;min-height:50vh"></div>  
-
-    <div class="noselect w3-white w3-padding-8 w3-col l12 m12 s12 w3-container w3-round w3-round-xlarge w3-border-light-grey" id='ChatContr'>
-    
-    <div class="w3-col s2 m2 l2">
-       <i  onclick="$('#FlotanteModal').hide();OpenOtherOption('submenu/Inicio/Ayuda','Ayuda');" id="helparea" style="cursor:none;font-size:30px;padding-top:4px" class="w3-text-blue-grey w3-left  far fa-question-circle"></i> 
-      </div>
-      <div class="w3-col s8 m8 l8">
-        <textarea rows="1px"  onblur="" oninput='if(this.scrollHeight<120){ this.style.height = "5px";this.style.height=(this.scrollHeight)+"px"; }' placeholder="Escriba un mensaje" class="w3-input w3-border  w3-border-light-grey  w3-round-xlarge"  id="textfield"  style="outline: none;margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom)"></textarea>
-      </div> 
-      <div class="w3-col s2 m2 l2">
-       <button style="box-shadow: none" onclick="$('#sendchat').attr('disabled', true);SendMessaje($('#textfield').val());" id="sendchat" class="w3-white w3-btn w3-padding-left w3-margin-left w3-padding-top"><i class=" w3-xlarge fas fa-play w3-text-blue-grey" style="cursor:none" id="icnsend"></i></button>
-      </div>
-    </div> 
-  </div>
-</div>
-
-<!-- CHAT Flotante-->
-<div style="display:none;width:45px;height:45px;border-radius: 100px" onclick="AbrirSoporte()" id="chatchg" class="w3-blue chat-icon">
- <small class="w3-display-topleft w3-blue w3-text-white w3-badge" style="border-radius:100px;" id="numrchat"></small>
- <i class="fa-solid fa-headset w3-large w3-text-white w3-display-middle w3-large"></i>
-</div>
-
-<!--//Chat Soporte // -->
-
-<!-- App actualizacion -->
-<div id="AppUpdate" class="w3-modal noselect w3-col l5">
-  <div class="w3-display-middle  w3-col s8 m8  w3-container w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2"><div class="w3-right"><i onclick="$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')" class="fas fa-times-circle w3-text-grey w3-margin-top w3-large"></i></div>
-  <center>
-      <p>Nueva actualización desponible</p>
-      <b id='appvers'></b>
-      <small class="w3-col l12 m12 s12" id='appcambios'></small>
-      <div><a target="_blank" class="w3-btn w3-col s12 w3-blue w3-block w3-round-xlarge w3-margin-top w3-margin-bottom w3-text-white" id="actlink" onclick="cordova.InAppBrowser.open('https://app.pagosalinstante.com', '_system');$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')">Actualizar</a></div>
-  </center>    
-  </div>
-</div>
-<!-- //App actualizacion// -->
-
-
-<!-- App Avisos -->
-<div id="Appinfos" class="w3-modal noselect w3-col l5" style="display:none">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
-        <span style="cursor:pointer"  class="w3-display-topright w3-container" onclick="$('#Appinfos').hide();localStorage.setItem('avisos', $('#msjj').attr('data'));"><i class="fa-regular fa-circle-xmark w3-text-blue w3-large w3-padding-top"></i></span>
-        <center class="w3-container w3-margin-top">
-          <p><b class="w3-text-grey w3-large" id="asunt"></b></p>
-           <div class="w3-margin-bottom w3-text-grey" align="left" id="msjj" data=""></div>
-        </center>  
+    <!-- Loader -->
+    <div id="loadergif" class="w3-modal noselect" style="background:none">
+        <div class="w3-display-middle">
+            <center>
+                <img src="icon/loader.gif" class="w3-round" width="70">
+            </center>
+        </div>
     </div>
-</div>
-<!-- //App Avisos// -->
+    <!-- // Loader// -->
 
-<!--pais no permitido-->
-<div id="AppPais" class="w3-modal noselect w3-col l5" style="display:none">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
-        <center class="w3-container w3-margin-top">
-          <p><b class="w3-text-grey w3-large">Ha accedido desde una ubicación no permitida.</b></p>
-           <div class="w3-margin-bottom w3-text-grey" align="left">
-               No puede utilizar los servicios de PAI Exchange desde el pais <span id="pais"></span>.
-           </div>
-        </center>  
+    <!-- Chat Soporte -->
+    <div id="FlotanteModal" class="w3-modal noselect w3-col l5 s12 m12" style="display:none">
+        <div class="w3-display-middle w3-col s11 m11 l11 w3-white w3-round w3-round-xlarge w3-animate-fade">
+
+            <div class="w3-border-bottom w3-container w3-border-light-grey w3-padding-8">
+                <div class="w3-col s2 m2 l2 " id="conectSport">&nbsp;</div>
+
+                <div class="w3-col s8 m8 l8 w3-center">
+                    <small
+                        onclick="paraAdmin=1;$('#msjagente').html(' Conectado con un agente');$('#Flotante').html(`<div class='w3-container w3-round-xlarge w3-margin-top w3-border w3-border-light-grey w3-round' id='chtid${ultimoid}'>Verifique la disponibilidad observando el color verde en el círculo de arriba. Inicie la conversación escribiendo un mensaje. Responderemos cuando un agente esté disponible.</div>`);"
+                        class="w3-round w3-col l12 m12 s12 w3-border w3-border-blue pointer">
+                        <i class="fa-solid fa-headset"></i><b id="msjagente"> Contactar un agente.</b></small>
+                </div>
+
+                <div class="w3-col s2 m2 l2"><i onclick="$('#FlotanteModal').hide();"
+                        class="fa-regular fa-circle-xmark w3-text-grey w3-large w3-right "></i></div>
+
+
+            </div>
+
+
+            <div id="Flotante" class="w3-container" style="overflow-y:scroll;max-height:50vh;min-height:50vh"></div>
+
+            <div class="noselect w3-white w3-padding-8 w3-col l12 m12 s12 w3-container w3-round w3-round-xlarge w3-border-light-grey"
+                id='ChatContr'>
+
+                <div class="w3-col s2 m2 l2">
+                    <i onclick="$('#FlotanteModal').hide();OpenOtherOption('submenu/Inicio/Ayuda','Ayuda');"
+                        id="helparea" style="cursor:none;font-size:30px;padding-top:4px"
+                        class="w3-text-blue-grey w3-left  far fa-question-circle"></i>
+                </div>
+                <div class="w3-col s8 m8 l8">
+                    <textarea rows="1px" onblur=""
+                        oninput='if(this.scrollHeight<120){ this.style.height = "5px";this.style.height=(this.scrollHeight)+"px"; }'
+                        placeholder="Escriba un mensaje"
+                        class="w3-input w3-border  w3-border-light-grey  w3-round-xlarge" id="textfield"
+                        style="outline: none;margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom)"></textarea>
+                </div>
+                <div class="w3-col s2 m2 l2">
+                    <button style="box-shadow: none"
+                        onclick="$('#sendchat').attr('disabled', true);SendMessaje($('#textfield').val());"
+                        id="sendchat" class="w3-white w3-btn w3-padding-left w3-margin-left w3-padding-top"><i
+                            class=" w3-xlarge fas fa-play w3-text-blue-grey" style="cursor:none"
+                            id="icnsend"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!-- //pais no permitido// -->
 
-<!-- Calificacion-->
-<div id="califcc" class="w3-modal noselect">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
-      
-    <div class="w3-margin-top w3-center reajuste w3-container">
-     <center class="w3-margin-top">
-      <img src="icon/pai.png" width="55px">
-       <b class="w3-col s12 m12 l12">PAI</b>
-      <p>
-        <i class="fas fa-star w3-text-yellow"></i>
-        <i class="fas fa-star w3-text-yellow"></i>
-        <i class="fas fa-star w3-text-yellow"></i>
-        <i class="fas fa-star w3-text-yellow"></i>
-        <i class="fas fa-star w3-text-yellow"></i>
-       </p>
-       <p>Si te gusta el servicio que ofrecemos por favor déjanos un comentario en las calificaciones de Google Play.</p>
-      </center>
+    <!-- CHAT Flotante-->
+    <div style="display:none;width:45px;height:45px;border-radius: 100px" onclick="AbrirSoporte()" id="chatchg"
+        class="w3-blue chat-icon">
+        <small class="w3-display-topleft w3-blue w3-text-white w3-badge" style="border-radius:100px;"
+            id="numrchat"></small>
+        <i class="fa-solid fa-headset w3-large w3-text-white w3-display-middle w3-large"></i>
     </div>
-      
-    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#califcc').hide();">No, más tarde</div>
-    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" onclick="cordova.InAppBrowser.open('https://play.google.com/store/apps/details?id=app.pagosalinstante.com', '_system');localStorage.setItem('calification', 'true');$('#califcc').hide();">Ir a Google Play</div>
-  </div>
-</div>
-<!-- //Calificacion// -->
 
-<audio id="audio" class="w3-hide">
-<source type="audio/wav" src="audio/alerta.mp3">
-</audio>
-<!-- //Datos adicionales// -->
+    <!--//Chat Soporte // -->
+
+    <!-- App actualizacion -->
+    <div id="AppUpdate" class="w3-modal noselect w3-col l5">
+        <div
+            class="w3-display-middle  w3-col s8 m8  w3-container w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+            <div class="w3-right"><i onclick="$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')"
+                    class="fas fa-times-circle w3-text-grey w3-margin-top w3-large"></i></div>
+            <center>
+                <p>Nueva actualización desponible</p>
+                <b id='appvers'></b>
+                <small class="w3-col l12 m12 s12" id='appcambios'></small>
+                <div><a target="_blank"
+                        class="w3-btn w3-col s12 w3-blue w3-block w3-round-xlarge w3-margin-top w3-margin-bottom w3-text-white"
+                        id="actlink"
+                        onclick="cordova.InAppBrowser.open('https://app.pagosalinstante.com', '_system');$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')">Actualizar</a>
+                </div>
+            </center>
+        </div>
+    </div>
+    <!-- //App actualizacion// -->
+
+
+    <!-- App Avisos -->
+    <div id="Appinfos" class="w3-modal noselect w3-col l5" style="display:none">
+        <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
+            <span style="cursor:pointer" class="w3-display-topright w3-container"
+                onclick="$('#Appinfos').hide();localStorage.setItem('avisos', $('#msjj').attr('data'));"><i
+                    class="fa-regular fa-circle-xmark w3-text-blue w3-large w3-padding-top"></i></span>
+            <center class="w3-container w3-margin-top">
+                <p><b class="w3-text-grey w3-large" id="asunt"></b></p>
+                <div class="w3-margin-bottom w3-text-grey" align="left" id="msjj" data=""></div>
+            </center>
+        </div>
+    </div>
+    <!-- //App Avisos// -->
+
+    <!--pais no permitido-->
+    <div id="AppPais" class="w3-modal noselect w3-col l5" style="display:none">
+        <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
+            <center class="w3-container w3-margin-top">
+                <p><b class="w3-text-grey w3-large">Ha accedido desde una ubicación no permitida.</b></p>
+                <div class="w3-margin-bottom w3-text-grey" align="left">
+                    No puede utilizar los servicios de PAI Exchange desde el pais <span id="pais"></span>.
+                </div>
+            </center>
+        </div>
+    </div>
+    <!-- //pais no permitido// -->
+
+    <!-- Calificacion-->
+    <div id="califcc" class="w3-modal noselect">
+        <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+
+            <div class="w3-margin-top w3-center reajuste w3-container">
+                <center class="w3-margin-top">
+                    <img src="icon/pai.png" width="55px">
+                    <b class="w3-col s12 m12 l12">PAI</b>
+                    <p>
+                        <i class="fas fa-star w3-text-yellow"></i>
+                        <i class="fas fa-star w3-text-yellow"></i>
+                        <i class="fas fa-star w3-text-yellow"></i>
+                        <i class="fas fa-star w3-text-yellow"></i>
+                        <i class="fas fa-star w3-text-yellow"></i>
+                    </p>
+                    <p>Si te gusta el servicio que ofrecemos por favor déjanos un comentario en las calificaciones de
+                        Google Play.</p>
+                </center>
+            </div>
+
+            <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey"
+                style="cursor:pointer" onclick="$('#califcc').hide();">No, más tarde</div>
+            <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey"
+                style="cursor:pointer"
+                onclick="cordova.InAppBrowser.open('https://play.google.com/store/apps/details?id=app.pagosalinstante.com', '_system');localStorage.setItem('calification', 'true');$('#califcc').hide();">
+                Ir a Google Play</div>
+        </div>
+    </div>
+    <!-- //Calificacion// -->
+
+    <audio id="audio" class="w3-hide">
+        <source type="audio/wav" src="audio/alerta.mp3">
+    </audio>
+    <!-- //Datos adicionales// -->
 
 
 
