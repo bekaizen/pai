@@ -1,0 +1,8 @@
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/yqxb16bsjvdm/public_html/areaweb
+    - /bin/cp *.html $DEPLOYPATH
+    - /bin/cp -R css/ $DEPLOYPATH
+    - /bin/cp -R js/ $DEPLOYPATH
+    - /bin/cp -R icon/ $DEPLOYPATH
