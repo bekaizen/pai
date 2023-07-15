@@ -12,6 +12,81 @@
     <link rel="stylesheet" href="./assets/css/admin-styles.css">
     <link rel="stylesheet" href="./assets/css/scrollbar.css">
     <link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
+    <style>
+    .noselect {
+        cursor: default;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .redondeo
+    {
+        border-radius: 0px 0px 20px 20px
+    }
+    .reajuste {
+        word-wrap: break-word
+    }
+    
+    .pointer {
+      cursor: pointer;
+    }
+    
+    
+    .pointer:active {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    *{
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+    user-drag: none;
+    }
+    
+    textarea,input:not([type="radio"]):not([type="checkbox"]):not([type="range"]) {
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+    </style>
+    <style>
+    .chat-icon {
+        position:fixed;
+        bottom:80px;
+        right: 10px;
+    }
+    
+     .messages
+     {
+          height: 100%;
+          overflow: auto;
+      }
+    
+    /* Large Devices, Wide Screens 
+    @media only screen and (min-width : 1200px) {
+     .medio {  
+    margin-left:33%; margin-right:33% }
+    }
+    */
+    </style>
+    <style>
+    .icon-container {
+                position: relative;
+                display: inline-block;
+    }
+    .icon-container .fa-repeat {
+                font-size: 22px;
+    }
+    .icon-container .fa-bitcoin {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                font-size: 16px;
+                transform: translate(-50%, -50%);
+    }
+    </style>   
 </head>
 
 <body class="w3-light-grey">
