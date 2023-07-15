@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PAI Web</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="./assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/w3pro-4.13.css">
     <link rel="stylesheet" href="./assets/css/w3-theme.css">
     <link rel="stylesheet" href="./assets/css/admin-styles.css">
     <link rel="stylesheet" href="./assets/css/scrollbar.css">
+    <link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
 </head>
 
 <body class="w3-light-grey">
@@ -67,8 +67,8 @@
                 <span class="w3-bar-item w3-padding w3-small w3-opacity" style="margin-top:8px"> MAIN NAVIGATION </span>
                 <a href="./index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa fa-fw fa-bar-chart"></i>&nbsp; Dashboard </a>
-                <a href="./icons.html" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
-                    <i class="fa fa-fw fa-fire"></i>&nbsp; UI Icons </a>
+                <a href="#" onclick="OpenOption('Cartera')" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
+                    <i class="fa fa-fw fa-fire"></i>&nbsp; Cartera </a>
                 <a href="./forms.html" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa fa-fw fa-edit"></i>&nbsp; Forms </a>
                 <a href="./tables.html" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
@@ -102,6 +102,553 @@
     </div>
     <script src="./assets/plugins/chartjs/Chart.min.js"></script>
     <script src="./assets/plugins/chartjs/dashboard.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-qrcode-0.14.0.js"></script>
+
+    <script>
+        function Parestrading(moneda) {
+            Gmoneda = moneda;
+            OpenOption('Exchange');
+        }
+        $('#Flotante').load('flotante.html');
+        function AbrirSoporte() {
+            //cargarMsjs('manual');
+            $('#FlotanteModal').show();
+            $('#Flotante').scrollTop(1000000);
+        }
+        setInterval(function () {
+            if ($('#FlotanteModal').attr('style') == 'display: block;') {
+                cargarMsjs('automatico'); //si el chat de soporte esta abierto
+            }
+        }, 5000); //cada 5 segundos
+    </script>
+    <script>
+        if (/(http)/i.test(window.location.protocol)) {
+            UrlAPI = window.location.hostname;
+        }
+        else {
+            UrlAPI = 'api.paiexchange.com';
+        }
+    </script>
+
+    <script>
+        function comprobarPais() {
+            $.get('https://' + UrlAPI + '/AppClientePais', function (data) {
+                var acceso = JSON.parse(data);
+                if (acceso.acceso !== 'si') {
+                    $('#bienvnd').show();
+                    $('#pais').html('<img width="30px" src="icon/paises/' + acceso.pais.toLowerCase() + '.png"/> ' + acceso.pais);
+                    $('#AppPais').show();
+                    $('#loadergif').attr('style', 'display:none');
+                }
+            }, "json");
+        }
+        comprobarPais();
+    </script>
+
+    <script>
+        function abrirEnlaceExterno(enlace) {
+            if (AppenUso == true) {
+                cordova.InAppBrowser.open(enlace, '_system');
+            }
+            else {
+                window.open(enlace, '_system')
+            }
+        }    
+    </script>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                JsonPrecios = JSON.parse(this.responseText);
+            }
+        };
+
+        xmlhttp.open("GET", "https://" + UrlAPI + "/v2/Appprice", true);
+        xmlhttp.send();
+
+        var cript = setInterval(function () {
+            xmlhttp.open("GET", "https://" + UrlAPI + "/v2/Appprice", true);
+            xmlhttp.send();
+        }, 60000);
+    </script>
+    <script>
+        function MenuAccion(icono, funcion) {
+            $('#addcuenta').attr('class', icono);
+            $('#addcuenta').attr('onclick', funcion);
+            $('#addcuenta').attr('style', 'display:block');
+        }
+    </script>
+    <script>
+        function animateClick(id, metodo, tiempo) {
+            $('#' + id).addClass(metodo);
+            setTimeout(function () { $('#' + id).removeClass(metodo); }, tiempo);
+        }
+    </script>
+    <script>
+        function EstatusBarColor(color) {
+            if (window.location.protocol.indexOf('http') == '-1') {
+                $(document).ready(function () {
+                    StatusBar.backgroundColorByHexString("#" + color);
+                    if (color == 'ffffff') {
+                        StatusBar.styleDefault();
+                    }
+                    else {
+                        StatusBar.styleLightContent();
+                    }
+                });
+            }
+            $('#barcolor').attr('content', '#' + color);
+            //$('#menusup').hide();
+        }
+
+        function OpenOption(id) {
+
+            if (localStorage.getItem("Sesion") !== 'true') {
+                window.location.href = "login.html";
+            }
+            else {
+
+                $("#contenido").load(id + ".html", function (responseTxt, statusTxt, xhr) {
+
+                    if (statusTxt == "success") {
+                        //Menu class control
+                        $('.blue-menu').addClass('w3-text-grey').removeClass('blue-menu');
+                        $('#' + id).removeClass('w3-text-grey').addClass('blue-menu');
+                        animateClick(id, 'w3-small', 50);
+                        $("#loadergif").hide();
+
+
+
+                        $('#addcuenta').hide();
+
+
+                        $("#titname").html(id);
+                        history.pushState(id, id, id);
+                        window.scrollTo(0, 0);
+
+
+
+                    }
+                    else {
+                        //NotifiAlert('Verifique su conexión a internet','w3-red',6000);
+                        $("#loadergif").hide();
+                    }
+
+
+                });
+            }
+        }
+    </script>
+    <script>OpenOption('Inicio');</script>
+    <script>
+        window.onpopstate = function (event) {
+            var tyy = window.location.pathname.split('/');
+            if (tyy[(tyy.length) - 1] !== '') {
+                OpenOption(tyy[(tyy.length) - 1]);
+            }
+        }
+    </script>
+    <script>
+        function NotifiAlert(mensaje, color, tiempo) {
+            if (color == 'w3-green') { remov = 'w3-red'; } else { remov = 'w3-green'; }
+
+            $("#notifigener").removeClass(remov).addClass(color);
+            $("#notifigener").html("<p>" + mensaje + "</p>");
+            $("#notifigener").show();
+            setTimeout(function () { $("#notifigener").hide(); }, tiempo);
+        }     
+    </script>
+    <script>
+        function CerrarSesion() {
+            localStorage.removeItem('Sesion');
+            localStorage.removeItem('PinAcceso');
+            localStorage.removeItem('Huella');
+            localStorage.removeItem('SesionTokn');
+            localStorage.removeItem('IDmensajes');
+            localStorage.removeItem('IDtransacciones');
+            localStorage.removeItem('IDpagos');
+            localStorage.removeItem('IDsolicitudes');
+            localStorage.removeItem('IDcompras');
+            localStorage.removeItem('IDinformaciones');
+            sessionStorage.removeItem('clave1');
+            document.cookie = "app=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            $.get('https://' + UrlAPI + "/AppcerrarSesion", function (data) { }, "json");
+            window.location.href = "login.html";
+        }
+    </script>
+
+
+    <script>
+        if (/(iPhone)/i.test(navigator.userAgent)) {
+            var dispositivo = 'ios';
+        }
+        else {
+            var dispositivo = 'Android';
+        }
+
+        sessionStorage.setItem("audio", 0);
+        version = '1.08.898';
+
+        function AlertasGlobales() {
+            $.ajax({
+                url: 'https://' + UrlAPI + '/AppAvisos',
+                type: 'post',
+                success: function (response) {
+
+                    var objto = JSON.parse(response);
+                    //Calificaciones de Google Play
+                    if (dispositivo == 'Android' && objto.calificacion == 'si' && localStorage.getItem("calification") !== 'true' && sessionStorage.getItem("calification") !== 'true') {
+                        sessionStorage.setItem('calification', 'true');
+                        setTimeout(function () {
+                            //$('#califcc').show();
+                            cordova.plugins.InAppReview.requestReviewDialog()
+                        }, 20000);
+                    }
+
+
+
+                    if ((objto.actualizaciones.version.replace(/[^0-9]/g, '')) > (version.replace(/[^0-9]/g, ''))) {
+
+                        if (sessionStorage.getItem("updateapp") !== 'true') {
+                            $("#appvers").html('Versión ' + objto.actualizaciones.version);
+                            $("#appcambios").html(objto.actualizaciones.cambios);
+                            $("#actlink").attr('href', objto['actualizaciones'][dispositivo]);
+                            $("#AppUpdate").show();
+                        }
+                    }
+
+                    if (objto.avisos !== null) {
+                        if (localStorage.getItem('avisos') !== objto.avisos.id && objto.avisos.estado == 'activo' && $("#Appinfos").attr('style') !== 'display: block;') {
+                            $("#asunt").html(objto.avisos.asunto);
+                            $("#msjj").html(objto.avisos.mensaje);
+                            $("#msjj").attr('data', objto.avisos.id);
+                            $("#Appinfos").show();
+                        }
+                    }
+
+                    //boton indicador notificacion soporte
+                    if (objto.mensajes !== null) {
+
+                        if (objto.mensajes.cantidad > 0 && objto.mensajes.cantidad >= sessionStorage.getItem("audio")) {
+
+                            $('#chatchg').show();
+                            if (objto.mensajes.cantidad < 10) {
+                                $('#numrchat').html(objto.mensajes.cantidad);
+                            }
+                            else {
+                                $('#numrchat').html('9+');
+                            }
+
+                            if (sessionStorage.getItem("audio") > objto.mensajes.cantidad) {
+                                sessionStorage.setItem("audio", 0);
+                            }
+
+                            if (sessionStorage.getItem("audio") < objto.mensajes.cantidad) {
+                                var audio = document.getElementById("audio");
+                                audio.play();
+                                if ($('#FlotanteModal').attr('style') !== 'display: block;') {
+                                    cargarMsjs('automatico');
+                                }
+                                sessionStorage.setItem("audio", objto.mensajes.cantidad);
+                            }
+
+
+                        }
+                        else {
+                            //$('#chatchg').hide();
+                            $('#numrchat').html('');
+                            sessionStorage.setItem("audio", 0);
+                        }
+
+                        //Nmensajes
+                        if (localStorage.getItem('Nmensajes') !== 'false') {
+                            if (objto.mensajes.cantidad > 0 && objto.mensajes.id > localStorage.getItem('IDmensajes')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.mensajes.id, title: 'Nuevo mensaje', text: 'Ha recibido ' + objto.mensajes.cantidad + ' mensaje en su cuenta de PAI', foreground: true
+                                });
+                                localStorage.setItem("IDmensajes", objto.mensajes.id);
+                            }
+
+
+                        }
+
+                    }
+
+
+                    //Ntransacciones
+                    if (objto.transacciones !== null) {
+
+                        $('#carteraAlerta').addClass('fa-shake');
+                        if (localStorage.getItem('IDtransacciones') !== null) {
+                            if (objto.transacciones.id > localStorage.getItem('IDtransacciones')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.transacciones.id,
+                                    title: 'Transacción de ' + objto.transacciones.moneda,
+                                    text: 'Ha recibido una transacción de ' + objto.transacciones.monto,
+                                    foreground: true
+                                });
+                                localStorage.setItem("IDtransacciones", objto.transacciones.id);
+
+
+                            }
+
+                        }
+                        else {
+
+                            if (objto.transacciones.id) {
+                                localStorage.setItem("IDtransacciones", objto.transacciones.id);
+                                $('#carteraAlerta').addClass('fa-shake');
+                            }
+                            else {
+                                localStorage.setItem("IDtransacciones", 0);
+                                $('#carteraAlerta').removeClass('fa-shake');
+                            }
+
+                        }
+
+                    }
+
+
+                    //Npagos
+                    if (localStorage.getItem('Npagos') !== 'false' && objto.pagos !== null) {
+
+                        if (localStorage.getItem('IDpagos') !== null && objto.pagos.length > 0) {
+
+                            if (objto.pagos[0].id > localStorage.getItem('IDpagos')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.pagos[0].id,
+                                    title: 'Pago ' + objto.pagos[0].banco,
+                                    text: 'Su solicitud de pago de ' + objto.pagos[0].monto + ' ha sido ' + objto.pagos[0].estado,
+                                    foreground: true
+                                });
+                                localStorage.setItem("IDpagos", objto.pagos[0].id);
+                            }
+
+                        }
+                        else {
+                            if (objto.pagos.length > 0) {
+                                localStorage.setItem("IDpagos", objto.pagos[0].id);
+                            }
+                            else {
+                                localStorage.setItem("IDpagos", 0);
+                            }
+                        }
+
+                    }
+
+
+                    //Nsolicitudes
+                    if (localStorage.getItem('Nsolicitudes') !== 'false' && objto.solicitudes !== null) {
+
+                        if (localStorage.getItem('IDsolicitudes') !== null && objto.solicitudes.length > 0) {
+                            if (objto.solicitudes[0].id > localStorage.getItem('IDsolicitudes')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.solicitudes[0].id,
+                                    title: 'Solicitud ' + objto.solicitudes[0].banco,
+                                    text: 'Su solicitud #' + objto.solicitudes[0].id + ' ha sido ' + objto.solicitudes[0].estado,
+                                    foreground: true
+                                });
+                                localStorage.setItem("IDsolicitudes", objto.solicitudes[0].id);
+                            }
+                        }
+                        else {
+
+                            if (objto.solicitudes.length > 0) {
+                                localStorage.setItem("IDsolicitudes", objto.solicitudes[0].id);
+                            }
+                            else {
+                                localStorage.setItem("IDsolicitudes", 0);
+                            }
+
+                        }
+                    }
+
+
+                    //Ncompras
+                    if (localStorage.getItem('Ncompras') !== 'false' && objto.compras !== null) {
+
+                        if (localStorage.getItem('IDcompras') !== null && objto.compras.length > 0) {
+                            if (objto.compras[0].id > localStorage.getItem('IDcompras')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.compras[0].id,
+                                    title: 'Transferencia de ' + objto.compras[0].moneda,
+                                    text: 'Su Transferencia ha sido ' + objto.compras[0].estado,
+                                    foreground: true
+                                });
+                                localStorage.setItem("IDcompras", objto.compras[0].id);
+                            }
+                        }
+                        else {
+
+                            if (objto.compras.length > 0) {
+                                localStorage.setItem("IDcompras", objto.compras[0].id);
+                            }
+                            else {
+                                localStorage.setItem("IDcompras", 0);
+                            }
+
+                        }
+                    }
+
+
+                    //Ntransferencias
+                    if (localStorage.getItem('Ntransferencias') !== 'false' && objto.transferencias !== null) {
+
+                        if (localStorage.getItem('IDtransferencias') !== null && objto.transferencias.length > 0) {
+                            if (objto.transferencias[0].id > localStorage.getItem('IDtransferencias')) {
+                                cordova.plugins.notification.local.schedule({
+                                    id: objto.transferencias[0].id,
+                                    title: 'Transferencia interna',
+                                    text: 'Ha recibido una transferencia de ' + objto.transferencias[0].monto + ' USD',
+                                    foreground: true
+                                });
+                                localStorage.setItem("IDtransferencias", objto.transferencias[0].id);
+                            }
+                        }
+                        else {
+
+                            if (objto.transferencias.length > 0) {
+                                localStorage.setItem("IDtransferencias", objto.transferencias[0].id);
+                            }
+                            else {
+                                localStorage.setItem("IDtransferencias", 0);
+                            }
+
+                        }
+                    }
+
+                    //Ninformaciones
+                    if (localStorage.getItem('Ninformaciones') !== 'false' && objto.informaciones !== null) {
+                        if (objto.informaciones.id > localStorage.getItem('IDinformaciones') && objto.informaciones.estado == 'activo') {
+                            cordova.plugins.notification.local.schedule({
+                                id: objto.informaciones.id,
+                                title: objto.informaciones.asunto,
+                                text: objto.informaciones.mensaje,
+                                foreground: true
+                            });
+                            localStorage.setItem("IDinformaciones", objto.informaciones.id);
+                        }
+                    }
+
+
+                },
+            });
+        }
+        AlertasGlobales();
+        setInterval(function () { AlertasGlobales(); }, 30000);
+    </script>
+    <script>
+        function verarea() {
+            AreaS = window.location.pathname.split('/');
+            return AreaS[(AreaS.length) - 1];
+
+        }
+
+        if (dispositivo == 'Android') {
+            $(document).ready(function () {
+                var _originalSize = $(window).width() + $(window).height();
+                $(window).resize(function () {
+
+                    if ($(window).width() + $(window).height() != _originalSize) {
+
+                        if ($('input').is(':focus') == true) {
+                            $("#menu").hide();
+                        }
+
+                    }
+                    else {
+                        $("#menu").show();
+                    }
+                });
+            });
+
+
+        }
+        else {
+
+            //ios ocultar menu o mostra
+            $(document).on('focus', 'input,select', function () {
+                $("#menu").hide();
+            });
+
+            $(document).on('blur', 'input,select', function () {
+                $("#menu").show();
+            });
+
+        }
+    </script>
+    <script>
+        function OpenConfirmation(texto, funcion) {
+            $('#AprobConfim').attr('onclick', funcion);
+            $('#textConfirm').html(texto);
+            $('#openconfirm').show();
+        }
+    </script>
+
+    <script>
+        function OpenOtherOption(id, titulo) {
+            {
+
+                $.ajax({
+                    url: id + '.html',
+                    type: 'post',
+                    beforeSend: function () {
+                        //$("#loadergif").show();
+                    },
+                    success: function (response) {
+
+                        if (response == '') {
+                            NotifiAlert('Hay un problema con la conexión al servidor', 'w3-red', 6000);
+                        }
+                        else {
+                            $("#contenido").html(response);
+                            $("#titname").html(titulo);
+                            history.pushState(titulo, titulo, titulo);
+                            window.scrollTo(0, 0);
+                        }
+
+
+                    },
+
+                    error: function (response) {
+                        NotifiAlert('Verifique su conexión a internet', 'w3-red', 6000);
+                        $("#loadergif").hide();
+                    }
+
+                });
+            }
+        }
+    </script>
+    <script>
+        function formatonumero(num, decimales) {
+            num = parseFloat(num).toFixed(decimales);
+            if (decimales > 2) {
+                return num;
+            }
+            else {
+                return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+            }
+        }
+    </script>
+    <script language="javascript">
+        function copiarTexto(id, alerta) {
+            if (AppenUso == true) {
+                var text = $('#' + id).html().replace(/(<([^>]+)>)/ig, "");
+                cordova.plugins.clipboard.copy(text, NotifiAlert('Copiado ' + text, 'w3-green', 2000));
+
+            }
+            else {
+                copyText = document.getElementById(id);
+                navigator.clipboard.writeText(copyText.innerHTML.replace(/(<([^>]+)>)/ig, "")).then(function () {
+                    if (alerta == 'si') {
+                        NotifiAlert('Copiado ' + copyText.innerHTML, 'w3-green', 2000);
+                    }
+                });
+
+            }
+        }
+    </script>
 </body>
 
 </html>
