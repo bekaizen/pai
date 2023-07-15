@@ -1,0 +1,304 @@
+<div class="w3-container  w3-padding-top w3-white">
+    
+ <div class="w3-col s12 m12 l12 w3-margin-top">
+     <div class="w3-col s4 m4 l4 w3-border-bottom w3-border-orange w3-padding" id="historial" onclick="CambiarDeArea('historial','A')">Activas</div>
+     <div class="w3-col s4 m4 l4  w3-border-bottom w3-text-grey w3-padding" id="pendientes" onclick="CambiarDeArea('pendientes','B')">Pendientes</div>
+     <div class="w3-col s4 m4 l4  w3-border-bottom w3-text-grey w3-padding" id="realizadas" onclick="CambiarDeArea('realizadas','C')">Realizadas</div> 
+ </div>
+    
+<!-- Areas y datos-->    
+ <div class="w3-col s12 m12 l12" id="comercTranstA">
+       <div id="trstCmA0" style="display:none" class="w3-padding-64 w3-text-grey w3-center">
+           <i class="fas fa-search fa-4x w3-margin-bottom"></i>
+           <div class="w3-col l12 s12 m12 w3-margin-top">No hay transacciones</div>
+       </div>
+ </div>
+ 
+ 
+  <div class="w3-col s12 m12 l12" id="comercTranstB" style="display:none">
+       <div id="trstCmB0" style="display:none" class="w3-padding-64 w3-text-grey w3-center">
+           <i class="fas fa-search fa-4x w3-margin-bottom"></i>
+           <div class="w3-col l12 s12 m12 w3-margin-top">No hay transacciones</div>
+       </div>
+  </div>
+  
+ 
+ <div class="w3-col s12 m12 l12" id="comercTranstC" style="display:none">
+    <div id="trstCmC0" style="display:none" class="w3-padding-64 w3-text-grey w3-center">
+           <i class="fas fa-search fa-4x w3-margin-bottom"></i>
+           <div class="w3-col l12 s12 m12 w3-margin-top">No hay transacciones</div>
+    </div>
+ </div>
+<!-- Areas y datos-->  
+
+<!-- Modal Cancelar Ordenes -->
+<div id="mdlOrdenCancl" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <p class="w3-padding-32 w3-center">¿Está seguro que desea cancelar esta orden?</p>
+      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#mdlOrdenCancl').hide();">No</div>
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" id="onclcancord" onclick="">Si</div>
+  </div>
+</div>
+<!-- //Modal Cancelar Ordenes //-->
+
+</div>
+<script>
+function CambiarDeArea(area,letraInicial)
+{
+    dato='<div id="trstCm'+letraInicial+'0" style="display:none" class="w3-padding-64 w3-text-grey w3-center">';
+    dato+='<i class="fas fa-search fa-4x w3-margin-bottom"></i>';
+    dato+='<div class="w3-col l12 s12 m12 w3-margin-top">No hay transacciones</div></div>';
+    
+    if(area=='historial')
+    {
+        $("#"+area).removeClass('w3-border-grey').addClass('w3-border-orange');
+        $("#pendientes,#realizadas").removeClass('w3-border-orange').addClass('w3-border-grey');
+        $("#comercTranstB,#comercTranstC").hide();
+        $("#comercTranstA").html(dato).show();
+        TransaccionesDeComercio(1,'compra','activa');
+    }
+    else if(area=='pendientes')
+    {
+        $("#"+area).removeClass('w3-border-grey').addClass('w3-border-orange');
+        $("#historial,#realizadas").removeClass('w3-border-orange').addClass('w3-border-grey');
+        $("#comercTranstA,#comercTranstC").hide();
+        $("#comercTranstB").html(dato).show();
+        TransaccionesDeComercio(1,'compra','pendiente');
+
+    }
+    else
+    {
+        $("#"+area).removeClass('w3-border-grey').addClass('w3-border-orange');
+        $("#historial,#pendientes").removeClass('w3-border-orange').addClass('w3-border-grey');
+        $("#comercTranstA,#comercTranstB").hide();
+        $("#comercTranstC").html(dato).show();
+        TransaccionesDeComercio(1,'compra','completa');
+    }
+}
+</script>
+<script>
+tipoTransaccion='activa';
+function TransaccionesDeComercio(pagina,tipo,estado)
+{
+
+//variable global para hacerla funcional con el scroll    en comercio.html
+tipoTransaccion=estado;
+evitardupli=0; 
+
+$.ajax({
+url: 'https://pagosalinstante.com/AppComercioTransacciones',
+type: 'post',
+data: {pagina:pagina, tipo:tipo,estado:estado},
+beforeSend: function()
+{
+   $('#loadergif').show();
+   //$('#loaderspin').show();   
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+       
+        
+        //paginacion
+         pagtotal=objt.paginas.total;
+         paglimite=objt.paginas.maximo;
+         pagina=pagina-1;
+         
+         $('#datsl').attr('pagtotal',pagtotal);
+         $('#datsl').attr('paglimite',paglimite);
+         $('#datsl').attr('pagina',pagina+1);
+         
+          
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           if(estado=='activa')
+           {
+                tipoid='A';
+           }
+           else if(estado=='pendiente')
+           {
+                tipoid='B';
+           }
+           else
+           {
+                tipoid='C';
+           }
+            
+           if(pagina=='0'){
+             //$("#trstCm"+tipoid+"0").html('');
+           }
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            
+                 
+                 if(objt.content[i].tipo=='Compra'){
+                     colortip='w3-text-green';
+                 }
+                 else{
+                     colortip='w3-text-red';
+                 }
+                 
+                 //Estados de ordenes y tipos de datos segun la orden
+                 if(estado=='activa'){
+                     cuentaBanco=objt.content[i].cuenta;
+                     montoMinimo="Minimo: "+formatonumero(objt.content[i].minimo,2)+" DOP |";
+                     SeccionPorcentaje='Porcentaje: 1% | No: #'+objt.content[i].id;
+                     BotonAccion='onclick="ModalCanclOrden('+objt.content[i].id+')"';
+                     Botontitulo='Cancelar';
+                 }
+                 else if(estado=='pendiente'){
+                     cuentaBanco='';
+                     montoMinimo="";
+                     SeccionPorcentaje='Orden ID: #44 | Cliente: 6786';
+                     BotonAccion='';
+                     Botontitulo='Decidir';
+                 }
+                 else{
+                     cuentaBanco=objt.content[i].cuenta;
+                     montoMinimo="";
+                     SeccionPorcentaje='No: #'+objt.content[i].id;
+                     BotonAccion='';
+                     Botontitulo='Detalles';
+                 }
+                 
+                 var contanido ='<div class="w3-col s12 m12 l12 w3-border-bottom w3-border-light-grey" id="trstCm'+tipoid+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+                      contanido +='<div class="w3-col s12 m12 l12 w3-border-light-grey w3-margin-top w3-padding-bottom">';
+                 
+                       contanido +='<div class="w3-col s12 m12 l12">';
+                         contanido +='<i></i> ';   
+                         contanido +='<b class="'+colortip+'">'+objt.content[i].tipo+'</b> '; 
+                         contanido +='<small class="w3-right">'+objt.content[i].fecha+'</small>';    
+                       contanido +='</div>'; 
+                     
+                       contanido +='<div class="w3-col s12 m12 l12 w3-text-grey">';
+                         contanido +='<div class="w3-col s12 l6 m6">';
+                           contanido +='<small>Forma de pago</small>';
+                             contanido +=' <small class="w3-right"><img style="margin:-1px" width="12px" src="icon/'+objt.content[i].banco+'.png"> <span class="">'+objt.content[i].banco+' '+cuentaBanco+'</span></small>';
+                         contanido +='</div>';
+                        contanido +='</div>';
+                                      
+                          
+                        contanido +='<div class=" w3-col s12 l12 m12 w3-text-grey">';
+                           contanido +='<small class="">'+SeccionPorcentaje+'</small>';
+                           contanido +='<span class="w3-right w3-tiny">'; 
+                         
+                           contanido +='</span>';
+                        contanido +='</div>';
+                        
+                        
+                        contanido +='<div class="w3-col s12 m12 l12"><small class="w3-text-grey">'+montoMinimo+' Monto: '+formatonumero(objt.content[i].monto,2)+' DOP</small>  <buttom '+BotonAccion+' class="w3-light-grey w3-tag w3-small w3-round w3-right">'+Botontitulo+'</buttom></div>';
+                       
+                    contanido +='</div>';
+                contanido +='</div>';
+
+                                      
+                $("#trstCm"+tipoid+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))).after(contanido); 
+           }
+             //$("#trstCm"+tipoid+"0").remove();
+             $("#trstCm"+tipoid+"0").hide();
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+             $("#trstCmA0").show();
+             $("#trstCmB0").show();
+             $("#trstCmC0").show();
+
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+ TransaccionesDeComercio(1,'compra','activa');
+</script>
+<script>
+function ModalCanclOrden(idOrden)
+{
+    $('#onclcancord').attr('onclick','CancelarOrden('+idOrden+')');
+    $('#mdlOrdenCancl').show();
+}
+</script>
+<script>
+function CancelarOrden(id)
+{
+
+$.ajax({
+url: 'https://pagosalinstante.com/AppCancelarMiOrdenActiva',
+type: 'post',
+data: {id:id},
+beforeSend: function()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+     objt=JSON.parse(response);
+     if(objt.estado=='ok')
+     {
+         NotifiAlert(objt.msj,'w3-green',4000);
+         $('#mdlOrdenCancl').hide();
+         CambiarDeArea('historial','A');
+         //$('trstCmA'+id).remove();
+     }
+     else
+     { 
+         NotifiAlert(objt.msj,'w3-red',4000);
+     }
+  }
+},
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+}
+
+});
+} 
+</script>

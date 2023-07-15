@@ -1,0 +1,283 @@
+<div id="chtpai" class="w3-white w3-container" style="display:none;padding-bottom:64px">
+<div id="chtid0"></div>
+
+</div>
+
+<div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+</div>
+
+<div class="w3-bottom noselect w3-white w3-padding w3-col l5" style="margin-bottom:56px" id='ChatContr'>  
+
+  <div class="w3-col s2">
+     <i  onclick="OpenOtherOption('submenu/Inicio/Ayuda','Ayuda')" id="helparea" style="cursor:none;font-size:30px;padding-top:4px" class="w3-text-blue-grey w3-left  far fa-question-circle"></i> 
+  </div>
+  
+  <div class="w3-col s8">
+    <textarea rows="1px"  onblur="Scrolldevuelta()" oninput='if(this.scrollHeight<120){ this.style.height = "5px";this.style.height=(this.scrollHeight)+"px"; }' placeholder="Escriba un mensaje" class="w3-input w3-border  w3-border-light-grey  w3-round-xlarge"  id="textfield"  style="outline: none;margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom)"></textarea>
+  </div> 
+ 
+  <div class="w3-col s2">
+       <i id="icnsend" onclick="SendMessaje($('#textfield').val());return false;" class="w3-padding-left w3-margin-left w3-padding-top w3-xlarge fas fa-play w3-text-blue-grey" style="cursor:none"></i>  
+  </div>
+   
+</div>  
+ 
+<script>
+$('#menusup').show();
+EstatusBarColor('1565c0');
+if(dispositivo=='ios')
+{     
+     $(document).on('focus','textarea', function()
+     {  
+        $("#menu").hide(); 
+        if(sessionStorage.getItem("Entradachat")==null)
+        {
+          setTimeout(function(){  $('#textfield').blur(); },300); 
+          setTimeout(function(){  $('#textfield').focus(); },300); 
+          sessionStorage.setItem("Entradachat", "1");
+        } 
+        
+        $('#ChatContr').attr('style','margin-bottom:0px');
+         window.scrollTo(0, 0);
+         
+     });
+     
+}  
+
+function Scrolldevuelta()
+{
+   if(dispositivo=='ios')
+   { 
+        $('#ChatContr').attr('style','margin-bottom:56px');
+        $("#menu").show();
+        //$('html, body').animate({ scrollTop: ($(document).height()*20)}, 1000);
+   }       
+};
+</script>
+<script>
+$.ajax({
+url: 'https://'+UrlAPI+'/Appchat',
+type: 'post',
+beforeSend: function ()
+{
+  // $('#loadergif').show();
+    $('#loaderspin').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  $('#loaderspin').hide();
+  
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexion</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+         
+        if(objt.conexion=='Si')
+        {
+            MenuAccion('fas fa-circle w3-text-green w3-padding-top w3-small',"");
+        }
+        else
+        {
+            MenuAccion('fas fa-circle w3-text-red w3-padding-top w3-small',"");
+        }
+        
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            if(objt.user==objt.content[i].de)
+            {
+                
+                 iconChat= '<i class="fas fa-user-circle  w3-xxxlarge w3-text-blue-grey"></i>';
+                 MtrNombr=objt.content[i].nombre+', ';
+                 MtrFecha=objt.content[i].fecha;
+                 MargTop='w3-margin-top'
+                 if(i>0)
+                 {
+                   
+                   if(objt.content[i-1].de==objt.content[i].de)
+                   {
+              
+                      iconChat='';
+                      MtrNombr='';
+                      MargTop=''
+                      if(objt.content[i-1].fecha==objt.content[i].fecha)
+                      {
+                       MtrFecha=''; 
+                      }
+                   }
+                   
+              
+                }
+              var contanido ='<div class="w3-margin-top w3-col s12 noselect" id="chtid'+(i+1)+'">  <div class="w3-container  w3-round-xxlarge w3-light-grey w3-col s10">';
+                 contanido +='<div class="w3-margin-bottom '+MargTop+' w3-col s12"><b><small>'+MtrNombr+MtrFecha+'</small></b></div><p class="reajuste">'+objt.content[i].mensaje+' <small class="w3-right w3-tiny w3-margin-top"> '+objt.content[i].hora+'</small> </p></div>';
+                 contanido +='<div class="w3-col s2 w3-right w3-padding-left">'+iconChat;
+                 contanido +='</div></div>';
+            }
+            else
+            {
+                Altimg="'icon/pai.png'"; 
+                iconChat= '<img onerror="this.onerror=null;this.src='+Altimg+';" src="https://pagosalinstante.com/avatar/'+objt.content[i].de+'.png" width="48px">';
+                MtrNombr=objt.content[i].nombre+', ';
+                MtrFecha=objt.content[i].fecha; 
+                MargTop='w3-margin-top';
+                if(i>0)
+                {
+                     
+                     if(objt.content[i-1].de==objt.content[i].de)
+                     {
+              
+                        iconChat='&nbsp;';
+                        MtrNombr='';
+                        MargTop=''
+                        if(objt.content[i-1].fecha==objt.content[i].fecha)
+                        {
+                           MtrFecha=''; 
+                        }
+                     }
+
+                }  
+                
+                
+                
+              var contanido ='<div class="w3-margin-top w3-col s12" id="chtid'+(i+1)+'">';
+                 contanido +='<div class="w3-col s2 noselect">'+iconChat+'</div>';
+                 contanido +='<div class="w3-container w3-light-grey w3-round-xxlarge w3-col s10"><p class="noselect"><b><small>'+MtrNombr+MtrFecha+'</small></b></p>';
+                 contanido +='<p class="reajuste">'+objt.content[i].mensaje+' <small class="w3-tiny w3-margin-top w3-right">'+objt.content[i].hora+'<small></p></div></div>';
+            }      
+             
+             $("#chtid"+i).after(contanido);
+           }
+             $("#chtid0").remove();
+             $('#chtpai').show();
+                      
+         }
+         else
+         {
+           $("#chtid0").before('<div class="w3-container w3-white w3-center noselect"><h4>No hay mensajes</h4></div>');  
+           $('#chtpai').show();
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+
+</script>
+<script> $('html, body').animate({ scrollTop: ($(document).height()*20)}, 1000);  </script>
+<script>
+function SendMessaje(mensaje)
+{
+
+ animateClick('icnsend','w3-hide',50);
+ 
+if(mensaje.length>2)
+{
+
+variables={
+"mensaje":mensaje
+};
+$.ajax({
+data: variables,
+url: 'https://'+UrlAPI+'/AppSendChat',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexion</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+      if(objt.estado=='ok')
+      {
+          OpenOption('Soporte');
+      }
+      else
+      {
+         $("#notifigener").removeClass('w3-green').addClass('w3-red');
+         $("#notifigener").html("<p>"+objt.mensaje+"</p>");
+         $("#notifigener").show();
+         setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+      }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+else
+{
+    $('#textfield').focus();
+}
+}
+</script>

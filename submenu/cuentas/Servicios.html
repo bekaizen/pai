@@ -1,0 +1,493 @@
+<div class="">
+
+
+<div class="w3-white">
+
+
+
+  <div class="w3-row noselect">
+    <a href="javascript:void(0)" onclick="openCity(event, 'London');" class="w3-col s6 m6 l6">
+      <div class="w3-third tablink w3-bottombar w3-padding-top w3-padding-bottom w3-border-grey"><i class="fas fa-phone-volume w3-large w3-text-grey w3-padding"></i> Recargas móviles</div>
+    </a>
+    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');" class="w3-col s6 m6 l6">
+      <div class="w3-third tablink w3-bottombar w3-padding-top w3-padding-bottom"> <i class="fas fa-hand-holding-usd w3-large w3-text-grey w3-padding"></i> Pagar servicios</div>
+    </a>
+  </div>
+</div>
+
+<div class="w3-container w3-white noselect">
+  <div id="London" class="city w3-margin-top" style="display:block">
+
+    <div class="w3-col s2 m2 l2 w3-margin-top"><i class="fas fa-globe w3-large"></i></div>
+     <select class="w3-select w3-border-bottom w3-col l10 m10 s10 w3-white  w3-margin-bottom w3-margin-top" id="operadora" style="outline:none">
+        <option value=''>Seleccione una operadora</option>
+     </select>
+    <div class="w3-col s2 m2 l2"> <i class="fas fa-mobile-alt w3-large"></i></div>
+     <input class="w3-input w3-col s5 w3-border-bottom  w3-margin-bottom w3-white  w3-margin-right" type="number" id='NumeroCel' placeholder="Número de celular" oninput="valor=value.replace(/[^0-9]/g,'');$('#NumeroCel').val(valor)" style="outline:none">
+    
+    <div class="w3-col s1 m1 l1"><i class="fas fa-calculator w3-large"></i></div>
+    <input class="w3-input w3-col s3 l3 m3 w3-border-bottom  w3-margin-bottom w3-white" type="number" id='cantidad' placeholder="Cantidad" oninput="valor=value.replace(/[^0-9/.]/g,'');$('#cantidad').val(valor)" style="outline:none">
+     
+      <button class="w3-btn w3-col s12 w3-blue w3-block w3-round-xlarge w3-margin-top w3-margin-bottom w3-text-white" style="cursor:none" id="rcbtn" onclick="RecConfirm($('#operadora').val(),$('#NumeroCel').val(),$('#cantidad').val())">Recargar</button>
+    
+  </div>
+
+  <div id="Paris" class="city w3-margin-top" style="display:none">
+
+    <div class="w3-col s2 m2 l2 w3-margin-top"><i class="fas fa-receipt w3-large w3-text-grey"></i></div>
+     <select class="w3-select w3-border-bottom w3-col l10 m10 s10 w3-white w3-margin-bottom w3-margin-top" id="servicio" style="outline:none">
+         <option value=''>Seleccione un servicio</option>
+     </select>
+    <div class="w3-col s2 m2 l2"><i class="far fa-edit w3-large"></i></div>
+     <input class="w3-input w3-col  l10 m10 s10  w3-border-bottom  w3-margin-bottom w3-white" type="number" id='factura' placeholder="Numero de la factura" style="outline:none" oninput='$("#ftbtn").hide(); $("#detfact").hide(); $("#btncolst").show()'>
+    
+   
+    <div id="detfact" style="display:none">
+       
+       <span class="w3-text-grey"><b>Detalles de la factura</b></span>
+
+       <div class="w3-col s12 m12 l12"><hr></div>
+       
+        <div class="w3-col s12 m12 l12">
+           <i class="fas fa-address-card w3-col s2 w3-large w3-text-grey"></i>
+           <div class="w3-col s4"> Cliente</div> <div class="w3-col s6" id='cliente'> </div>
+        </div>
+        
+        
+        <div class="w3-margin-top w3-col s12 m12 l12">
+        <i class="far fa-calendar-alt w3-col s2 w3-large w3-text-grey"></i>
+           <div class="w3-col s4"> Fecha de factura</div> <div class="w3-col s6" id='fechafact'> </div>
+        </div>
+        
+        
+        <div class="w3-margin-top w3-col s12 m12 l12">
+        <i class="fas fa-calendar-times w3-col s2 w3-large w3-text-grey"></i>
+           <div class="w3-col s4"> Fecha de venc.</div> <div class="w3-col s6" id='fechavenc'> </div>
+        </div>
+       
+       
+        <div class="w3-margin-top w3-col s12 m12 l12">
+           <i class="fas fa-file-invoice w3-col s2 w3-large w3-text-grey"></i>
+           <div class="w3-col s4"> Facturas</div> <div class="w3-col s6" id='facturas'> </div>
+        </div>
+         
+         
+       <div class="w3-margin-top w3-col s12 m12 l12">
+           <i class="fas fa-wallet w3-col s2 w3-large w3-text-grey"></i> 
+           <div class="w3-col s4"> Total a pagar</div> <div class="w3-col s6" id="total" data=''>00.00 DOP </div>
+        </div>
+        
+        <div class="w3-col s12 m12 l12"><hr></div>
+    </div>
+   
+
+     <button class="w3-btn w3-col s12 l12 m12 w3-blue w3-block w3-round-xlarge w3-margin-bottom w3-text-white" id="ftbtn" onclick="PagarServicio($('#servicio').val(),$('#factura').val(),$('#total').attr('data'),'facturas')"  style="display:none">Pagar</button>
+     <button class="w3-btn w3-col s12 w3-blue w3-block w3-round-xlarge w3-margin-bottom w3-text-white w3-margin-top " id="btncolst" onclick="ConsultFactura($('#servicio').val(),$('#factura').val())">Consultar</button>
+     
+  </div>
+</div>
+
+
+
+<div class="w3-col s12 w3-white w3-margin-top">
+<h5 class="w3-container w3-margin-top noselect" style="display:none" id="histr">Historial</h5>
+ <div class="w3-center w3-container noselect"  id="trst0" style="display:none">
+  <h5>Sin transacciones</h5>
+   <p>Aquí podrá ver las últimas transacciones realizadas.</p>
+ </div>
+</div>
+
+</div>
+
+<!-- Confirmacion-->
+<div id="recconfirm" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <div class="w3-padding-16 w3-center reajuste w3-container">
+            <p class="w3-large">Por favor confirme los datos.</p>
+            <p class="w3-large"><b id="operconfirm"></b></p>
+            <p class="w3-large"><span id="numconfirm"></span></p>
+            <p class="w3-large"><span id="montconfirm"></span> DOP</p>
+      </div>
+      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-lightgrey" style="cursor:pointer" onclick="$('#recconfirm').hide();">Cancelar</div>
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-text-blue w3-border-lightgrey" style="cursor:pointer"  onclick="PagarServicio($('#operadora').val(),$('#NumeroCel').val(),$('#cantidad').val(),'recargas');$('#recconfirm').hide()">Enviar</div>
+  </div>
+</div>
+<!-- //Confirmacion// -->
+
+<script>
+
+$('#menusup').show();
+EstatusBarColor('1565c0');
+
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-border-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-grey";
+}
+</script>
+
+
+<script>
+
+function formatNumber(num) {
+    num=parseFloat(num).toFixed(2);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppHisTrsServ',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+
+        //listado operadoras
+        for(i=0;i<objt.operadoras.length;i++)
+        { 
+            $('#operadora').append( '<option value="'+objt.operadoras[i].value+'">'+objt.operadoras[i].nombre+'</option>' );
+        }
+        
+        //listado servicios
+        for(i=0;i<objt.servicios.length;i++)
+        { 
+            $('#servicio').append( '<option value="'+objt.servicios[i].value+'">'+objt.servicios[i].nombre+'</option>' );
+        }
+      
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+             if(objt.content[i].moneda!=='DOP')
+             {
+               var cantidad= objt.content[i].monto+' '+objt.content[i].moneda;
+             }
+             else
+             {
+               var cantidad= objt.content[i].monto+' DOP / '+formatNumber(objt.content[i].monto/objt.tasa)+' USD';
+             }
+             
+             //estados
+             if(objt.content[i].estado=='pendiente')
+             {
+               var estado='<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
+             }
+             else if(objt.content[i].estado=='realizado')
+             {
+               var estado='<i class="fas fa-check-circle w3-text-green w3-xlarge"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-ban w3-text-red  w3-xlarge"></i>';
+             }
+                     
+             if((i+1)==objt.content.length)
+             {
+                borderline='';
+             }
+             else
+             {
+                borderline='w3-border-bottom w3-border-light-grey';
+             }  
+                 
+                 
+                 
+             var contanido ='<div class="w3-padding-8 w3-container w3-white w3-col s12" id="trst'+(i+1)+'">';
+                 contanido +='<div class="w3-col s2 noselect">'+estado+'</div>';
+                 contanido +='<div class="w3-col m10 l10 s10 '+borderline+'"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"> Servicio: '+objt.content[i].tipo+' </div><span> Cuenta: '+objt.content[i].cuenta+'</span></div>';
+                 contanido +='<div class="w3-col s5 reajuste"><div class="w3-col s12"><span class="w3-right w3-padding-right">'+formatNumber(objt.content[i].monto)+'</span></div><div class="w3-col s12"><small class="w3-right w3-padding-right"><b>'+objt.content[i].fecha+'</b></small></div></div>';
+                 contanido +='</div></div>';  
+             
+             $("#trst"+i).after(contanido);
+           }
+             $("#trst0").remove();
+             //$('#loaderspin').hide();
+             $('#histr').show();
+                       
+         }
+         else
+         {
+             //$('#loaderspin').hide();
+             $("#trst0").show();
+         } 
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+
+</script>
+<script>
+function ConsultFactura(proveedor,cuenta)
+{
+    
+if(proveedor=='' || cuenta=='')
+{
+    NotifiAlert('Por favor complete todos los campos','w3-red',6000);
+}
+else
+{
+    
+var datos= {
+'proveedor':proveedor,
+'cuenta':cuenta
+}
+
+$.ajax({
+data: datos,
+url: 'https://'+UrlAPI+'/AppConsultFactr',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000);
+  }
+  else 
+  {
+  
+     var objt=JSON.parse(response);
+     if(objt.session=='true')
+     {
+  
+       
+          //transacciones
+          if(objt.estado=='ok')
+          {   
+               
+               
+               $("#ftbtn").show();
+               $("#detfact").show();  
+               $("#btncolst").hide();  
+              
+               $("#total").html(objt.Total+' DOP');  
+               $("#total").attr('data',objt.Total);  
+               $("#cliente").html(objt.Nombre);  
+               $("#facturas").html(objt.Facturas);  
+               $("#fechafact").html(objt.Fecha_fact);  
+               $("#fechavenc").html(objt.Fecha_venc);  
+            
+               if(objt.Total==0)
+               {
+                  $("#ftbtn").attr('disabled','disabled');
+               }
+               else
+               {
+                  $("#ftbtn").removeAttr('disabled');
+               }
+          }
+          else
+          {
+               NotifiAlert(objt.msj,'w3-red',6000);
+          }
+          
+     }
+     else
+     {
+         CerrarSesion();
+     }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+}
+</script>        
+
+<script>
+function PagarServicio(proveedor,cuenta,cantidad,tipo)
+{
+    
+
+if(proveedor=='' || cuenta==''  || cantidad=='')
+{
+    NotifiAlert('Por favor complete todos los campos.','w3-red',6000);
+}
+else
+{
+
+var datos= {
+'proveedor':proveedor,
+'cuenta':cuenta,
+'cantidad':cantidad,
+'tipo':tipo
+}
+
+$.ajax({
+data: datos,
+url: 'https://'+UrlAPI+'/AppPagServ',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000);
+  }
+  else 
+  {
+  
+     var objt=JSON.parse(response);
+     if(objt.session=='true')
+     {
+  
+       
+         //transacciones
+         if(objt.estado=='ok')
+         {   
+     
+             NotifiAlert(objt.msj,'w3-green',6000);
+             ReopenServc('Servicios')
+            
+          }
+          else
+          {
+               NotifiAlert(objt.msj,'w3-red',6000);
+          }
+          
+     }
+     else
+     {
+         CerrarSesion();
+     }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+}
+</script>        
+
+<script>
+function ReopenServc(id){
+$.ajax({
+url: 'submenu/cuentas/'+id+'.html',
+type: 'post',
+beforeSend: function ()
+{
+  $("#loadergif").show();
+},
+success: function (response)
+{
+ 
+  if(response=='')
+  { 
+ 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000);
+  }
+  else 
+  {
+    $("#contenido").html(response);
+    $("#titname").html(id);
+    history.pushState(id,id,id); 
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000);
+   $("#loadergif").hide();
+}
+
+});
+}
+</script>
+<script>
+function RecConfirm(operadora,numero,cantidad)
+{
+  if(operadora=='' || numero=='' || cantidad=='')
+  {
+      NotifiAlert('Por favor complete todos los campos','w3-red',6000);
+  }   
+  else
+  {
+     $('#operconfirm').html($('#operadora').val());
+     $('#numconfirm').html($('#NumeroCel').val());
+     $('#montconfirm').html($('#cantidad').val());
+     $('#recconfirm').show();
+  }  
+}
+</script>
+                        

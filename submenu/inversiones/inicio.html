@@ -1,0 +1,432 @@
+<div id="trst0"></div>
+
+<!-- modal boton invertir-->
+<div id="invertirModal" class="w3-modal noselect">
+  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+  <div class="w3-container"> 
+ 
+
+    <div class="w3-col s12 m12 l12 w3-margin-top w3-padding-bottom w3-padding-16 w3-light-grey w3-round w3-round-large w3-container w3-center">
+        <img width="25px"  id="ImgInvers" src=""> <span id="MonedInvers"></span> inversión
+        <small class="w3-col s12 l12 m12">Hasta <span id="fecha"></span></small>
+    </div>
+    
+    <div class="w3-col l12 m12 s12 w3-center w3-hide"><i class="fas fa-arrow-down w3-xlarge"></i></div>
+
+    <div class="w3-col s12 m12 l12 w3-margin-bottom w3-margin-top w3-padding-8 w3-light-grey">
+        
+      <div class="w3-col s3 m3 l3 w3-container">
+        <img width="30px" src="https://inversiones.pai.exchange/img/USDT.png"> USDT
+      </div>
+      
+      <div class="w3-col s9 m9 l9 w3-container">
+          <input type="number"  min="0" class="w3-input w3-round w3-round-large w3-border-0" id="MontInvers" oninput="resultadosInversion()" placeholder="Monto de inversión">
+          <small class="w3-col s12 l12 m12">Balance disponible: <span id="baldisp"></span></small>
+      </div>
+    </div>
+    
+    <div class="w3-col l12 m12 s12 w3-small">Estimación de pago y porcentajes.</div>
+    
+    <div class="w3-col s12 m12 l12 w3-margin-bottom w3-padding-16 w3-light-grey w3-round w3-round-large w3-container w3-center">
+     
+      <!--<div class="w3-col s6 m6 l6">
+         <span id="participacionr">0.00%</span>
+         <small class="w3-col s12 l12 m12">Participación</small>
+      </div>-->
+      <div class="w3-col s4 m4 l4">
+         <span id="estimMens">0.00 USD</span>
+         <small class="w3-col s12 l12 m12">Mensual</small>
+      </div>
+
+      <div class="w3-col s4 m4 l4">
+         <span id="porcntMens">0.00%</span>
+         <small class="w3-col s12 l12 m12">Retorno/Mes</small>
+      </div>
+      
+      <div class="w3-col s4 m4 l4">
+         <span id="pagoestimador">0.00 USD</span>
+         <small class="w3-col s12 l12 m12">Pago diario</small>
+      </div>
+      
+    </div>
+    
+    <small class="w3-col s12 l12 m12 w3-margin-bottom"> 
+     El pago y porcentaje estimado indica el monto aproximado a recibir basado en el rendimiento diario, sin embargo no ofrece una garantía
+     precisa de la cantidad a recibir porque existen variaciones constantemente en el mercado. Se recomienda analizar detenidamente las monedas para hacer una inversión adecuada.
+    </small>
+
+ 
+  </div> 
+  
+  <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#invertirModal').hide(); resetnumbers();">Salir</div>
+  <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='invertbtn' style="cursor:pointer" onclick="">Invertir</div>
+
+
+
+
+  </div>
+</div>
+
+<!-- modal boton inverit-->
+
+
+<script>
+precio = 0;  //declarar variables con valor en 0 
+volumen = 0;
+liquidez = 0;
+monedaactual='';
+
+//mostrar el trading view del mercado
+$('#scriptmercd').show();
+$('#datosInversiones').attr('style','margin-top:42px');
+function SockConect(moneda)
+{
+    
+const socket = new WebSocket('wss://socket.coinex.com');
+socket.addEventListener('open', function (event) {
+  socket.send('{"method":"state.subscribe","params":["'+moneda+'USDT"],"id": 15}'); 
+});
+ 
+
+   socket.onmessage = function (event)
+   {
+	 
+	 if(monedaactual==moneda)
+     {
+	  obj=JSON.parse(event.data); 
+	  precio=obj.params[0][moneda+'USDT'].last;
+	  volumen=obj.params[0][moneda+'USDT'].deal;
+	  liquidezA=liquidezmonedas[moneda+'USDT']['liquidez1']; 
+	  liquidezB=liquidezmonedas[moneda+'USDT']['liquidez2'];
+	  liquidezbruta=parseFloat(liquidezA*precio);
+	  liquidez=parseFloat(liquidezB)+parseFloat(liquidezbruta);
+	  resultadosInversion();
+	 }
+	 
+   }
+  
+   socket.addEventListener('close', function (event) {
+	SockConect(moneda); 
+});
+}
+
+
+
+
+
+function resultadosInversion(maximo){
+    MontInvers=0;
+    
+    var MontInversTotal = parseFloat($("#MontInvers").val());
+
+    if(MontInversTotal>maximo)
+    {
+      NotifiAlert('El monto maximo de inversión en este mercado es '+maximo+' USD','w3-red',6000);  
+      $("#MontInvers").val(maximo);
+      MontInversTotal=maximo;
+    }
+    
+    var MontInvers = parseFloat($("#MontInvers").val()*0.6666);
+    var participacionr = $('#participacionr').val();
+    var pagogeneral = parseFloat(volumen*0.003*0.5); //Pago gral.
+    var liquideztotal = parseFloat(MontInvers)+parseFloat(liquidez); //Primero se calcula la liquidez total
+    var participacion = parseFloat(MontInvers/liquideztotal*100); // Luego se saca la participacion
+    var pagoestimado = parseFloat(participacion/100*pagogeneral)*parseFloat(giroP);
+
+    
+   
+if (MontInvers != ""){
+  $('#porcntMens').html(formatonumero(((pagoestimado*30)/$("#MontInvers").val())*100,2)+ '%');       
+  $('#estimMens').html('$'+formatonumero(pagoestimado*30,2));
+  $('#pagoestimador').html('$'+formatonumero(pagoestimado,2));
+ 
+}
+else{
+$("#pagoestimador,#estimMens").html('0.00');
+$('#porcntMens').html('0.00%');
+}
+    
+}
+
+//Reset
+function resetnumbers(){
+$("#participacionr").html('0.00');
+$('#pagoestimador').html('0.00'); 
+
+}
+
+//Simbols
+$('#MontInvers').on('keypress', function (event) {
+    var regex = new RegExp("^[a-zA-Z0-9.]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
+      return false;
+    }
+});
+
+
+
+</script>	 
+	 
+	 
+	 
+	 
+<script>
+function invertir(id,moneda,fecha,maximo){
+    $('#MonedInvers').html(moneda);
+    $('#ImgInvers').attr('src','https://inversiones.pai.exchange/img/'+moneda+'.png');
+    $('#MontInvers').val('');
+    monedaactual=moneda;
+    SockConect(moneda);
+    $('#invertbtn').attr('onclick',"hacerInversion("+id+",$('#MontInvers').val())");
+    $('#MontInvers').attr('oninput',"resultadosInversion("+maximo+")");
+    $('#invertirModal').show();
+    $('#fecha').html(fecha);
+    $("#participacionr,#pagoestimador,#estimMens").html('0.00');
+    $('#porcntMens').html('0.00%');    
+    
+}  
+
+</script>
+<script>
+objt='';
+pagtotal='';
+paglimite='';
+giroP='';
+mercadosactuales =new Array();
+function Inversiones(pagina)
+{
+    
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppListadoInversiones',
+type: 'post',
+data: {pagina:pagina},
+beforeSend: function ()
+{
+   $('#loadergif').show();
+   //$('#loaderspin').show();   
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000);  
+  } 
+  else 
+  {
+  
+    objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+       
+        
+        //paginacion
+         pagtotal=objt.paginas.total;
+         paglimite=objt.paginas.maximo;
+         pagina=pagina-1;
+         
+         $('#datsl').attr('pagtotal',pagtotal);
+         $('#datsl').attr('paglimite',paglimite);
+         $('#datsl').attr('pagina',pagina+1);
+         
+         //actualizar balances
+         $('#baldisp').html(formatonumero(objt.usdt,2)+' USDT'); 
+         $('#busdp').html(formatonumero(objt.balance,2)); 
+          
+
+        //resetear el select de monedas del grafico
+        if(pagina==0)
+        {
+            ///
+        }
+        //transacciones
+        if(objt.content.length>0)
+        {   
+            //trading view del mercado
+            script='<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>';
+            script+='{"symbols":[';
+            
+            giroP=objt.giroP;
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            
+                //agregando monedas al trading view del mercado
+                 script+='{"description": "","proName": "COINEX:'+objt.content[i].moneda+'USDT"},';
+                  
+
+                 
+                 //variables creando un onclick por el tema de las comillas
+                 accionOrden="invertir("+objt.content[i].id+",'"+objt.content[i].moneda+"','"+objt.content[i].finalizacion+"','"+objt.content[i].maximo+"')";
+                 Accionmoneda="'"+objt.content[i].moneda+"'";
+                 
+                 inversion=formatonumero(objt.content[i].inversion,2);
+                 if(objt.content[i].inversion=='0')
+                 {
+                     inversion='- -';
+                 }
+                 if(objt.content[i].porciento=='0')
+                 {
+                     objt.content[i].porciento='- -';
+                 }
+                 else
+                 {
+                     objt.content[i].porciento=formatonumero(objt.content[i].porciento,4)+'%';
+                 }
+                 
+                 
+                 
+                 var contanido ='<div class="w3-container w3-border-bottom w3-border-light-grey" id="trst'+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+                     contanido +='<span class="w3-col s4 m4 l4 w3-margin-top"><img width="20px" src="https://inversiones.pai.exchange/img/'+objt.content[i].moneda+'.png"> <b>'+objt.content[i].moneda+'/USDT</b></span>';
+                     contanido +='<small class="w3-col s8 m8 l8 w3-margin-top"><i class="far fa-chart-bar w3-text-grey w3-large" onclick="MostrarGrafico('+Accionmoneda+')"></i> <span onclick="'+accionOrden+'" class="w3-right w3-text-blue w3-round w3-round-large w3-container w3-border w3-border-light-blue"><b>Invertir</b></span></small>';
+                     contanido +='<div class="w3-col s12 m12 l12 w3-margin-top w3-margin-bottom">';
+                      
+                      contanido +='<small class="w3-col s4 m4 l4">Inversión</small>';
+                      contanido +='<small class="w3-col s3 m3 l3">Participación</small>';
+                      contanido +='<small class="w3-col s3 m3 l3">Finalización</small>';
+                      contanido +='<small class="w3-col s2 m2 l2">Ganancias</small>';
+
+                      contanido +='<small class="w3-col s4 m4 l4 w3-text-grey">'+inversion+'</small>';
+                      contanido +='<small class="w3-col s3 m3 l3 w3-text-grey">'+objt.content[i].porciento+'</small>';
+                      contanido +='<small class="w3-col s3 m3 l3 w3-text-grey">'+objt.content[i].finalizacion+'</small>';
+                      contanido +='<small class="w3-col s2 m2 l2 w3-text-grey">$'+formatonumero(objt.content[i].ganancias,2)+'</small>';
+                    contanido +='</div>';
+                contanido +='</div>';
+                     
+               $("#trst"+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))).after(contanido); 
+           }
+             $("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+             
+             //script mercado
+             script+='{ "description": "", "proName": "COINEX:BTCUSDT" }],"showSymbolLogo": true,"colorTheme": "light","isTransparent": false,"displayMode": "compact","locale": "es"}</'+'script>';
+             $('#scriptmercd').html(script);
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+ Inversiones(1,'compra');
+</script>
+
+<script>
+//liquidez de inversion de las monedas cada 2 minutos
+var liquidezmonedas;
+if(typeof primeravez === 'undefined')
+{
+ primeravez='si';
+}
+
+function mostrarliquidez()
+{
+ 
+  $.ajax({
+  url: "https://inversiones.pai.exchange/api_liquidez.php", 
+  success: function(result)
+  {
+    liquidezmonedas=JSON.parse(result);
+  }
+  });  
+  
+}
+
+
+if(primeravez=='si' )
+{
+     mostrarliquidez();
+     primeravez='no';
+     setInterval(function()
+     {  
+       if(verarea()=='inicio'){  
+         mostrarliquidez(); 
+       }
+     }, 120000);
+}
+</script>
+<script>
+function hacerInversion(id,monto)
+{
+   
+ if(monto<=0)
+ {
+    NotifiAlert('Favor introduzca un monto valido','w3-red',6000);   
+ }
+ else
+ {
+     
+ 
+  $.ajax({
+  url: 'https://'+UrlAPI+'/AppHacerInversion',
+  type: 'post',
+  data: {id:id, monto:monto},
+  beforeSend: function ()
+  {
+     $('#loadergif').show();
+    //$('#loaderspin').show();   
+  },
+  success: function (response)
+  {
+    $('#loadergif').hide(); 
+    if(response=='')
+    { 
+       NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+    }
+    else 
+    {
+        Objto=JSON.parse(response);
+        if(Objto.estado=='ok')
+        { 
+            NotifiAlert(Objto.msj,'w3-green',6000);
+            nuevaArea('inicio');
+            $('#invertirModal').hide();
+        }
+        else
+        {
+           NotifiAlert(Objto.msj,'w3-red',6000);
+        }
+    }
+  },
+  
+  error: function (response)
+  {
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+    $('#loadergif').hide();
+    $('#loaderspin').hide();
+  } 
+  
+ }); 
+ 
+ }
+}
+  
+</script>

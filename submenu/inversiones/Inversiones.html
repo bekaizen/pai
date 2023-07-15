@@ -1,0 +1,218 @@
+<div class="w3-white w3-top w3-col l5" id="datsl" pagtotal="" paglimite="" pagina="">
+    
+<div class="blue-dark w3-container w3-padding-bottom redondeo">
+  <div class="w3-col l12 m12 s12 w3-margin-top w3-padding-16">
+      <div class="w3-col l1 m1 s1"><i class="fas fa-list-ul w3-text-white w3-large" onclick="nuevaArea('inicio')"></i></div>
+      <div class="w3-col l1 m1 s1 w3-padding-left"><i class="fas fa-history w3-text-white w3-large" onclick="nuevaArea('historial')"></i></div>
+      <div class="w3-col l8 m8 s8 w3-center w3-text-white">
+          <small class="w3-col s12 l12 m12">Balance actual</small>
+          <span class="w3-xlarge" id="busdp"> </span> USD
+      </div>
+      <div class="w3-col l1 m1 s1"><i class=" w3-hide far fa-chart-bar w3-text-white w3-large" onclick="MostrarGrafico('SAND')"></i></div>
+      <div class="w3-col l1 m1 s1 w3-padding-left"><i class="fas fa-question-circle w3-text-white w3-large" onclick="$('#inverayuda').show()"></i></div>
+
+  </div>    
+</div>
+
+</div>
+         
+<!-- Grafico-->
+<div id="graficoInversiones" class="w3-modal noselect w3-col l5">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      <div class="w3-col s12 m12 l12 w3-container w3-text-grey w3-padding">
+           
+           <div><img src="" id="imggraf" width="20px"> <strong id="parmerc"></strong></div>
+
+      </div>
+      <iframe id="graficoINV" src="" height="356px" width="100%" frameborder="0" scrolling="no"></iframe>   
+    
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" onclick="$('#graficoInversiones').hide()">Cerrar</div>
+  </div>
+</div>
+<!-- //Grafico// -->
+
+
+<!-- AREA de AYUDA-->
+<div id="inverayuda" class="w3-modal noselect w3-col l5" style="display:none">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l10 m10 s10">
+      <div class="reajuste" align="justify" >
+          <center class="w3-padding-8 w3-container">
+                <h4>Informaciones importantes.</h4>
+          </center>
+          <div class="w3-container" style="overflow-y:scroll;max-height:430px">
+             <b>Inversiones</b> es un sistema que ha sido diseñado para generar ingresos al aportar fondos
+             en criptomonedas en los mercados de inversiones actuales proporcionados por PAI Exchange.
+             
+              <p>
+                 <b>¿Cómo funciona?</b><br>
+                 - El usuario realiza una inversión en el mercado de su preferencia, a su vez nos encargamos de invertir los
+                   fondos y  manejar la inversión. El 33.33% del balance invertido es utilizado para operaciones de protección
+                   contra la volatilidad del mercado, donde solo el 66.66% del saldo es utilizado para generar ingresos.
+                   <br>
+                   
+                   Una vez invertido este capital los ingresos serán pagados diariamente en la cuenta del usuario, y podrán ser retirados
+                   juntamente con el capital al finalizar el tiempo de inversión. 
+                   
+              </p>
+              
+               <p>
+                 <b>¿Cuál es la inversión mínima y máxima?</b><br>
+                 - El monto mínimo de inversión es el equivalente a 300 USDT; mientras que el valor máximo a invertir 
+                 es variable y dependerá de cada mercado.
+                   
+              </p>
+              
+             <p>
+                 <b>¿Cuántos ingresos puedo generar?</b><br>
+                 - Cada uno de los mercados tiene un límite de ingresos debido a que los mismos dependen del volumen
+                   de compra y venta en los intercambios de criptomonedas, por esta razón las ganancias pueden 
+                   variar constantamente por los siguientes tres factores:
+                   <br><br>
+                   1- <i>Precio de la moneda:</i> Si el precio es alcista o bajista puede afectar indirectamente los ingresos,
+                      como también afectar al volumen del cual dependen las ganancias generales.<br><br>
+                   2- <i>Otros inversores:</i> Mientras mas personas internas o externas a PAI Exchange ingresan a la inversión, el
+                   pago se ve comprometido porque debe ser repartido entre todos los participantes y además aquellos con mayor 
+                   inversión reciben las mejores ganancias.<br><br>
+                   3- <i>Volumen:</i> Si la moneda tiene un volumen muy bajo de compraventa causara que los ingresos sean menores,
+                   sin embargo cuando el volumen es alto el pago es mayor. 
+             </p>
+             
+             <p>
+                <b>¿Cómo se reciben los pagos?</b><br>
+                 - El pago de cada mercado de inversión es recibido diariamente a partir de las 10:00 PM (22:00 Horas),
+                   y se refleja disponible para retiro en el balance principal de la cuenta del usuario  
+                   al terminar el plazo definido en la moneda según la fecha de finalización.
+             </p>
+             
+             <p>
+                <b>¿En cuál horario puedo invertir?</b><br>
+                 - Solo existen dos restricciones de horarios para las inversiones. La primera es que no puede ingresar en una inversión
+                   si su fecha de finalización es menor a 24 horas. Y la segunda, no es posible invertir dentro del horario de 7:00 PM a
+                   10:00 PM (19:00 a 22:00 Horas).
+             </p>
+             
+             <p>
+                <b>¿En cuántas monedas puedo invertir?</b><br>
+                 - Hasta que se indique lo contrario, el usuario puede invertir en todas las monedas que prefiera, siempre que tenga 
+                   suficiente balance.
+             </p>
+              
+              <p>
+                <b>¿Puedo ganar ingresos por referidos?</b><br>
+                 - Sí, puede utilizar su enlace para ganar ingresos por cada uno de sus referidos. El pago será acreditado en su saldo 
+                 principal al finalizar el tiempo de inversión en la moneda que hayan ingresado sus afiliados.
+              </p>
+            
+            <p>
+                 <b>¿Qué es el porcentaje participativo?</b><br>
+                - El  porcentaje participativo le permite ver qué porcentaje del pago general usted recibirá como inversor según la moneda.
+                  Mientras mas alto sea su porcentaje significa que tiene mayor participación en la moneda, esto se define según el monto
+                  que haya invertido.
+                 
+            </p>  
+            
+            <p>
+                 <b>¿Cuáles son los riesgos?</b><br>
+                - No existen riesgos asociados a las inversiones, debido a que el sistema de protección resuelve el mayor factor de perdida
+                  el cual es la baja de precio del mercado. 
+                 
+            </p>  
+            
+            <p>
+                 <b>¿Qué es el ROI?</b><br>
+                - El ROI por sus siglas en inglés significa «Retorno Sobre la Inversión», sea este diario o mensual. 
+                 
+            </p>   
+            
+            <p>
+                 <b>¿La subida de precio aumenta las ganancias?</b><br>
+                -   La configuración actual de las inversiones de PAI permiten que la bajada o subida de precio del mercado
+                    no cambien el valor del balance invertido y que el mismo se mantenga estatico, sin embargo cuando el precio es alcista el volumen de compraventa suele aumentar
+                    y esto permite obtener mejores beneficios.
+            </p>      
+             
+          </div> 
+      
+      </div>
+      
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#inverayuda').hide()">Ocultar</div>
+  </div>
+</div>
+<!-- //Area de ayuda// -->
+
+<!-- AREA donde se visualiza todo lo del medio-->
+
+<div style="margin-top:42px" class="w3-white" id="datosInversiones"></div>
+
+    
+
+<script>
+EstatusBarColor('1565c0');
+
+function MostrarGrafico(moneda)
+{
+    $('#graficoINV').attr('src','https://'+UrlAPI+'/Appgrafico?pares='+moneda);
+    $('#imggraf').attr('src','https://inversiones.pai.exchange/img/'+moneda+'.png');
+    $('#parmerc').html(moneda+'/USDT');
+    $('#graficoInversiones').show();
+}    
+</script>
+<script>
+function nuevaArea(area)
+{
+ $.ajax({
+ url: 'submenu/inversiones/'+area+'.html',
+ type: 'post',
+ beforeSend: function()
+ {
+    
+ },
+ success: function(response)
+ {
+    $("#datosInversiones").html(response);
+    history.pushState(area,area,area); 
+    window.scrollTo(0, 0);
+ }
+
+ });
+}
+
+nuevaArea('inicio');
+</script>
+<script>
+$(document).ready(function(){
+ evitardupli=0; 
+
+ $(window).scroll(function(){
+if(verarea()=='inicio' || verarea()=='historial')
+{ 
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupli)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+       if(verarea()=='historial')
+       {
+            historialInversiones((pagactual+1));
+       }
+       else
+       {
+            Inversiones((pagactual+1));
+            
+       }
+       
+      $('#loadergif').show();
+      //window.scrollBy(0, -1);
+      evitardupli=pagactual; 
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>

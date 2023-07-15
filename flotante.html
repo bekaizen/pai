@@ -1,0 +1,277 @@
+<div id="chtid0"></div>
+
+
+<script>
+ultimoid=0;
+paraAdmin=0;
+function cargarMsjs(metodo){
+
+if($('#FlotanteModal').attr('style')=='display: block;')
+{
+  lectura='si';  
+}else
+{
+  lectura='no';
+}
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppListaConversacion',
+type: 'post',
+data: {leer:lectura,id:ultimoid},
+success: function (response)
+{
+  
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexion</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+         
+        if(objt.conexion=='Si')
+        {
+            $('#conectSport').html("<i class='fas fa-circle w3-text-green w3-small'></i>");
+        }
+        else
+        {
+            $('#conectSport').html("<i class='fas fa-circle w3-text-red w3-small'></i>");
+        }
+        
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            if(objt.user==objt.content[i].de)
+            {
+                
+                 iconChat= '<i class="fas fa-user-circle  w3-xxxlarge w3-text-blue-grey w3-right"></i>';
+                 MtrNombr=objt.content[i].nombre+', ';
+                 MtrFecha=objt.content[i].fecha;
+                 MargTop='w3-padding-top'
+                 if(i>0)
+                 {
+                   
+                   if(objt.content[i-1].de==objt.content[i].de)
+                   {
+              
+                      iconChat='';
+                      MtrNombr='';
+                      MargTop=''
+                      if(objt.content[i-1].fecha==objt.content[i].fecha)
+                      {
+                       MtrFecha=''; 
+                      }
+                   }
+                   
+              
+                }
+              var contanido ='<div class="w3-margin-top w3-col s12 noselect" id="chtid'+(objt.content[i].id)+'">  <div class="w3-container  w3-round-xxlarge w3-light-grey w3-col s10">';
+                 contanido +='<div class="w3-margin-bottom '+MargTop+' w3-col s12"><b><small>'+MtrNombr+MtrFecha+'</small></b></div><p class="reajuste">'+objt.content[i].mensaje+' <small class="w3-right w3-tiny w3-margin-top"> '+objt.content[i].hora+'</small> </p></div>';
+                 contanido +='<div class="w3-col s2 w3-right">'+iconChat;
+                 contanido +='</div></div>';
+            }
+            else
+            {
+                Altimg="'icon/pai.png'"; 
+                iconChat= '<img onerror="this.onerror=null;this.src='+Altimg+';" src="https://paiexchange.com/avatar/'+objt.content[i].de+'.png" width="48px">';
+                MtrNombr=objt.content[i].nombre+', ';
+                MtrFecha=objt.content[i].fecha; 
+                MargTop='w3-padding-top';
+                var Noleido='';
+                
+                if(objt.content[i].lectura=='no')
+                {
+                          Noleido='<i class="fa-regular fa-clock"></i> ';
+                } 
+                if(i>0)
+                {
+                     if(objt.content[i-1].de==objt.content[i].de)
+                     {
+              
+                        iconChat='&nbsp;';
+                        MtrNombr='';
+                        MargTop='';
+                        if(objt.content[i-1].fecha==objt.content[i].fecha)
+                        {
+                           MtrFecha=''; 
+                        }
+                     }
+
+                }  
+                
+              if(metodo=='automatico' && objt.content[objt.content.length-1].id==objt.content[i].id){
+                  MensajeDelUsuario='';
+                  EscribeMSj=objt.content[i].mensaje;
+              }else
+              {
+                  MensajeDelUsuario=objt.content[i].mensaje;
+                  EscribeMSj='';
+              }
+                
+              var contanido ='<div class="w3-margin-top w3-col s12" id="chtid'+(objt.content[i].id)+'">';
+                 contanido +='<div class="w3-col s2 noselect">'+iconChat+'</div>';
+                 contanido +='<div class="w3-container w3-light-grey w3-round-xxlarge w3-col s10"><p class="noselect"><b><small>'+MtrNombr+MtrFecha+'</small></b></p>';
+                 contanido +='<p class="reajuste" style="user-select: all"><span id="convers'+objt.content[i].id+'">'+MensajeDelUsuario+' </span><small class="w3-tiny w3-margin-top w3-right noselect">'+Noleido+objt.content[i].hora+'</small></p></div></div>';
+            }      
+
+             $("#chtid"+ultimoid).after(contanido);
+             ultimoid=objt.content[i].id;
+             if(metodo=='automatico' && objt.content[objt.content.length-1].id==objt.content[i].id){
+                 escribirTexto(EscribeMSj,objt.content[i].id);
+             }
+             
+           }
+             //$("#chtid0").remove();
+             $('#chtpai').show();
+             $('#Flotante').scrollTop(1000000); 
+                      
+         }
+         /*else
+         {
+           $("#chtid0").before('<div class="w3-container w3-white w3-center noselect"><h4>No hay mensajes</h4></div>');  
+           $('#chtpai').show();
+         }*/
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+}
+
+});
+}
+cargarMsjs('automatico');
+</script>
+<script>
+var indices = {};
+
+function escribirTexto(texto, id) {
+  if (!indices[id]) {
+    indices[id] = 0;
+  }
+  if (indices[id] < texto.length) {
+    $('#convers'+id).append(texto.charAt(indices[id]));
+    indices[id]++;
+    setTimeout(() => { escribirTexto(texto, id); }, 100);
+
+    // Desplázate hasta la parte inferior del elemento después de añadir un carácter
+    $('#Flotante').scrollTop(1000000);
+  } else {
+    indices[id] = 0; // Reinicia el contador para la próxima llamada
+  }
+}
+
+</script>
+<script>
+function SendMessaje(mensaje)
+{
+
+ animateClick('icnsend','w3-hide',50);
+ 
+if(mensaje.length>2)
+{
+
+variables={
+"mensaje":mensaje,
+"para":paraAdmin
+};
+$.ajax({
+data: variables,
+url: 'https://'+UrlAPI+'/AppSendChat',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  $('#sendchat').removeAttr('disabled');
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexion</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+      if(objt.estado=='ok')
+      {
+          //cargarMsjs();
+          $('#textfield').val('');
+      }
+      else
+      {
+         $("#notifigener").removeClass('w3-green').addClass('w3-red');
+         $("#notifigener").html("<p>"+objt.mensaje+"</p>");
+         $("#notifigener").show();
+         setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+      }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+   $('#sendchat').removeAttr('disabled');
+}
+
+});
+}
+else
+{
+    $('#textfield').focus();
+    $('#sendchat').removeAttr('disabled');
+    NotifiAlert('Por favor escriba un mensaje más largo','w3-red',5000);
+}
+}
+</script>

@@ -1,0 +1,71 @@
+<div class="w3-top">
+<div class="w3-animate-left noselect">
+<style>
+ .mlarge
+ {
+   font-size:20px;
+ } 
+</style>
+
+<div class="w3-white w3-container">
+
+<p class="w3-padding-bottom w3-margin-bottom w3-padding-8"><b>Notificaciones del sistema </b> <small class="w3-col s12 m12 l12">Controle cuáles servicios le envían notificaciones</small></p>
+
+<div class="w3-padding-8 w3-row  w3-border-top w3-border-light-grey w3-white w3-col s12">
+     <h6><i class="fas fa-comment-dots w3-large mlarge w3-text-grey w3-padding-right"></i> Mensajes <i id="Nmensajes" onclick="gestionNotifications('Nmensajes')" class="fas fa-toggle-on w3-text-blue w3-right w3-xlarge w3-padding-right"></i></h6> 
+</div>
+
+<div class="w3-padding-8 w3-row  w3-border-top w3-border-light-grey w3-white w3-col s12">
+     <h6><i class="fas fa-wallet w3-large mlarge w3-text-grey w3-padding-right"></i> Transacciones <i id="Ntransacciones" onclick="gestionNotifications('Ntransacciones')" class="fas fa-toggle-on w3-text-blue w3-right w3-xlarge w3-padding-right"></i></h6> 
+</div>
+
+<div class="w3-padding-8 w3-row  w3-border-top w3-border-light-grey w3-white w3-col s12">
+     <h6><i class="fas fa-credit-card w3-large mlarge w3-text-grey w3-padding-right"></i> Pagos <i id="Npagos" onclick="gestionNotifications('Npagos')" class="fas fa-toggle-on w3-text-blue w3-right w3-xlarge w3-padding-right"></i></h6> 
+</div>
+
+<div class="w3-padding-8 w3-row  w3-border-top w3-border-light-grey w3-white w3-col s12">
+     <h6><i class="fas fa-university w3-large mlarge w3-text-grey w3-padding-right"></i> Solicitudes <i id="Nsolicitudes" onclick="gestionNotifications('Nsolicitudes')" class="fas fa-toggle-on w3-text-blue w3-right w3-xlarge w3-padding-right"></i></h6> 
+</div>
+
+<div class="w3-padding-8 w3-row  w3-border-top w3-border-light-grey w3-white w3-col s12">
+     <h6><i class="fab fa-bitcoin w3-large mlarge w3-text-grey w3-padding-right"></i> Compras <i id="Ncompras" onclick="gestionNotifications('Ncompras')" class="fas fa-toggle-on w3-text-blue w3-right w3-xlarge w3-padding-right"></i></h6> 
+</div>
+
+</div>
+    
+</div>
+</div>
+<script>
+var notificaCiones=["Nmensajes","Ntransacciones","Npagos","Nsolicitudes","Ncompras"];
+for(i=0;i<notificaCiones.length;i++)
+{
+    if(localStorage.getItem(notificaCiones[i])!=='false')
+    {
+        $('#'+notificaCiones[i]).removeClass('fas fa-toggle-off w3-text-grey');
+        $('#'+notificaCiones[i]).addClass('fas fa-toggle-on w3-text-blue');
+    }
+    else
+    {   
+        $('#'+notificaCiones[i]).removeClass('fas fa-toggle-on w3-text-blue');
+        $('#'+notificaCiones[i]).addClass('fas fa-toggle-off w3-text-grey');
+    }
+}
+</script>
+
+<script>
+function gestionNotifications(id)
+{
+    if(localStorage.getItem(id)!=='false')
+    {
+        $('#'+id).removeClass('fas fa-toggle-on w3-text-blue');
+        $('#'+id).addClass('fas fa-toggle-off w3-text-grey');
+        localStorage.setItem(id, "false");
+    }
+    else
+    {
+        $('#'+id).removeClass('fas fa-toggle-off w3-text-grey');
+        $('#'+id).addClass('fas fa-toggle-on w3-text-blue');
+        localStorage.setItem(id, "true");
+    }
+}
+</script>

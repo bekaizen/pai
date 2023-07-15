@@ -1,0 +1,219 @@
+<div>
+
+  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+  </div>
+  
+<div class="w3-white w3-top w3-padding w3-col l5">
+
+
+
+  <div class="">
+    <a href="javascript:void(0)" onclick="openCity(event, 'London');" class="w3-col s6 m6 l6">
+      <div class="w3-col l12 m12 s12 w3-third tablink w3-bottombar  w3-padding-top w3-padding-bottom w3-border-grey"> <i class="fas fa-question-circle w3-large w3-text-grey w3-padding"></i>Informaciones</div>
+    </a>
+    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');" class="w3-col s6 m6 l6">
+      <div class="w3-col l12 m12 s12 w3-third tablink w3-bottombar w3-padding-top w3-padding-bottom"> <i class="fab fa-youtube w3-large w3-text-grey w3-padding"></i> Tutoriales</div>
+    </a>
+  </div>
+</div>
+
+
+  <div id="London" class="city" style="display:block">
+
+   <div class="w3-container w3-white">
+       <div class="w3-margin-top">
+           <div class="w3-text-grey w3-col l12 m12 s12 w3-padding-bottom"><b>Las preguntas más frecuentes</b> </div>
+           <input oninput="buscarAyuda(value)" class="w3-small w3-input w3-border w3-round w3-round-xlarge" type="search" placeholder="Buscar ayuda, escribir palabra clave">
+       </div>
+   </div>
+
+      <div class="w3-col s12 w3-white w3-padding-top" id="listaayuda">
+       <div id="aftr0"></div>
+      </div>  
+  </div>
+  
+  
+  
+  
+
+  <div id="Paris" class="city" style="display:none">
+      
+  <div class="w3-container w3-white">
+       <div class="w3-margin-top">
+           <div class="w3-text-grey w3-center"><b>Videos tutoriales</b></div>
+       </div>
+   </div>
+   
+     <div class="w3-col s12 w3-white">
+       <div id="tutrl0"></div>
+    </div>
+    
+  </div>
+
+
+
+
+
+</div>
+
+<script>
+function buscarAyuda(value) {
+  var x = document.getElementById("listaayuda").querySelectorAll("div");
+  var i;
+  for (i = 0; i < x.length; i++) {
+    var cosa=x[i].textContent;
+    if(cosa.toUpperCase().indexOf(value.toUpperCase())==-1)
+    {
+        x[i].style.display="none";
+        $('#'+(i+1)).hide();
+    }
+    else
+    {
+        x[i].style.display="block";
+        if(value=='')
+        {
+            $('#'+(i+1)).hide();
+        }
+        else
+        {
+            $('#'+(i+1)).show();
+        }    
+    }
+  }
+}
+</script>
+<script>
+EstatusBarColor('ffffff');
+
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-border-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-grey";
+}
+</script>
+
+
+
+<script>
+function preguntFrec(id) {   
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+<script>
+
+function formatNumber(num) {
+    num=parseFloat(num).toFixed(2);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppAyuda',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+     $('#loaderspin').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  $('#loaderspin').hide();
+  
+  if(response=='')
+  { 
+
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+
+
+        
+        
+        
+     
+        
+        
+        //preguntas
+        if(objt.preguntas.length>0)
+        {   
+        
+           for(i=0;i<objt.preguntas.length;i++)
+           {
+           
+           
+             var contanido ='<div class="w3-container w3-padding-16 w3-border-bottom w3-border-light-grey" id="aftr'+(i+1)+'"><span class="w3-text-grey" onclick="preguntFrec('+(i+1)+')">'+(i+1)+') '+objt.preguntas[i].pregunta+'<i class="fa-solid fa-sort-down w3-right w3-text-grey"></i></span>';
+                 contanido +='<span id="'+(i+1)+'" class="w3-margin-left" style="display:none"><p>'+objt.preguntas[i].respuesta+'</p></span>';
+                 contanido +='</div>';
+                 
+             $("#aftr"+i).after(contanido);
+           }
+             $("#aftr0").remove();
+                       
+         }
+         
+         
+         
+         
+         
+        
+        
+        //tutoriales
+        if(objt.tutoriales.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.tutoriales.length;i++)
+           {
+           
+           var contanido ='<hr><div class="w3-center w3-margin-bottom" id="tutrl'+(i+1)+'"><p>'+objt.tutoriales[i].titulo+'</p>';
+                 contanido +='<iframe width="auto" height="auto" src="'+objt.tutoriales[i].tutorial+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                 contanido +='</div>';
+             
+             $("#tutrl"+i).after(contanido);
+           }
+             $("#tutrl0").remove();
+                       
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+}
+
+});
+
+</script>

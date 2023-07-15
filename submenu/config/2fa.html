@@ -1,0 +1,294 @@
+<div class="w3-white w3-container w3-top w3-col l5">
+    
+    
+<!-- Seccion1-->    
+<div id="seccnA" class="w3-padding-32" style="display:none">   
+   <div class="w3-center w3-margin-top">
+    <i class="fas fa-user-lock w3-col s12 m12 l12 w3-text-grey fa-5x w3-padding-top"></i>
+    <span class="w3-col s12 m12 l12 w3-text-grey w3-margin-bottom w3-padding-top">Habilitar la verificación de dos factores.</span>
+    <bottom class="w3-btn w3-round w3-blue w3-block w3-round-xlarge" onclick="HabilitarFactor()">Habilitar ahora</bottom>
+   </div>
+    
+    <small class="w3-col s12 m12 l12 w3-margin-top w3-text-grey w3-padding-bottom">* Al activar la verificación de dos factores podra obtener mayor seguridad en su cuenta. Cada vez que se realice un acceso de inicio 
+             sesión o confirmación se solicitará un código de la aplicación autenticadora en su dispositivo móvil que le permitirá autorizar cualquier
+             transacción.
+    </small>
+</div> 
+<!-- Seccion1-->    
+
+<!-- Seccion2-->    
+<div id="seccnB" class="w3-padding-32" style="display:none">  
+   <div class="w3-center w3-margin-top w3-margin-bottom">
+    <i class="fas fa-user-lock w3-col s12 m12 l12 w3-text-grey fa-5x w3-padding-top"></i>
+    <span class="w3-col s12 m12 l12 w3-text-grey w3-margin-bottom w3-padding-top">Introduzca un código enviado a su correo electrónico.</span>
+    <input type="text" id="emailuth" placeholder="Código" class="w3-input w3-round w3-round-xxlarge w3-col s12 m12 l12 w3-border">
+    <bottom onclick="ConfirmarEmail($('#emailuth').val())" class="w3-btn w3-round w3-blue w3-block w3-round-xlarge w3-margin-top">Confirmar email</bottom>
+   </div>
+  
+</div>
+<!-- Seccion2-->    
+
+<!-- Seccion3-->    
+<div id="seccnC" class="w3-padding-32" style="display:none">  
+   <div class="w3-center w3-margin-top w3-margin-bottom">
+    <i class="fas fa-user-lock w3-col s12 m12 l12 w3-text-grey fa-5x w3-padding-top"></i>
+    <span class="w3-col s12 m12 l12 w3-text-grey w3-margin-bottom w3-padding-top">Configurar clave privada en el doble factor.</span>
+   </div>
+   
+  <div class="w3-col s12 m12 l12">
+      <div class="w3-col s12 m12 l12 w3-center w3-margin-bottom">Clave privada: <b id="clvpriv"></b></div>
+      <div class="w3-col s12 m12 l12 w3-margin-bottom w3-center"><img id="qrfact" width="150px" src=""></div>
+      
+      <small>*Introduzca o escanee la clave privada utilizando la aplicación autenticadora para obtener el código acceso.
+              Es importante que almacene la clave privada en un lugar seguro para poder acceder a su cuenta en caso de perder su dispositivo
+              móvil.
+      </small>
+      
+      <div class="w3-margin-top w3-padding-bottom w3-center">
+             <div class="w3-col s12 m12 l12"><input id="codfa" type="text" placeholder="Código 2FA" class="w3-input w3-round w3-round-xxlarge w3-border"></div>
+             <bottom onclick="ActivarDobleFactor($('#codfa').val())" class="w3-btn w3-round w3-blue w3-round-xlarge w3-margin-top">Habilitar doble factor</bottom>
+      </div>
+  </div>
+</div>
+<!-- Seccion3-->   
+
+<!-- Seccion4-->    
+<div id="seccnD" class="w3-padding-32" style="display:none">  
+   <div class="w3-center w3-margin-top w3-margin-bottom">
+    <i class="fas fa-user-lock w3-col s12 m12 l12 w3-text-grey fa-5x w3-padding-top"></i>
+    <span class="w3-col s12 m12 l12 w3-text-grey w3-margin-bottom w3-padding-top">Su cuenta se encuentra protegida con el doble factor.</span>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+
+   </div>
+   
+  <div class="w3-col s12 m12 l12">
+      
+      <!--<div class="w3-margin-top w3-padding-bottom w3-center">
+           <div class="w3-col s12 m12 l12"><input type="text" placeholder="Codigo 2FA" class="w3-input w3-round w3-round-xxlarge w3-border"></div>
+             <bottom class="w3-btn w3-round w3-blue w3-round-xlarge w3-margin-top">Desactivar doble factor</bottom>
+      </div>-->
+  </div>
+</div>
+<!-- Seccion4--> 
+
+
+</div>
+<script>
+function ActivarDobleFactor(codigo)
+{
+  if(codigo=='')
+  {
+    NotifiAlert('Por favor introduzca el código mostrado en la aplicación autenticadora','w3-red',6000); 
+  }
+  else
+  {
+      $.ajax({
+      url: 'https://'+UrlAPI+'/AppActivarFactorFinal',
+      type: 'post',
+      data:{codigo:codigo},
+      beforeSend: function ()
+      {
+         $('#loadergif').show(); 
+      },
+      success: function (response)
+      {
+         $('#loadergif').hide(); 
+
+         if(response=='')
+         { 
+            NotifiAlert('Problemas con el servidor','w3-red',6000); 
+         }
+         else 
+         {
+  
+            var objt=JSON.parse(response);
+            if(objt.session=='true')
+            {
+    
+              if(objt.estado=='ok'){
+                $('#seccnC').hide();
+                $('#seccnD').show();
+              }
+              else
+              {
+                NotifiAlert(objt.msj,'w3-red',6000);  
+              }
+         }
+         else
+         {
+            CerrarSesion();
+         }
+    
+        }
+  
+  
+       },
+       error: function (response)
+       {
+         NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+       }
+      });
+  }
+    
+}
+</script>
+<script>
+function ConfirmarEmail(codigo)
+{
+  if(codigo=='')
+  {
+    NotifiAlert('Por favor introduzca el código enviado a su correo electrónico','w3-red',6000); 
+  }
+  else
+  {
+      $.ajax({
+      url: 'https://'+UrlAPI+'/AppConfirmEmail',
+      type: 'post',
+      data:{codigo:codigo},
+      beforeSend: function ()
+      {
+         $('#loadergif').show(); 
+      },
+      success: function (response)
+      {
+         $('#loadergif').hide(); 
+
+         if(response=='')
+         { 
+            NotifiAlert('Problemas con el servidor','w3-red',6000); 
+         }
+         else 
+         {
+  
+            var objt=JSON.parse(response);
+            if(objt.session=='true')
+            {
+    
+              if(objt.estatus=='ok'){
+                $('#seccnB').hide();
+                
+                $('#clvpriv').html(objt.code);
+                $('#qrfact').attr('src',objt.url)
+                $('#seccnC').show();
+              }
+              else
+              {
+                NotifiAlert(objt.msj,'w3-red',6000);  
+              }
+         }
+         else
+         {
+            CerrarSesion();
+         }
+    
+        }
+  
+  
+       },
+       error: function (response)
+       {
+         NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+       }
+      });
+  }
+    
+}
+</script>
+<script>
+function HabilitarFactor()
+{
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppObtenerCodigoEmail',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show(); 
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+
+  if(response=='')
+  { 
+     NotifiAlert('Problemas con el servidor','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+         if(objt.estatus=='ok'){
+             $('#seccnA').hide();
+             $('#seccnB').show();
+         }
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+  }
+  
+  
+},
+error: function (response)
+{
+      NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+}
+
+});
+}
+</script>
+
+<script>
+$.ajax({
+url: 'https://'+UrlAPI+'/AppFactorEstado',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show(); 
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+
+  if(response=='')
+  { 
+     NotifiAlert('Problemas con el servidor','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+         if(objt.resultado==0){
+             $('#seccnA').show();
+         }
+         else
+         {
+             $('#seccnD').show(); 
+         }
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+  }
+  
+  
+},
+error: function (response)
+{
+      NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+}
+
+});
+</script>

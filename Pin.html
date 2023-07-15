@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title id="cont">PAI</title>
+<link rel="shortcut icon" href="icon/pai.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<meta name="theme-color" content="#1565c0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/png" href="icon/pai.png" >
+<meta name="application-name" content="PAI">
+<link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+             document.addEventListener("deviceready", onDeviceReady, false); 
+
+
+        });
+
+        function onDeviceReady() {
+
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#1f77db");
+
+             StatusBar.styleLightContent();
+
+        }
+</script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif;}
+.blue-dark{background-color:#1565c0}
+.blue-menu{color:#1565c0}
+</style>
+<style>
+    .noselect {
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+            user-select: none;
+            cursor: dafault;
+}
+
+.pointer {
+    cursor:pointer;
+}
+</style>
+</head>
+<body class="w3-light-grey w3-col l5">
+
+<div class="w3-top w3-container w3-text-white blue-dark w3-padding">
+ <h4 style="padding-bottom:1px"><b>Pin de acceso</b></h4>
+</div>  
+
+<br><br><br>
+
+
+<!-- Page content -->
+<div id="notifigener" class="w3-animate-top w3-col m12 s12 l12 w3-container w3-center" style="position:fixed;display:none;z-index:2"></div>
+
+<div class="w3-container w3-margin-top">
+   <div class="w3-center">
+       
+       
+    <div class="w3-margin-bottom w3-col l12 s12 m12 w3-large w3-text-dark-grey">Ingrese su código PIN</div>
+     
+    <div class="w3-margin-top">
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin1" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin2" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin3" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin4" data=""></label>
+    </div>  
+     
+     
+   </div>
+   
+   <div class="w3-container w3-col s12 w3-center w3-display-bottommiddle w3-xlarge w3-dark-grey w3-text-white noselect">
+       
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(1)"> 1 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(2)"> 2 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(3)"> 3 </div>
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(4)"> 4 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(5)"> 5 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(6)"> 6 </div>
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(7)"> 7 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(8)"> 8 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(9)"> 9 </div>
+       <div class="w3-col s4 w3-padding">  </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(0)">  0 </div> <div class="w3-col s4 w3-padding w3-margin-bottom pointer" onclick="RemovBoard()"> <i class="fas fa-backspace"></i> </div>
+  
+   </div>
+   
+   
+ </div>
+ 
+ 
+
+
+
+
+<!-- // Page content END--> 
+
+
+<script>
+function KEyBoard(value)
+{
+    if($('#pin1').attr('data')=='')
+    {
+       $('#pin1').attr('data',value);
+       $('#pin1').addClass('w3-dark-grey');
+    }
+    else if($('#pin2').attr('data')=='')
+    {
+        $('#pin2').attr('data',value);
+        $('#pin2').addClass('w3-dark-grey');
+    }
+    else if($('#pin3').attr('data')=='')
+    {
+        $('#pin3').attr('data',value);
+        $('#pin3').addClass('w3-dark-grey');
+    }
+    else
+    {
+        $('#pin4').attr('data',value);
+        $('#pin4').addClass('w3-dark-grey');
+        valores=$('#pin1').attr('data')+$('#pin2').attr('data')+$('#pin3').attr('data')+$('#pin4').attr('data');
+        
+        if(localStorage.getItem('PinAcceso')==valores)
+        {
+            window.location.href="panel.html";
+        }
+        else
+        {
+            NotifiAlert('Pin incorrecto','w3-red',3000);
+            $('#pin1').attr('data',''); $('#pin1').removeClass('w3-dark-grey');
+            $('#pin2').attr('data',''); $('#pin2').removeClass('w3-dark-grey');
+            $('#pin3').attr('data',''); $('#pin3').removeClass('w3-dark-grey');
+            $('#pin4').attr('data',''); $('#pin4').removeClass('w3-dark-grey');
+        }
+      
+    }
+    
+}    
+</script>
+
+<script>
+function RemovBoard()
+{
+    if($('#pin4').attr('data')!=='')
+    {
+       $('#pin4').attr('data','');
+       $('#pin4').removeClass('w3-dark-grey');
+    }
+    else if($('#pin3').attr('data')!=='')
+    {
+        $('#pin3').attr('data','');
+        $('#pin3').removeClass('w3-dark-grey');
+    }
+    else if($('#pin2').attr('data')!=='')
+    {
+        $('#pin2').attr('data','');
+        $('#pin2').removeClass('w3-dark-grey');
+    }
+    else
+    {
+        $('#pin1').attr('data','');
+        $('#pin1').removeClass('w3-dark-grey');
+    }
+    
+}    
+</script>
+<script>
+function NotifiAlert(mensaje,color,tiempo)
+{
+     if(color=='w3-green'){ remov='w3-red'; } else { remov='w3-green'; }
+     
+     $("#notifigener").removeClass(remov).addClass(color);
+     $("#notifigener").html("<p>"+mensaje+"</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, tiempo);
+}     
+</script>
+</body>
+</html>
+
+ 

@@ -1,0 +1,237 @@
+
+<div class="w3-animate-right" style="margin-top:0px">
+        <div class="w3-bar w3-light-grey" hidden>
+            <p id="user-balance"></p>
+        </div>
+        <div class="w3-col s12 m12 l12" id="nft_card">
+        </div>
+        <!-- Muestra de mensaje de estatus -->
+        <div id="snackbar">
+            <span id="bounceText"></span>
+        </div>
+</div>
+
+
+<script src="js/Nft/inversion.js"></script>
+<script type="text/javascript" src="js/Nft/snackbar.js"></script>
+<script>
+function InvertirNft(id)
+{
+    
+plazo=$("input[name=investOPT"+id+"]:checked").val();
+$.ajax({
+data: {id:id,plazo:plazo},
+url: 'https://'+UrlAPI+'/AppNftInvertir',
+type: 'post',
+beforeSend: function ()
+{
+  $("#loadergif").show();
+},
+success: function (response)
+{
+    
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('Problemas con el servidor','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+        //resultado
+        if(objt.estado=='ok')
+        {   
+            NotifiAlert(objt.msj,'w3-green',6000);
+            $('#id'+id).hide();
+            Nftarea('historial')        
+            
+        }
+        else
+        {
+            NotifiAlert(objt.msj,'w3-red',6000);
+        }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+  }
+},
+
+error: function (response) {
+NotifiAlert('Problema de comunicación','w3-red',6000); 
+$('#loadergif').hide();
+}
+
+});
+}    
+</script>    
+<script>
+// ejecucion de funcion
+$(document).ready(function(e) {
+    
+
+	// Ajax config
+	$.ajax({
+        type: "POST", 
+        url: 'https://'+UrlAPI+'/AppNftGetData',
+        success: function (response) {
+
+            // Parsear resultados
+        	response = JSON.parse(response);
+            response=response['content'];
+            var html = "";
+
+
+            // verificar si hay disponibilidad de resultados
+            if(response.length) {
+	            // Buscar en el resultados encontrados
+	            $.each(response, function(key,value) {
+                    // Variable capturadora de id de contenido en la tabla
+                    let nft_id = value.P_id;
+                    // Impresion de tarjeta NFT
+
+                    //document.getElementById("user-balance").innerHTML = value.P_monto;
+                    //document.getElementsByClassName("valor").value = value.P_valor;
+                    reserva='';
+                    disabledBtn='';
+                    if(value.P_estado=='reservado'){
+                        reserva='<div class="w3-tiny w3-display-topleft w3-red">&nbsp;Reservado&nbsp;</div>';
+                        disabledBtn='disabled';
+                    }
+ 
+                    let CardBody = `
+                    <div class="w3-col s6 m6 l6 w3-container" style="padding-top:10px;padding-right:10px;padding-left:10px;padding-bottom:10px">
+                        <div class="w3-display-container">
+                            `+reserva+`
+                            <img src="`+ value.P_ruta_imagen +`" style="height:170px;width:100%;border-top-left-radius: 10px;border-top-right-radius: 10px;">
+                        </div>
+                        <div class="w3-container w3-white">
+                            <b class="w3-margin-top">`+ value.P_nombre +`</b>
+                            <div class="w3-row">
+                                <div class="w3-col">
+                                    <span>Inversión:</span>
+                                    <div class="w3-col s12 m12 112 w3-padding-top"> 
+                                        <img src="icon/USDT.png" width="18px">
+                                        <input class="valor" hidden />
+                                        <span class="">` + (value.P_valor).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + `</span>
+                                    </div>
+                                 <small class="w3-col s12 m12 l12 w3-padding-top">ROI: `+ formatonumero(value.P_ROI_12M*12,2) +`% Anual</small>    
+                                </div>
+                            </div>
+                            <button `+disabledBtn+` class="w3-btn w3-indigo w3-margin-top" onclick="document.getElementById('id`+ nft_id +`').style.display='block'" style="margin-bottom:16px; width:calc(100% - 24px); border-radius:6px;">VER MAS</button>
+                        </div>
+                        <div id="id`+ nft_id +`" class="w3-modal w3-col l5">
+                            <div class="w3-modal-content w3-animate-zoom w3-card-2" style="width:500px; border-radius:12px; overflow: hidden; max-height: calc(100vh - 140px); overflow-y:auto">
+                                <header class="w3-container w3-center w3-indigo cabecera" style="padding-top:16px; padding-bottom: 16px;"> 
+                                    <span onclick="document.getElementById('id`+ nft_id +`').style.display='none'" class="w3-indigo w3-btn w3-display-topright">&times;</span>
+                                    <h4>`+ value.P_nombre +`</h4>
+                                    <span class="w3-col s12 m12 l12">`+ formatonumero(value.P_valor,2) +` USD</span>
+                                </header>
+                                
+                                <div class="estatus_balance"></div>
+                                
+                                <div class="w3-container">
+                                    <b class="w3-margin-top">Seleccionar plazo de inversión</b>
+                                    <form class="w3-container"  style="padding-left:0; padding-right:0;"">
+                                        <ul class="w3-ul">
+                                            <label for="id`+ nft_id +`checkbox" width="100%">
+                                                <li class="w3-bar" style="padding-left:0; padding-right:0; border-bottom: 1px solid #ddd;">
+                                                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                                                        <div class="w3-bar-item">
+                                                            <span class="w3-large">3 Meses</span><br>
+                                                            <span>
+                                                             ROI `+formatonumero(value.P_ROI_3M*3,2)+`%: Pago de <img src="icon/USDT.png" width="16x">    
+                                                                <span class="eta-roi">`+ (((value.P_valor * value.P_ROI_3M) / 100)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') +`</span>
+                                                               al mes 
+                                                            </span>
+                                                        </div>
+                                                        <input class="w3-radio" id="id`+ nft_id +`checkbox" type="radio" name="investOPT`+ nft_id +`" value="3">
+                                                    </div>
+                                                </li>
+                                            </label>
+                                            <label for="id`+ (nft_id+1) +`checkbox" width="100%">
+                                                <li class="w3-bar" style="padding-left:0; padding-right:0; border-bottom: 1px solid #ddd;">
+                                                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                                                        <div class="w3-bar-item">
+                                                            <span class="w3-large">6 Meses</span><br>
+                                                            <span>
+                                                             ROI `+formatonumero(value.P_ROI_6M*6,2)+`%: Pago de <img src="icon/USDT.png" width="16x">    
+                                                                <span class="eta-roi">`+ (((value.P_valor * value.P_ROI_6M) / 100)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') +`</span>
+                                                               al mes 
+                                                            </span>
+                                                        </div>
+                                                        <input class="w3-radio" id="id`+ (nft_id+1) +`checkbox" type="radio" name="investOPT`+ nft_id +`" value="6">
+                                                    </div>
+                                                </li>
+                                            </label>
+                                            <label for="id`+ (nft_id+2) +`checkbox" width="100%">
+                                                <li class="w3-bar" style="padding-left:0; padding-right:0;">
+                                                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                                                        <div class="w3-bar-item">
+                                                            <span class="w3-large">12 Meses</span><br>
+                                                           <span>
+                                                             ROI `+formatonumero(value.P_ROI_12M*12,2)+`%: Pago de <img src="icon/USDT.png" width="16x">    
+                                                                <span class="eta-roi">`+ (((value.P_valor * value.P_ROI_12M) / 100)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') +`</span>
+                                                               al mes 
+                                                            </span>
+                                                        </div>
+                                                        <input class="w3-radio" id="id`+ (nft_id+2) +`checkbox" type="radio" name="investOPT`+ nft_id +`" value="12">
+                                                    </div>
+                                                </li>
+                                            </label>
+                                        </ul>
+                                    </form>   
+                                    <p>
+                                        <div onclick="Terminos('terminosid`+ nft_id +`')" class="w3-block w3-container w3-padding-8 w3-margin-bottom w3-col s12 m12 l12 w3-light-grey w3-left-align">
+                                            <b>Terminos y condiciones <i class="fa-solid fa-turn-down w3-right"></i></b>
+                                        </div>
+                                        <div id="terminosid`+ nft_id +`" class="w3-hide w3-container">
+                                           
+                                        - Los NFT de PAI Exchange son de uso privado y exclusivo para beneficio de sus usuarios, por lo cual no pueden ser comercializados por terceros fuera de la plataforma. 
+                                        <br><br>
+                                        - Los NFT de PAI Exchange representan un sistema virtual donde los usuarios de PAI pueden invertir de manera fácil y segura. Al adquirir uno de estos activos digitales se simula la adquisición de una propiedad y al mismo tiempo comienza a generar ganancias por la renta virtual de la misma. 
+                                        <br><br>
+                                        - Antes de invertir en el NFT, el cliente debe verificar perfectamente los tiempos disponibles para su inversión eligiendo el que más se ajuste a sus necesidades, teniendo en cuenta que una vez haya invertido no podrá retroceder hasta finalizado el plazo. 
+                                        <br><br>
+                                        - Los porcentajes de rentabilidad son variables dependiendo el tiempo elegido por el usuario, en caso de que el usuario desee retirar su inversión de manera anticipada deberá informar con 2 semanas de anticipación para el retorno de su inversión y deberá pagar una penalidad del 1% de la inversión por retiro anticipado. 
+                                        <br><br>
+                                        - Los pagos de las ganancias recibidas por inversión en NFT podrán ser retirados de manera mensual por el usuario y una vez finalizado el acuerdo de su inversión PAI Exchange le retorna el valor del NFT al mismo precio de su inversión inicial.  
+                                        <br><br>
+                                        - Las inversiones en NFT solo podrán ser efectuadas en criptomonedas y seran procesadas al precio actual del mercado de la moneda estable USDT para inversión o finalización.    
+                                        <br><br>
+                                        </div>                                    
+                                    </p>
+                                    <button id="btninvert`+ nft_id +`" class="w3-btn w3-indigo" onclick="Terminos('terminosid`+ nft_id +`');$('#btninvert`+ nft_id +`').attr('onclick','InvertirNft(`+ nft_id +`)')" style="margin-bottom:16px; width:100%; border-radius:6px;">INVERTIR</button>
+                                    <p style="padding-bottom:12px;">
+                                        <span style="font-size:.80rem; color:#565656">Al presionar el boton "Invertir" el usuario esta de acuerdo con los terminos y condiciones del programa de inversión sobre NFT en la plataforma PAI Exchange.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    `;
+
+
+					html += CardBody;
+	            });
+            } else {
+            	html += '<div class="w3-white w3-container w3-padding-32 w3-center">';
+				  html += 'No hay datos';
+				html += '</div>';
+            }
+
+            // Insertar resultados
+			$("#nft_card").html(html);
+        }
+    });
+});
+</script>

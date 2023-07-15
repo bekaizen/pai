@@ -1,0 +1,39 @@
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="css/media.css">
+
+    
+    <form action="" method="post" class="animate__animated animate__fadeInRight w3-container">
+        <h3>Verifica tu telefono para validar el codigo que te enviamos</h3>
+        <p>
+            Necesitamos un numero de telefono valido al cual podamos enviar mensajes de verificacion o sostener llamadas de voz. Esto ayuda a mantener tus datos y nuestra plataforma segura.
+        </p>
+        <p class="retry">No recibiste ningun codigo? <a onclick="OpenConfig('numero');">Solicita uno nuevo.</a></p>
+        <p>
+            <label>Codigo de verificacion</label>
+            <input type="text" class="w3-input w3-border w3-round" id="pin_code" name="pin_code" maxlength="5" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0000">
+        </p>
+        <p id="message" style="color: tomato;"></p>
+        <button id="request-verification" class="w3-btn w3-block w3-black w3-round w3-margin-bottom">Validar codigo</button>
+    </form>
+    
+    
+
+    <script src="js/requestMobileVerification.js"></script>
+
+    <script type="text/javascript">
+        $('document').ready(function() {
+            // $('.retry').css({'display': 'none'})
+            // let counter = 0;
+            // let counterInterval = setInterval(() => {
+            //     counter ++
+            //     console.log(counter)
+
+            //     if ( counter == 30 ) {
+            //         $('.retry').css({'display': 'block'})
+            //     }
+
+            // }, 1000)
+        })
+    </script>
+</body>
+</html>

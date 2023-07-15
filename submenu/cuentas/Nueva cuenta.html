@@ -1,0 +1,409 @@
+<div class="noselect">
+  <div id='subcuentanum0'></div>
+</div>
+
+<!-- Confirmacion-->
+<div id="addcuent" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <p class="w3-padding-32 w3-center reajuste w3-container">¿Está seguro que desea agregar esta cuenta?</p>
+      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#addcuent').hide();">No</div>
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" id="addcuentConfirm" onclick="">Si</div>
+  </div>
+</div>
+<!-- //Confirmacion// -->
+
+<!-- Agregar metodo-->
+<div id="AddpayMeth" class="w3-modal noselect">
+  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+<div class="w3-container">  
+   <div class="w3-col s12 w3-margin-top">
+        <div class="w3-margin-bottom w3-container">Agregue su cuenta bancaria.</div>
+  <div class="w3-col s2">
+      <img src="icon/Banco.png" id="iconbnk" width="30px">
+  </div>
+  <div class="w3-col s10">
+     <select class="w3-select w3-white w3-border-bottom" id="TipoBanc" onchange="imageBank(value)" style="outline:none">
+       <option value="" disabled selected>Seleccione el banco</option>
+     </select>
+  </div>
+</div>  
+
+
+<div class="w3-col s12 w3-margin-top">
+  <div class="w3-col s2">
+     <i class="fas fa-poll w3-text-grey w3-xlarge w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+    <input class="w3-input w3-white w3-border-bottom" type="number" placeholder="Cuenta bancaria" id="NumrCuent" style="outline:none">
+  </div>
+</div> 
+
+</div>  
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#AddpayMeth').hide();">Ocultar</div>
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='prcedt' style="cursor:pointer" onclick="AgregarNuevCuent($('#TipoBanc').val(),$('#NumrCuent').val(),'bancario')">Procesar</div>
+
+
+
+
+  </div>
+</div>
+<!-- //Agregar metodo// -->
+
+
+<!-- Agregar mobusi-->
+<div id="Addcpaacount" class="w3-modal noselect">
+  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+<div class="w3-container">  
+   
+<div class="w3-col s12 w3-margin-top">
+    <div class="w3-margin-bottom w3-container w3-center">Agregue su nombre de usuario</div>
+  <div class="w3-col s2">
+    <img src="" id="iconcpa" width="30px">
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+    <input class="w3-input w3-white w3-border-bottom" type="text" placeholder="Nombre de usuario" id="cpaCuent" style="outline:none">
+  </div>
+</div> 
+
+</div>  
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#Addcpaacount').hide();">Ocultar</div>
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='cpafunct' style="cursor:pointer" onclick="">Procesar</div>
+
+
+
+
+  </div>
+</div>
+<!-- //Agregar mobusi// -->
+<script>
+EstatusBarColor('1565c0');
+$('#menusup').show();
+
+function imageBank(valor)
+{
+    if(valor!==''){
+        $('#iconbnk').attr('src','icon/'+valor+'.png');
+    }
+    else
+    {
+        $('#iconbnk').attr('src','icon/Banco.png');
+    }
+}
+function shpwcpa(tipo)
+{
+   $('#iconcpa').attr('src','icon/'+tipo+'.png');
+   $('#cpafunct').attr('onclick',"AgregarNuevCuent('"+tipo+"',$('#cpaCuent').val(),'cpa')"); 
+   $('#Addcpaacount').show()
+}    
+</script>
+<script>
+function formatNumber(num) {
+    num=parseFloat(num).toFixed(2);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+$.ajax({
+
+url: 'https://'+UrlAPI+'/AppMostrAddCuentas',
+type: 'post',
+beforeSend: function ()
+{
+  // $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+
+        //listado bancos
+        for(i=0;i<objt.bancos.length;i++)
+        { 
+            $('#TipoBanc').append( '<option value="'+objt.bancos[i].value+'">'+objt.bancos[i].nombre+'</option>' );
+        }
+        
+        
+        
+        //cuentas
+        if(objt.content.length>0)
+        {   
+        
+
+           for(i=0;i<(objt.content.length);i++)
+           {
+           
+             if(objt.content[i].moneda=='Banco')
+             { 
+               var add="$('#AddpayMeth').show()";
+             }
+             else if(objt.content[i].tipo=='Mobusi' || objt.content[i].tipo=='AdsLeading')
+             { 
+               var add="shpwcpa('"+objt.content[i].tipo+"')";
+             }
+             else
+             { 
+               var add="DesplegarAccion('"+objt.content[i].tipo+"')";
+             }
+             var contanido ='<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey  w3-white w3-col s12" id="subcuentanum'+(i+1)+'">';
+                 contanido +='<div class="w3-col s2"><img src="icon/'+objt.content[i].moneda+'.png" style="width:40px"></div>';
+                 contanido +='<div class="w3-col s7" id="titl'+i+'"><h5>'+objt.content[i].tipo+' ('+objt.content[i].moneda+')</h5></div>';
+                 contanido +='<div class="w3-col s3 w3-right w3-padding-top" id="hid'+i+'"><span class="w3-padding-top w3-text-grey w3-right w3-margin-right" id="add'+i+'" onclick="'+add+'"><i class="fas fa-plus w3-large"></i></span></div>';
+             
+             $("#subcuentanum"+i).after(contanido);
+           }
+            
+            
+                   
+         }
+         else
+         {
+           $("#subcuentanum0").before('<div class="w3-container w3-white w3-center"><h5>No hay más cuentas disponibles</h5><p>Al parecer ya posees todas las cuentas que existen.</p></div>');  
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+
+</script>
+<script>
+function new_account(tipo)
+{
+
+var parametros={
+"tipo":tipo
+}
+
+$.ajax({
+data:parametros,
+url: 'https://'+UrlAPI+'/AppAddAddr',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+     $("#notifigener").removeClass('w3-green').removeClass('w3-red').addClass(objt.estado);
+     $("#notifigener").html("<p>"+objt.mensaje+"</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 4000);
+     
+     if(objt.estado=='w3-green')
+     {
+       OpenOption('Cartera');
+     }
+      
+    }
+    else
+    {
+      document.cookie = "app=";
+      OpenOption('login');
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+</script>
+
+<script>
+function OpenOther(id){
+$.ajax({
+url: 'submenu/cuentas/'+id+'.html',
+type: 'post',
+beforeSend: function ()
+{
+  //$("#loadergif").show();
+},
+success: function (response)
+{
+  $("#loadergif").hide();
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+    $("#contenido").html(response);
+    $("#titname").html(id);
+    history.pushState(id,id,id); 
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $("#loadergif").hide();
+}
+
+});
+}
+</script>
+
+<script>
+function DesplegarAccion(tipo)
+{
+  var tips="'"+tipo+"'";    
+  $('#addcuentConfirm').attr('onclick','new_account('+tips+')');
+  $('#addcuent').show();
+}
+</script>
+
+<script>
+function AgregarNuevCuent(tipo,cuenta,metodo)
+{
+      
+if(cuenta=='')
+{
+    $('#NumrCuent').focus();
+}
+if(cuenta.length<9 && metodo=='bancario')
+{
+    $('#NumrCuent').focus();
+    NotifiAlert('Una cuenta tiene un mínimo de 9 caracteres','w3-red',6000);
+}
+else if(tipo=='')
+{
+     NotifiAlert('Debe elegir el banco','w3-red',6000);
+}
+else
+{
+  
+     var datos= {
+     'tipo': tipo,
+     'cuenta':cuenta,
+     'metodo':metodo
+     }
+
+     $.ajax({
+     data: datos,
+     url: 'https://'+UrlAPI+'/AppAddAddr',
+     type: 'post',
+     beforeSend: function ()
+     {
+       $('#loadergif').show();
+     },
+     success: function (response)
+     {
+         $('#loadergif').hide(); 
+         if(response=='')
+         { 
+           NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+         }
+         else 
+         {
+  
+             var objt=JSON.parse(response);
+             if(objt.session=='true')
+             {
+    
+                 if(objt.estado=='ok')
+                 {
+                 
+                    NotifiAlert('Su cuenta esta pendiente de aprobación','w3-green',6000);  
+                    OpenOption('Cuentas');
+                 
+                 }
+                 else
+                 {
+                    NotifiAlert(objt.mensaje,'w3-red',6000);  
+                 }   
+          
+          
+             }
+             else
+             {
+                 CerrarSesion();
+             }
+         
+         }
+  
+  
+     },
+
+     error: function (response)
+     {
+       NotifiAlert('Verifique su conexión a internet','w3-red',6000);     
+     }
+
+   });
+  
+  
+
+  }
+}
+</script>

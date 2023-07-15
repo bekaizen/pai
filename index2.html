@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title id="cont">PAI</title>
+<link rel="shortcut icon" href="icon/pai.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/png" href="icon/pai.png" >
+<meta name="application-name" content="PAI">
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+             document.addEventListener("deviceready", onDeviceReady, false); 
+
+
+        });
+
+        function onDeviceReady() {
+
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#ffffff"); 
+            StatusBar.styleDefault();
+  
+        }
+</script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif;}
+.blue-dark{background-color:#1565c0}
+.blue-menu{color:#1565c0}
+
+.noselect {
+     
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+            
+}
+</style>
+</head>
+<body class="w3-white noselect" style="padding-top: constant(safe-area-inset-top);padding-top: env(safe-area-inset-top);">
+
+ <div class="w3-container w3-white">
+
+<div class="w3-margin-top w3-margin-bottom w3-container" id="bienvnd" style="display:none">   
+  <h1 class="w3-text-black w3-center"><b>Bienvenido a</b></h1>
+  <center><img src="icon/pai.png" class="w3-circle w3-light-grey" width="70px">
+      <small class="w3-col s12 m12 l12"><b>PAI E</b>xchange</small>
+  </center><br><br>
+</div>
+
+</div>
+
+
+<!-- Loader -->
+<div id="loadergif" class="w3-modal" style="display:block">
+  <div class="w3-display-middle">
+  <center>
+      <img src="icon/loader.gif" class="w3-round" width="70">
+  </center>    
+  </div>
+</div>
+<!-- // Loader// -->
+
+<!-- App Avisos -->
+<div id="Appinfos" class="w3-modal noselect w3-col l5" style="display:none">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
+        <center class="w3-container w3-margin-top">
+          <p><b class="w3-text-grey w3-large">Ha accedido desde una ubicación no permitida.</b></p>
+           <div class="w3-margin-bottom w3-text-grey" align="left">
+               No puede utilizar los servicios de PAI Exchange desde el pais <span id="pais"></span>.
+           </div>
+        </center>  
+    </div>
+</div>
+<!-- //App Avisos// -->
+<script>
+if(/(http)/i.test(window.location.protocol))
+{
+    UrlAPI=window.location.hostname;
+}
+else
+{
+    UrlAPI='api.paiexchange.com';
+}
+</script>
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://'+UrlAPI+'/AppClientePais', true);
+xhr.onload = function () {
+  if (xhr.status === 200)
+  {
+     var acceso = JSON.parse(xhr.responseText);
+     //paises permitidos
+     if(acceso.acceso=='si')
+     { 
+         if(localStorage.getItem("Sesion")!=='true')
+         {
+            window.location.href="login.html";
+         }
+         else if(localStorage.getItem('PinAcceso')!==null)
+         {
+            window.location.href="Pin.html";
+         }
+         else if(localStorage.getItem('Huella')!==null)
+         {
+    
+           document.addEventListener("deviceready", MostrarHuella, false);
+           function MostrarHuella()
+           {
+             Fingerprint.show({
+             description:  "Desbloqueo con huella dactilar",
+             title: "PAI inicio de sesión"
+             }, successCallback, errorCallback);
+             $('#bienvnd').show();
+             $('#loadergif').attr('style','display:none');
+           }
+    
+           function successCallback()
+           {
+              window.location.href="panel.html";
+           }
+
+ 
+           function errorCallback(error)
+           { 
+              if(error=='BIOMETRIC_DISMISSED' || error=='BIOMETRIC_AUTHENTICATION_FAILED' )    
+              {
+                MostrarHuella();
+              }
+              else
+              {
+                window.location.href="login.html";  
+              }
+            }
+           
+             //MostrarHuella();
+          }
+          else
+          {
+             window.location.href="panel.html";
+           }
+       }
+       else
+       {
+          $('#bienvnd').show();
+          $('#pais').html('<img width="30px" src="icon/paises/'+acceso.pais.toLowerCase()+'.png"/> '+acceso.pais);
+          $('#Appinfos').show();
+          $('#loadergif').attr('style','display:none');
+       }
+  }
+  else
+  {
+      alert('Error de comunicación con el servidor.')
+  }
+};
+xhr.send();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<div class="w3-container w3-col s12 m12 l12 w3-animate-left" id="datsl" style="margin-top:40px">
+    
+
+<div class="w3-col s12 noselect" id="contnftlist">
+ <div class="w3-center w3-container w3-white"  style="display:none" id="trst0">
+  <h5>Sin transacciones</h5>
+   <p>No hay transacciones disponibles</p>
+ </div>
+</div>
+
+  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+  </div>
+  
+  
+  
+  
+</div>
+
+
+
+
+<script>
+function calculaganancia(fecha_inicio,fecha_final,inversion,ROI,fecha_actual)
+{
+var fechaInicio = new Date(fecha_inicio).getTime();
+var fechaFin    = new Date(fecha_final).getTime();
+
+var diastotales = (fechaFin - fechaInicio)/(1000*60*60*24);
+var plazo = (fechaFin - fechaInicio)/(1000*60*60*24*30);
+
+var diario=(inversion*(ROI*Math.round(plazo)/100))/diastotales;
+
+ fechaActual = new Date(fecha_actual).getTime();
+ fechaFin    = new Date(fecha_final).getTime();
+
+return van = (fechaActual - fechaInicio)/(1000*60*60*24)*diario;
+}
+
+function calculacierre(fecha_actual,fecha_final)
+{
+var fechaInicio = new Date(fecha_actual).getTime();
+var fechaFin    = new Date(fecha_final).getTime();
+
+return diff = (fechaFin - fechaInicio)/(1000*60*60*24);
+
+}
+
+function calculaROItotal(fecha_actual,fecha_final,ROI)
+{
+var fechaInicio = new Date(fecha_actual).getTime();
+var fechaFin    = new Date(fecha_final).getTime();
+
+var plazo = (fechaFin - fechaInicio)/(1000*60*60*24*30);
+return formatonumero(ROI*Math.round(plazo),2);
+
+}
+</script>
+
+<script>
+function historialnft(pagina,estatus)
+{
+var datos= {
+'estatus':estatus,
+'pagina':pagina
+}
+
+$.ajax({
+data: datos,
+url: 'https://'+UrlAPI+'/AppNfthistorial',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+
+     NotifiAlert("Problemas de comunicación con el servidor",'w3-red',5000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+        if(pagina==1)
+        {
+           $('#contnftlist').html(`<div class="w3-center w3-container w3-white"  style="display:none" id="trst0">
+           <h5>Sin transacciones</h5>
+           <p>No hay transacciones disponibles</p>
+           </div>`);  
+        }
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           //paginacion
+           pagtotal=objt.paginas.total;
+           paglimite=objt.paginas.maximo;
+           pagina=pagina-1;
+                   
+           $('#datsl').attr('pagtotal',pagtotal);
+           $('#datsl').attr('paglimite',paglimite);
+           $('#datsl').attr('pagina',pagina+1);
+           
+           //total de datos por area
+           
+             $('#totalfinaliz').html(objt.Totales.finalizado);
+             $('#totalactv').html(objt.Totales.activa);
+           
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+            intereses=formatonumero(calculaganancia(objt.content[i].fecha_inicio,objt.content[i].fecha_final,objt.content[i].inversion,objt.content[i].ROI,objt.fecha_actual),2);
+            cierre=formatonumero(calculacierre(objt.fecha_actual,objt.content[i].fecha_final),0)+' días';
+            if(estatus=='finalizado')
+            {
+                intereses=objt.content[i].intereses;
+                cierre='<i class="fa-regular fa-calendar-check w3-center w3-text-indigo"></i>';
+                
+            }  
+            
+            
+         var contanido =
+         `<div class="w3-col s12 m12 l12 w3-white w3-round w3-round-large w3-padding-8  w3-margin-bottom" id="trst`+(pagina*paglimite+i+1)+`">
+             <div class="w3-col s2 m2 l2 w3-padding">
+               <div class="w3-padding-top">
+                  <img width="50px" height="50px" class="w3-round w3-round-xxlarge" src="`+objt.content[i].rutaimagen+`">
+               </div>
+           </div>
+           <div class="w3-col s10 m10 l10 w3-padding">
+              <div class="w3-col s12 m12 l12 w3-text-indigo">
+                 <b class="w3-col s10 m10 l12">`+objt.content[i].nombre+`</b>              
+                 <small class="w3-col s2 m2 l2 w3-right w3-text-grey">#`+'0'.repeat(6-objt.content[i].id.length)+objt.content[i].id+`</small>
+
+             </div>
+             <div class="w3-col s12 m12 l12">
+              <span class="w3-col s4 m4 l4 w3-text-grey">Inversión</span>
+              <span class="w3-col s2 m2 l2 w3-text-grey">ROI</span>
+              <span class="w3-col s4 m4 l4 w3-text-grey">Intereses</span>
+              <span class="w3-col s2 m2 l2 w3-text-grey">Cierre</span>
+
+              <small class="w3-col s4 m4 l4">$`+formatonumero(objt.content[i].inversion,2)+`</small>
+              <small class="w3-col s2 m2 l2 w3-text-green">`+calculaROItotal(objt.content[i].fecha_inicio,objt.content[i].fecha_final,objt.content[i].ROI)+`%</small>
+              <small class="w3-col s4 m4 l4">$`+intereses+`</small>
+              <small class="w3-col s2 m2 l2">`+cierre+`</small>
+            </div>
+           </div>
+         </div>`;
+                  
+             $("#trst"+(pagina*paglimite+i)).after(contanido);
+           }
+             //$("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#histr').show();
+                       
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $("#trst0").show();
+         } 
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+    NotifiAlert("Problemas de comunicación",'w3-red',5000);
+}
+
+});
+}
+historialnft(1,'activa');
+</script>
+
+
+<script>
+$(document).ready(function(){
+ evitardupl=0;
+
+ $(window).scroll(function(){
+if(verarea()=='historial')
+{
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupl)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+      historialcripto(pagactual+1);
+      $('#loadergif').show();
+      evitardupl=pagactual; 
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>

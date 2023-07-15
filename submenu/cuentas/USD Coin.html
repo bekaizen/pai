@@ -1,0 +1,390 @@
+<div class="" id="datsl">
+
+
+<div class="w3-container w3-white w3-center">
+
+<div class="w3-margin-top w3-margin-bottom w3-col s12 w3-border w3-round w3-large w3-padding noselect"><img src="icon/USDC.png" width="32px"> <b>USDC (TRC20)</b></div> 
+
+
+<div id="qrbch"></div>
+<div class="w3-margin-top w3-round w3-large"><h6 id='addrcript' class="reajuste"></h6></div>
+
+</div>
+
+<div class="w3-col s12 w3-white w3-margin-bottom w3-container noselect">
+
+<div class="w3-leftbar w3-margin-bottom w3-margin-top"><span class="w3-margin-left">Calcula cuánto recibes</span></div>
+<div class="w3-col s4">
+         <input class="w3-input w3-border" type="number" id="amoutmond" placeholder="USDC" oninput="Cacularmoned(value)">
+         <small class="w3-col s12" id='mndprec'></small>
+</div>
+
+<div class="w3-col s2 w3-center">
+         <i class="fa fa-exchange-alt w3-text-blue-grey fa-2x w3-padding-top"></i>
+</div>
+
+<div class="w3-col s6 w3-center w3-margin-bottom">
+         <div class="w3-col s12 w3-bottombar"> <span id="usdresult">0.00</span> USD </div>
+         <span class="w3-col s12 w3-center">Comisión incluida</span>
+</div>
+</div>
+
+
+
+<div class="w3-col s12 w3-white  noselect">
+<h5 class="w3-container noselect w3-margin-top" style="display:none" id="histr">Historial</h5>    
+ <div class="w3-center w3-container"  style="display:none" id="trst0">
+  <h5>Sin transacciones</h5>
+   <p>Aquí podrá ver las últimas transacciones recibidas a su cartera.</p>
+ </div>
+</div>
+
+  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+  </div>
+
+
+</div>
+
+ <!-- Confirmacion-->
+<div id="adddirect" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <p class="w3-padding-32 w3-center reajuste w3-container">¿Desea generar una nueva dirección de <span id="monednomdr"></span>?</p>
+      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-lightgrey" style="cursor:pointer" onclick="$('#adddirect').hide();">No</div>
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-lightgrey" style="cursor:pointer" id="addaddrConfirm" onclick="">Si</div>
+  </div>
+</div>
+<!-- //Confirmacion// -->
+
+ <!-- info-->
+<div id="infoarea" class="w3-modal noselect" style="display:none">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      <div class="w3-padding-16  reajuste w3-container" align="">
+          <center>
+                <b>Antes de realizar cualquier transacción tome en cuenta lo siguiente:</b>
+          </center>
+          <br> Esta dirección de billetera <b>solo</b> acepta transacciones TRX y los Token (TRC20) USDT, USDC, TUSD y BTT, 
+          cualquier otro token enviado resultará en pérdida definitiva. 
+              <br><br>
+              <input type="checkbox" id="checkarea" onclick="habilitaraceptar()"> Confirmo que estoy consciente de esto.
+      
+      </div>
+      
+      <div id="infoacept" class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#checkarea').focus()">Aceptar</div>
+  </div>
+</div>
+<!-- //info// -->
+
+<script>
+EstatusBarColor('1565c0');
+$('#menusup').show();
+
+/*function habilitaraceptar()
+{  
+    var accions="$('#infoarea').hide();localStorage.setItem('infousdc', 'aceptado');"; 
+    $('#infoacept').attr('onclick',accions)
+}
+if(localStorage.getItem('infousdc')!=='aceptado')
+{
+ $('#infoarea').show();
+}*/
+//MenuAccion('fas fa-plus',"GenerAdrrConfir('USD Coin')"); 
+
+//Variables Glabales
+var simbolo='USDC';
+var moneda='USD Coin';
+var decimales=4;
+
+function formatNumber(num,decimales) {
+    num=parseFloat(num).toFixed(decimales);
+    if(decimales>2)
+    {
+        return num;
+    }
+    else
+    {
+       return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }   
+}
+
+function historialcripto(pagina)
+{
+var datos= {
+'tipo':moneda,
+'codigo':simbolo,
+'pagina':pagina
+}
+
+
+$.ajax({
+data: datos,
+url: 'https://'+UrlAPI+'/AppAddrTrstion',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+
+     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',5000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+        if(pagina==1)
+        {
+          $("#addrcript").html(objt.addrsegura);   
+          orignaddrs=objt.addr;
+            //$('#qrbch').qrcode({render: 'image',size: 180,text: objt.addr,mode: 2, ecLevel: 'M',label:orignaddrs.substring(0, 3)+'...'+orignaddrs.substring(orignaddrs.length-3, orignaddrs.length),    fontcolor: 'grey'}); 
+             $('#qrbch').qrcode({render: 'image',size: 180,text: objt.addr,mode: 0, ecLevel: 'M'}); 
+             
+          $("#mndprec").html('1 '+simbolo+' = '+formatNumber(JsonPrecios[simbolo],decimales)+' USD'); 
+          fee=parseFloat(1-objt.fee);
+        } 
+      
+        //transacciones
+        if(objt.content.length>0)
+        {   
+                
+          //paginacion
+          pagtotal=objt.paginas.total;
+          paglimite=objt.paginas.maximo;
+          pagina=pagina-1;
+         
+          $('#datsl').attr('pagtotal',pagtotal);
+          $('#datsl').attr('paglimite',paglimite);
+          $('#datsl').attr('pagina',pagina+1);
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+             if(objt.content[i].moneda=='USD')
+             {
+               var cantidad= formatonumero(objt.content[i].monto,2)+' '+objt.content[i].moneda;
+               montUsd="";
+             }
+             else if(objt.content[i].moneda!=='DOP')
+             {
+               var cantidad= formatonumero(objt.content[i].monto,6)+' '+objt.content[i].moneda;
+               montUsd="";
+             }
+             else
+             {
+               var cantidad= '';
+               montUsd=formatonumero(objt.content[i].monto/objt.tasa,2)+' USD';
+             }
+             
+             //estados
+             var msdr="showtxinfo("+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))+")";
+             
+             if(objt.content[i].estado=='pendiente')
+             {
+               var estado='<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
+             }
+             else if(objt.content[i].estado=='realizado')
+             {
+               var estado='<i class="fas fa-check-circle w3-text-green w3-xlarge"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-ban w3-text-red w3-xlarge"></i>';
+             }
+     
+           
+             if((i+1)==objt.content.length)
+             {
+                borderline='';
+             }
+             else
+             {
+                borderline='w3-border-bottom w3-border-light-grey';
+             }   
+                 
+             var contanido ='<div class="w3-padding-8 w3-container w3-white w3-col s12" onclick="'+msdr+'" id="trst'+(pagina*paglimite+i+1)+'">';
+                contanido +='<div class="w3-col s2 noselect">'+estado+'</div>';
+                 contanido +='<div class="w3-col m10 l10 s10 '+borderline+'"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><b>'+objt.content[i].fecha+'</b></div><span> <img src="icon/'+objt[0][objt.content[i].tipo]+'.png" width="15px"> '+objt.content[i].direccion.substring(0, 7)+'...'+objt.content[i].direccion.substring(objt.content[i].direccion.length  -7, objt.content[i].direccion.length)+'</span></div>';
+                 contanido +='<div class="w3-col s5 reajuste"><div class="w3-col s12 m12 l12"><span class="w3-right w3-padding-right" id="chmnd'+i+'">'+cantidad+'</span></div> <div class="w3-col s12 m12 l12"><span class="w3-right w3-padding-right">'+montUsd+'</span></div></div>';
+                 
+                 contanido +='<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: none;" id="tx'+(pagina*paglimite+i)+'"><small></small>';
+                 contanido +='<div class="w3-col s12 l12 m12"><b class="noselect"><small>Txid: </small></b><small class="reajuste">'+objt.content[i].txid;
+                 hashlink="'"+objt.explorador[objt.content[i].tipo]+objt.content[i].txid+"'";
+                 contanido +=' <a onclick="abrirEnlaceExterno('+hashlink+')" target="_blank"><i class="far fa-arrow-alt-circle-right"></i></a></small></div>';
+                 contanido +='</div></div>'; 
+                 
+             
+             $("#trst"+(pagina*paglimite+i)).after(contanido);
+             
+           }
+             $("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#histr').show();
+                       
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $("#trst0").show();
+         } 
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+historialcripto(1);
+</script>
+
+<script>                       
+function Cacularmoned(valor)
+{
+    
+  if(valor.indexOf(".")>-1)
+  {
+    var valor= valor.split('.'); var valor=valor[0]+'.'+valor[1].slice(0,8);
+    $('#amoutmond').val(valor);
+  }
+  
+  $("#usdresult").html(formatNumber(parseFloat((JsonPrecios[simbolo]*valor)*fee),2));   
+}
+</script>
+<script>
+function Generardireccion(tipo)
+{
+
+var parametros={
+"tipo":tipo
+}
+
+$.ajax({
+data:parametros,
+url: 'https://'+UrlAPI+'/AppAddAddr',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+     $("#notifigener").removeClass('w3-green').removeClass('w3-red').addClass(objt.estado);
+     $("#notifigener").html("<p>"+objt.mensaje+"</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 4000);
+     
+     if(objt.estado=='w3-green')
+     {
+          $("#addrcript").html(objt.DireccionSegura);   
+          $('#qrbch').html('');
+          //$('#qrbch').qrcode({render: 'image',size: 180,text: objt.Direccion,mode: 2, ecLevel: 'M',label:objt.Direccion.substring(0, 3)+'...'+objt.Direccion.substring(objt.Direccion.length-3, objt.Direccion.length),fontcolor: 'grey'});
+           $('#qrbch').qrcode({render: 'image',size: 180,text: objt.Direccion,mode: 0, ecLevel: 'M'}); 
+     }
+      
+    }
+    else
+    {
+      document.cookie = "app=";
+      OpenOption('login');
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert("Verifique su conexión a internet",'w3-red',6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+</script>
+<script>
+function GenerAdrrConfir(moneda)
+{
+    $('#addaddrConfirm').attr('onclick',"Generardireccion('"+moneda+"');$('#adddirect').hide()");
+    $('#monednomdr').html(moneda);
+    $('#adddirect').show();
+}
+</script>
+<script>
+$(document).ready(function(){
+ evitardupl=0;
+
+ $(window).scroll(function(){
+if(verarea()=='Tether')
+{
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupl)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+      historialcripto(pagactual+1);
+      $('#loadergif').show();
+      evitardupl=pagactual; 
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>   
+<script> 
+function showtxinfo(id)
+{
+    var x = document.getElementById('tx'+id).getAttribute("style");
+    if (x.indexOf("display: none") == -1) {
+        $('#tx'+id).attr("style","display: none");
+    } else { 
+        $('#tx'+id).attr("style","display: block");
+    }
+}
+</script>

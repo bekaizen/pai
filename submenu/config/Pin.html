@@ -1,0 +1,143 @@
+<div class="w3-container w3-margin-top noselect w3-col l5">
+   <div class="w3-center">
+       
+       
+    <div class="w3-margin-bottom w3-col l12 s12 m12 w3-large" id="InfPi">Registre su código PIN</div>
+     
+    <div class="w3-margin-top">
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin1" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin2" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin3" data=""></label>
+      <label class="w3-border w3-padding w3-margin w3-circle" id="pin4" data=""></label>
+    </div>  
+     
+     
+   </div>
+   
+   <div class="w3-container w3-col s12 w3-center w3-display-bottommiddle w3-xlarge w3-dark-grey w3-text-white">
+       
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(1)"> 1 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(2)"> 2 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(3)"> 3 </div>
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(4)"> 4 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(5)"> 5 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(6)"> 6 </div>
+       <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(7)"> 7 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(8)"> 8 </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(9)"> 9 </div>
+       <div class="w3-col s4 w3-padding pointer" onclick="BackMenu()"> <small>Volver</small> </div> <div class="w3-col s4 w3-padding pointer" onclick="KEyBoard(0)">  0 </div> <div class="w3-col s4 w3-padding w3-margin-bottom pointer" onclick="RemovBoard()"> <i class="fas fa-backspace"></i> </div>
+  
+   </div>
+   
+   
+ </div>
+ 
+
+<script>$('#menu').hide()</script>
+<script>if(localStorage.getItem('PinAcceso')!==null){ $('#InfPi').html('Confirme su código PIN');}</script>
+<script>
+function BackMenu()
+{
+    OpenOtherOption('submenu/Inicio/Configuracion','Configuracion')
+}
+
+function LimpiarValores()
+{
+   $('#pin1').attr('data',''); $('#pin1').removeClass('w3-dark-grey');
+   $('#pin2').attr('data',''); $('#pin2').removeClass('w3-dark-grey');
+   $('#pin3').attr('data',''); $('#pin3').removeClass('w3-dark-grey');
+   $('#pin4').attr('data',''); $('#pin4').removeClass('w3-dark-grey');
+}
+</script>
+<script>
+function KEyBoard(value)
+{
+    if($('#pin1').attr('data')=='')
+    {
+       $('#pin1').attr('data',value);
+       $('#pin1').addClass('w3-dark-grey');
+    }
+    else if($('#pin2').attr('data')=='')
+    {
+        $('#pin2').attr('data',value);
+        $('#pin2').addClass('w3-dark-grey');
+    }
+    else if($('#pin3').attr('data')=='')
+    {
+        $('#pin3').attr('data',value);
+        $('#pin3').addClass('w3-dark-grey');
+    }
+    else
+    {
+          $('#pin4').attr('data',value);
+          $('#pin4').addClass('w3-dark-grey');
+          valores=$('#pin1').attr('data')+$('#pin2').attr('data')+$('#pin3').attr('data')+$('#pin4').attr('data');
+        
+      if(localStorage.getItem('PinAcceso')==null)
+      {
+     
+     
+         if(sessionStorage.getItem('clave1')==null)
+         {
+            sessionStorage.setItem('clave1',valores);
+            LimpiarValores();
+            $('#InfPi').html('Confirme su código PIN')
+         }
+         else
+         {
+            $('#InfPi').html('Confirme su código PIN');    
+            if(sessionStorage.getItem('clave1')==valores)
+            {
+               sessionStorage.removeItem('clave1');
+               localStorage.setItem('PinAcceso',valores);
+               NotifiAlert('Código pin activado','w3-green',3000);
+               OpenOtherOption('submenu/Inicio/Configuracion','Configuracion')           
+            }
+            else
+            {
+                NotifiAlert('Los valores no coinciden','w3-red',3000);
+                LimpiarValores();
+            }
+         }
+         
+     }
+     else
+     {
+         if(localStorage.getItem('PinAcceso')==valores)
+         {
+            sessionStorage.removeItem('clave1');
+            localStorage.removeItem('PinAcceso');
+            NotifiAlert('El código pin ha sido desactivado','w3-green',3000);
+            OpenOtherOption('submenu/Inicio/Configuracion','Configuracion')         }
+         else
+         {
+              NotifiAlert('El código pin es incorrecto','w3-red',3000); 
+              LimpiarValores();
+         }
+     }
+         
+    }
+    
+}    
+</script>
+
+<script>
+function RemovBoard()
+{
+    if($('#pin4').attr('data')!=='')
+    {
+       $('#pin4').attr('data','');
+       $('#pin4').removeClass('w3-dark-grey');
+    }
+    else if($('#pin3').attr('data')!=='')
+    {
+        $('#pin3').attr('data','');
+        $('#pin3').removeClass('w3-dark-grey');
+    }
+    else if($('#pin2').attr('data')!=='')
+    {
+        $('#pin2').attr('data','');
+        $('#pin2').removeClass('w3-dark-grey');
+    }
+    else
+    {
+        $('#pin1').attr('data','');
+        $('#pin1').removeClass('w3-dark-grey');
+    }
+    
+}    
+</script>

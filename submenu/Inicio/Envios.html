@@ -1,0 +1,477 @@
+<div class="" id="datsl">
+
+<div class="w3-white w3-top w3-col l5">
+<div class="blue-dark w3-container w3-padding-bottom redondeo">
+<div class="w3-margin-top w3-margin-bottom w3-padding-bottom w3-center w3-padding-bottom w3-margin-bottom">
+       
+         <input id="transfrmonto" oninput="validpg(value)" placeholder="0.00 USD" class="w3-text-white blue-dark w3-col l12 m12 s12" style="font-size:30px;border:0;outline:none;text-align:center"  type="text">
+         <div class="w3-center w3-text-white w3-col s12 l12 m12 w3-small">Transferir a</div> 
+         <input placeholder="Destinatario" id="destinatario" class="w3-text-white blue-dark w3-col l12 m12 s12 w3-margin-top" style="font-size:20px;border:0;outline:none;text-align:center"  type="text">
+       
+        
+</div>       
+    
+<div class="w3-col s12 l12 m12 w3-container w3-text-white w3-center w3-margin-top w3-padding-top w3-margin-bottom">
+    <div class="w3-col l4 m4 s4" onclick="$('#recibemod').show();"><i class="fas fa-cloud-download-alt w3-xlarge"></i> <small class="w3-col s12 l12 m12 w3-padding-top">Recibir</small> </div>
+    <div class="w3-col l4 m4 s4" onclick="SendMailConfirm($('#transfrmonto').val(),$('#destinatario').val())"><i class="fas fa-location-arrow w3-xlarge"></i> <small class="w3-col s12 l12 m12 w3-padding-top">Enviar</small></div>
+    <div class="w3-col l4 m4 s4" id="scan"><i class="fas fa-camera w3-xlarge"></i> <small class="w3-col s12 l12 m12 w3-padding-top">Escanear</small></div>
+</div>
+</div>    
+</div>
+
+
+<div class="w3-col s12 w3-white  noselect" style="margin-top:155px">
+<h5 class="w3-container noselect w3-margin-top" style="display:none" id="histr">Historial</h5>
+<div id="histrarea">
+ <div class="w3-center w3-container" style="display:none" id="trst0">
+  <h5>Sin transacciones</h5>
+   <p>Aquí podrá ver las últimas transferencias recibidas a su cuenta.</p>
+ </div>
+ </div>
+</div>
+
+  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+  </div>
+
+</div>
+
+
+<!-- send-->
+<div id="sendpag" class="w3-modal noselect w3-col l5">
+  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+<div class=" w3-container">  
+  
+
+
+<div class="w3-col s12 w3-margin-top w3-padding-16 w3-center w3-container">
+         
+         <i class="fas fa-mail-bulk w3-text-yellow fa-4x w3-margin-bottom w3-margin-top w3-col s12 l12 m12"></i>
+         
+         <div class="w3-col s12 m12 l12 w3-margin-bottom w3-xlarge reajuste" id="adrrprev"></div>
+         <div class="w3-col s12 m12 l12 w3-margin-bottom reajuste" id="montoprev"></div>
+         
+         <input placeholder="Email confirmación" id="codconfir" class="w3-white w3-border-bottom w3-border-light-grey w3-col l12 m12 s12  w3-input" style="font-size:20px;outline:none;text-align:center"  type="text">
+       
+</div> 
+
+
+</div>  
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#sendpag').hide();">Cancelar</div>
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='prcedt' style="cursor:pointer" onclick="EnviarTransferencia($('#transfrmonto').val(),$('#destinatario').val(),$('#codconfir').val())">Transferir</div>
+
+
+  </div>
+</div>
+<!-- //send// -->
+
+
+<!--recibe-->
+<div id="recibemod" class="w3-modal noselect w3-col l5">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <div class="w3-padding-32 w3-center reajuste w3-container"> <div id="qrpai" class="w3-col m12 l12 s12 w3-center w3-margin-bottom"></div> 
+        <div class="w3-margin-top w3-round w3-large w3-light-grey w3-round reajuste w3-col s12 m12 l12 pointer" onclick="copiarTexto('addrdr','si')">
+          <span style="user-select: all" class="w3-col s11 m11 l11 w3-padding-top w3-padding-bottom" id='addrdr'></span> 
+          <i class="fa-solid fa-copy w3-text-grey w3-col s1 m1 l1 w3-padding-top w3-padding-bottom"></i>
+        </div>
+      </div>
+      
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#recibemod').hide();">Cerrar</div>
+  </div>
+</div>
+<!-- //recibe// -->
+
+
+ <!-- info-->
+<div id="infoareatransfer" class="w3-modal noselect w3-col l5" style="display:none">
+  <div class="w3-display-middle w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      <div class="reajuste">
+          <div class="w3-center w3-container">
+                <p><b class="w3-large">Antes de realizar cualquier transacción tome en cuenta lo siguiente:</b></p>
+          </div>
+          
+         <div class="w3-container" align="justfy"  style="overflow-y:scroll;max-height:400px">
+
+               <p>* Las transferencias internas de PAI Exchange le permiten enviar balance de criptomonedas en USD a otros usuarios de PAI.
+               Por consiguiente al enviar o recibir transacciones debe cumplir los siguientes términos.</p>
+               
+              <p> - El balance enviado es deducido de su balance principal de USD, ya no es transferido en pesos. </p>
+              <p>-  Evite ser víctima de estafas, no envíe transacciones a personas desconocidas.</p>
+              <p>-  Una vez su transacción es enviada no puede ser cancelada.
+                    Asegúrese de confirmar correctamente el destinario y el monto de la transferencia antes de confirmar la transacción en su correo.</p>
+               
+               <p><b>- PAI Exchange</b> no se responsabiliza  por el destino de su transacción, cualquier acción es tomada bajo su responsabilidad.</p>
+              
+              
+              <center><input type="checkbox" id="checkarea" onclick="habilitaraceptar()"> Confirmo estos términos.</center><br>
+       </div>
+      </div>
+      
+      <div id="infoacept" class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#checkarea').focus()">Aceptar</div>
+  </div>
+</div>
+<!-- //info// -->
+
+
+
+<script>
+ EstatusBarColor('1565c0');
+function habilitaraceptar()
+{  
+    var accions="$('#infoareatransfer').hide();localStorage.setItem('infotransfinter', 'aceptado');"; 
+    $('#infoacept').attr('onclick',accions)
+}
+if(localStorage.getItem('infotransfinter')!=='aceptado')
+{
+ $('#infoareatransfer').show();
+}
+</script>
+
+<script>
+
+function validpg(value)
+{
+
+value=value.replace(/[^0-9\.,]/g,'');
+if(/[.]/.test(value))
+{
+ div=value.split('.');
+ value=div[0]+'.'+div[1].slice(0,2);  
+}
+
+$('#transfrmonto').val(value);
+}
+</script>
+
+<script>
+function EnviarTransferencia(monto,destinatario,codigo)
+{
+
+var parametros={
+"monto":monto,
+"destinatario":destinatario,
+"codigo":codigo
+}
+
+$.ajax({
+data:parametros,
+url: 'https://'+UrlAPI+'/AppEnviarTransfererUSD',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+
+     
+     if(objt.status=='ok')
+     { 
+         NotifiAlert(objt.result,'w3-green',6000);
+         $('#histrarea').html('<div id="trst0"></div>');
+         $('#qrpai').html('');
+         mostrarhistorial(1);
+         $('#sendpag').hide();
+         $('#transfrmonto').val('');
+         $('#destinatario').val('');
+         $('#codconfir').val('');
+     }
+     else
+     {
+         NotifiAlert(objt.result,'w3-red',6000);
+     }
+      
+    }
+    else
+    {
+      document.cookie = "app=";
+      OpenOption('login');
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert("Verifique su conexión a internet",'w3-red',6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+</script>
+
+<script> 
+function formatNumber(num) {
+    num=parseFloat(num).toFixed(2);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+function mostrarhistorial(pagina)
+{
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppHistorialTransferencias',
+type: 'post',
+data:{'pagina':pagina},
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+
+     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',5000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+          if(pagina==1)
+          {
+            $("#addrdr").html(objt.addr);   
+            $('#qrpai').qrcode({render: 'image',size: 180,text: objt.addr,mode: 0, ecLevel: 'M'}); 
+          }
+
+        
+        //transacciones
+        if(objt.content.length>0)
+        {   
+            
+           //paginacion
+           pagtotal=objt.paginas.total;
+           paglimite=objt.paginas.maximo;
+           pagina=pagina-1;
+         
+           $('#datsl').attr('pagtotal',pagtotal);
+           $('#datsl').attr('paglimite',paglimite);
+           $('#datsl').attr('pagina',pagina+1);
+        
+           if(pagina==0)
+           {
+             $('#histrarea').html('<div id="trst0"></div>');
+           }
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+             if(objt.content[i].moneda=='USD')
+             {
+               var cantidad= formatonumero(objt.content[i].monto,2)+' '+objt.content[i].moneda;
+               montUsd="";
+             }
+             else
+             {
+               var cantidad= formatNumber(objt.content[i].monto)+' DOP';
+               montUsd=formatNumber(objt.content[i].monto/objt.tasa)+' USD';
+             }
+             
+             //estados
+             if(/-/g.test(cantidad) && objt.content[i].estado=='realizado')
+             {
+                 var estado='<i class="fas fa-arrow-alt-circle-up w3-text-deep-orange w3-xlarge"></i>';
+             }
+             else if(objt.content[i].estado=='realizado')
+             {
+               var estado='<i class="fas fa-arrow-alt-circle-down w3-text-green w3-xlarge"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-ban w3-text-red w3-xlarge"></i>';
+             }
+             
+           
+             if((i+1)==objt.content.length)
+             {
+                borderline='';
+             }
+             else
+             {
+                borderline='w3-border-bottom w3-border-light-grey';
+             }   
+                 
+            var contanido ='<div class="w3-padding-8 w3-container w3-white w3-col s12" id="trst'+(pagina*paglimite+i+1)+'">';
+                contanido +='<div class="w3-col s2 noselect">'+estado+'</div>';
+                 contanido +='<div class="w3-col m10 l10 s10 '+borderline+'"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><b>'+objt.content[i].fecha+'</b></div><span> Para: '+objt.content[i].direccion.substring(0, 7)+'...'+objt.content[i].direccion.substring(objt.content[i].direccion.length  -7, objt.content[i].direccion.length)+'</span></div>';
+                 contanido +='<div class="w3-col s5 reajuste"><div class="w3-col s12 m12 l12"><span class="w3-right w3-padding-right" id="chmnd'+i+'">'+cantidad+'</span></div> <div class="w3-col s12 m12 l12"><small class="w3-right w3-padding-right">'+montUsd+'</small></div></div>';
+                 contanido +='</div></div>'; 
+             
+                 
+             $("#trst"+(pagina*paglimite+i)).after(contanido);
+           }
+             $("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#histr').show();
+                       
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $("#trst0").show();
+         } 
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert("Verifique su conexión a internet",'w3-red',6000);
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+mostrarhistorial(1);
+</script>
+
+<script>
+    $(document).ready(function() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+});
+
+function onDeviceReady() {      
+     $('#scan').click( function() 
+        {
+          cordova.plugins.barcodeScanner.scan(
+          function (result) {
+              $('#destinatario').val(result.text);          
+          }, 
+          function (error) {
+              alert("Falló el escaneo " + error);
+          },
+          {
+              disableSuccessBeep:true
+          });
+        }
+     );
+}
+</script>
+<script>
+function SendMailConfirm(monto,destinatario)
+{
+
+var parametros={
+"monto":monto,
+"destinatario":destinatario
+}
+
+$.ajax({
+data:parametros,
+url: 'https://'+UrlAPI+'/AppTransferMailUSD',
+type: 'post',
+beforeSend: function ()
+{
+   $('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+
+     
+     if(objt.status=='ok')
+     { 
+     
+         $('#adrrprev').html(monto+' USD');
+         $('#montoprev').html(destinatario);
+         $('#sendpag').show();
+         $('#codconfir').focus();
+     }
+     else
+     {
+         NotifiAlert(objt.result,'w3-red',6000);
+     }
+      
+    }
+    else
+    {
+      document.cookie = "app=";
+      OpenOption('login');
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert("Verifique su conexión a internet",'w3-red',6000);
+   $('#loadergif').hide();
+}
+
+});
+}
+</script>
+<script> 
+$(document).ready(function(){
+ evitardupl=0;
+
+ $(window).scroll(function(){
+if(verarea()=='Transferencias')
+{
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupl)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+      mostrarhistorial(pagactual+1);
+      $('#loadergif').show();
+      evitardupl=pagactual;  
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>

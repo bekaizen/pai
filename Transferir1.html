@@ -1,0 +1,699 @@
+<div class="">
+   
+    
+<div  class="w3-container w3-white w3-text-black noselect w3-top w3-col l5">
+<div class="w3-col s12 w3-margin-top">
+
+
+    <div class="w3-margin-bottom">
+     
+        <div class="w3-col s12">
+            
+           <div class="w3-col s2"><img src="icon/BTC.png" style="width:36px"  id="iconcript"></div> 
+           <div class="w3-col w3-border w3-border-light-grey w3-padding  w3-round w3-round-large w3-container w3-col s10" onclick="$('#Dsplmoned').show()">
+              <div class="w3-col s11"><span  class="w3-large" id="mondnam">Bitcoin</span>  <span class="w3-right w3-padding-top w3-padding-right"><span id='priceact'></span> USD</span></div>
+              <div class="w3-col s1"><i class="fas fa-angle-down w3-large w3-padding-top"></i></div>
+           </div>    
+     </div>
+   </div> 
+
+   <div class="w3-col s12 m12 l12 w3-margin-bottom w3-margin-top">
+      <div class="w3-col l2 s2 m2"><i class="fas fa-wallet w3-xlarge w3-text-blue-grey"></i></div>
+      <input class="w3-input w3-border-bottom w3-border-light-grey w3-col l9 m9 s9 w3-white" placeholder="Dirección de la billetera" id="addr" type="text"  style="outline:none">
+      <i class="fas fa-qrcode w3-col s1 m1 l1 w3-large w3-text-grey" id="scanaddr"></i>
+   </div>
+    
+</div>    
+
+<div class="w3-col s12">    
+    
+ 
+    <div class="w3-col s5 w3-margin-bottom">
+        <div class="w3-col l5 s5 m5"><i class="fas fa-dollar-sign fa-2x w3-text-blue-grey"></i></div>
+        <input class="w3-input w3-border-bottom w3-border-light-grey w3-col l7 s7 m7 w3-white"  id="inpt2" type="text" inputmode="numeric" value="0" data='1' onfocus="$('#inpt2').attr('data', '1')"  oninput="validpg(value,'inpt2',2);selectinput(value);" style="outline:none">
+        <div class="w3-col l12" style="display:none" id='cvsm1'><div class="w3-col s5 m5 l5"> &nbsp;</div><div class=""><small>Conversión</small></div></div>
+    </div>
+    
+    <div class="w3-col l2 s2 m2 w3-padding-left w3-padding-right w3-small w3-padding-top"><i class="fas fa-exchange-alt fa-2x w3-text-blue-grey"></i></div>
+    
+    <div class="w3-col s5 w3-margin-bottom">
+        <div class="w3-input w3-border-bottom w3-border-light-grey w3-col l4 s4 m4" id="codround"><span id="codecript">BTC</span></div>
+        <input class="w3-input w3-col l8 s8 m8  w3-border-bottom w3-border-light-grey w3-white"  id="inpt1" type="text" inputmode="numeric" onfocus="$('#inpt2').attr('data', '2');" value="0.0000"  oninput="validpg(value,'inpt1',8);selectinput(value);" style="outline:none">
+        <div class="w3-col l12" id='cvsm2'><div class=""><small>Conversión del momento</small></div></div>
+    </div>
+    
+    <div class="w3-col s12 l12 m12 w3-margin-bottom">
+                <div class="w3-col l5 s2 m5"><i class="fas fa-fire-alt w3-text-blue-grey w3-large"></i></div>
+                <div class="w3-col l7 s7 m7 w3-small w3-left">Comisión de red:  - <b id='fee'>--</b></div>
+    </div>    
+
+      <div class="w3-col l12">
+         <button class="w3-btn w3-blue-grey w3-round-large  w3-padding w3-col s12 w3-small" id="btnpg" onclick="buy_cripto($('#inpt2').val(),$('#addr').val(),$('#cripto').val());">Transferir</button>
+
+     </div>
+
+</div>   
+    
+<div id="datsl" class="w3-col l12  w3-margin-bottom"></div>
+
+
+
+
+</div>
+
+
+<div class="w3-col s12 w3-white" style="padding-top:225px">
+    <h5 class="w3-container noselect w3-margin-top" style="display:none" id="histr">Historial</h5>
+ <div class="w3-center w3-container noselect"  id="trst0" style="display:none">
+  <h5>Sin transacciones</h5>
+   <p>Aquí podrá ver las últimas transferencias realizadas desde su cuenta.</p>
+ </div>
+</div>
+
+  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+  </div>
+
+</div>
+
+
+   <!-- Confirma transferencia-->
+  <div id="transfconfirm" class="w3-modal noselect w3-col l5" style="display: none;">
+   <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+    <div class="w3-margin-bottom w3-container w3-margin-top">
+        <div class="w3-col s12 m12 l12 w3-center">
+            <i class="fa-solid fa-user-shield w3-xxxlarge w3-text-grey w3-col s12 m12 l12 w3-margin-bottom"></i>
+            <p>Autenticación de doble factor.</p>
+        </div>
+        <small>Introduzca el código de doble factor</small>
+        <input class="w3-input w3-border w3-border-light-grey w3-large w3-col s12 w3-margin-bottom" type="number" id='transfer2fa' placeholder="Código" style="outline:none">
+        <bottom class="w3-btn w3-blue w3-center w3-col l12 m12 s12 w3-margin-bottom w3-round" onclick="buy_cripto($('#inpt2').val(),$('#addr').val(),$('#cripto').val())">Confirmar</bottom>
+        <bottom class="w3-btn w3-light-grey w3-center w3-col l12 m12 s12 w3-round" onclick="$('#transfconfirm').hide()">Atrás</bottom>
+    </div>
+      
+    </div>
+  </div>
+<!-- //Confirma transferencia// -->
+
+   <!-- Monedas-->
+  <div id="Dsplmoned" class="w3-modal noselect w3-col l5">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <p class="reajuste w3-container w3-large w3-center">Seleccione una moneda de la lista</p>
+      <div class="w3-center reajuste w3-border-top w3-border-lightgrey" style="overflow-y:scroll;max-height:460px">
+          
+     <div class="w3-container w3-padding-8 w3-border-bottom w3-border-light-grey" id="optio0" data='{ "name":"Bitcoin", "code":"BTC", "decimal":8,"PrecMax":2}' onclick="changemoneda($('#optio0').attr('data'))" style="cursor:pointer">
+       <div class="w3-col s11"><img src="icon/BTC.png" style="width:36px" class="w3-left"> <label class="w3-large w3-left w3-padding">Bitcoin</label></div> 
+       <div class="w3-col s1 w3-padding-top"><i id="selecBTC" class="far fa-circle w3-padding-top w3-text-grey"></i></div>
+     </div> 
+
+
+
+     
+      </div>
+      
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#Dsplmoned').hide();">Cerrar</div>
+  </div>
+</div>
+<!-- //monedas// -->
+
+ <!-- info-->
+<div id="infoareacompr" class="w3-modal noselect w3-col l5" style="display:none">
+  <div class="w3-display-middle w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      <div class="reajuste">
+          <div class="w3-center w3-container">
+                <p><b class="w3-large">Antes de realizar cualquier transacción tome en cuenta lo siguiente:</b></p>
+          </div>
+          
+         <div class="w3-container" align="justfy"  style="overflow-y:scroll;max-height:400px">
+
+               <p>- Asegúrese de confirmar correctamente la dirección de destino de su transferencia antes aprobar el correo de confirmación, una vez 
+                 confirmada la transacción en su correo electrónico ya no puede ser cancelada.</p>
+              <p> - No garantizamos que en todas las ocasiones sus transacciones serán procesadas de forma inmediata.
+                 En algunos casos aislados podrían ocurrir demoras imprevistas.</p>
+               <p>- Evite ser víctima de estafas, no envíe transacciones a plataformas o personas desconocidas.</p>
+              <p> - No forme parte de negocios que prometen exageradas ganancias como la minería, inversiones o aquellos que son parte de un esquema <b>Ponzi</b> o  piramidal.</p>
+               
+               <p><b>- PAI Exchange</b> no se responsabiliza  por el destino de su transacción, cualquier acción es tomada bajo su responsabilidad.</p>
+              
+              
+              <center><input type="checkbox" id="checkarea" onclick="habilitaraceptar()"> Confirmo estos términos.</center><br>
+       </div>
+      </div>
+      
+      <div id="infoacept" class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#checkarea').focus()">Aceptar</div>
+  </div>
+</div>
+<!-- //info// -->
+
+
+<script>
+EstatusBarColor('ffffff');
+function habilitaraceptar()
+{  
+    var accions="$('#infoareacompr').hide();localStorage.setItem('infotransferir', 'aceptado');"; 
+    $('#infoacept').attr('onclick',accions)
+}
+if(localStorage.getItem('infotransferir')!=='aceptado')
+{
+ $('#infoareacompr').show();
+}
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+});
+
+function onDeviceReady() {      
+     $('#scanaddr').click( function() 
+        {
+          cordova.plugins.barcodeScanner.scan(
+          function (result) {
+              $('#addr').val(result.text);          
+          }, 
+          function (error) {
+              alert("Falló el escaneo " + error);
+          },
+          {
+              disableSuccessBeep:true
+          });
+        }
+     );
+}
+</script>
+<script>
+function validpg(value,inpt,decimal)
+{
+
+value=value.replace(/[^0-9\.,]/g,'');
+if(/[.]/.test(value))
+{
+ div=value.split('.');
+ value=div[0]+'.'+div[1].slice(0,decimal);  
+}
+ $('#'+inpt).val(value);
+}
+</script>
+
+
+
+<script>
+function formatNumber (num,decimales) {
+    num=parseFloat(num).toFixed(decimales);
+    if(decimales>2)
+    {
+        return num;
+    }
+    else
+    {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }  
+}
+
+ feesent='';
+ pricenet='';
+ decimal=8;
+
+function changemoneda(val,metodo)
+{ 
+  var pack=JSON.parse(val);
+  value=pack.name;
+   decimal=pack.decimal;
+  criptomoneda=pack.name;
+  codigo=pack.code;
+  PrecMax=pack.PrecMax;
+ 
+    Fee=feesent[codigo]; 
+ 
+
+  pricenet= formatNumber(JsonPrecios[codigo],PrecMax).replace(/[^0-9\.]/g,''); 
+  
+  $('#iconcript').attr('src','icon/'+codigo+'.png'); 
+  $('#codecript').html(codigo);
+  $('#priceact').html(formatNumber(JsonPrecios[codigo],PrecMax));
+  $('#mondnam').html(criptomoneda);
+  $('#fee').html(Fee+' USD')
+  selectinput();
+  $('.far.fa-dot-circle.w3-padding-top.w3-text-grey').removeClass("far fa-dot-circle w3-padding-top w3-text-grey").addClass("far fa-circle w3-padding-top w3-text-grey");
+  $('#selec'+codigo).removeClass("far fa-circle w3-padding-top w3-text-grey").addClass("far fa-dot-circle w3-padding-top w3-text-grey");
+  if(metodo!=='automatico')
+  {
+    $('#Dsplmoned').hide();
+  }    
+       
+}
+function selectinput(value)
+{ 
+  if($('#inpt2').attr('data')==1)
+  { 
+    usdtocripto($("#inpt2").val()); 
+    $('#cvsm1').hide();
+    $('#cvsm2').show();
+  } 
+  else 
+  { 
+    criptotousd($("#inpt1").val());
+    $('#cvsm2').hide();
+    $('#cvsm1').show(); 
+  }
+} 
+ 
+
+function criptotousd(value)
+{
+   
+  if(value!=='' && value>0 )
+  {
+    var value= (parseFloat(value)*parseFloat(pricenet))+'';
+    if(value.indexOf(".")>-1)
+    {
+      var value= value.split('.'); var value=value[0]+'.'+value[1].slice(0,2);
+    }
+    
+    //cripto convert  
+    $('#inpt2').val(formatNumber(value,2));
+    
+    //DOP CONVERT 
+    var dop= parseFloat(value)*parseFloat(JsonPrecios.DOP)+''; 
+    if(dop.indexOf(".")>-1)
+    {
+      var dop= dop.split('.'); var dop=dop[0]+'.'+dop[1].slice(0,2); 
+    }
+
+    
+  }
+  else
+  {
+     $('#inpt2').val('0.00');
+  }
+
+}
+
+function usdtocripto(value)
+{
+   var valueX=value.replace(/[^0-9\.]/g,'');
+  
+  if(valueX!=='' && valueX>0 && pricenet>0)
+  {
+   var  valueX= (parseFloat(valueX)/parseFloat(pricenet))+''; 
+    /*if(value<valor.split('.')[0])
+    {
+        value='0.00000000';
+    }
+    else
+    {
+       value=valor; 
+    }*/
+    if(valueX.indexOf("-")>-1)
+    {
+        valueX='0.00000000'; // evitar numeros notacion cientifica 4.34782609e-7
+    }  
+    if(valueX.indexOf(".")>-1)
+    {
+      var valueX= valueX.split('.'); var valueX=valueX[0]+'.'+valueX[1].slice(0,decimal);
+    }
+    
+    
+    //cripto convert  
+    $('#inpt1').val(valueX,2);
+    
+    //DOP CONVERT 
+    var dop= parseFloat(valueX)*parseFloat(JsonPrecios.DOP)+''; 
+    if(dop.indexOf(".")>-1)
+    {
+      var dop= dop.split('.'); var dop=dop[0]+'.'+dop[1].slice(0,2); 
+    }
+    
+    
+  }
+  else
+  {
+     $('#inpt1').val('0.'+'0'.repeat(decimal));
+  }
+
+}
+
+</script>
+
+<script>
+
+function buy_cripto(monto,direccion,cripto){
+monto=monto.replace(/[^0-9\.]/g,'');
+codigoFa=$('#transfer2fa').val();
+
+if(monto>0 && monto!=='' && direccion!=='' && direccion.length>20)
+{
+    
+ if($('#inpt2').attr('data')==2)
+ {
+    var cantidad=$('#inpt1').val();
+ }
+ else
+ {
+    var cantidad=0;
+ }
+
+if(Es2fa=='true' && $('#transfconfirm').attr('style')=='display: none;')
+{
+   $('#transfconfirm').show(); //muestra solicitud 2fa
+}
+else if(Es2fa=='true' && codigoFa.length<6)
+{
+    NotifiAlert('Complete el código de doble factor','w3-red',6000);
+}
+else
+{
+
+var parametros = {
+"monto" : monto,
+"direccion" : direccion,
+"moneda" : criptomoneda,
+"codigo": codigo,
+"cantidad": cantidad,
+"2fa":codigoFa
+
+};
+$.ajax({
+data: parametros,
+url: 'https://'+UrlAPI+'/AppBuyCripto',
+type: 'post',
+beforeSend: function ()
+{
+  $("#loadergif").show();
+  $('#transfer2fa').val(''); //2fa codigo reset
+},
+success: function (response)
+{
+    
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+        //resultado
+        if(objt.estado=='ok')
+        {   
+            NotifiAlert('Se está procesando su transacción','w3-green',6000);
+            $('#transfconfirm').hide();
+            OpenOption('Transferir');
+        }
+        else if(objt.estado=='confirmacion')
+        {
+            NotifiAlert(objt.mensaje,'w3-red',9000);
+            OpenOption('Transferir');
+        }
+        else
+        {
+            NotifiAlert(objt.mensaje,'w3-red',6000);
+            //OpenOption('Compras');
+        }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+  }
+},
+
+error: function (response) {
+NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+$('#loadergif').hide();
+}
+
+});
+}
+
+}
+else
+{
+
+  if(monto<=0)
+  {
+     $("#inpt2").focus(); 
+  } 
+  else 
+  { 
+     if(direccion=='' || direccion.length<20) 
+     {
+       $("#addr").focus();
+     }
+  }
+  
+}
+
+} 
+</script>
+
+
+<script>
+Es2fa='';
+function historialVentas(pagina)
+{
+    
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppHistorialVentas',
+type: 'post',
+data: {pagina:pagina},
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+   //$('#loaderspin').show();   
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+        //Dinero
+        $('#inpt2').val(objt.dinero);
+        selectinput(); 
+        
+        //paginacion
+         pagtotal=objt.paginas.total;
+         paglimite=objt.paginas.maximo;
+         pagina=pagina-1;
+         
+         
+         $('#datsl').attr('pagtotal',pagtotal);
+         $('#datsl').attr('paglimite',paglimite);
+         $('#datsl').attr('pagina',pagina+1);
+         
+         //Val Variable feesent
+         
+         feesent= objt.fee; 
+         if(pagina==0)
+         {
+            changemoneda('{ "name":"Bitcoin", "code":"BTC", "decimal":"8" , "PrecMax":"2"}');
+            
+
+           //habilitar solicitud 2fa 
+           Es2fa=objt['2fa'];
+         
+           //Agregando monedas disponibles
+           for(i=0;i<objt.monedas.length;i++)
+           { 
+              datos=JSON.stringify(objt.monedas[i]);
+          
+              var dataAttr="data='"+datos+"'";
+              var oclfunc="changemoneda($('#optio"+(i+1)+"').attr('data'))"; 
+          
+              optimond='<div class="w3-container w3-padding-8 w3-border-bottom w3-border-light-grey" id="optio'+(i+1)+'" '+dataAttr+' onclick="'+oclfunc+'" style="cursor:pointer">'; 
+              optimond+='<div class="w3-col s11"><img src="icon/'+objt.monedas[i].code+'.png" style="width:36px" class="w3-left"><label class="w3-large w3-left w3-padding">'+objt.monedas[i].name+'</label></div>'; 
+              optimond+='<div class="w3-col s1 w3-padding-top"><i id="selec'+objt.monedas[i].code+'" class="far fa-circle w3-padding-top w3-text-grey"></i></div>';
+              optimond+='</div>';
+              $('#optio'+i).after(optimond);
+          
+            }
+         }
+        
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+             msdr='';
+             //estados
+             if(objt.content[i].statuss=='confirmacion')
+             {
+               var estado='<i class="fa-solid fa-envelope-circle-check w3-text-yellow w3-xlarge"></i>';
+             }
+             else if(objt.content[i].estado=='enviado')
+             {
+               var estado='<i class="fas fa-check-circle w3-text-green w3-xlarge"></i>';
+               var msdr="showtxinfo("+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))+","+objt.content[i].monto+","+objt.tasa+",'"+objt.content[i].cantidad+" "+objt.content[i].moneda+"')";
+             }
+             else if(objt.content[i].estado=='pendiente')
+             {
+               var estado='<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
+             }
+             else if(objt.content[i].progreso=='proceso')
+             {
+               var estado='<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
+             }
+             else if(objt.content[i].progreso=='fallido')
+             {
+               var estado='<i class="fa-solid fa-circle-exclamation w3-text-red w3-xlarge"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-ban w3-text-red w3-xlarge"></i>';
+             }
+            
+            
+            montoCry=  formatNumber(objt.content[i].monto/objt.tasa,2)+' USD';
+            if(objt.content[i].cantidad!=='~' && objt.content[i].estado!=='enviado')
+            {
+              montoCry=objt.content[i].cantidad+' '+objt.content[i].moneda;
+            }
+      
+            if((i+1)==objt.content.length)
+            {
+                borderline='';
+            }
+            else
+            {
+                borderline='w3-border-bottom w3-border-light-grey';
+            }     
+                 
+            var contanido ='<div class="w3-padding-8 w3-container w3-white w3-col s12" onclick="'+msdr+'" id="trst'+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+                contanido +='<div class="w3-col s2 noselect">'+estado+'</div>';
+                 contanido +='<div class="w3-col m10 l10 s10 '+borderline+'"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><span><img class="" width="15px" src="icon/'+objt.content[i].moneda+'.png"> '+objt.content[i].nombre+'</span></div><span> Para: '+objt.content[i].direccion.substring(0, 7)+'...'+objt.content[i].direccion.substring(objt.content[i].direccion.length  -7, objt.content[i].direccion.length)+'</span></div>';
+                 contanido +='<div class="w3-col s5 reajuste"><div class="w3-col m12 l12 s12"><span class="w3-right w3-padding-right" id="chmnd'+(pagina*paglimite+i)+'">'+montoCry+'</span></div><div class="w3-col m12 l12 s12"><small class="w3-right w3-padding-right">'+objt.content[i].fecha+'</small></div></div>';
+               
+                 contanido +='<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: none;" id="tx'+(pagina*paglimite+i)+'"><small></small>';
+                 
+                 for(e=0;e<objt.content[i].txid.split(',').length;e++)
+                 {
+                     txid=objt.content[i].txid.split(',');
+                     mgr='';
+                     
+                     if(e>0){mgr='w3-margin-bottom' 
+                         
+                     }
+                     
+                     hashlink="'"+objt.explorador[objt.content[i].moneda]+txid[e]+"'";
+                     contanido +='<div class="'+mgr+'w3-col s12 l12 m12"><b class="noselect"><small>Txid'+(e+1)+': </small></b><small class="reajuste">'+txid[e];
+                     contanido +=' <a onclick="abrirEnlaceExterno('+hashlink+')"><i class="far fa-arrow-alt-circle-right"></i></a></small></div>';
+                 }
+                 
+                 contanido +='</div></div></div>'; 
+             
+                $("#trst"+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))).after(contanido); 
+           }
+             $("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#histr').show();
+                       
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $("#trst0").show();
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+ historialVentas(1);
+ 
+</script>
+
+<script>
+$(document).ready(function(){
+ evitardupl=0; 
+
+ $(window).scroll(function(){
+if(verarea()=='Transferir')
+{ 
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupl)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+      historialVentas((pagactual+1));
+      $('#loadergif').show();
+      //window.scrollBy(0, -1);
+      evitardupl=pagactual; 
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>
+<script>   
+clearInterval(Compr); 
+
+var Compr= setInterval(function()
+{
+     var namepath=window.location.pathname.split('/');
+     if(namepath[(namepath.length)-1]=='Transferir')
+     {
+       changemoneda('{ "name":"'+criptomoneda+'", "code":"'+codigo+'", "decimal":"'+decimal+'","PrecMax":"'+PrecMax+'"}','automatico','');
+     } 
+            
+},15000);
+</script>
+<script> 
+function showtxinfo(id,monto,tasa,cantidad)
+{
+    var x = document.getElementById('tx'+id).getAttribute("style");
+    if (x.indexOf("display: none") == -1) {
+        $('#tx'+id).attr("style","display: none");
+        $('#chmnd'+id).html(formatNumber(monto/tasa,2)+' USD');
+    } else { 
+        $('#tx'+id).attr("style","display: block");
+        $('#chmnd'+id).html(cantidad);
+    }
+}
+</script>

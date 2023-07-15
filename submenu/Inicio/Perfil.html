@@ -1,0 +1,113 @@
+<div class="w3-top w3-col l5">
+<div class="w3-animate-left noselect">
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="fas fa-id-card-alt w3-large w3-text-grey w3-padding-top w3-margin-right"></i> <span id="nombr"></span></h5> 
+</div>
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="fa fa-user w3-large w3-text-grey w3-padding-top w3-margin-right"></i> <span id="usrname"></span></h5> 
+</div>
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="fas fa-at w3-large w3-text-grey w3-padding-top w3-margin-right"></i> <span id="email"></span></h5> 
+</div>
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="fas fa-phone-volume w3-large w3-text-grey w3-padding-top w3-margin-right"></i> <span id="mobile"></span></h5> 
+</div>
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="far fa-id-card w3-large w3-text-grey w3-padding-top w3-margin-right"></i> <span id="docm"></span></h5> 
+</div>
+
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><i class="fa-solid fa-ticket w3-large w3-text-grey w3-padding-top w3-margin-right"></i>ID usuario: <span id="iduser"></span></h5> 
+</div>
+
+<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
+     <h5><span class="w3-margin-right">Verificación de la cuenta</span> <span id="verif"></span></h5> 
+</div>
+
+</div>
+</div>
+
+<script>
+ EstatusBarColor('ffffff');
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppPerfil',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+  
+     $("#notifigener").removeClass('w3-green').addClass('w3-red');
+     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexion</p>");
+     $("#notifigener").show();
+     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+             //transacciones
+             //verificacion
+             if(objt.content.verificacion=='pend')
+             {
+               var estado='<i class="far fa-clock w3-text-grey"></i>';
+             }
+             else if(objt.content.verificacion=='si')
+             {
+               var estado='<i class="fas fa-check w3-text-green"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-times-circle w3-text-red"></i>';
+             }
+             
+             //datos
+             $('#nombr').html(objt.content.nombre+' '+objt.content.apellido);
+             $('#email').html(objt.content.email);
+             $('#mobile').html(objt.content.cel);
+             $('#docm').html(objt.content.docm);
+             $('#usrname').html(objt.content.usuario);
+             $('#iduser').html(objt.content.id);
+             $('#verif').html(estado);
+        
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   $("#notifigener").removeClass('w3-green').addClass('w3-red');
+   $("#notifigener").html("<p>Verifique su conexion a internet</p>");
+   $("#notifigener").show();
+   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
+   $('#loadergif').hide();
+}
+
+});
+
+</script>

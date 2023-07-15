@@ -1,0 +1,23 @@
+<link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="css/media.css">
+
+    <form action="" method="post" class="animate__animated animate__fadeInRight w3-container">
+        <h3>Verifiquemos tu numero telefonico</h3>
+        <div class="">
+            <label>Numero movil</label>
+            <div class="molder">
+                <div class="flag">
+                    <img width="30" src="icon/paises/do.png">
+                    <span>+1</span>
+                </div>
+                <input type="text" class="w3-input w3-border w3-round phone-number" name="mobile" id="phoneNumber" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="eje: 8295552222">
+            </div>
+        </div>
+        <p id="message" style="color: tomato"></p>
+        <button id="request-pin" class="w3-btn w3-block w3-blue w3-round" style="background-color: #0066ff !important;">Solicitar codigo</button>
+        <p>Problemas con la verificacion? <a href="#">Contacta a soporte.</a></p>
+    </form>
+
+    <script src="js/requestMobilePin.js"></script>
+</body>
+</html>

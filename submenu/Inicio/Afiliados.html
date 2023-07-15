@@ -1,0 +1,215 @@
+<div class="">
+<div class="w3-animate-left">
+
+
+<div class="w3-white noselect w3-top w3-padding w3-col l5">
+
+
+
+  <div class="w3-row">
+    <a href="javascript:void(0)" onclick="openCity(event, 'London');" class="w3-col s6 m6 l6">
+      <div class="w3-col l12 m12 s12 w3-third tablink w3-bottombar w3-padding-top w3-padding-bottom w3-border-grey"> <i class="fas fa-users w3-large w3-text-grey w3-padding"></i> Afiliados</div>
+    </a>
+    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');" class="w3-col s6 m6 l6">
+      <div class="w3-col l12 m12 s12 w3-third tablink w3-bottombar w3-padding-top w3-padding-bottom"> <i class="fas fa-history w3-large w3-text-grey w3-padding"></i> Historial</div>
+    </a>
+  </div>
+</div>
+
+
+  <div id="London" class="city" style="display:block">
+
+   <div class="w3-container w3-white">
+       <div class="w3-margin-top w3-center">
+           <small class="noselect">Reciba el <span id="porcentafl"></span> de las comisiones que obtenemos por cada transacción que realicen sus afiliados.</small>
+           <div class="w3-margin-bottom w3-text-grey  noselect w3-col s12 m1 l12"><b>ID de referido</b></div> 
+           
+           <div class="w3-col l12 m12 s12 w3-large">
+            <span style="user-select: all" class="w3-padding-top w3-padding-bottom" id='refid'></span> 
+            <i onclick="copiarTexto('refid','si')" class="fa-solid fa-copy w3-text-grey w3-padding-top w3-padding-bottom"></i>
+           </div>
+           
+           <div class="w3-margin-bottom w3-text-grey  w3-col m12 l12 s12"><b>Enlace de referido</b></div> 
+           <div class="w3-margin-top w3-round w3-large w3-light-grey  reajuste w3-col s12 m12 l12 pointer w3-margin-bottom" onclick="copiarTexto('linkref','si')">
+            <span style="user-select: all" class="w3-col s11 m11 l11 w3-padding-top w3-padding-bottom" id='linkref'></span> 
+            <i class="fa-solid fa-copy w3-text-grey w3-col s1 m1 l1 w3-padding-top w3-padding-bottom"></i>
+           </div>
+       </div>
+   </div>
+
+      <div class="w3-col s12 w3-white   noselect w3-margin-top">
+       <div class="w3-center w3-container"  id="affl0">
+         <h5>Sin  afiliados</h5>
+         <p>Aquí podrá ver una lista de todos sus afiliados.</p>
+       </div>
+      </div>
+
+  </div>
+  
+  
+  
+  
+
+  <div id="Paris" class="city noselect" style="display:none">
+      
+     <div class="w3-white">
+       <div class="w3-col s12">
+        <div class="w3-center w3-container w3-white"  id="hist0">
+            <h5>Sin transacciones</h5>
+            <p>Aquí podrás ver las últimas transacciones recibidas.</p>
+        </div>
+      </div>
+     </div>
+    
+  </div>
+
+
+
+
+
+</div>
+
+</div>
+
+<script>
+ EstatusBarColor('ffffff');
+
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-border-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-grey";
+}
+</script>
+
+
+<script>
+
+function formatNumber(num,decimal=2) {
+    num=parseFloat(num).toFixed(decimal);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppAfiliados',
+type: 'post',
+beforeSend: function ()
+{
+   //$('#loadergif').show();
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    var objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+
+
+        
+        
+        
+        $('#refid').html(objt.refid);
+        $('#linkref').html('https://paiexchange.com/afiliador/'+objt.refid+'/');
+        $('#porcentafl').html(objt.porcentaje);
+        
+        
+        //afiliados
+        if(objt.afiliados.length>0)
+        {   
+        
+           for(i=0;i<objt.afiliados.length;i++)
+           {
+           
+           
+             var contanido ='<div class="w3-padding  w3-text-grey w3-white w3-col s12" id="affl'+(i+1)+'">';
+                 contanido +='<span class="w3-col s8">'+objt.afiliados[i].referido+'</span>';
+                 contanido +='<span class="w3-col s4">'+objt.afiliados[i].fecha+'</span>';
+                 contanido +='</div>';
+             
+             $("#affl"+i).after(contanido);
+           }
+             $("#affl0").remove();
+                       
+         }
+         
+         
+         
+         
+         
+         
+        
+        //Historial transacciones
+        if(objt.historial.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.historial.length;i++)
+           {
+           
+             
+             var cantidad=  formatNumber(objt.historial[i].cantidad/objt.tasa,2)+' USD';
+           
+             //estados
+             if(objt.historial[i].estado=='pendiente')
+             {
+               var estado='<i class="far fa-clock w3-text-grey"></i>';
+             }
+             else if(objt.historial[i].estado=='realizado')
+             {
+               var estado='<i class="fas fa-check w3-text-green"></i>';
+             }
+             else
+             {
+               var estado='<i class="fas fa-times-circle w3-text-red"></i>';
+             }
+             
+             var contanido ='<div class="w3-padding w3-text-grey w3-white w3-col s12" id="hist'+(i+1)+'">';
+                 contanido +='<span class="w3-col s4">'+objt.historial[i].afiliado+'</span>';
+                 contanido +='<div class="w3-col s3"><span>'+objt.historial[i].fecha+'</span></div>';
+                 contanido +='<div class="w3-col s4"><span>'+cantidad+'</span></div>';
+                 contanido +='<div class="w3-col s1"><span>'+estado+'</span></div>';
+                 contanido +='</div>';
+             
+             $("#hist"+i).after(contanido);
+           }
+             $("#hist0").remove();
+                       
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+}
+
+});
+
+</script>

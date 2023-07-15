@@ -1,0 +1,123 @@
+<div id="trst0"></div>
+<div class="w3-col s12 m12 l12 w3-white" id="inversHist" style="display:none">
+       <div class="w3-padding-64 w3-text-grey w3-center">
+           <i class="fas fa-search fa-4x w3-margin-bottom"></i>
+           <div class="w3-col l12 s12 m12 w3-margin-top">No hay transacciones</div>
+       </div>
+</div>
+
+<script>
+objt='';
+pagtotal='';
+paglimite='';
+//ocultar el trading view del mercado
+$('#scriptmercd').hide();
+$('#datosInversiones').attr('style','margin-top:42px');
+function historialInversiones(pagina)
+{
+    
+
+$.ajax({
+url: 'https://'+UrlAPI+'/AppHistorialInversiones',
+type: 'post',
+data: {pagina:pagina},
+beforeSend: function ()
+{
+   $('#loadergif').show();
+   //$('#loaderspin').show();   
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+       
+        
+        //paginacion
+         pagtotal=objt.paginas.total;
+         paglimite=objt.paginas.maximo;
+         pagina=pagina-1;
+         
+         $('#datsl').attr('pagtotal',pagtotal);
+         $('#datsl').attr('paglimite',paglimite);
+         $('#datsl').attr('pagina',pagina+1);
+         
+        
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            
+                 
+                 
+                 
+                 //variables creando un onclick por el tema de las comillas
+                 inversion=formatonumero(objt.content[i].inversion,2)+' USD';
+                 Restabilidad=formatonumero((objt.content[i].ganancia/objt.content[i].inversion)*100,2)
+                 
+                 var contanido ='<div class="w3-container w3-border-bottom w3-border-light-grey" id="trst'+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+                     contanido +='<span class="w3-col s5 m5 l5 w3-margin-top"><img width="20px" src="https://inversiones.pai.exchange/img/'+objt.content[i].moneda+'.png"> <b>'+objt.content[i].moneda+'/USDT</b></span>';
+                     contanido +='<small class="w3-col s7 m7 l7 w3-margin-top w3-container"><span class="w3-right w3-text-teal">'+Restabilidad+'% ROI</span> </small>';
+                     contanido +='<div class="w3-col s12 m12 l12 w3-margin-top w3-margin-bottom">';
+                      
+                      contanido +='<small class="w3-col s5 m5 l5">Inversión</small>';
+                      contanido +='<small class="w3-col s5 m5 l5">Fecha</small>';
+                      contanido +='<small class="w3-col s2 m2 l2 ">Ganancia</small>';
+
+                      contanido +='<small class="w3-col s5 m5 l5 w3-text-grey">'+inversion+'</small>';
+                      contanido +='<small class="w3-col s5 m5 l5 w3-text-grey">'+objt.content[i].fecha+'</small>';
+                      contanido +='<small class="w3-col s2 m2 l2 w3-text-grey">$'+formatonumero(objt.content[i].ganancia,2)+'</small>';
+                    contanido +='</div>';
+                contanido +='</div>';
+                     
+               $("#trst"+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))).after(contanido); 
+           }
+             $("#trst0").remove();
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+             $('#inversHist').show();
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+ historialInversiones(1);
+</script>

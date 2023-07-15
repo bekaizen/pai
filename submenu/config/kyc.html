@@ -1,0 +1,473 @@
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<div class="w3-container w3-top w3-white w3-padding-16 w3-col l5">
+    <div class="w3-light-grey w3-round  w3-round-xlarge w3-mall w3-col s6 m6 l6">
+      <div class="w3-container w3-round w3-round-xlarge w3-blue" id="imgkycprogress" style="width:0%;display:none">0%</div>
+    </div>
+    
+    <b class="w3-right w3-margin-bottom">Paso <span id="numeroseccion">1</span> - 4</b>
+</div>
+
+    <div class="animate__animated animate__fadeInRight w3-container w3-white" id="" style="overflow: hidden !important;">
+        <div class="fieldset animate__animated" style="display:none">
+            
+            <h3>Ingrese sus datos personales</h3>
+            <p>
+             <i class="fa-solid fa-circle-info w3-text-green"></i>   Asegúrese de introducir los datos exactamente como estan en su documento de identidad, de lo contrario será rechazado.
+            </p>
+            
+            <div class="w3-col s12 m12 l12 w3-margin-top">
+                <div class="w3-col s2 m2 l2"><i class="fa-regular fa-id-card w3-text-grey w3-xxlarge w3-margin-top w3-padding-top"></i></div>
+                <div class="w3-col s10 m10 l10">
+                    <label class="w3-col s12 m12 l12">Número de identificación</label>
+                    <input type="text" class="w3-input w3-border w3-round" id="cedula" name="cedula" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Ej: 03100110001">
+                </div>
+            </div>
+            
+  
+            <div class="w3-col s12 m12 l12 w3-margin-top">
+                <div class="w3-col s2 m2 l2"><i class="fa-regular fa-pen-to-square w3-text-grey w3-xxlarge w3-margin-top w3-padding-top"></i></div>
+                <div class="w3-col s10 m10 l10">
+                 <label class="w3-col s12 m12 l12">Nombre</label>
+                 <input type="text" class="w3-input w3-border w3-round" id="nombres" name="nombres" placeholder="Ej: Juan José" oninput="this.value = this.value.replace(/[^A-Za-züéáíóúñÑ ]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+            </div>
+                
+                
+            <div class="w3-col s12 m12 l12 w3-margin-top">
+                <div class="w3-col s2 m2 l2"><i class="fa-regular fa-pen-to-square w3-text-grey w3-xxlarge w3-margin-top w3-padding-top"></i></div>
+                <div class="w3-col s10 m10 l10">
+                <label class="w3-col s12 m12 l12">Apellidos</label>
+                <input type="text" class="w3-input w3-border w3-round" id="apellidos" name="apellidos" placeholder="Pérez Martínez" oninput="this.value = this.value.replace(/[^A-Za-züéáíóúñÑ ]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+            </div>   
+            
+            <div class="w3-col s12 m12 l12 w3-margin-top w3-padding-top w3-center">
+              <i class="fa-solid fa-location-pin-lock w3-text-red w3-xlarge"></i> No permitido para ciudadanos estadounidenses.
+            </div>
+
+            <a onclick="confirmdatkyc()" class="w3-btn w3-right w3-black w3-round w3-margin-bottom w3-margin-top" style="background-color:#0066ff !important;">Siguiente</a>
+        </div>
+        
+       <div class="fieldset2 animate__animated" style="display:none">
+            <h4><i class="fa-solid fa-circle-info w3-text-grey "></i> Para verificar su identidad, por favor asegurese de:</h4>
+            <p>1) Centrar bien su documento en la imagen de la cámara.</p>
+            <p>2) Tomar la fotografía en una superficie plana.</p>
+            <h4>Foto de documento de identidad parte delantera.</h4>
+            <div>
+               <div class="image-upload">
+                <label for="fileinput">
+                   <img id="image-preview" align='middle' class="w3-image" src="icon/kyc/front.png" alt="Foto delantera de identificacion" title=''/>
+                   <small class="w3-col s12 m12 l12 w3-center w3-margin-bottom w3-margin-top">Haga clic en la foto para capturar</small>
+                </label>
+            <form id="kyc_formulario" method="post"  enctype="multipart/form-data">
+               <input id="fileinput" type="file"  accept='image/*' capture="environment" name="file" class="w3-hide" onchange="enviar_datos('kyc_formulario',1);if($('#fileinput').val()==''){$('#image-preview').attr('src','icon/kyc/front.png')};$('#image-preview').attr('src',window.URL.createObjectURL(this.files[0]))" />
+               <input type="hidden" name="id" id="idusr1">
+               <input type="hidden" name="tipo" id="tipo" value="front">
+            </form>  
+              </div>
+           </div>
+            <br>
+            <a id="next2" class="w3-btn w3-right w3-black w3-round w3-margin-bottom" style="background-color:#0066ff !important;">Siguiente</a>
+            <a id="back" class="w3-btn w3-right w3-black w3-round" style="margin-right: 16px;">Anterior</a>
+        </div>
+
+        <div class="fieldset3 animate__animated" style="display:none">
+            <h4><i class="fa-solid fa-circle-info w3-text-grey"></i> Para verificar su identidad, por favor asegurese de:</h4>
+            <p>1) Centrar bien su documento en la imagen de la cámara.</p>
+            <p>2) Tomar la fotografía en una superficie plana.</p>
+            <h4>Foto de documento de identidad parte trasera.</h4>
+            <div>
+                <div class="image-upload">
+                <label for="file-input2">
+                   <img id="image-preview2" align='middle'  class="w3-image" src="icon/kyc/back.png" alt="Foto trasera  de identificacion" title=''/>
+                   <small class="w3-col s12 m12 l12 w3-center w3-margin-bottom w3-margin-top">Haga clic en la foto para capturar</small>
+                </label>
+             <form id="kyc_formulario2" method="post"  enctype="multipart/form-data">
+               <input id="file-input2" type="file" accept='image/*' capture="environment" name="file" class="w3-hide" onchange="enviar_datos('kyc_formulario2',2);if($('#file-input2').val()==''){$('#image-preview2').attr('src','icon/kyc/back.png')};$('#image-preview2').attr('src',window.URL.createObjectURL(this.files[0]))" />
+               <input type="hidden" name="id" id="idusr2">
+               <input type="hidden" name="tipo" id="tipo" value="back">
+             </form>
+              </div>
+                
+                
+            </div>
+            <br>
+            <a id="next3"  class="w3-btn w3-right w3-black w3-round w3-margin-bottom" style="background-color:#0066ff !important;">Siguiente</a>
+            <a id="back1" class="w3-btn w3-right w3-black w3-round w3-margin-bottom" style="margin-right: 16px;">Anterior</a>
+        </div>
+
+        <div class="fieldset4 animate__animated" style="display:none">
+            <h4><i class="fa-solid fa-circle-exclamation w3-text-grey"></i> Tomese una selfie sujetando su documento de identidad:</h4>
+            <p>1) Sostenga su documento de identidad como se muestra en la imagen y suba una foto realizando dicha acción para completar el formulario. 
+               <br><br>2) Escriba en una hoja en blanco la palabra <b>PAI Exchange</b> y debajo la fecha actual.</p>
+            <div>
+                <div class="image-upload">
+                <label for="file-input3">
+                   <img id="image-preview3" align='middle' class="w3-image"  src="icon/kyc/selfie.png" alt="Foto delantera de identificacion" title=''/>
+                   <small class="w3-col s12 m12 l12 w3-center w3-margin-bottom w3-margin-top">Haga clic en la foto para capturar</small>
+                </label>
+             <form id="kyc_formulario3" method="post"  enctype="multipart/form-data">
+               <input id="file-input3" type="file" accept='image/*' capture="user" name="file" class="w3-hide" onchange="enviar_datos('kyc_formulario3',3);if($('#file-input3').val()==''){$('#image-preview3').attr('src','icon/kyc/selfie.png')};$('#image-preview3').attr('src',window.URL.createObjectURL(this.files[0]))" />
+               <input type="hidden" name="id" id="idusr3">
+               <input type="hidden" name="tipo" id="tipo" value="selfie">
+             </form>
+              </div>
+            </div>
+            <br>
+            <a id="next4"  onclick="validarKyc()" class="w3-btn w3-right w3-black w3-round w3-margin-bottom" style="background-color:#0066ff !important;">Finalizar</a>
+            <a id="back2"  class="w3-btn w3-right w3-black w3-round w3-margin-bottom" style="margin-right: 16px;">Anterior</a>
+        </div>
+        
+        
+    <center class="" style="display:none" id="finalprcs">
+        <center class="w3-margin-top">
+                      <b>Verificación en proceso</b>
+        </center>    
+        <p>Su cuenta está pendiente de aprobación</p>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-yellow"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-yellow"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-yellow  w3-margin-bottom"></i>
+    </center>   
+    
+   <center class="" style="display:none" id="completprcs"> 
+        <center class="w3-margin-top">
+                     <b>Verificación de cuenta</b>
+        </center>    
+        <p>Proceso completado, su cuenta se encuentra aprobada</p>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+        <i class="far fa-check-circle w3-xxxlarge w3-text-green  w3-margin-bottom"></i>
+    </center>   
+    
+    
+    
+<!-- Modal confirm-->
+<div id="Datkycconfirm" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+      
+      <p class="w3-padding w3-center">Confirme bien la información antes de continuar</p>
+      <div class="w3-container w3-large w3-center">
+        <p id="nombrcopl"></p>
+        <p id="numdoc"></p>
+      </div>
+      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#Datkycconfirm').hide();">Corregir</div>
+      <div id="next" class="send_data w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer">Esta correcto</div>
+  </div>
+</div>
+<!-- //Modal confirm// -->
+     
+    </div>
+<script>
+ EstatusBarColor('ffffff');
+function confirmdatkyc()
+{
+    $('#nombrcopl').html($('#nombres').val()+' '+$('#apellidos').val());
+    $('#numdoc').html($('#cedula').val());
+    $('#Datkycconfirm').show();
+}
+</script>    
+<script>
+$.ajax({
+url: 'https://'+UrlAPI+'/AppKycStatus',
+beforeSend: function () {$('#loadergif').show();},
+success: function (response)
+{
+   $('#loadergif').hide();
+   var obj = JSON.parse(response);
+   
+   if(obj.msj!==null & obj.estado=='no' )
+   {
+       alert(obj.msj);
+   }
+   
+   $('#idusr1').val(obj.userid);
+   $('#idusr2').val(obj.userid);
+   $('#idusr3').val(obj.userid);
+
+   if(obj.estado=='pend')
+    {
+       $("#finalprcs").show(); 
+       $('#numeroseccion').html(4);
+    }
+    else if(obj.estado=='si')
+    {
+       $("#completprcs").show();
+       $('#numeroseccion').html(4);
+    }
+    else
+    {  
+        $('.fieldset').css({'display':'block'});
+    }
+},
+
+error: function (response)
+{
+  $('#loadergif').hide();
+  NotifiAlert('Por favor verifique la conexión','w3-red',6000);
+}
+
+});
+</script>
+    <script type="text/javascript">
+      $('document').ready(function() {
+     
+
+            document.querySelector('.send_data').addEventListener('click', (e) => {
+                e.preventDefault();      
+                
+                if ( $('#nombres').val() != "" && $('#apellidos').val() != "" && $('#cedula').val() != "" )
+                {         
+                    
+                    $('#Datkycconfirm').hide();            
+                    $('.fieldset').css({'display':'none'});
+                    $('.fieldset2').css({'display':'block'});
+                    $('.fieldset2').addClass('animate__fadeInRight');
+                    $('#numeroseccion').html(2);
+                                
+            
+                    document.querySelector('#next2').addEventListener('click', (e) => {
+                    if($('#fileinput').val()!=='')
+                    {
+                        if ( $('.fieldset2').css({'display':'none'}) ) {
+                            $('.fieldset3').css({'display':'block'})
+                            $('.fieldset3').addClass('animate__fadeInRight')
+                            $('.fieldset').css({'display':'none'})
+                            $('#numeroseccion').html(3);
+                        }
+                    }
+                    else
+                    {
+                                NotifiAlert("Por favor capture una foto de la parte delantera de su documento de identidad.","w3-red",6000);
+                    }
+                    })
+                    
+                    document.querySelector('#back').addEventListener('click', (e) => {
+                        if ( $('.fieldset').css({'display':'block'}) ) {
+                            $('.fieldset2').css({'display':'none'})
+
+                            $('.fieldset').addClass('animate__fadeInLeft')
+                            $('.fieldset2').removeClass('animate__fadeInRight')
+                            $('.fieldset').css({'display':'block'})
+                            $('#numeroseccion').html(1);
+                        }
+                    })
+
+                    document.querySelector('#back1').addEventListener('click', (e) => {
+                        // e.preventDefault()
+                        if ( $('.fieldset3').css({'display':'block'}) ) {
+                            $('.fieldset3').css({'display':'none'})
+
+                            $('.fieldset2').addClass('animate__fadeInLeft')
+                            $('.fieldset2').removeClass('animate__fadeInRight')
+                            $('.fieldset2').css({'display':'block'})
+                            $('#numeroseccion').html(2);
+                        }
+                    })
+
+                    document.querySelector('#next3').addEventListener('click', (e) => {
+                      if($('#file-input2').val()!=='')
+                      {                        
+                           if ( $('.fieldset3').css({'display':'none'}) ) {
+                            $('.fieldset4').css({'display':'block'})
+                            $('.fieldset4').addClass('animate__fadeInRight')
+                            $('.fieldset3').css({'display':'none'})
+                            $('#numeroseccion').html(4);
+                         }
+                       } 
+                       else
+                       {
+                         NotifiAlert("Por favor capture una foto de la parte trasera de su documento de identidad.","w3-red",6000);
+                        }     
+                    })
+
+                    document.querySelector('#back2').addEventListener('click', (e) => {
+                        // e.preventDefault()
+                        if ( $('.fieldset4').css({'display':'block'}) ) {
+                            $('.fieldset4').css({'display':'none'})
+
+                            $('.fieldset3').addClass('animate__fadeInLeft')
+                            $('.fieldset3').removeClass('animate__fadeInRight')
+                            $('.fieldset3').css({'display':'block'})
+                           $('#numeroseccion').html(3);
+                        }
+                    })
+                    
+                    
+
+                    return false;
+
+                } else {
+                    NotifiAlert("Todos los campos son requeridos","w3-red",6000);
+                    return false;
+                }
+            });
+            
+
+        
+
+        });
+    </script>
+    <script>
+    sessionStorage.setItem("ImgKyc",0);
+    img1=0;
+    img2=0;
+    img3=0;
+    progressbar=0;
+    var fotossubidas=0;
+    function enviar_datos(id,tipoid){
+         $(function(){
+            var formData = new FormData($("#"+id)[0],$("#"+id)[1],$("#"+id)[2]);
+            var ruta = "https://kyc.pai.exchange/kycupload";
+            $.ajax({
+                url: ruta,
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    
+                    
+                    if(tipoid==1  &&  img1==1)
+                    {
+                        progressbar=progressbar-33;
+                        img1=0;
+                        fotossubidas=fotossubidas-1;
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');
+                    }
+                    if(tipoid==2  &&  img2==1)
+                    {
+                        progressbar=progressbar-33;
+                        img2=0;
+                        fotossubidas=fotossubidas-1;
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');
+                    }
+                    if(tipoid==3  &&  img3==1)
+                    {
+                        progressbar=progressbar-34;
+                        img3=0;
+                        fotossubidas=fotossubidas-1;
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');
+                    }
+                    
+                },
+                success: function(datos)
+                { 
+                    
+                    var obj=JSON.parse(datos);
+                    if(obj.estatus=='ok')
+                    {
+                      
+                      imgNumr=0;
+                      if(tipoid==1  &&  img1==0)
+                      {
+                        imgNumr=1;
+                        img1=1;
+                        $('#imgkycprogress').attr('style','width:33%').html('33%');
+                        progressbar=progressbar+parseFloat(33);
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');
+                      }
+                      
+                      if(tipoid==2  &&  img2==0)
+                      {
+                        imgNumr=1;
+                        img2=1;
+                        progressbar=progressbar+parseFloat(33);
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');   
+                          
+                      }
+                      
+                      if(tipoid==3 && img3==0)
+                      {
+                        imgNumr=1;
+                        img3=1;
+                        progressbar=progressbar+parseFloat(34);
+                        $('#imgkycprogress').attr('style','width:'+progressbar+'%').html(progressbar+'%');                      
+                          
+                      }
+                      
+                      if(imgNumr==1)
+                      {
+                        fotossubidas=fotossubidas+parseFloat(1);
+                      }    
+                
+                      
+                    }
+                    else
+                    {
+                       NotifiAlert(obj.estatus,"w3-red",6000);
+                    }
+                },
+                error: function (response)
+                {
+                    if(tipoid==1)
+                    {
+                      numeroimg=='';
+                      imgtip='front';
+                      textoimg="frontal";
+                    }
+                    if(tipoid==2)
+                    {   numeroimg=2;
+                        imgtip='back';
+                        textoimg="trasera";
+                    }
+                    else 
+                    {
+                       imgtip='selfie';
+                       textoimg="sefie";
+                       numeroimg=3;
+                    }
+                        $('#file-input'+numeroimg).val(null);
+                        $('#image-preview'+numeroimg).attr('src','icon/kyc/'+imgtip+'.png')  ; 
+                        NotifiAlert("La imagen "+textoimg+" no se pudo cargar, intente cargarla nuevamente.","w3-red",6000);
+                }
+                
+            });
+     });
+    }
+    </script>
+<script>
+function validarKyc()
+{
+  if($('#file-input3').val()!=='')
+  {    
+    if(fotossubidas==3)
+    {
+                    // AJAX enviar data del formulario
+                    $.ajax({
+                        url:"https://"+UrlAPI+"/AppDatosPersonales",    
+                        type: "post",    
+                        data: {
+                            cedula: document.querySelector('input[name="cedula"]').value,
+                            nombres: document.querySelector('input[name="nombres"]').value,
+                            apellidos: document.querySelector('input[name="apellidos"]').value,
+                        },
+                        success: function(dataResult)
+                        { 
+                            objt=JSON.parse(dataResult);
+                            if (objt.estatus == 'ok')
+                            {
+                              NotifiAlert(objt.msj,"w3-green",6000);
+                              $('.fieldset4').css({'display':'none'})
+                              $('#finalprcs').show();
+                              $('#numeroseccion').html(4);
+                            }
+                            else
+                            {
+                              NotifiAlert(objt.msj,"w3-red",6000);
+                            }
+                        }
+                    }); 
+    }      
+    else
+    {
+         NotifiAlert("Por favor espere que todas las imagenes sean cargadas.","w3-red",6000);
+    }
+  } 
+  else
+  {
+        NotifiAlert("Por favor capture una selfie con su documento de identidad.","w3-red",6000);
+   }    
+}                    
+</script>

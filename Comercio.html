@@ -1,0 +1,1212 @@
+<div class="w3-white w3-top" id="datsl" pagtotal="" paglimite="" pagina="">
+    
+<div class="blue-dark w3-container w3-padding-bottom redondeo">
+  <span class="w3-col l12 m12 s12 w3-margin-top w3-padding-16">
+      <div class="w3-col l6 m6 s6"><i class="fas fa-user-circle w3-text-white w3-large w3-padding-left" onclick="nuevaArea('perfil')"></i></div>
+      <div class="w3-col l2 m2 s2 w3-padding-right"><i class="fas fa-history w3-text-white w3-large" onclick="nuevaArea('historial')"><span class="w3-badget w3-text-red">.</span></i></div>
+      <div class="w3-col l2 m2 s2 w3-padding-right"><i class="fas fa-plus w3-text-white w3-large" onclick="$('#nuevaorden').show()"></i></div>
+      <div class="w3-col l2 m2 s2 w3-padding-right"><i class="fas fa-bell  w3-text-white w3-large" onclick="$('#notificaciones').show()"><span class="w3-badget w3-text-red">.</span></i></div>
+  </span>    
+</div> 
+
+    
+<div class="w3-white" id="seccionp2p">
+  <div class="w3-row noselect">
+    <a href="javascript:void(0)" onclick="compraventa(1);" class="w3-col s6 m6 l6">
+      <div class="w3-third tablink  w3-padding-top w3-padding-bottom w3-border-bottom w3-border-red" id="comprp"><i class="fas fa-shopping-cart w3-large w3-text-grey w3-padding"></i> Vender</div>
+    </a>
+    <a href="javascript:void(0)" onclick="compraventa(2);" class="w3-col s6 m6 l6">
+      <div class="w3-third tablink  w3-padding-top w3-padding-bottom w3-border-bottom w3-border-grey w3-text-grey" id="ventcompr"> <i class="fas fa-hand-holding-usd w3-large w3-text-grey w3-padding"></i> Comprar</div>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<div id="areap2p">
+
+<div class="w3-container w3-animate-right w3-white" id="histcompras" style="display:block;margin-top:60px">
+   <div id="trstc0"></div>
+</div>
+
+<div  class="w3-container w3-animate-left w3-white" id="histvents" style="display:none;margin-top:60px">
+       <div id="trstv0"></div>
+</div>
+    
+</div>
+
+ <!-- Terminos de USO-->
+<div id="p2ptermin" class="w3-modal noselect" style="display:none">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l10 m10 s10">
+      <div class="reajuste" align="justify" >
+          <center class="w3-padding-8 w3-container">
+                <h4>Términos y condiciones de uso.</h4>
+          </center>
+          <div class="w3-container" style="overflow-y:scroll;max-height:430px">
+             * 1- El comercio P2P es un sistema de negociación de <b class="w3-text-grey">cliente</b> a <b class="w3-text-grey">cliente</b> que permite la compra y venta de un producto
+               utilizando los medios de pagos seleccionados por los mismos usuarios, donde <b class="w3-text-grey">PAI Exchange</b> actúa como intermediario,
+               reteniendo el producto (la criptomoneda) del vendedor, hasta que ambas partes confirman que la negociación es exitosa. Proveyendo un sistema seguro y confiable de negociación para las partes involucradas, a fin de que haya una garantía
+                   de que sus fondos estan seguros. Mientras el comprador envía el pago, la garantía
+                   del vendedor es retenida hasta la confirmación.
+               <br><br>
+               2- Por consiguiente, al aceptar estos términos usted desvincula de toda responsabilidad a <b class="w3-text-grey">PAI Exchange</b> de cualquier insidente
+               ocurrido que afecte a las partes involucradas.<br><br>
+               
+               3- <b class="w3-text-grey">PAI Exchange</b>, no se responsabiliza por el origen o destino de los montos transaccionados por los usuarios, ni los medios de pagos utilizados.<br><br>
+               
+               4- Usted reconoce que no negocia directamente con PAI Exchange, sino con otros miembros del sistema de comercio.<br><br>
+               
+               5- Todo mal uso o uso incorrecto, y errores cometidos en la plataforma de comercio queda  bajo responsabilidad del mismo usuario, donde PAI Exchange solo garantiza brindar la ayuda necesaria para su posible solución en los casos que aplique.<br><br>
+              6- PAI Exchange brinda la información necesaria y la seguridad para que las negociaciones sean exitosas, solicitando la documentación necesaria y reteniendo los fondos en criptomonedas del vendedor hasta que ambas partes confirmen que la negociación ha finalizado. Sin embargo no se hace responsable ante cualquier posible estafa, engaño o fraude realizado por el usuario, (si existiese).<br><br>
+              
+              7- El usuario autoriza a que PAI Exchange otorgue todos sus <b class="w3-text-grey">documentos</b> y <b class="w3-text-grey">datos personales</b> a su contraparte, ante cualquier culpabilidad de fraude o estafa, luego de haberse realizado la debida intermediación e investigación del hecho.<br><br>
+              
+              8- A pesar de PAI Exchange proveer la debida información para evaluar a compradores y vendedores; contar con la documentación de cada cliente; proveer recomendaciones y un sistema seguro, queda bajo el usuario toda responsabilidad de tener la cautela y precausión ante cualquier negociación realizada.<br><br>
+              
+              
+              <center><input class="w3-margin-bottom w3-margin-top" type="checkbox" id="checkarea" onclick="habilitaraceptar()"> Acepto estos términos y condiciones.</center>
+
+         </div> 
+      
+      </div>
+      
+      <div id="infoacept" class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#checkarea').focus()">Aceptar</div>
+  </div>
+</div>
+<!-- //Terminos de USO// -->
+
+<!-- nueva orden-->
+<div id="nuevaorden" class="w3-modal noselect">
+  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+<div class=" w3-container"> 
+
+<div class="w3-col s12 w3-margin-top">
+  <div class="w3-col s2">
+     <i class="fas fa-list-ul w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+     <select class="w3-select w3-white w3-border-bottom" id="tipo" style="outline:none" onchange="cambiotipo(value)" oninput="habilitar()">
+       <option value="" disabled selected>Tipo de orden</option>
+       <option value="compra">Orden de compra</option>
+       <option value="venta">Orden de venta</option>
+     </select>
+  </div>
+</div> 
+
+<div class="w3-col s12">
+  <div class="w3-col s2">
+     <i class="fas fa-file-invoice-dollar w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10">
+     <select class="w3-select  w3-white w3-border-bottom" id="banco" style="outline:none" onchange="mostrarCuenta(value)">
+       <option value="" disabled selected>Seleccione un método de pago</option>
+     </select>
+  </div>
+</div>  
+
+
+<div class="w3-col s12 w3-margin-top">
+  <div class="w3-col s2">
+     <i class="far fa-list-alt w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+     <select class="w3-select w3-white w3-border-bottom" oninput="ExtraerMoneda(value)" id="cuenta" style="outline:none">
+       <option value="" disabled selected>Cuenta</option>
+     </select>
+  </div>
+</div> 
+
+<div class="w3-col s12 w3-margin-bottom">
+  <div class="w3-col s2">
+     <i class="fas fa-funnel-dollar w3-text-grey w3-xlarge w3-padding-top" id="iconmonedj"></i>
+     <img src='icon/USDT.png' width="28px" style="display:none" id="mercdmoned">
+  </div>
+  <div class="w3-col s10">
+    <input class="w3-input w3-white w3-border-bottom w3-col s6 m6 l6" type="number" placeholder="Monto fiat" id="monto" style="outline:none" oninput="habilitar();CalculaResultado()" disabled="disabled">
+    <input class="w3-input w3-white w3-border-bottom w3-col s5 m5 l5 w3-margin-left" oninput="CalculaResultado()" step="0.01" min="0.01" value="" id="Ordenprecio" type="number" placeholder="Precio" style="outline:none">
+  </div>
+</div> 
+
+ 
+</div> 
+ <div class="w3-container w3-margin-bottom">
+  <table class="w3-table w3-bordered w3-border-light-grey" style="font-size: 14px;">
+    <tr  class="w3-border-right w3-border-left w3-border-top w3-border-light-grey">
+      <th>Comisión</th>
+      <th>Total a recibir</th>
+    </tr>
+    <tr  class="w3-border-right w3-border-left w3-border-light-grey" style="color:#8f8f8f; text-align: center; font-size: 14px;">
+      <td type="text">-<span id="comisionpai">0.00</span> </td>
+      <td> <span id="totalrecibe">0.00</span> </td>
+    </tr>
+  </table>
+  </div>
+
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#nuevaorden').hide();">Ocultar</div>
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='prcedt' style="cursor:pointer" onclick="PublicarOrden()">Procesar</div>
+
+
+
+
+  </div>
+</div>
+<!-- nueva orden-->
+
+<!-- Notificaciones -->
+  <div id="notificaciones" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-4 w3-col l10 m10 s10">
+      
+      <p class=" w3-container w3-large w3-center"><span style="font-size: 16px; margin-right:10px; font-weight:bold;">Notificaciones </span><i class="fas fa-envelope-open-text" style="color:#1565C0;"></i></p>
+<div class=" w3-col s12 w3-container w3-border-top w3-border-light-grey" style="overflow-y:scroll;max-height:300px">
+          
+<!-- primera-->
+<div class="w3-col s12  w3-border-bottom w3-border-light-grey">
+  <div class="w3-col s12 w3-padding-bottom">
+     <i class="fas fa-star w3-text-yellow w3-medium  w3-padding-top"></i> <b class="w3-white w3-margin-bottom-100" style="margin-left:10px; font-size:14px;" >Nueva Calificación</b>
+     <div class="w3-text-color-grey" style="color:#989da0; margin-top:4px">¡Buenas noticias! haz obtenido una nueva calificación, verifica en tu perfil.</div>
+     <span class="w3-tiny w3-right">03 Jun 21 09:47 AM</span>
+  </div>
+</div>
+<!-- primera-->
+
+<div class="w3-col s12  w3-border-bottom w3-border-light-grey">
+  <div class="w3-col s12 w3-padding-bottom">
+     <i class="fas fa-ban w3-text-red w3-medium w3-padding-top " style=""></i> <b class="w3-white w3-margin-bottom-100" style="margin-left:10px; font-size:14px;" >Orden Rechazada</b>
+     <div class="w3-text-color-grey" style="color:#989da0; margin-top:4px">El usuario ha rechazado su solicitud de compra, favor de intentar mas tarde</div>
+     <span class="w3-tiny w3-right">03 Jun 21 09:47 AM</span>
+  </div>
+</div>
+
+<div class="w3-col s12  w3-border-bottom w3-border-light-grey">
+  <div class="w3-col s12 w3-padding-bottom">
+     <i class="fas fa-check-circle w3-text-green w3-medium  w3-padding-top"></i> <b class="w3-white w3-margin-bottom-100" style="margin-left:10px; font-size:14px;" >Orden Aprobada</b>
+     <div class="w3-text-color-grey" style="color:#989da0; margin-top:4px">El usuario ha aceptado su solicitud de compra.</div>
+     <span class="w3-tiny w3-right">03 Jun 21 09:47 AM</span>
+  </div>
+</div>
+
+<div class="w3-col s12">
+  <div class="w3-col s12 w3-padding-bottom">
+     <i class="fas fa-gavel w3-text-brown w3-medium  w3-padding-top"></i> <b class="w3-white w3-margin-bottom-100" style="margin-left:10px; font-size:14px;" >Tienes una disputa</b>
+     <div class="w3-text-color-grey" style="color:#989da0; margin-top:4px">Se ha generado una nueva disputa, te mantendremos al tanto de la situacion</div>
+     <span class="w3-tiny w3-right">03 Jun 21 09:47 AM</span>
+  </div>
+</div>
+
+
+     
+      </div>
+      
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey w3-text-blue" style="cursor:pointer" onclick="$('#notificaciones').hide();">Ocultar</div>
+  </div>
+</div>
+<!-- Notificaciones -->
+
+
+
+<!-- ORDEN VENDER o COMPRAR -->
+<div id="Ordenar" class="w3-modal noselect">
+<div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
+<div id="ordenarSeccion">  
+<div class="w3-container"> 
+
+<div class="w3-col s12 w3-margin-top">
+  <div class="w3-col s2">
+     <i class="fas fa-list-ul w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+     <select class="w3-select w3-white w3-border-bottom" id="Listorden" style="outline:none" onchange="SeleccionarOrden(value)">
+       <option value="" disabled selected>Seleccione la orden</option>
+     </select>
+  </div>
+</div> 
+
+<div class="w3-col s12">
+  <div class="w3-col s2">
+     <i class="fas fa-file-invoice-dollar w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10">
+     <select class="w3-select  w3-white w3-border-bottom" id="mediopago" style="outline:none" onchange="mostrarCuenta(value)">
+       <option value="" disabled selected>Seleccione su método de pago</option>
+     </select>
+  </div>
+</div>  
+
+
+<div class="w3-col s12 w3-margin-top">
+  <div class="w3-col s2">
+     <i class="far fa-list-alt w3-text-grey w3-xlarge  w3-padding-top"></i>
+  </div>
+  <div class="w3-col s10 w3-margin-bottom">
+     <select class="w3-select w3-white w3-border-bottom" oninput="" id="Sucuenta" style="outline:none">
+       <option value="" disabled selected>Cuenta</option>
+     </select>
+  </div>
+</div> 
+
+<div class="w3-col s12 w3-margin-bottom">
+  <div class="w3-col s2">
+     <i class="fas fa-funnel-dollar w3-text-grey w3-xlarge w3-padding-top" id="iconmonedjCM"></i>
+     <img src='icon/USDT.png' width="28px" style="display:none" id="mercdmonedCM">
+  </div>
+  <div class="w3-col s10">
+    <input class="w3-input w3-white w3-border-bottom w3-col s6 m6 l6" type="number" placeholder="Monto" id="montoCM" style="outline:none" oninput="CalculaOtroResultado(value)">
+    <i class="fas fa-times w3-col s2 m2 l2 w3-margin-top w3-padding-left"></i>
+    <div class="w3-input w3-white w3-border-bottom w3-col s3 m3 l3 w3-margin-left w3-center"  id="precioDorden">- -</div>
+  </div>
+</div> 
+
+ 
+</div> 
+ <div class="w3-container w3-margin-bottom">
+  <table class="w3-table w3-bordered w3-border-light-grey" style="font-size: 14px;">
+    <tr  class="w3-border-right w3-border-left w3-border-top w3-border-light-grey">
+      <th>Comisión</th>
+      <th>Total a recibir</th>
+    </tr>
+    <tr  class="w3-border-right w3-border-left w3-border-light-grey" style="color:#8f8f8f; text-align: center; font-size: 14px;">
+      <td type="text">-<span id="Ncomisionpai">0.00</span> </td>
+      <td> <span id="Ntotalrecibe">0.00</span> </td>
+    </tr>
+  </table>
+  </div>
+
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#Ordenar').hide();">Cancelar</div>
+<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-green w3-border-top w3-border-light-grey" id='tipbtn' style="cursor:pointer" onclick="PublicarOrden()">Comprar</div>
+
+
+
+   </div>  
+   
+   <div id="solicitudseccion" style="display:none">
+       <center class="w3-padding-16 w3-container">
+           <small class="w3-margin-bottom w3-text-grey">
+               <i class="fas fa-info-circle"></i> 
+               La solicitud se cancelará automáticamente si no es atendida dentro de 15 minutos.
+           </small>
+           <i class="fas fa-user-clock fa-4x w3-text-grey w3-col s12 m12 l12 w3-margin-top"></i>
+           <span class="w3-col s12 m12 l12 w3-text-grey w3-padding-top">Cliente- <span id="idclientcm"></span></span>
+           <p>Esperando la aprobación de parte del <span id='aprbcm'></span>.</p>
+           <p>Restante: <span id="minpendsol"></span></p>
+           
+       </center>
+       <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#Ordenar').hide();">Ocultar</div>
+       <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey w3-text-red" id='' style="cursor:pointer" onclick="">Cancelar</div>
+   </div>
+   
+      <div id="cencelrseccion" style="display:none">
+           <center class="w3-padding-32 w3-container">
+             <p class="w3-text-grey"><i class="fas fa-info-circle"></i> 
+                La solicitud fue cancelada automáticamente por haber alcanzado el tiempo máximo de espera.</p>       
+                <i class="fas fa-ban fa-5x w3-text-red w3-col s12 m12 l12 w3-padding-16"></i>
+           </center>
+        <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey w3-text-blue" style="cursor:pointer" onclick="salirDeCncelar();">Salir</div>
+
+      </div>
+      
+      
+    <div id="esperapago" style="display:none">
+           <center class="w3-padding-64 w3-container">
+                    
+                <i class="fas fa-credit-card fa-5x w3-text-grey w3-col s12 m12 l12 w3-padding-16"></i>
+                <small class="w3-text-grey"><i class="fas fa-info-circle w3-text-yellow"></i>
+                   El comprador ha aprobado su orden.
+                </small>
+                <p class="w3-text-grey">A la espera que envíe el pago a su cuenta.</p>
+                <p>Restante: 0:49:00</p>
+           </center>
+    </div>
+    
+    <div id="pagohecho" style="display:none">
+           <div class="">
+                    
+                <div class="w3-container w3-margin-top">
+                    <i class="fas fa-credit-card w3-text-yellow"></i> <span class="w3-text-grey">El pago fue realizado por el comprador</span>
+                    <small class="w3-col s12 m12 l12 w3-center">Tiempo restante <span class="w3-text-blue">14:29 min</span></small>
+                </div>
+
+                
+                <div class="w3-margin-top">
+                    <div class="w3-container   w3-padding-top w3-padding-bottom w3-light-grey" onclick="desplegarDetalles('detllpag')">Detalles de su pago <i class="w3-padding-top fas fa-chevron-down w3-text-grey w3-right"></i></div>
+                      <div class="w3-container w3-bottombar w3-leftbar w3-rightbar w3-border-light-grey" style="display: none;" id="detllpag">
+                        <p>Metodo: Popular</p>
+                        <p>Monto:  3,100 DOP</p>
+                        <p>Cuenta: 123456789</p>
+                     </div>
+                </div>
+               
+               <div class="w3-margin-top">
+                    <div class="w3-container w3-padding-top w3-padding-bottom w3-light-grey" onclick="desplegarDetalles('detllcompr')">Datos del comprador <i class="w3-padding-top fas fa-chevron-down w3-text-grey w3-right"></i></div>
+                      <div class="w3-container w3-bottombar w3-leftbar w3-rightbar w3-border-light-grey" style="display: block;" id="detllcompr">
+                       <div class="">
+                         <p>Titular: Fulano perensejo Medina</p>
+                         <p>Metodo: Popular</p>
+                         <p>Cuenta: 123456789</p>
+                      </div> 
+                     </div>
+                </div>
+
+               <div class="w3-container w3-margin-top">
+                   <i class="fas fa-info-circle w3-text-yellow"></i>
+                   <small>Asegúrese de haber recibido el pago en su cuenta
+                   antes de liberar las criptomonedas. Compruebe que el comprador le haya transferido los fondos desde
+                   la cuenta mostrada y que la misma se encuentre a su nombre. No apruebe pagos recibidos
+                   a nombre de un titular diferente, o desde una fuente distinta a la mostrada 
+                   y compruebe que el pago no este en estado pendiente o en tránsito.
+                   <center>
+                     <input class="w3-margin-bottom w3-margin-top" type="checkbox" id="checkarea" onclick="habilitaraceptar()"> 
+                     <b>Confirmo que al liberar no hay reclamación</b>
+                   </center>
+                   
+                   </small>
+               </div>
+
+               <div class="w3-col s4 m4 l4 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey w3-text-red" style="cursor:pointer" onclick="">Apelación</div>
+               <div class="w3-col s8 m8 l8 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey w3-text-yellow" id='' style="cursor:pointer" onclick="">Liberar fondos</div>
+   
+
+           </div>
+    </div>
+    
+    
+    <div id="areapagar" style="display:none">
+
+                <div class="w3-container w3-padding-top">
+                    <span class="w3-text-grey"><i class="fas fa-credit-card"></i> Proceda a enviar el pago</span>
+                    <small class="w3-col s12 m12 l12"> <span class="w3-container w3-text-yellow w3-right w3-border w3-border-light-grey w3-round w3-round-xlarge"><i class="w3-text-grey fas fa-clock"></i> 12:20 min</span></small>
+                </div>
+
+                
+                <div class="w3-padding-top">
+                    <div class="w3-container  w3-padding-top w3-padding-bottom w3-light-grey" onclick="desplegarDetos('cuentadest')">Datos de pago del vendedor <i class="w3-padding-top fas fa-chevron-down w3-text-grey w3-right"></i></div>
+                      <div class="w3-container w3-bottombar w3-leftbar w3-rightbar w3-border-light-grey" style="display: block;" id="cuentadest">
+                        <p>Método de pago: Popular</p>
+                        <p>Titular: Perensejo Peralta Medina</p>
+                        <p>Monto:  3,100 DOP</p>
+                        <p>Cuenta: 123456789</p>
+                     </div>
+                </div>
+               
+               <div class="w3-padding-top">
+                    <div class="w3-container w3-padding-top w3-padding-bottom w3-light-grey" onclick="desplegarDetos('cuentorig')">Cuenta de origen <i class="w3-padding-top fas fa-chevron-down w3-text-grey w3-right"></i></div>
+                      <div class="w3-container w3-bottombar w3-leftbar w3-rightbar w3-border-light-grey" style="display: none;" id="cuentorig">
+                       <div class="">
+                         <p>Metodo: Popular</p>
+                         <p>Cuenta: 123456789</p>
+                         <p>Moneda: DOP</p>
+                      </div> 
+                     </div>
+                </div>
+
+               <div class="w3-container w3-padding-top w3-padding-bottom">
+                   <i class="fas fa-info-circle w3-text-yellow"></i>
+                   <small>
+                       Asegúrese de que la cuenta del vendedor corresponda al mismo nombre del titular; envíe exactamente el mismo monto mostrado y
+                       utilice el mismo método de pago de su cuenta de origen. Si envia los fondos desde una cuenta distinta su pago no sera aprobado
+                       por el vededor. 
+                       
+                    <div class="w3-col s12 m12 l12 w3-padding-top w3-center">
+                      <input class="w3-margin-bottom" type="checkbox" id="checkarea" onclick="habilitaraceptar()"> 
+                      <b>Confirmo que he leido las instrucciones</b>
+
+                    <!--<div class="w3-col s6 m6 l6">
+                      <div class="w3-center w3-container w3-border w3-border-light-grey w3-col l8 s8 m8 w3-round w3-round-large">
+                       <label for="upload-photo">
+                           <i class="fas fa-upload w3-xxlarge w3-text-grey"></i>
+                           <small class="w3-col s12 m12 l12">Comprobante</small>
+                       </label>
+                       <input type="file" id="upload-photo" style="opacity: 0;position: absolute;z-index:-1"/> 
+                      </div>
+                    </div>-->
+                    
+                   </div>
+                  
+                  </small>
+               </div>
+
+               <div class="w3-col s5 m5 l5 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey w3-text-red" style="cursor:pointer" onclick="">Cancelar</div>
+               <div class="w3-col s7 m7 l7 w3-large w3-padding-16 w3-center w3-border-top w3-border-light-grey w3-text-green" id='' style="cursor:pointer" onclick="">Marcar pagado</div>
+   
+       </div>
+   
+  </div>
+</div>
+<!-- // ORDEN VENDER o COMPRAR -->
+
+<script>
+//para el vendedor
+function desplegarDetalles(area){
+    
+    if($('#detllpag').attr('style')=="display: none;" && area=='detllpag')
+    {
+        $('#detllpag').show();
+        $('#detllcompr').hide();
+        
+    }
+    else
+    {
+        $('#detllpag').hide();
+        $('#detllcompr').show();
+    }
+}
+
+//para el comprador  cuentorig 
+function desplegarDetos(area){
+    
+    if($('#detllpag').attr('style')=="display: none;" && area=='cuentadest')
+    {
+        $('#cuentadest').show();
+        $('#cuentorig').hide();
+        
+    }
+    else
+    {
+        $('#cuentadest').hide();
+        $('#cuentorig').show();
+    }
+}
+
+function habilitaraceptar()
+{  
+    var accions="$('#p2ptermin').hide();localStorage.setItem('p2ptermn', 'aceptado');"; 
+    $('#infoacept').attr('onclick',accions)
+}
+if(localStorage.getItem('p2ptermn')!=='aceptado')
+{
+ $('#p2ptermin').show();
+}
+</script>
+
+<script>
+//ordenar: comprar o vender de ordenes existentes
+Nobjt='';
+Tipordn=''; 
+function Ordenar(usuario,tipoOrden)
+{
+   
+  $.ajax({
+  url: 'https://pagosalinstante.com/AppObtenerOrden',
+  type: 'post',
+  data: {usuario:usuario, tipoOrden:tipoOrden},
+  beforeSend: function ()
+  {
+     $('#loadergif').show();
+    //$('#loaderspin').show();   
+  },
+  success: function (response)
+  {
+    $('#loadergif').hide(); 
+    if(response=='')
+    { 
+       NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+    }
+    else 
+    {
+  
+      Nobjt=JSON.parse(response);
+      if(objt.session=='true')
+      { 
+   
+ 
+        if(tipoOrden=='compra')
+        {
+         $('#tipbtn').removeClass('w3-text-green').addClass('w3-text-red').html('Vender');
+         Tipordn='venta';
+         $('#iconmonedjCM').hide();
+         $('#mercdmonedCM').show();
+         $("#montoCM").attr('placeholder','Monto '+Mercado);
+
+        }
+        else
+        {
+          $('#tipbtn').removeClass('w3-text-red').addClass('w3-text-green').html('Comprar');
+          Tipordn='compra';
+          $('#iconmonedjCM').show();
+          $('#mercdmonedCM').hide();
+          $("#montoCM").attr('placeholder','Monto fiat');
+        }
+         $('#tipbtn').attr('onclick',"procesarSolicitud("+usuario+")");
+        
+         $('#Listorden').children('option:not(:first)').remove();
+         for(i=0;i<Nobjt.content.length;i++)
+         {
+             if(tipoOrden=='compra')
+             {
+               $('#Listorden').append('<option value="'+Nobjt.content[i].id+'">'+Nobjt.content[i].metodoPago+' - MAX: '+Nobjt.content[i].monto+' ('+Nobjt.content[i].moneda+')'+' - Precio: '+Nobjt.content[i].precio+'</option>');
+             }
+             else
+             {
+                $('#Listorden').append('<option value="'+Nobjt.content[i].id+'">'+Nobjt.content[i].metodoPago+' - MAX: '+Nobjt.content[i].monto+' '+Nobjt.content[i].criptomoneda+' - Precio: '+Nobjt.content[i].precio+' '+Nobjt.content[i].moneda+' x '+Nobjt.content[i].criptomoneda+'</option>');
+             }
+         }
+        
+        
+        $('#Ordenar').show(); 
+        
+      }
+      else
+      {
+        CerrarSesion();
+      }
+      
+    }  
+    
+  },
+  error: function (response)
+  {
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+    $('#loadergif').hide();
+    $('#loaderspin').hide();
+  } 
+  
+ }); 
+ 
+}
+
+//Seleccionar la orden del comprador o vendedor
+function SeleccionarOrden(id)
+{
+    for(i=0;i<Nobjt.content.length;i++)
+    {
+            if(Nobjt.content[i].id==id)
+            {
+                    $('#precioDorden').html(Nobjt.content[i].precio);
+                    MonedaFiat=Nobjt.content[i].moneda;
+                    sessionStorage.setItem("OrdenarCMprecio", Nobjt.content[i].precio);
+                    if(Tipordn=='compra')
+                    {
+                        $("#montoCM").attr('placeholder','Monto '+MonedaFiat);
+                    }        
+
+            } 
+    }
+}
+
+xterval='';
+//solicitud de compra o venta de P2p
+function procesarSolicitud(usuario)
+{
+    precio=sessionStorage.getItem('OrdenarCMprecio');
+    monto=$('#montoCM').val();
+    orden=$('#Listorden').val();
+    cuenta=$('#Sucuenta').val();
+    
+    if(monto=='' || orden=='' || cuenta=='')
+    {
+        NotifiAlert('Por favor complete todos los campos requeridos','w3-red',6000); 
+    }
+    else
+    {
+        
+      $.ajax({
+      url: 'https://pagosalinstante.com/AppOrdenesCrearSolicitud',
+      type: 'post',
+      data: {monto:monto, orden:orden,cuenta:cuenta},
+      beforeSend: function()
+      {
+        $('#loadergif').show();
+      },
+      success: function(response)
+      { 
+        
+        
+        
+        //NotifiAlert('Todo correcto','w3-green',6000); 
+                $('#loadergif').hide();
+
+        $('#ordenarSeccion').hide();
+        $('#solicitudseccion').show();
+        $('#idclientcm').html(usuario);
+
+         
+        if(Tipordn=='compra')
+        {
+            $('#aprbcm').html('vendedor');
+        }
+        else
+        {
+           $('#aprbcm').html('comprador');
+        }
+        
+       //15 son los segundos restantes -falta buscar el tiempo real cone l servidor.
+       var countDownTarget = new Date().getTime() + 0.09 * 60 * 1000;
+       showClock(countDownTarget);
+
+       // Update the count down every 1 second
+       xterval = setInterval(function()
+       {
+         showClock(countDownTarget);
+         if (countDownTarget - new Date().getTime() < 0)
+         {
+           $('#solicitudseccion').hide();
+           // $('#cencelrseccion').show();
+          //$('#esperapago').show();
+          //$('#pagohecho').show();
+                $('#areapagar').show();
+
+
+           clearInterval(xterval);
+         }
+        }, 1000);
+        
+        
+        
+        
+      },
+      error: function (response)
+      {
+        NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+        $('#loadergif').hide();
+        $('#loaderspin').hide();
+      }
+      
+      });
+
+
+    }
+    
+    
+}
+
+//ocultar el modal y reseterar valores.
+function salirDeCncelar()
+{   
+    $('#Ordenar').hide();
+    $('#cencelrseccion').hide();
+    $('#ordenarSeccion').show();
+}
+
+function showClock(target) {
+    const distance = target - new Date().getTime();
+    const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);        
+
+    // Output the results
+    document.getElementById("minpendsol").innerHTML = mins+':'+secs;
+}
+</script>
+
+<script>
+Mercado='USDT';
+MonedaFiat='';
+function cambiotipo(tipo)
+{
+     
+     $('#Ordenprecio,#monto').val('');
+     $('#comisionpai').html('0.00 '+Mercado);
+     $('#totalrecibe').html('0.00 '+MonedaFiat);
+     
+     if (tipo == "compra")
+     {
+	     $("#tipoorden").html("vendedor");
+	     $("#cuenta option[value='']").html('Cuenta desde donde envía');
+	     $("#mercdmoned").hide();
+	     $("#iconmonedj").show();
+	     $("#monto").attr('placeholder','Monto '+MonedaFiat);
+	 }
+	 else
+	 {
+	    $("#tipoorden").html("comprador");
+	    $("#cuenta option[value='']").html('Cuenta donde recibirá');
+	    $("#monto").attr('placeholder','Monto '+Mercado)
+	    $("#iconmonedj").hide();
+	    $("#mercdmoned").show();
+	 }
+}
+
+comisionPAI='';
+function habilitar() {
+
+
+	  	
+	    //Almaceno los valores de los inputs
+	  	var primerValor = $('#monto').val();
+	  	var porcentaje = $("#porcentaje").val();
+	  	var segundoValor = parseFloat(comisionPAI);
+	  	var tipocomision = $("#tipocomision").val();
+	  	var montominimo = $("#montominimo").val();
+	  	var tipo = $("#tipo").val();
+	  	
+	  	
+	  	if (tipo == "compra" || tipo == "venta") {
+
+	$("#monto,#minimo").removeAttr("disabled");
+}
+
+if (primerValor != "") {
+	$("#tipocomision").removeAttr("disabled");
+}
+if (primerValor == "") {
+	$("#tipocomision").attr("disabled","disabled");
+}
+
+
+}
+
+function CalculaResultado()
+{
+    moneda=MonedaFiat; 
+    monto=parseFloat($('#monto').val()); 
+    precio=parseFloat($('#Ordenprecio').val());  
+    tipo=$('#tipo').val();  
+
+    if(monto>-1 && precio>-1)
+    {
+        
+      if(tipo=='compra')
+      {
+        montoCripto=parseFloat(monto/precio);
+        comisionpai=parseFloat(montoCripto*comisionPAI);
+        totalrecibe=parseFloat(montoCripto-comisionpai);
+        $('#comisionpai').html(formatonumero(comisionpai,2)+' '+Mercado);
+        $('#totalrecibe').html(formatonumero(totalrecibe,2)+' '+Mercado);
+      }
+      else
+      {
+        montoCripto=monto;
+        comisionpai=parseFloat(montoCripto*comisionPAI);
+        totalrecibe=parseFloat((montoCripto-comisionpai)*precio);
+        $('#comisionpai').html(formatonumero(comisionpai,2)+' '+Mercado);
+        $('#totalrecibe').html(formatonumero(totalrecibe,2)+' '+moneda);
+        
+      }
+
+    }
+    else
+    {
+        $('#comisionpai').html('0.00 '+Mercado);
+        $('#totalrecibe').html('0.00 '+moneda);
+    }
+}
+</script>
+
+<script>
+function CalculaOtroResultado(monto)
+{
+    moneda=MonedaFiat; 
+    monto=parseFloat(monto); 
+    precio=parseFloat(sessionStorage.getItem("OrdenarCMprecio"));   
+    tipo=Tipordn;  //variable global mas arriba
+
+    if(monto>-1 && precio>-1)
+    {
+        
+      if(tipo=='compra')
+      {
+        montoCripto=parseFloat(monto/precio);
+        comisionpai=parseFloat(montoCripto*comisionPAI);
+        totalrecibe=parseFloat(montoCripto-comisionpai);
+        $('#Ncomisionpai').html(formatonumero(comisionpai,2)+' '+Mercado);
+        $('#Ntotalrecibe').html(formatonumero(totalrecibe,2)+' '+Mercado);
+      }
+      else
+      {
+        montoCripto=monto;
+        comisionpai=parseFloat(montoCripto*comisionPAI);
+        totalrecibe=parseFloat((montoCripto-comisionpai)*precio);
+        $('#Ncomisionpai').html(formatonumero(comisionpai,2)+' '+Mercado);
+        $('#Ntotalrecibe').html(formatonumero(totalrecibe,2)+' '+moneda);
+        
+      }
+
+    }
+    else
+    {
+        $('#Ncomisionpai').html('0.00 '+Mercado);
+        $('#Ntotalrecibe').html('0.00 '+moneda);
+    }
+}
+</script>
+
+
+<!-- //nueva orden// -->
+
+<script>
+tipohistorial='';
+cuentasbancarias='';
+objt='';
+pagtotal='';
+paglimite='';
+function ordenesDeComercio(pagina,tipo)
+{
+    
+
+$.ajax({
+url: 'https://pagosalinstante.com/AppOrdenesDeComercio',
+type: 'post',
+data: {pagina:pagina, tipo:tipo},
+beforeSend: function ()
+{
+   $('#loadergif').show();
+   //$('#loaderspin').show();   
+},
+success: function (response)
+{
+  $('#loadergif').hide(); 
+  if(response=='')
+  { 
+     NotifiAlert('No se ha obtenido resultados, compruebe su conexión','w3-red',6000); 
+  }
+  else 
+  {
+  
+    objt=JSON.parse(response);
+    if(objt.session=='true')
+    {
+    
+       
+        
+        //paginacion
+         pagtotal=objt.paginas.total;
+         paglimite=objt.paginas.maximo;
+         pagina=pagina-1;
+         
+         $('#datsl').attr('pagtotal',pagtotal);
+         $('#datsl').attr('paglimite',paglimite);
+         $('#datsl').attr('pagina',pagina+1);
+         
+         cuentasbancarias=objt.formadepago.datos;
+         comisionPAI=objt.paifee/100;
+         
+         //agregando  bancos para las nueva ordenes y borrando para que no se repita
+         $('#banco,#mediopago').children('option:not(:first)').remove();
+         for(i=0;i<objt.formadepago.listado.length;i++)
+         {
+             $('#banco,#mediopago').append('<option>'+objt.formadepago.listado[i]+'</option>');
+         }
+           
+          
+        //transacciones
+        if(objt.content.length>0)
+        {   
+        
+           
+           for(i=0;i<objt.content.length;i++)
+           {
+           
+            
+                 
+                 
+                 if(tipo=='venta'){
+                     tipoid='v';
+                     tipoColor='w3-green';
+                     tipotitulo='Comprar';
+                     tipohistorial='venta';
+                 }
+                 else{
+                     tipoid='c';
+                      tipoColor='w3-red';
+                     tipotitulo='Vender';
+                     tipohistorial='compra';
+                 }
+                 if(objt.content[i].ordenes>1){
+                     ordenes='ordenes';
+                 }
+                 else
+                 {
+                      ordenes='orden';
+                 }
+                 
+                 //variables creando un onclick por el tema de las comillas
+                 tipc="'"+tipo+"'";
+                 accionOrden='onclick="Ordenar('+objt.content[i].usuario+','+tipc+')"';
+                 
+                 var contanido ='<div class="w3-col s12 m12 l12 w3-border-bottom w3-border-light-grey" id="trst'+tipoid+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+                      contanido +='<div class="w3-col s12 m12 l12 w3-border-light-grey w3-margin-top w3-padding-bottom">';
+                 
+                       contanido +='<div class="w3-col s12 m12 l12">';
+                         contanido +=' <i class="fab fa-get-pocket w3-text-green w3-tiny"></i> <i class="fas fa-user-tag w3-text-grey"></i> ';   
+                         contanido +='<span onclick="verperfil('+objt.content[i].usuario+')">Cliente - '+objt.content[i].usuario+'</span> ';
+                         contanido +='<small class="w3-right">'+objt.content[i].ordenes+' '+ordenes+'</small>';    
+                       contanido +='</div>'; 
+                     
+                       contanido +='<div class="w3-col s12 m12 l12 w3-text-grey">';
+                         contanido +='<div class="w3-col s8 l6 m6">';
+
+                           for(e=0;e<objt.content[i].bancos.length;e++)
+                           {
+                             contanido +='<small><i class="fas fa-genderless w3-tiny w3-text-cyan"></i> '+objt.content[i].bancos[e]+' </small>';
+                           }
+                           
+                         contanido +='</div>';
+                        contanido +='</div>';
+                                      
+                          
+                        contanido +='<div class=" w3-col s12 l12 m12 w3-text-grey">';
+                           for(f=0;f<objt.content[i].monedas.length;f++)
+                           {
+                             contanido +='<small><i class="fas fa-caret-right w3-tiny w3-text-teal"></i> '+objt.content[i].monedas[f]+' </small>';
+                           }    
+                           
+                           contanido +='<span class="w3-right w3-tiny">'; 
+                           if(objt.content[i].calificacion =='nan')
+                           {
+                              contanido +='<i class="far fa-star w3-text-yellow"></i>'.repeat(5);
+                           }
+                           else if(objt.content[i].calificacion<5)
+                           {
+                              contanido +='<i class="fas fa-star w3-text-yellow"></i>'.repeat(objt.content[i].calificacion);
+                              if(objt.content[i].calificacion.match(/./g).length>0  && (/.00/g).test(objt.content[i].calificacion)==0)
+                              {
+                                contanido +='<i class="fas fa-star-half-alt w3-text-yellow"></i>';
+                              }
+                              contanido +='<i class="far fa-star w3-text-yellow"></i>'.repeat(5-objt.content[i].calificacion);
+                           }
+                           else
+                           {
+                              contanido +='<i class="fas fa-star w3-text-yellow"></i>'.repeat(objt.content[i].calificacion);
+                           }
+                           
+                        
+                           contanido +='</span>';
+                        contanido +='</div>';
+                        
+                        
+                        contanido +='<div class="w3-col s12 m12 l12 "><small>Máximo: '+formatonumero(objt.content[i].monto,2)+' '+Mercado+'</small>  <buttom class="'+tipoColor+' w3-tag w3-small w3-round w3-right" '+accionOrden+'>'+tipotitulo+'</buttom></div>';
+                       
+                    contanido +='</div>';
+                contanido +='</div>';
+
+                 
+            
+                $("#trst"+tipoid+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i))).after(contanido); 
+           }
+             $("#trst"+tipoid+"0").remove();
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+
+         }
+         else
+         {
+             $('#loaderspin').hide();
+             $('#loadergif').hide();
+         }
+          
+    }
+    else
+    {
+        CerrarSesion();
+    }
+    
+       
+	    
+  }
+  
+  
+},
+
+error: function (response)
+{
+   NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+   $('#loadergif').hide();
+   $('#loaderspin').hide();
+}
+
+});
+}
+ ordenesDeComercio(1,'compra');
+</script>
+<script>
+//ver perfil del comprador o vendedor
+function verperfil(usuario)
+{
+    sessionStorage.setItem("userview",usuario);
+    nuevaArea('perfil');
+}
+</script>
+<script>
+    function mostrarCuenta(banco)
+    {   
+         //borrar los cuentas bancarias, menos el titulo primero
+         
+         $('#cuenta,#Sucuenta').children('option:not(:first)').remove();
+         $('#cuenta,#Sucuenta option:first').prop('selected',true);
+         
+         //resetear datos
+         $('#Ordenprecio,#monto').val('');
+         $('#comisionpai').html('0.00 '+Mercado);
+         $('#totalrecibe').html('0.00 '+MonedaFiat);
+         $("#cuenta,#Sucuenta  option[value='']").html('Cuenta donde recibirá');	     
+         $("#cuenta,#Sucuenta  option[value='']").html('Cuenta desde donde envía');
+
+
+         disableds='';
+         pendient='';
+         for(i=0;i<cuentasbancarias[banco].length;i++)
+         { 
+             if(cuentasbancarias[banco][i].aprobada=='no') 
+             {
+               disableds='disabled'; pendient=' (pendiente)';
+             }
+             $('#cuenta,#Sucuenta ').append('<option '+disableds+' value="'+cuentasbancarias[banco][i].id+'">'+cuentasbancarias[banco][i].cuenta+' ('+cuentasbancarias[banco][i].moneda+') '+pendient+'</option>');
+         }
+    }
+</script>
+
+<script>
+    function ExtraerMoneda(id)
+    {   
+         //Extraer la moneda correspondiente a la cuenta
+         banco=$('#banco').val();
+         for(i=0;i<cuentasbancarias[banco].length;i++)
+         { 
+             if(cuentasbancarias[banco][i].id==id)
+             {
+                 MonedaFiat=cuentasbancarias[banco][i].moneda;
+             }
+         }
+         if($('#tipo').val()=='compra')
+         {
+           $("#monto").attr('placeholder','Monto '+MonedaFiat);
+         }
+    }
+</script>
+
+
+<script>
+function compraventa(id)
+{
+  if(id==1)
+  {
+      $("#ventcompr").removeClass('w3-border-red').addClass("w3-border-grey w3-text-grey");
+      $("#comprp").removeClass('w3-border-grey w3-text-grey').addClass("w3-border-red");
+      $('#histcompras').show();
+      $('#histvents').hide();
+             
+      $("#histcompras").html('<div id="trstc0"></div>');
+      ordenesDeComercio(1,'compra');
+      evitardupli=0;
+
+  }
+  else
+  {
+      $("#ventcompr").removeClass('w3-border-grey w3-text-grey').addClass("w3-border-green");
+      $("#comprp").removeClass('w3-border-red').addClass("w3-border-grey w3-text-grey");
+      $('#histcompras').hide();
+      $('#histvents').show();
+      $("#histvents").html('<div id="trstv0"></div>');
+      ordenesDeComercio(1,'venta');
+       evitardupli=0;
+
+  }
+}
+</script>
+<script>
+$(document).ready(function(){
+ evitardupli=0; 
+
+ $(window).scroll(function(){
+if(verarea()=='Comercio' || verarea()=='historial')
+{ 
+  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
+   var pagactual = Number($('#datsl').attr('pagina'));
+   var totalpag = Number($('#datsl').attr('pagtotal'));
+   var maximoporpag = Number($('#datsl').attr('paglimite'));
+   
+if(pagactual>evitardupli)
+{
+   if(pagactual < (totalpag/maximoporpag)){
+       if(verarea()=='historial')
+       {
+             TransaccionesDeComercio((pagactual+1),'compra',tipoTransaccion);
+       }
+       else
+       {
+            ordenesDeComercio((pagactual+1),tipohistorial);
+       }
+       
+      $('#loadergif').show();
+      //window.scrollBy(0, -1);
+      evitardupli=pagactual; 
+   }
+    
+}
+  }
+}
+ });
+
+});
+</script>
+<script>
+function PublicarOrden()
+{
+  
+ banco=$('#banco').val();   
+ cuenta=$('#cuenta').val();   
+ tipo=$('#tipo').val();   
+ monto=$('#monto').val();   
+ //minimo=$('#minimo').val();   
+ precio=$('#Ordenprecio').val();   
+
+
+ if(precio=='' || banco=='' || cuenta=='' || tipo=='' || monto=='')
+ {
+        NotifiAlert('Debe rellenar todos los campos','w3-red',6000);  
+ } 
+ else
+ {
+     
+ 
+  $.ajax({
+  url: 'https://pagosalinstante.com/AppNuevaOrdenComercio',
+  type: 'post',
+  data:{ precio:precio,banco:banco,cuenta:cuenta,tipo:tipo,monto:monto},
+  beforeSend: function()
+  {
+     $('#loadergif').show();
+  },
+  success: function(response)
+  {
+       $('#loadergif').hide();
+       obj=JSON.parse(response);
+       if(obj.estado=='ok')
+       {
+           NotifiAlert(obj.msj,'w3-green',4000); 
+           
+           //redireccionando al area de historial de ordenes
+           $('#nuevaorden').hide();
+           nuevaArea('historial');
+       }
+       else
+       {
+            NotifiAlert(obj.msj,'w3-red',6000); 
+
+       }
+       
+       
+  },
+  error: function (response)
+  {
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+    $('#loadergif').hide();
+    $('#loaderspin').hide();
+  }
+
+  });
+ 
+ }
+ 
+}
+</script>
+
+<script>
+function nuevaArea(area)
+{
+ $.ajax({
+ url: 'submenu/p2p/'+area+'.html',
+ type: 'post',
+ beforeSend: function()
+ {
+    
+ },
+ success: function(response)
+ {
+    $("#areap2p").html(response);
+    $("#seccionp2p").hide();
+    history.pushState(area,area,area); 
+    window.scrollTo(0, 0);
+ }
+
+ });
+}
+</script>
