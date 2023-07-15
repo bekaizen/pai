@@ -1,4 +1,4 @@
-
+---
 deployment:
   tasks:
     - export DEPLOYPATH=/home/yqxb16bsjvdm/public_html/areaweb/
