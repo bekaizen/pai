@@ -358,8 +358,8 @@
             </footer> -->
         </div>
     </div>
-    <!--<script src="./assets/plugins/chartjs/Chart.min.js"></script>
-    <script src="./assets/plugins/chartjs/dashboard.js"></script>-->
+    <script src="./assets/plugins/chartjs/Chart.min.js"></script>
+    <script src="./assets/plugins/chartjs/dashboard.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-qrcode-0.14.0.js"></script>
 
@@ -459,7 +459,8 @@
             $('#barcolor').attr('content', '#' + color);
             //$('#menusup').hide();
         }
-
+        
+        areaActual='Inicio';
         function OpenOption(id) {
 
             if (localStorage.getItem("Sesion") !== 'true') {
@@ -482,7 +483,8 @@
 
 
                         $("#titname").html(id);
-                        history.pushState(id, id, id);
+                        areaActual=id;
+                        //history.pushState(id, id, id);
                         window.scrollTo(0, 0);
 
 
@@ -798,8 +800,9 @@
     </script>
     <script>
         function verarea() {
-            AreaS = window.location.pathname.split('/');
-            return AreaS[(AreaS.length) - 1];
+            //AreaS = window.location.pathname.split('/');
+            //return AreaS[(AreaS.length) - 1];
+            return areaActual;
 
         }
 
@@ -862,7 +865,7 @@
                         else {
                             $("#contenido").html(response);
                             $("#titname").html(titulo);
-                            history.pushState(titulo, titulo, titulo);
+                            //history.pushState(titulo, titulo, titulo);
                             window.scrollTo(0, 0);
                         }
 
