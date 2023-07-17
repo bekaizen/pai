@@ -1,0 +1,798 @@
+<script>
+  $('#menusup').hide();  
+  EstatusBarColor('ffffff');
+</script>
+<!-- Menu superior-->    
+<div class="w3-white w3-container w3-col s12 l12 m12 w3-padding-12">
+    <div class="w3-col s12 l12 m12">
+        <div class="w3-col l5 m5 s5" id="marcd" onclick="$('#lateralBar').show()">
+            <div class="w3-col l12 m12 s12 w3-large"><i class="fas fa-expand-alt w3-text-grey"></i> <b><span id="seccionactual"></span></b></div>
+            <div><span id="24hcambio">--</span> / 24h </div>
+        </div>
+        <div class="w3-col l4 m4 s4"><div class="w3-col l12 m12 s12"><b>Volumen</b></div> <span id="volumen">0.00</span></div>
+        <div class="w3-col l3 m3 s3"><div class="w3-col l12 m12 s12"><b>Precio</b></div> <span id="secnactualPrec">0.00</span></div>
+    </div>
+</div>
+<!-- //Menu superior-->    
+
+<!-- Barra lateral-->    
+<div class="w3-top w3-sidebar w3-white w3-card-2 w3-animate-left" style="width:75%;height:100%;display:none;position:fixed" id="lateralBar">
+  
+  <div class="w3-col l12 m12 s12">
+             <h4 class="w3-container">Mercados</h4>
+             <div class="w3-col s12 m12 l12 w3-padding-bottom w3-container ">
+                 <!--<div class="w3-light-grey   w3-col m3 s3 l3 w3-hover-blue w3-margin-right w3-center" onclick="$('#BUSDlistadopares').attr('style','display:block');$('#USDTlistadopares').attr('style','display:block')">Todos</div>-->
+                 <div class="w3-col m3 s3 l3 w3-hover-blue w3-margin-right w3-center w3-blue" onclick="$('#BUSDlistadopares').attr('style','display:none');$('#USDTlistadopares').attr('style','display:block')">USDT</div>
+                 <!--<div class="w3-light-grey   w3-col m3 s3 l3 w3-hover-blue w3-margin-right w3-center" onclick="$('#USDTlistadopares').attr('style','display:none');$('#BUSDlistadopares').attr('style','display:block')">BUSD</div>-->
+             </div>
+             <input type="search" oninput="buscarmoneda(value)" style="outline:0" class="w3-input w3-border-light-grey w3-border w3-container w3-padding-8" placeholder="Buscar moneda...">
+             <div class="w3-container w3-light-grey">
+                 <div class="w3-col s5 m5 l5">Monedas</div>
+                 <div class="w3-col s2 m2 l2">Volumen</div>
+                 <div class="w3-col s5 m5 l5"><span class="w3-right">Precio</span></div>
+             </div>
+             <div id="todospares"       class="w3-container" style="display: block"></div>  
+             <div id="USDTlistadopares" class="w3-container" style="display: block"></div>
+             <div id="BUSDlistadopares" class="w3-container" style="display: none"></div>
+     </div>
+</div>
+<!-- //Barra lateral-->  
+
+
+<!-- Grafico-->
+<div id="graficoExchange" class="w3-modal noselect">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l5 m11 s11">
+      <div class="w3-col s12 m12 l12 w3-container w3-text-grey w3-center w3-large w3-padding">
+          Gráfico del precio del mercado.
+      </div>
+      <iframe id="grafico" src="" height="356px" width="100%" frameborder="0" scrolling="no"></iframe>            
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" onclick="$('#graficoExchange').hide()">Cerrar</div>
+  </div>
+</div>
+<!-- //Grafico// -->
+
+<div id='exsection'>
+
+<div class="w3-col s12 l12 m12 w3-white">
+    
+<div class="w3-col s6 l6 m6 w3-container w3-padding-top">
+
+    <div id="btncompr" onclick="CambiarSeccion('Compra')" class="w3-col s6 l6 m6 w3-green w3-border-green w3-container w3-border-left w3-border-top w3-border-bottom">Compra</div>
+    <div id="btnvent" onclick="CambiarSeccion('Venta')" class="w3-container w3-col s6 l6 m6 w3-light-grey w3-border-light-grey w3-border-right w3-border-top w3-border-bottom">Venta</div>
+    
+   <!-- compras!-->
+   <div id="sectionCompr">
+    <div class="w3-col s12 l12 m12 w3-margin-top w3-small w3-light-grey">&nbsp;  Balance <span><b id="balfiat">0.00</b> <span id='mercadoBalnc'></span></span></div>
+    
+    <input type="number" oninput="$('#equivcompr').html(formatNumber(value*$('#comprcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Precio" min="0" id="precompr" step="0.01">
+    <input type="number" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Cantidad" min="0" id="comprcant" oninput="if(validadecimales(value,GPrecDeciml[Gmoneda]['montoDecimal'])){$('#comprcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))};$('#equivcompr').html(formatNumber(validpg(value*$('#precompr').val()*1.0000,2),2));$('#vol').val(validpg(value*$('#precompr').val(),2))">
+    <input type="range"  class="w3-light-grey w3-border-light-grey w3-round w3-round-xlarge w3-border w3-col s12 l12 m12 w3-margin-top" id="vol" oninput="$('#equivcompr').html(formatNumber(value,2));$('#comprcant').val(validpg(value/$('#precompr').val()*1.0000,GPrecDeciml[Gmoneda]['montoDecimal']))" value="0" min="0.00" step="0.01" max="">
+    <div class="w3-col s12 l12 m12 w3-tiny">
+        <div class="w3-col s3 m2 l2"> 0 <span class="w3-right">25</span></div>
+        <div class="w3-col s3 m2 l2"><span class="w3-right">50</span></div>
+        <div class="w3-col s3 m2 l2"><span class="w3-right">75</span></div>
+       <div class="w3-col  s3 m2 l2"><span class="w3-right">100%</span></div>
+    </div>
+    
+    <div class="w3-col s12 l12 m12 w3-margin-top w3-small">Equivalente: <div class="w3-col s12 l12 m12"><span id="equivcompr">0.00</span> <span id="mercadoAqiv"></span></div></div>
+    
+    <buttom onclick="Trade('compra',$('#precompr').val(),$('#comprcant').val())" class="w3-btn w3-col s12 l12 m12 w3-margin-top w3-margin-bottom w3-round w3-round-large w3-green w3-small">Comprar</buttom>
+   </div>
+    <!-- compras!-->
+    
+   <!-- Ventas!-->
+   <div id="sectionVent" style="display:none">
+    
+    <div class="w3-col s12 l12 m12 w3-margin-top w3-small w3-light-grey">&nbsp;  Balance <span><b id="balcripto">0.00000000</b> <span id="balancTag"></span></span></div>
+    
+    <input type="number" oninput="$('#equivvent').html(formatNumber(value*$('#ventcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Precio" id="prevent" min="0" step="0.01">
+    <input type="number" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Cantidad" id="ventcant" min="0" oninput="if(validadecimales(value,GPrecDeciml[Gmoneda]['montoDecimal'])){$('#ventcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))};$('#equivvent').html(formatNumber(validpg(value*$('#prevent').val()*1.0000,2),2));$('#volvent').val(validpg(value,8))">
+    <input type="range"  class="w3-light-grey w3-border-light-grey w3-round w3-round-xxlarge w3-border w3-col s12 l12 m12 w3-margin-top" id="volvent" oninput="$('#equivvent').html(formatNumber(validpg(value*$('#prevent').val()*1.0000,2),2));$('#ventcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))" value="0.00000000" min="0" step="0.00000001" max="">
+    <div class="w3-col s12 l12 m12 w3-tiny">
+        <div class="w3-col s3 m2 l2"> 0 <span class="w3-right">25</span></div>
+        <div class="w3-col s3 m2 l2"><span class="w3-right">50</span></div>
+        <div class="w3-col s3 m2 l2"><span class="w3-right">75</span></div>
+       <div class="w3-col  s3 m2 l2"><span class="w3-right">100%</span></div>
+    </div>
+    
+    <div class="w3-col s12 l12 m12 w3-margin-top w3-small">Equivalente: <div class="w3-col s12 l12 m12"><span id="equivvent">0.00</span> <span id='mercadoEquivVent'></span></div></div>
+    
+    <buttom onclick="Trade('venta',$('#prevent').val(),$('#ventcant').val())" class="w3-btn w3-col s12 l12 m12 w3-margin-top w3-margin-bottom w3-round w3-round-large w3-red w3-small">Vender</buttom>
+   </div>
+   <!-- Ventas!-->
+
+</div>
+
+<!-- Libro de ordenes -->
+<div class="w3-col s6 l6 m6 w3-padding-right w3-padding-top">
+    
+    <div class="w3-col s12 l12 m12 w3-light-grey w3-border w3-border-light-grey">
+        <div class="w3-col s6 l6 m6">&nbsp;Precio</div>
+        <div class="w3-col s6 l6 m6"><span class="w3-right">Cantidad&nbsp;</span></div>
+    </div>
+    
+    
+    <div id="Areaventas" style="min-height:19vh">
+    </div>
+    
+    <div class="w3-col s12 l12 m12 w3-center w3-padding">
+        <i class="fa fa-sort-down w3-text-red" id="iconsort"></i> <span id="bookprice" onclick="$('#prevent,#precompr').val($('#bookprice').html().replace(',',''))"></span>
+    </div>
+    
+    <div id="Areacompras" style="min-height:19vh">
+    </div>
+    
+</div>
+<!-- //Libro de ordenes -->
+</div>
+
+<!-- Swap fiat a usd-->
+  <div id="ventanaswap" class="w3-modal noselect" style="display: none;">
+   <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
+    <div class="w3-margin-bottom w3-container w3-margin-top">
+        <b>Conversor de monedas</b>
+         <div class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2 w3-margin-top">
+          <small class="w3-col s12 m12 l12">Seleccione el origen</small>
+           <div class="w3-col s2 m2 l2"><img src="icon/USD.png" style="width:30px"  id="SwapMoned"></div> 
+           <div class="w3-col w3-col s5 m5 l5">
+             <select class="w3-select w3-border-0 w3-round w3-round-large" id="swapDesde" onchange="OrganizarSwap(value,'desde')" style="outline:none">
+              <option>USD</option>
+              <option>USDT</option>
+             </select>
+             <small class="w3-col s12 m12 l12 w3-text-blue" id="origenSaldo"></small>
+            </div>
+           
+           <input type="number" oninput="CalculadoraSwap()" id="montoDesde" style="text-align:right;outline:none" class="w3-input w3-border-0 w3-round w3-round-large w3-col s5 m5 l5 w3-light-grey" placeholder="0.00">
+         </div>
+
+        <div class="w3-col s12 m12 l12 w3-padding-top w3-padding-bottom w3-center">
+           <div  class="w3-center w3-card-2" style="border-radius: 100px; color:#fff; width:50px; margin:0 auto; height:50px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
+            <i class="fa-solid fa-retweet w3-xlarge"></i>
+           </div>        
+        </div>
+        
+        <div class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2">
+          <small class="w3-col s12 m12 l12">Seleccione destino</small>
+           <div class="w3-col s2 m2 l2"><img src="icon/USDT.png" style="width:30px"  id="SwapMoned2"></div> 
+           <select class="w3-select w3-col w3-border-0  w3-padding-top w3-round w3-round-large w3-col s10 m10 l10" id="swapHasta" style="outline:none">
+              <option>USDT</option>
+            </select> 
+        </div>
+        
+        <div class="w3-container w3-light-grey w3-margin-top w3-col s12 m12 l12 w3-padding-16 w3-round w3-round-large w3-margin-bottom">
+            <div class="w3-col s12 m12 l12">Precio: <span class="w3-right" id="tasaSwap"></span></div>
+           <div class="w3-col s12 m12 l12">Recibe: <span class="w3-right"  id="resultadoSwap"></span></div>
+        </div>
+        
+    <div class="w3-margin-top">    
+        <bottom class="w3-btn w3-blue w3-center w3-col l12 m12 s12 w3-margin-bottom w3-round" onclick="HacerSwap($('#montoDesde').val(),$('#swapDesde').val(),$('#swapHasta').val())">Convertir</bottom>
+        <bottom class="w3-btn w3-light-grey w3-center w3-col l12 m12 s12 w3-round" onclick="$('#ventanaswap').hide()">Atrás</bottom>
+    </div>
+    </div>
+  </div>
+  </div>
+<!-- Swap fiat a usd-->
+
+
+<div class="w3-col s12 l12 m12 w3-white w3-margin-top w3-container">
+    <div class="w3-white w3-border-bottom w3-border-light-grey w3-padding-8 w3-small">
+     <div class="w3-col s8 m8 l8">
+      <button class="w3-hover-light-grey w3-btn w3-white w3-border w3-border-light-grey w3-light-grey bbt" onclick="$('button').removeClass('w3-light-grey bbt');$(this).addClass('w3-light-grey bbt');SelecSeccion('seccionPend')">Ordenes activas</button>
+      <button class="w3-hover-light-grey w3-btn w3-white w3-border w3-border-light-grey" onclick="$('button').removeClass('w3-light-grey bbt');$(this).addClass('w3-light-grey bbt');SelecSeccion('ordeneslist')">Historial</button>
+     </div>
+      
+       <i class="fas fa-chart-bar w3-xlarge w3-padding-top w3-text-grey" onclick="$('#graficoExchange').show()"></i>   
+       <i class="fa-solid fa-money-bill-transfer w3-xlarge w3-padding-top w3-text-grey w3-padding-right w3-right" onclick="$('#ventanaswap').show()"></i>
+
+        
+      
+   </div>
+<!-- Seccion ordenes pendientes y realizadas -->
+<div style="display:block;overflow-y:scroll;max-height:50vh;min-height:50vh" id="seccionPend" class="w3-margin-top city"></div>
+<div style="display:none;overflow-y:scroll;max-height: 50vh;min-height:50vh" id="ordeneslist" class="w3-margin-top city"></div>
+
+<!-- //Seccion ordenes pendientes y realizadas// -->
+
+
+</div>
+
+</div>
+
+
+<script>
+function CalculadoraSwap(){
+    var monto=$('#montoDesde').val();
+    var origen=$('#swapDesde').val();
+    
+    if(origen=='USD'){
+         $('#resultadoSwap').html(formatonumero(monto/swap_tasa,2)+' USDT');
+         $('#tasaSwap').html('1 USD = '+formatonumero(1/swap_tasa,4)+' USDT');
+    }
+    else
+    {
+       $('#resultadoSwap').html(formatonumero(monto*swap_tasa,2)+' USD');
+       $('#tasaSwap').html('1 USDT = '+formatonumero(1*swap_tasa,4)+' USD');  
+    }
+}
+//organizar monedas del swap
+function OrganizarSwap(moneda)
+{   
+    swaps=['USD','USDT'];
+    $('#swapHasta').empty();
+    $.each( swaps, function( index, monedaParaAgregar ){
+      if(monedaParaAgregar!==moneda)
+      {
+           $('#swapHasta').append('<option>'+monedaParaAgregar+'</option>');
+      }
+    });
+    
+    $('#SwapMoned').attr('src','icon/'+$('#swapDesde').val()+'.png');
+    $('#SwapMoned2').attr('src','icon/'+$('#swapHasta').val()+'.png');
+    CalculadoraSwap();
+    
+}    
+</script>
+<script>
+function HacerSwap(monto,moneda_origen,moneda_destino){
+$.ajax({
+data: {monto:monto,moneda_origen:moneda_origen,moneda_destino:moneda_destino},
+url: 'https://'+UrlAPI+'/AppSwap',
+type: 'post',
+beforeSend: function () {
+$("#loadergif").show();
+},
+success: function (response)
+{
+  
+    $("#loadergif").hide();
+    obj = JSON.parse(response);
+    if(obj.estado=='ok')
+     {
+         NotifiAlert(obj.mensaje,'w3-green',6000);
+         $('#ventanaswap').hide(); //ocultar ventana del swap
+         $('#montoDesde').val(0); //reiniciar el valor del swap
+         CalculadoraSwap();       //         //        //
+     }
+     else
+     {
+        NotifiAlert(obj.mensaje,'w3-red',6000); 
+     }
+  
+  
+
+},
+error: function (response) {    
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+}
+});
+}
+</script>
+<script>
+//Configuracion Global
+if(typeof Gmoneda === 'undefined'){
+Gmoneda='BTC'; //si no se ha definido una moneda, BTC es la primera
+}
+Gmercado='USDT';
+GPrecDeciml='';
+//primera moneda definida por defecto al abrir
+$("#grafico").attr('src','https://'+UrlAPI+'/AppExchgrafico?par='+Gmoneda+Gmercado);
+$('#seccionactual').html(Gmoneda+'/'+Gmercado);
+$('#mercadoBalnc,#mercadoAqiv,#mercadoEquivVent').html(Gmercado);
+
+//Datos generales modificables
+function cambiarPares(moneda,mercado)
+{
+    
+    $("#loadergif").show();
+    Gmercado=mercado;
+    $("#comprcant,#ventcant").attr('placeholder',moneda);
+    $("#balancTag").html(moneda);
+    $("#grafico").attr('src','https://'+UrlAPI+'/AppExchgrafico?par='+moneda+Gmercado);
+    Gmoneda=moneda;
+    $("#precompr,#prevent").attr('step','0.'+'0'.repeat(GPrecDeciml[moneda]['precioDecimal']-1)+'1');
+    $('#bookprice,#ordenespend,#ordeneslist').html('');
+    $('#iconsort').attr('class','');
+    $('#prevent,#ventcant,#comprcant,#precompr').val('');
+    $('#vol,#volvent').val(0.00);
+    $('#equivvent,#equivcompr').html('0.00');
+    $('#mercadoBalnc,#mercadoAqiv,#mercadoEquivVent').html(Gmercado);
+
+     
+    $("h6").removeClass("w3-light-grey Exchare");
+    $("#seltion"+moneda).addClass('w3-light-grey Exchare');
+    $('#seccionactual').html(moneda+'/'+Gmercado);
+    //$('#imgactual').attr('src','/appweb/icon/'+moneda+'.png');
+    $('#lateralBar').hide();
+    orderBook()
+
+}
+</script>
+<script>
+function Trade(tipo,precio,cantidad){
+
+if(tipo!=='' && precio!=='' && cantidad!=='')
+{
+
+var parametros = {
+"tipo" : tipo,
+"precio" : precio,
+"cantidad" : cantidad,
+"mercado":Gmercado,
+"moneda":Gmoneda
+};
+url='https://'+UrlAPI+'/AppTradeOrdenCompra';
+if(tipo=='venta')
+{
+    url='https://'+UrlAPI+'/AppTradeOrdenVenta'
+}
+$.ajax({
+data: parametros,
+url: url,
+type: 'post',
+beforeSend: function () {
+$("#loadergif").show();
+
+},
+success: function (response)
+{
+  
+    $("#loadergif").hide();
+    obj = JSON.parse(response);
+    if(obj.estado=='ok')
+    {
+       NotifiAlert(obj.mensaje,'w3-green',5000); 
+       $('#ventcant,#comprcant,#vol,#volvent').val(0.00);
+       $('#equivcompr,#equivvent').html('0.00');
+       orderBook();
+     }
+     else
+     {
+         NotifiAlert(obj.mensaje,'w3-red',5000); 
+     }
+  
+  
+
+},
+
+error: function (response) {
+    NotifiAlert('Sin conexión a intertet','w3-red',5000); 
+}
+
+});
+
+}
+else
+{
+    NotifiAlert('Complete los campos requeridos','w3-red',5000); 
+}
+
+} 
+</script>
+
+<script>
+swap_tasa=0;
+function orderBook()
+{
+    
+
+$.ajax({
+data: {moneda:Gmoneda,
+      mercado:Gmercado,
+      SwapMoneda:$('#swapDesde').val()
+},    
+url: 'https://'+UrlAPI+'/AppExchOrdenbook',
+type: 'post',
+beforeSend: function () {
+//$("#loadergif").show();
+
+},
+success: function (response)
+{
+  
+    
+    $("#loadergif").hide();
+    obj = JSON.parse(response);
+    ideses="'#precompr,#prevent'"; 
+    //config monedas
+    GPrecDeciml=obj.configMonedas;
+    
+    //volumen 24h
+    $('#volumen').html(obj.volumen.fiat).attr('title',obj.volumen.cripto);
+
+    //balance
+    $('#balcripto,#secnactualcripto').html(obj.balance.cripto);  //,GPrecDeciml[Gmoneda]['montoDecimal'])
+    $("#balancTag").html(Gmoneda);
+    $('#balfiat,#secnactualusd').html(formatNumber(obj.balance.fiat,2));
+    
+    $('#volvent').attr('max',obj.balance.cripto);
+    $('#vol').attr('max',obj.balance.fiat);
+    
+    //swap
+    $('#origenSaldo').html(obj.swap.saldo_origen);
+    swap_tasa=obj.swap.tasa;
+    
+    ventas='';
+    for(i=0;i<obj.ventas.length;i++)
+    {   
+        porcentRojo=formatNumber(((obj.ventas[i].precio*obj.ventas[i].cantidad)/15000)*100,0);
+        if(porcentRojo>100){
+            porcentRojo=99;
+        }
+        porcentBlanco=formatNumber(100-porcentRojo,0);
+        ventas+='<div class="w3-col s12 l12 m12" id="vent'+i+'" onclick="$('+ideses+').val('+validpg(obj.ventas[i].precio,GPrecDeciml[Gmoneda]['precioDecimal'])+')" style="background: linear-gradient(80deg, white '+porcentBlanco+'%, #ffdddd '+porcentRojo+'%);">';
+        ventas+='<div class="w3-col s6 l6 m6 w3-text-red" id="precve'+i+'">'+formatNumber(validpg(obj.ventas[i].precio,GPrecDeciml[Gmoneda]['precioDecimal']),GPrecDeciml[Gmoneda]['precioDecimal'])+'</div>';
+        ventas+='<div class="w3-col s6 l6 m6 w3-text-grey"><span class="w3-right">'+validpg(obj.ventas[i].cantidad,GPrecDeciml[Gmoneda]['montoDecimal'])+'</span></div></div>';
+        
+    }
+    $('#Areaventas').html(ventas); 
+
+    //var objDiv = document.getElementById("Areaventas");
+    //objDiv.scrollTop = objDiv.scrollHeight;
+    
+    compras='';
+    for(i=0;i<obj.compras.length;i++)
+    {
+        porcentVerde=formatNumber(((obj.compras[i].precio*obj.compras[i].cantidad)/15000)*100,0);
+        if(porcentVerde>100){
+            porcentVerde=99;
+        }
+        porcentBlanco=formatNumber(100-porcentVerde,0);
+        compras+='<div class="w3-col s12 l12 m12" id="compr'+i+'" onclick="$('+ideses+').val('+validpg(obj.compras[i].precio,GPrecDeciml[Gmoneda]['precioDecimal'])+')" style="background: linear-gradient(80deg, white '+(porcentBlanco)+'%, #ddffdd '+porcentVerde+'%)">';
+        compras+='<div class="w3-col s6 l6 m6 w3-text-green" id="preccompr'+i+'">'+formatonumero(validpg(obj.compras[i].precio,GPrecDeciml[Gmoneda]['precioDecimal']),GPrecDeciml[Gmoneda]['precioDecimal'])+'</div>';
+        compras+='<div class="w3-col s6 l6 m6 w3-text-grey"><span class="w3-right">'+validpg(obj.compras[i].cantidad,GPrecDeciml[Gmoneda]['montoDecimal'])+'</span></div></div>';
+        
+    }
+    $('#Areacompras').html(compras); 
+    
+    
+    /*trade='';
+    for(i=0;i<obj.trade.length;i++)
+    {
+        if(obj.trade[i].tipo=='compra')
+        {
+            Trcolor='green';
+        }
+        else
+        {
+            Trcolor='red';
+        }
+        
+        //actualizar ultimo precio de la moneda
+        if(i==0)
+        {
+            $('#bookprice,#secnactualPrec').html(formatNumber(obj.trade[i].precio,GPrecDeciml[Gmoneda])).attr('class','w3-text-'+Trcolor); 
+        }
+        
+        trade+='<div class="w3-col l12 w3-hover-light-grey w3-hover-text-grey" id="tradl'+i+'" style="padding-top:4px;padding-bottom:4px;display:block">';
+        trade+='<div class="w3-col l3 s3 m3">'+obj.trade[i].hora+'</div>';
+        trade+='<div class="w3-col l4 s4 m4 w3-text-'+Trcolor+'"><div class=" w3-center">'+formatNumber(obj.trade[i].precio,GPrecDeciml[Gmoneda])+'</div></div>'; 
+        trade+='<div class="w3-col l5 s5 m5"><div class="w3-right">'+obj.trade[i].valor+'</div></div></div>';
+       
+        
+    }
+    
+    $('#HistorialTrade').html(trade); 
+    
+    */
+    precios='';
+    items2=obj.precios;
+    
+        
+    for(var mercado in items2)
+    {
+        
+      items=items2[mercado];
+      precios='';
+      for(var index in items)
+      {  
+        if(items[index]['tipo']=='compra')
+        {
+            Trcolor='green';
+            iconSrt='fa fa-sort-up w3-text-green';
+        }
+        else
+        {
+            Trcolor='red';
+            iconSrt='fa fa-sort-down w3-text-red';
+        }
+        
+            
+        if(Gmoneda==index && Gmercado==mercado)
+        {
+            
+            $('#iconsort').attr('class',iconSrt);
+            $('#bookprice,#secnactualPrec').html(formatNumber(items[index]['precio'],GPrecDeciml[index]['precioDecimal'])).attr('class','w3-text-'+Trcolor);
+            
+            items[index]['24hprecio']=parseFloat(items[index]['24hprecio'])+parseFloat(0);
+            if(items[index]['precio']>items[index]['24hprecio'])
+            {
+               $('#24hcambio').attr('class','').addClass('w3-text-green').html('+'+formatonumero(((items[index]['precio']/items[index]['24hprecio']-1)*100),2)+'%'); 
+            }
+            else if(items[index]['precio']<items[index]['24hprecio'])
+            {
+               $('#24hcambio').attr('class','').addClass('w3-text-red').html('-'+formatonumero(((items[index]['24hprecio']/items[index]['precio'])-1)*100,2)+'%'); 
+            }
+            else
+            {
+               $('#24hcambio').attr('class','').addClass('w3-text-grey').html('0%'); 
+            }
+        }   
+        
+       
+        if($('#'+mercado+'listadopares').html()=='')
+        {
+           fuunctocl="cambiarPares('"+index+"','"+mercado+"')";
+           precios+='<div  onclick="'+fuunctocl+'" style="cursor:pointer" class="w3-col l12 m12 s12 w3-hover-light-grey"><section class="w3-col l5 m5 s5 w3-padding-top w3-text-grey"><b>'+index+'</b><span class="w3-text-grey">/'+mercado+'</span></section>';
+           precios+='<section class="w3-col l2 m2 s2 w3-padding-top"><span id="volmpar'+index+mercado+'">'+items[index]['volumen']+'</span></section>';
+           precios+='<section class="w3-col l5 m5 s5 w3-padding-top"><span class="w3-right w3-text-'+Trcolor+'" id="precpar'+index+mercado+'">'+formatNumber(items[index]['precio'],GPrecDeciml[index]['precioDecimal'])+'</span></section></div>';
+        }
+        else
+        {
+            $('#precpar'+index+mercado).html(formatNumber(items[index]['precio'],GPrecDeciml[index]['precioDecimal'])).attr('class','w3-right w3-text-'+Trcolor);
+            $('#volmpar'+index+mercado).html(items[index]['volumen']);
+        }
+      }
+    
+    if($('#'+mercado+'listadopares').html()=='')
+    {
+        $('#'+mercado+'listadopares').html(precios); 
+    }
+    
+    }
+    
+  
+   //ordenes pendientes
+    ordenesPend='';
+    for(i=0;i<obj.operaciones.pendientes.length;i++)
+    {
+        if(obj.operaciones.pendientes[i].tipo=='compra')
+        {
+            Trcolor='green';
+        }
+        else
+        {
+            Trcolor='red';
+        }
+        
+        ordenesPend+='<div class="w3-col s12 m12 l12 w3-round w3-round-large w3-container w3-light-grey w3-margin-bottom" id="pend'+obj.operaciones.pendientes[i].id+'">';
+        ordenesPend+='<div class="w3-col s10 m10 l10 w3-padding-top"><div class="w3-col s5 m5 l5"><span class="w3-round w3-'+Trcolor+' w3-small"> &nbsp; '+obj.operaciones.pendientes[i].tipo+' '+Gmoneda+'&nbsp;</span></div> <small clas="w3-col s7 m7 l7">'+obj.operaciones.pendientes[i].fecha+'</small>  </div>';  
+        ordenesPend+='<div class="w3-col s2 m2 l2 w3-text-blue w3-padding-top w3-small" onclick="Cancelarorden('+obj.operaciones.pendientes[i].id+')">Cancelar</div>';
+        
+        ordenesPend+='<div class="w3-col s12 m12 l12 w3-small w3-text-grey w3-padding-top"><span>Monto <b>'+formatNumber(obj.operaciones.pendientes[i].monto,2)+' '+obj.operaciones.pendientes[i].mercado+'</b></span></div>';
+        
+            ordenesPend+='<div class="w3-col s12 m12 l12 w3-small w3-padding-top w3-padding-bottom">';
+            ordenesPend+='<div class="w3-col s4 m4 l4 w3-text-grey">Precio</div> <div class="w3-col s4 m4 l4 w3-text-grey">Cantidad</div><div class="w3-col s4 m4 l4 w3-text-grey">Ejecutado</div>';
+            ordenesPend+='<div class="w3-col s4 m4 l4">'+formatNumber(obj.operaciones.pendientes[i].precio,GPrecDeciml[Gmoneda]['precioDecimal'])+'</div>';
+            ordenesPend+='<div class="w3-col s4 m4 l4">'+formatNumber(obj.operaciones.pendientes[i].valor,GPrecDeciml[Gmoneda]['montoDecimal'])+'</div>';
+            ordenesPend+='<div class="w3-col s4 m4 l4">'+formatNumber(obj.operaciones.pendientes[i].ejecutado,GPrecDeciml[Gmoneda]['montoDecimal'])+'</div>';
+            ordenesPend+='</div></div>';
+        
+        
+    }
+    
+    if(ordenesPend=='')
+    {
+            ordenesPend='<div class="w3-padding-64 w3-text-grey w3-center">';
+            ordenesPend+='<i class="fas fa-search fa-4x w3-margin-bottom"></i>';
+            ordenesPend+='<div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">No hay transacciones</div></div>';
+    }
+    $('#seccionPend').html(ordenesPend); 
+ 
+ 
+ 
+   //ordenes realizadas
+    ordenesRealiz='';
+    for(i=0;i<obj.operaciones.realizadas.length;i++)
+    {
+        if(obj.operaciones.realizadas[i].tipo=='compra')
+        {
+            Trcolor='green';
+            MonedaComision=Gmoneda;
+        }
+        else
+        {
+            Trcolor='red';
+            MonedaComision=obj.operaciones.realizadas[i].mercado;
+        }
+        
+        ordenesRealiz+='<div class="w3-col s12 m12 l12 w3-round w3-round-large w3-container w3-light-grey w3-margin-bottom">';
+        ordenesRealiz+='<div class="w3-col s12 m12 l12 w3-padding-top"><div class="w3-col s7 m7 l7"><span class="w3-round w3-'+Trcolor+' w3-small">&nbsp; '+obj.operaciones.realizadas[i].tipo+' '+Gmoneda+'&nbsp;</span></div> <small clas="w3-col s5 m5 l5">'+obj.operaciones.realizadas[i].fecha+'</small>  </div>';  
+
+        ordenesRealiz+='<div class="w3-col s12 m12 l12 w3-small w3-text-grey w3-padding-top"><span>Monto <b>'+formatNumber(obj.operaciones.realizadas[i].monto,2)+' '+obj.operaciones.realizadas[i].mercado+'</b></span></div>';
+        
+            ordenesRealiz+='<div class="w3-col s12 m12 l12 w3-small w3-padding-top w3-padding-bottom">';
+            ordenesRealiz+='<div class="w3-col s4 m4 l4 w3-text-grey">Precio</div> <div class="w3-col s4 m4 l4 w3-text-grey">Cantidad</div><div class="w3-col s4 m4 l4 w3-text-grey">Comisión</div>';
+            ordenesRealiz+='<div class="w3-col s4 m4 l4">'+formatNumber(obj.operaciones.realizadas[i].precio,GPrecDeciml[Gmoneda]['precioDecimal'])+'</div>';
+            ordenesRealiz+='<div class="w3-col s4 m4 l4">'+formatNumber(obj.operaciones.realizadas[i].valor,GPrecDeciml[Gmoneda]['montoDecimal'])+'</div>';
+            ordenesRealiz+='<div class="w3-col s4 m4 l4">-'+formatonumero(obj.operaciones.realizadas[i].comision,GPrecDeciml[MonedaComision]['montoDecimal'])+' '+MonedaComision+'</div>';
+            ordenesRealiz+='</div></div>';
+            
+        
+    }
+    
+    if(ordenesRealiz=='')
+    {
+        ordenesRealiz='<div class="w3-padding-64 w3-text-grey w3-center">';
+        ordenesRealiz+='<i class="fas fa-search fa-4x w3-margin-bottom"></i>';
+        ordenesRealiz+='<div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">No hay transacciones</div></div>';
+   }
+    $('#ordeneslist').html(ordenesRealiz); 
+   
+
+     
+   
+  
+ 
+},
+
+error: function (response) {
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+    $("#loadergif").hide();
+}
+
+});
+}
+
+orderBook();   
+var storedBookIntervalId = sessionStorage.getItem('bookIntervalId');
+if (storedBookIntervalId) {
+    clearInterval(parseInt(storedBookIntervalId));
+}
+var bookinterv = setInterval(function() { console.log('ExhangeInterval')
+    if (verarea() == 'Exchange') {
+        orderBook();
+    }
+}, 5000);
+sessionStorage.setItem('bookIntervalId', bookinterv);
+</script>
+
+<script>
+$(document).ready(function()
+{
+    $('#marcd,#lateralBar').click(function(event)
+    {
+         event.stopPropagation(); 
+    });
+    $(document).click(function()
+    { 
+       $('#lateralBar').hide();
+    });
+});
+</script>
+<script>
+function validpg(value,decimal)
+{
+
+value=value+''.replace(/[^0-9\.,]/g,'');
+if(/[.]/.test(value))
+{
+ div=value.split('.');
+ value=div[0]+'.'+div[1].slice(0,decimal); 
+}
+return value;
+}
+
+function validadecimales(value,decimal)
+{
+
+value=value+''.replace(/[^0-9\.,]/g,'');
+if(/[.]/.test(value))
+{
+ div=value.split('.');
+ if(div[1]>decimal){
+     return true
+ }
+ else
+ {
+  return false;
+ }
+}
+else
+{
+  return false;
+}
+}
+
+function formatNumber (num,decimales) {
+
+
+num=parseFloat(num).toFixed(decimales);
+    if(decimales>2)
+    {
+        return num;
+    }
+    else
+    {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    }    
+  
+  
+  
+}
+</script>
+<script>
+function CambiarSeccion(seccion)
+{
+    if(seccion=='Venta')
+    {        
+        $('#sectionCompr').hide();
+        $('#btncompr').removeClass('w3-green w3-border-green').addClass('w3-light-grey w3-border-light-grey');
+        $('#btnvent').addClass('w3-red w3-border-red').removeClass('w3-light-grey w3-border-light-grey');
+        $('#sectionVent').show();
+    }
+    else
+    {
+        $('#sectionVent').hide();
+        $('#btncompr').addClass('w3-green w3-border-green').removeClass('w3-light-grey w3-border-light-grey');
+        $('#btnvent').removeClass('w3-red w3-border-red').addClass('w3-light-grey w3-border-light-grey');
+        $('#sectionCompr').show();
+    }
+}
+</script>
+<script>
+function SelecSeccion(cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(cityName).style.display = "block";  
+}
+</script>
+<script>
+function Cancelarorden(id){
+$.ajax({
+data: {id : id},
+url: 'https://'+UrlAPI+'/AppCancelarOrden',
+type: 'post',
+beforeSend: function () {
+$("#loadergif").show();
+},
+success: function (response)
+{
+  
+    $("#loadergif").hide();
+    obj = JSON.parse(response);
+    if(obj.estado=='ok')
+     {
+         NotifiAlert(obj.mensaje,'w3-green',6000); 
+         $('#pend'+id).remove();
+     }
+     else
+     {
+        NotifiAlert(obj.mensaje,'w3-red',6000); 
+     }
+  
+  
+
+},
+error: function (response) {    
+    NotifiAlert('Verifique su conexión a internet','w3-red',6000); 
+}
+});
+}
+</script>
+
+
+<script>
+function buscarmoneda(value) {
+    seccionaBuscar='USDTlistadopares';
+    if($('#BUSDlistadopares').attr('style')=="display:block")
+    {
+      seccionaBuscar='BUSDlistadopares';
+    }
+  var x = document.getElementById(seccionaBuscar).querySelectorAll("div");
+  var i;
+  for (i = 0; i < x.length; i++) {
+    var cosa=x[i].textContent;
+    if(cosa.indexOf(value.toUpperCase())==-1)
+    {
+        x[i].style.display="none";
+    }
+    else
+    {
+        x[i].style.display="block";
+    }
+  }
+}
+</script>
