@@ -40,6 +40,19 @@
   </div>
 </div>
 
+<!--Modal de deposito-->
+<div id="CarteraDepositos" class="w3-modal noselect w3-col l12" style="display: block;">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l5 m5 s12">
+      <div class="reajuste" align="justify"> 
+          <div class="w3-container" id="DatosCartera">
+          </div> 
+      
+      </div>
+      
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#CarteraDepositos').hide()">Cerrar</div>
+  </div>
+</div>
+<!--Modal de deposito-->
 
 <script>
   //MenuAccion('fa fa-plus',"OpenAcount('Nueva cuenta')");
@@ -63,7 +76,9 @@
     Bsimbolo = moneda;
     Bmoneda = nombre;
     Bdecimales = decimales;
-    OpenAcount('billetera'); //redirigir al area de la moneda
+    $('#DatosCartera').load('submenu/cuentas/billetera.html')
+    $('#CarteraDepositos').show();
+    //OpenAcount('billetera'); //redirigir al area de la moneda
   }
 
   $.ajax({
@@ -103,7 +118,6 @@
 
               var contenido = `
     <div class="w3-padding w3-row w3-border-bottom w3-border-light-grey w3-white w3-col s12 m12 l12"
-         onclick="seleccionarMoneda(${datos})"
          id="cuentanum${i + 1}">
         <div class="w3-col s2 m2 l2 w3-pading-top">
             <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
@@ -118,17 +132,17 @@
                     <span id="${objt.content[i].id}price"></span> USD
                 </div>
             </div>
-            <div class="w3-col s4 m4 l4">
-                <div class="w3-right">
+            <div class="w3-col s3 m3 l3">
+                <div class="">
                     ${objt.balances[objt.content[i].moneda] ? formatonumero(objt.balances[objt.content[i].moneda], decimalesCrypto) : formatonumero(0, decimalesCrypto)}
                 </div> 
-                <div class="w3-col s12 m12 l12 w3-right">
+                <div class="w3-col s12 m12 l12">
                     <span class="w3-right w3-small">${objt.content[i].moneda}</span>
                 </div>    
             </div>
 
-            <div class="w3-col s2 m2 l2">
-            Depositar
+            <div class="w3-col s3 m3 l3">
+              <span class="pointer w3-right w3-blue" onclick="seleccionarMoneda(${datos})">Depositar</span>
             </div>  
         </div>
     </div>`;
