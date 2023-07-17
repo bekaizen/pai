@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title id="cont">PAI</title>
-<link rel="shortcut icon" href="icon/pai.png"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/w3.css">
-<meta name="theme-color" content="#ffffff">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="icon" type="image/png" href="icon/pai.png" >
-<meta name="application-name" content="PAI">
-<link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="cordova.js"></script>
-<script type="text/javascript" charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title id="cont">PAI</title>
+    <link rel="shortcut icon" href="icon/pai.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/w3.css">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="icon/pai.png">
+    <meta name="application-name" content="PAI">
+    <link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
-             document.addEventListener("deviceready", onDeviceReady, false); 
+            document.addEventListener("deviceready", onDeviceReady, false);
 
 
         });
@@ -24,550 +25,538 @@
         function onDeviceReady() {
 
             StatusBar.overlaysWebView(false);
-            StatusBar.backgroundColorByHexString("#ffffff"); 
+            StatusBar.backgroundColorByHexString("#ffffff");
             StatusBar.styleDefault();
         }
-</script>
-<style>
-html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif;}
-.blue-dark{background-color:#1565c0}
-.blue-menu{color:#1565c0}
+    </script>
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "RobotoDraft", "Roboto", sans-serif;
+        }
 
-.noselect {
-     
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-            
-}
+        .blue-dark {
+            background-color: #1565c0
+        }
 
-textarea,input:not([type="radio"]):not([type="checkbox"]) {
-    -webkit-appearance: none;
-    border-radius: 0;
-}
-</style>
+        .blue-menu {
+            color: #1565c0
+        }
+
+        .noselect {
+
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+
+        textarea,
+        input:not([type="radio"]):not([type="checkbox"]) {
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+    </style>
 </head>
-<body class="w3-white noselect  w3-col l5" style="padding-top: constant(safe-area-inset-top);padding-top: env(safe-area-inset-top);">
 
-<!-- Page content -->
-<div id="notifigener" class="w3-animate-top w3-col m12 s12 l12 w3-container w3-center" style="position:fixed;display:none;z-index:2"></div>
+<body class="w3-white noselect  w3-col l5"
+    style="padding-top: constant(safe-area-inset-top);padding-top: env(safe-area-inset-top);">
+
+    <!-- Page content -->
+    <div id="notifigener" class="w3-animate-top w3-col m12 s12 l12 w3-container w3-center"
+        style="position:fixed;display:none;z-index:2"></div>
 
 
- <div class="w3-container w3-white">
+    <div class="w3-container w3-white">
 
-<div class="w3-margin-top w3-margin-bottom w3-container">   
-  <h1 class="w3-text-black w3-center"><b>Crear una cuenta</b></h1>
-  <center><img src="icon/pai.png" class="w3-circle w3-light-grey" width="70px">
-      <small class="w3-col s12 m12 l12"><b>PAI E</b>xchange</small>
-</center><br><br>
-<div id="loginarea">  
+        <div class="w3-margin-top w3-margin-bottom w3-container">
+            <h1 class="w3-text-black w3-center"><b>Crear una cuenta</b></h1>
+            <center><img src="icon/pai.png" class="w3-circle w3-light-grey" width="70px">
+                <small class="w3-col s12 m12 l12"><b>PAI E</b>xchange</small>
+            </center><br><br>
+            <div id="loginarea">
 
- <div id="session0">
-       <div class="w3-margin-bottom  w3-margin-top">
-           <i class="far fa-user w3-col s2 m2 l2 w3-xlarge w3-text-cyan w3-padding-top w3-margin-top"></i>
-           <input class="w3-input w3-col s10 m10 l10 w3-border-bottom w3-large w3-margin-bottom w3-white w3-margin-top" type="number" id='refid' placeholder="Id de referido (opcional)" style="outline:none">
-           
-           <h6 class="w3-text-blue-grey w3-col s12 m12 l12 w3-margin-top w3-left"><i class="fas fa-info-circle"></i> Si tiene un id de referido introdúzcalo</h6>
-       </div>
-       
-       <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top w3-margin-bottom" onclick="$('#session0').hide();$('#session1').show()"> Siguiente </button>
- </div>
+                <div id="session0">
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <i class="far fa-user w3-col s2 m2 l2 w3-xlarge w3-text-cyan w3-padding-top w3-margin-top"></i>
+                        <input
+                            class="w3-input w3-col s10 m10 l10 w3-border-bottom w3-large w3-margin-bottom w3-white w3-margin-top"
+                            type="number" id='refid' placeholder="Id de referido (opcional)" style="outline:none">
 
- 
- <div id="session1" class="w3-animate-left" style="display:none">
-     
-      <div class="w3-margin-bottom  w3-margin-top">
-               <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" type="text" id='nombr' onchange="valid1(value)" placeholder="Nombre" style="outline:none">
-      </div>
-      
+                        <h6 class="w3-text-blue-grey w3-col s12 m12 l12 w3-margin-top w3-left"><i
+                                class="fas fa-info-circle"></i> Si tiene un id de referido introdúzcalo</h6>
+                    </div>
 
-      <div class="w3-margin-bottom  w3-margin-top">
-               <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" type="text" id='apellid' onchange="valid2(value)" placeholder="Apellido" style="outline:none">
-      </div>
-      
-  
-      <div class="w3-margin-bottom  w3-margin-top">
-               <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" type="email" id='email'  onchange="valid4(value)" placeholder="Email" style="outline:none">
-      </div>
-      
-  
-      <div class="w3-margin-bottom  w3-margin-top">
-               <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" data="" type="text" id='usr'  onblur="valid3(value)" placeholder="Usuario" style="outline:none">
-      </div>
-      
-   
-     <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top" onclick="sigt()"> Siguiente </button>
-   
- </div>
-   
- <div id="session2" class="w3-animate-left" style="display:none">
-   
-    <div class="w3-margin-bottom  w3-margin-top">
-              <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" type="text" id='doc' onchange="valid7(value)" placeholder="Documento de identidad" style="outline:none">
+                    <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top w3-margin-bottom"
+                        onclick="$('#session0').hide();$('#session1').show()"> Siguiente </button>
+                </div>
+
+
+                <div id="session1" class="w3-animate-left" style="display:none">
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                            type="text" id='nombr' onchange="valid1(value)" placeholder="Nombre" style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                            type="text" id='apellid' onchange="valid2(value)" placeholder="Apellido"
+                            style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                            type="email" id='email' onchange="valid4(value)" placeholder="Email" style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" data=""
+                            type="text" id='usr' onblur="valid3(value)" placeholder="Usuario" style="outline:none">
+                    </div>
+
+
+                    <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top" onclick="sigt()">
+                        Siguiente </button>
+
+                </div>
+
+                <div id="session2" class="w3-animate-left" style="display:none">
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                            type="text" id='doc' onchange="valid7(value)" placeholder="Documento de identidad"
+                            style="outline:none">
+                    </div>
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                            type="number" id='conct' onchange="valid8(value)" placeholder="Número de contacto"
+                            style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-border-bottom w3-col s12 w3-large w3-margin-bottom  w3-white"
+                            type="password" id='psw' onchange="valid5(value)" placeholder="Contraseña"
+                            style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom  w3-margin-top">
+                        <input class="w3-input w3-border-bottom w3-col s12 w3-large  w3-margin-bottom w3-white"
+                            type="password" data="" id='rpsw' onchange="valid6(value)"
+                            placeholder="Confirmar contraseña" style="outline:none">
+                    </div>
+
+
+                    <div class="w3-margin-bottom w3-margin-top">
+                        <button class="w3-btn w3-light-grey w3-col s12 w3-large w3-round-xxlarge w3-margin-top"
+                            onclick="$('#session2').hide();$('#session1').show();"> <i
+                                class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
+                        <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top"
+                            onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}">
+                            Crear cuenta <i class="fa-solid fa-right-long"></i></button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="w3-padding-64 w3-center">
+            ¿Ya tiene una cuenta? <a href="login.html" style="text-decoration:none"><b>Acceda</b></a>
+        </div>
+
+        <div class="w3-margin-bottom w3-text-blue-grey w3-container w3-center">
+            <p> ® PAI Exchange.</p>
+        </div>
+
     </div>
-   
-    <div class="w3-margin-bottom  w3-margin-top">
-             <input class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white" type="number" id='conct'  onchange="valid8(value)" placeholder="Número de contacto" style="outline:none">
+
+
+
+
+    <!-- // Page content END-->
+
+
+    <!-- Loader -->
+    <div id="loadergif" class="w3-modal">
+        <div class="w3-display-middle">
+            <center>
+                <img src="icon/loader.gif" class="w3-round" width="70">
+            </center>
+        </div>
     </div>
-    
-  
-    <div class="w3-margin-bottom  w3-margin-top">
-             <input class="w3-input w3-border-bottom w3-col s12 w3-large w3-margin-bottom  w3-white" type="password" id='psw' onchange="valid5(value)" placeholder="Contraseña" style="outline:none">
-    </div>
-    
-  
-    <div class="w3-margin-bottom  w3-margin-top">
-             <input class="w3-input w3-border-bottom w3-col s12 w3-large  w3-margin-bottom w3-white" type="password" data="" id='rpsw' onchange="valid6(value)" placeholder="Confirmar contraseña" style="outline:none">
-    </div>
-    
-          
-    <div class="w3-margin-bottom w3-margin-top">
-            <button class="w3-btn w3-light-grey w3-col s12 w3-large w3-round-xxlarge w3-margin-top" onclick="$('#session2').hide();$('#session1').show();"> <i class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
-            <button class="w3-btn w3-blue w3-col s12 w3-large w3-round-xxlarge w3-margin-top" onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"> Crear cuenta <i class="fa-solid fa-right-long"></i></button>
-    </div>
-    
-  
- </div>
-  
-  
-</div>   
-
-
-</div>
-  
-  
-  <div class="w3-padding-64 w3-center">
-    ¿Ya tiene una cuenta? <a href="login.html" style="text-decoration:none"><b>Acceda</b></a>
-</div>
-
- <div class="w3-margin-bottom w3-text-blue-grey w3-container w3-center">          
-     <p> ® PAI Exchange.</p>
-  </div>
- 
-</div>
-
-      
-
- 
-<!-- // Page content END--> 
-
-
-<!-- Loader -->
-<div id="loadergif" class="w3-modal">
-  <div class="w3-display-middle">
-  <center>
-      <img src="icon/loader.gif" class="w3-round" width="70">
-  </center>    
-  </div>
-</div>
-<!-- // Loader// -->
-<script>
-if(/(http)/i.test(window.location.protocol))
-{
-    UrlAPI=window.location.hostname;
-}
-else
-{
-    UrlAPI='api.paiexchange.com';
-}
-</script>
-<script>
-$.ajax({
-url: 'https://'+UrlAPI+'/AppObtenerAfiliado',
-type: 'post',
-beforeSend: function () 
-{
- $('#loadergif').show();
-},
-success: function (response)
-{
-
-  $("#loadergif").hide();
-  var objt=JSON.parse(response);
-
-  if(objt.afiliador!=='no')
-  {
-      $('#refid').attr('disabled','disabled').val(objt.afiliador);
-      $('#session0').hide();
-      $('#session1').show();
-  }
-  
-},
-error: function (response)
-{
-     NotifiAlert("Favor verifique su conexión a internet",'w3-red','4000');
-     $("#loadergif").hide();
-}
-});
-</script>
-<script>
-function NotifiAlert(mensaje,color,tiempo)
-{
-     if(color=='w3-green'){ remov='w3-red'; } else { remov='w3-green'; }
-     
-     $("#notifigener").removeClass(remov).addClass(color);
-     $("#notifigener").html("<p>"+mensaje+"</p>");
-     $("#notifigener").show();
-     setTimeout(function(){ $("#notifigener").hide(); }, tiempo);
-}     
-</script>
-<script>
-function sigt()   
-{
-   if($('#usr').val()=='' || $('#nombr').val()=='' || $('#apellid').val()=='' || $('#email').val()=='')
-   {
-      NotifiAlert("Debe completar todos los datos",'w3-red','4000');    
-   }
-   else
-   {         
-      if($('#usr').attr('data')=='si') 
-      { 
-          $('#session1').hide();
-          $('#session2').show(); 
-      }
-   }  
-}
-</script>
-<script>
-function registro(refid,nombr,apellid,email,usr,doc,conct,psw){
-    
-if($('#doc').val()=='' || $('#conct').val()=='' || $('#rpsw').val()=='' || $('#psw').val()=='')
-{
-   NotifiAlert("Por favor rellene todos los datos",'w3-red','4000');
-}    
-else
-{
-
-var parametros = {
-"refid" : refid,
-"nombr" : nombr, 
-"apellid" : apellid, 
-"email" : email, 
-"usr" : usr,
-"doc" : doc, 
-"conct" : conct, 
-"psw" : psw
-};
-$.ajax({
-data: parametros,
-url: 'https://'+UrlAPI+'/AppSignUp',
-type: 'post',
-beforeSend: function () 
-{
- $('#loadergif').show();
-},
-success: function (response)
-{
-
-  $("#loadergif").hide();
-  var objt=JSON.parse(response);
-
-  if(objt.estado=='ok')
-  {
-
-      NotifiAlert(objt.msj,'w3-green','4000');
-      var dats = {
-      "user" : usr,
-      "psw" : psw,
-      };
-      $.ajax({
-      data: dats,
-      url: 'https://'+UrlAPI+'/app_login',
-      type: 'post',
-      success: function (response)
-      {
-          if(response=='ok')
-          {
-            localStorage.setItem("Sesion", "true");
-            window.location.href="panel.html";
-          }
-          else
-          {
-              window.location.href="login.html";
-          }
-      },
-
-    });
-    
-  }
-  else if(objt.estado=='error')
-  {
-    NotifiAlert(objt.msj,'w3-red','4000');
-  }
-  else
-  {
-      NotifiAlert("Hay un problema con el servidor",'w3-red','4000');
-  }
-  
-},
-
-error: function (response)
-{
-
-     NotifiAlert("Favor verifique su conexión a internet",'w3-red','4000');
-     $("#loadergif").hide();
-}
-
-});
- }
-}
-</script>
-
-<script>
-
-//nombre
-
-function valid1(value)
-{
-
-    if(value.length>15 || value.length<3)
-    {
-      value=value.slice(0,16);
-      NotifiAlert("El nombre escrito es muy corto o muy extenso",'w3-red','4000');
-      $("#nombre").val(value);
-      $("#nombre").addClass('w3-border-red');
-      //$("#nombre").focus();
-      //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#nombr").val(value);
-        $("#nombr").addClass('w3-border-red');
-        //$("#nombr").focus();
-        //$("button").attr("disabled", "disabled");
-    }
-    else
-    {
-      //$("button").removeAttr('disabled');
-      $("#nombr").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-         
-
-
-}
-
-
-//apellido
-
-
-function valid2(value)
-{
-
-    if(value.length>19 || value.length<3)
-    {
-       value=value.slice(0,20);
-       NotifiAlert("El apellido escrito es muy corto o muy extenso",'w3-red','4000');
-       $("#apellid").addClass('w3-border-red');
-       //$("#apellid").focus();
-       //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#apellid").val(value);
-        $("#apellid").addClass('w3-border-red');
-       // $("#apellid").focus();
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-       //$("button").removeAttr('disabled');
-       $("#apellid").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-
-}
-
-
-
-//user
-
-function valid3(value)
-{
-
-    if(value.length>15 || value.length<5)
-    {
-        value=value.slice(0,15);
-        NotifiAlert("El usuario introducido es muy corto o muy extenso",'w3-red','4000');
-        $("#usr").val(value); 
-        $("#usr").addClass('w3-border-red');
-       // $("#usr").focus();
-        $("#usr").attr('data','no');
-        //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[0-9a-zA-Z.]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#usr").val(value);
-        $("#usr").addClass('w3-border-red');
-        //$("#usr").focus();
-        $("#usr").attr('data','no');
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-        //$("button").removeAttr('disabled'); 
-        $("#usr").attr('data','si');
-        $("#usr").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-}
-
-
-//email
-
-function valid4(value)
-{
-
-    if(value.length>50 || value.length<6)
-    {
-        value=value.slice(0,50);
-        NotifiAlert("El email escrito es muy corto o muy extenso",'w3-red','4000');
-        $("#email").val(value);
-        $("#email").addClass('w3-border-red');
-        //$("#email").focus();
-        //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[0-9a-zA-Z.-@_]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#email").val(value);
-        $("#email").addClass('w3-border-red');
-        //$("#email").focus();
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-       //$("button").removeAttr('disabled');
-       $("#email").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-
-}
-
-
-//psw
-
-function valid5(value)
-{
-
-    if(value.length>15 || value.length<6)
-    {
-        //value=value.slice(0,16);
-        NotifiAlert("La contraseña escrita es muy corta o muy extensa",'w3-red','4000');
-        $("#psw").val(value);
-        $("#psw").addClass('w3-border-red');
-        //$("#psw").focus();
-        //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[0-9a-zA-Z.-@]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#psw").val(value);
-        $("#psw").addClass('w3-border-red');
-        //$("#psw").focus();
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-       //$("button").removeAttr('disabled'); 
-       $("#psw").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-}
-
-
-//repsw
-
-function valid6(value)
-{
-
-    if(value!== $("#psw").val())
-    {
-    
-        NotifiAlert("Las contraseñas no coinciden",'w3-red','4000');
-        $("#rpsw").addClass('w3-border-red');
-        $("#rpsw").focus();
-        $("#rpsw").attr('data','no');
-        //$("button").attr("disabled", "disabled");
-    }
-    else
-    {
-        //$("button").removeAttr('disabled');
-        $("#rpsw").attr('data','si');
-        $("#rpsw").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-
-}
-
-
-//docm
-
-function valid7(value)
-{
-
-    if(value.length<5 || value.length>17)
-    {
-        value=value.slice(0,15);
-        NotifiAlert("El documento escrito es muy corto o muy extenso",'w3-red','4000');
-        $("#doc").val(value);
-        $("#doc").addClass('w3-border-red');
-        $("#doc").focus();
-        //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[0-9a-zA-Z]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos",'w3-red','4000');
-        $("#doc").val(value);
-        $("#doc").addClass('w3-border-red');
-        $("#doc").focus();
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-       // $("button").removeAttr('disabled'); 
-        $("#doc").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-}
-
-
-
-
-//num
-
-function valid8(value)
-{
-
-    if(value.length>15 || value.length<8)
-    {
-        value=value.slice(0,15);
-        NotifiAlert("Introduzca su número de teléfono valido",'w3-red','4000');
-        $("#conct").val(value);
-        $("#conct").addClass('w3-border-red');
-        $("#conct").focus();
-        //$("button").attr("disabled", "disabled");
-    }
-    else if(!/^[0-9]*$/i.test(value))
-    {
-        NotifiAlert("Ha introducido caracteres inválidos, se permite solo números.",'w3-red','4000');
-        $("#conct").val(value);
-        $("#conct").addClass('w3-border-red');
-        $("#conct").focus();
-        //$("button").attr("disabled", "disabled");
-    }         
-    else
-    {
-        //$("button").removeAttr('disabled');
-        $("#conct").removeClass('w3-border-red').addClass('w3-border-green');
-    }
-
-}
-
-</script>
+    <!-- // Loader// -->
+    <script>
+        if (/(http)/i.test(window.location.protocol)) {
+            UrlAPI = window.location.hostname;
+        }
+        else {
+            UrlAPI = 'api.paiexchange.com';
+        }
+    </script>
+    <script>
+        $.ajax({
+            url: 'https://' + UrlAPI + '/AppObtenerAfiliado',
+            type: 'post',
+            beforeSend: function () {
+                $('#loadergif').show();
+            },
+            success: function (response) {
+
+                $("#loadergif").hide();
+                var objt = JSON.parse(response);
+
+                if (objt.afiliador !== 'no') {
+                    $('#refid').attr('disabled', 'disabled').val(objt.afiliador);
+                    $('#session0').hide();
+                    $('#session1').show();
+                }
+
+            },
+            error: function (response) {
+                NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
+                $("#loadergif").hide();
+            }
+        });
+    </script>
+    <script>
+        function NotifiAlert(mensaje, color, tiempo) {
+            if (color == 'w3-green') { remov = 'w3-red'; } else { remov = 'w3-green'; }
+
+            $("#notifigener").removeClass(remov).addClass(color);
+            $("#notifigener").html("<p>" + mensaje + "</p>");
+            $("#notifigener").show();
+            setTimeout(function () { $("#notifigener").hide(); }, tiempo);
+        }     
+    </script>
+    <script>
+        function sigt() {
+            if ($('#usr').val() == '' || $('#nombr').val() == '' || $('#apellid').val() == '' || $('#email').val() == '') {
+                NotifiAlert("Debe completar todos los datos", 'w3-red', '4000');
+            }
+            else {
+                if ($('#usr').attr('data') == 'si') {
+                    $('#session1').hide();
+                    $('#session2').show();
+                }
+            }
+        }
+    </script>
+    <script>
+        function registro(refid, nombr, apellid, email, usr, doc, conct, psw) {
+
+            if ($('#doc').val() == '' || $('#conct').val() == '' || $('#rpsw').val() == '' || $('#psw').val() == '') {
+                NotifiAlert("Por favor rellene todos los datos", 'w3-red', '4000');
+            }
+            else {
+
+                var parametros = {
+                    "refid": refid,
+                    "nombr": nombr,
+                    "apellid": apellid,
+                    "email": email,
+                    "usr": usr,
+                    "doc": doc,
+                    "conct": conct,
+                    "psw": psw
+                };
+                $.ajax({
+                    data: parametros,
+                    url: 'https://' + UrlAPI + '/AppSignUp',
+                    type: 'post',
+                    beforeSend: function () {
+                        $('#loadergif').show();
+                    },
+                    success: function (response) {
+
+                        $("#loadergif").hide();
+                        var objt = JSON.parse(response);
+
+                        if (objt.estado == 'ok') {
+
+                            NotifiAlert(objt.msj, 'w3-green', '4000');
+                            var dats = {
+                                "user": usr,
+                                "psw": psw,
+                            };
+                            $.ajax({
+                                data: dats,
+                                url: 'https://' + UrlAPI + '/app_login',
+                                type: 'post',
+                                success: function (response) {
+                                    if (response == 'ok') {
+                                        localStorage.setItem("Sesion", "true");
+                                        window.location.href = "panel.html";
+                                    }
+                                    else {
+                                        window.location.href = "login.html";
+                                    }
+                                },
+
+                            });
+
+                        }
+                        else if (objt.estado == 'error') {
+                            NotifiAlert(objt.msj, 'w3-red', '4000');
+                        }
+                        else {
+                            NotifiAlert("Hay un problema con el servidor", 'w3-red', '4000');
+                        }
+
+                    },
+
+                    error: function (response) {
+
+                        NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
+                        $("#loadergif").hide();
+                    }
+
+                });
+            }
+        }
+    </script>
+
+    <script>
+
+        //nombre
+
+        function valid1(value) {
+
+            if (value.length > 15 || value.length < 3) {
+                value = value.slice(0, 16);
+                NotifiAlert("El nombre escrito es muy corto o muy extenso", 'w3-red', '4000');
+                $("#nombre").val(value);
+                $("#nombre").addClass('w3-border-red');
+                //$("#nombre").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#nombr").val(value);
+                $("#nombr").addClass('w3-border-red');
+                //$("#nombr").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled');
+                $("#nombr").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+
+
+        }
+
+
+        //apellido
+
+
+        function valid2(value) {
+
+            if (value.length > 19 || value.length < 3) {
+                value = value.slice(0, 20);
+                NotifiAlert("El apellido escrito es muy corto o muy extenso", 'w3-red', '4000');
+                $("#apellid").addClass('w3-border-red');
+                //$("#apellid").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#apellid").val(value);
+                $("#apellid").addClass('w3-border-red');
+                // $("#apellid").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled');
+                $("#apellid").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+
+        }
+
+
+
+        //user
+
+        function valid3(value) {
+
+            if (value.length > 15 || value.length < 5) {
+                value = value.slice(0, 15);
+                NotifiAlert("El usuario introducido es muy corto o muy extenso", 'w3-red', '4000');
+                $("#usr").val(value);
+                $("#usr").addClass('w3-border-red');
+                // $("#usr").focus();
+                $("#usr").attr('data', 'no');
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[0-9a-zA-Z.]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#usr").val(value);
+                $("#usr").addClass('w3-border-red');
+                //$("#usr").focus();
+                $("#usr").attr('data', 'no');
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled'); 
+                $("#usr").attr('data', 'si');
+                $("#usr").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+        }
+
+
+        //email
+
+        function valid4(value) {
+
+            if (value.length > 50 || value.length < 6) {
+                value = value.slice(0, 50);
+                NotifiAlert("El email escrito es muy corto o muy extenso", 'w3-red', '4000');
+                $("#email").val(value);
+                $("#email").addClass('w3-border-red');
+                //$("#email").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[0-9a-zA-Z.-@_]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#email").val(value);
+                $("#email").addClass('w3-border-red');
+                //$("#email").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled');
+                $("#email").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+
+        }
+
+
+        //psw
+
+        function valid5(value) {
+
+            if (value.length > 15 || value.length < 6) {
+                //value=value.slice(0,16);
+                NotifiAlert("La contraseña escrita es muy corta o muy extensa", 'w3-red', '4000');
+                $("#psw").val(value);
+                $("#psw").addClass('w3-border-red');
+                //$("#psw").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[0-9a-zA-Z.-@]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#psw").val(value);
+                $("#psw").addClass('w3-border-red');
+                //$("#psw").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled'); 
+                $("#psw").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+        }
+
+
+        //repsw
+
+        function valid6(value) {
+
+            if (value !== $("#psw").val()) {
+
+                NotifiAlert("Las contraseñas no coinciden", 'w3-red', '4000');
+                $("#rpsw").addClass('w3-border-red');
+                $("#rpsw").focus();
+                $("#rpsw").attr('data', 'no');
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled');
+                $("#rpsw").attr('data', 'si');
+                $("#rpsw").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+
+        }
+
+
+        //docm
+
+        function valid7(value) {
+
+            if (value.length < 5 || value.length > 17) {
+                value = value.slice(0, 15);
+                NotifiAlert("El documento escrito es muy corto o muy extenso", 'w3-red', '4000');
+                $("#doc").val(value);
+                $("#doc").addClass('w3-border-red');
+                $("#doc").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[0-9a-zA-Z]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                $("#doc").val(value);
+                $("#doc").addClass('w3-border-red');
+                $("#doc").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                // $("button").removeAttr('disabled'); 
+                $("#doc").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+        }
+
+
+
+
+        //num
+
+        function valid8(value) {
+
+            if (value.length > 15 || value.length < 8) {
+                value = value.slice(0, 15);
+                NotifiAlert("Introduzca su número de teléfono valido", 'w3-red', '4000');
+                $("#conct").val(value);
+                $("#conct").addClass('w3-border-red');
+                $("#conct").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else if (!/^[0-9]*$/i.test(value)) {
+                NotifiAlert("Ha introducido caracteres inválidos, se permite solo números.", 'w3-red', '4000');
+                $("#conct").val(value);
+                $("#conct").addClass('w3-border-red');
+                $("#conct").focus();
+                //$("button").attr("disabled", "disabled");
+            }
+            else {
+                //$("button").removeAttr('disabled');
+                $("#conct").removeClass('w3-border-red').addClass('w3-border-green');
+            }
+
+        }
+
+    </script>
 </body>
+
 </html>
