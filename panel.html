@@ -311,8 +311,10 @@
             </div>
             <div id="menuExchange" style="display:none" class="w3-bar-block"></div>
             <div class="w3-bar-block" id="menuExchange" style="display:none">
-                <span class="w3-bar-item w3-padding w3-small w3-opacity" style="margin-top:8px"> MENU DE NAVEGACION </span>
-                <a href="javascript:void(0)" onclick="OpenOption('Inicio')" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
+                <span class="w3-bar-item w3-padding w3-small w3-opacity" style="margin-top:8px"> MENU DE NAVEGACION
+                </span>
+                <a href="javascript:void(0)" onclick="OpenOption('Inicio')"
+                    class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-house"></i>&nbsp; Inicio </a>
 
                 <a href="javascript:void(0)" onclick="OpenOption('Cartera')"
@@ -330,11 +332,11 @@
                 <a href="javascript:void(0)" onclick="OpenOption('Vender')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
-                
+
                 <a href="javascript:void(0)" onclick="OpenOtherOption('submenu/Inicio/Afiliados','Afiliados')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-users"></i>&nbsp; Afiliados </a>
-                    
+
 
                 <a href="./login.html" class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa fa-fw fa-lock"></i>&nbsp; Login </a>
@@ -345,7 +347,7 @@
                 <span class="w3-bar-item w3-padding w3-small w3-opacity"> OTRAS OPCIONES </span>
 
 
-                <a href="javascript:void(0)"  onclick="OpenOtherOption('submenu/Inicio/Perfil','Perfil')"
+                <a href="javascript:void(0)" onclick="OpenOtherOption('submenu/Inicio/Perfil','Perfil')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-user"></i>&nbsp; Cuenta </a>
 
@@ -480,8 +482,8 @@
             $('#barcolor').attr('content', '#' + color);
             //$('#menusup').hide();
         }
-        
-        areaActual='Inicio';
+
+        areaActual = 'Inicio';
         function OpenOption(id) {
 
             if (localStorage.getItem("Sesion") !== 'true') {
@@ -504,7 +506,7 @@
 
 
                         $("#titname").html(id);
-                        areaActual=id;
+                        areaActual = id;
                         //history.pushState(id, id, id);
                         window.scrollTo(0, 0);
 
