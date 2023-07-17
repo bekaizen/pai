@@ -86,36 +86,36 @@
                     <button onclick="sigt()" class="btn btn-block btn-primary">
                       Siguiente </button>
                   </div>
-                </div>
 
 
-                <div id="session2" class="w3-animate-right" style="display:none">
-                  <div class="form-group first">
-                    <label for="username">Documento de identidad</label>
-                    <input type="text" id='doc' onchange="valid7(value)" placeholder="Documento de identidad"
-                      class="form-control">
+                  <div id="session2" class="w3-animate-right" style="display:none">
+                    <div class="form-group first">
+                      <label for="username">Documento de identidad</label>
+                      <input type="text" id='doc' onchange="valid7(value)" placeholder="Documento de identidad"
+                        class="form-control">
+                    </div>
+                    <div class="form-group first">
+                      <label for="username">Número de contacto</label>
+                      <input type="number" id='conct' onchange="valid8(value)" placeholder="Número de contacto"
+                        class="form-control">
+                    </div>
+                    <div class="form-group first">
+                      <label for="username">Contraseña</label>
+                      <input type="password" id='psw' onchange="valid5(value)" placeholder="Contraseña"
+                        class="form-control">
+                    </div>
+                    <div class="form-group last">
+                      <label for="username">Repetir contraseña</label>
+                      <input type="password" data="" id='rpsw' onchange="valid6(value)"
+                        placeholder="Confirmar contraseña" class="form-control">
+                    </div>
+                    <button class="btn btn-block w3-light-grey" onclick="$('#session2').hide();$('#session1').show();">
+                      <i class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
+                    <button
+                      onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"
+                      class="btn btn-block btn-primary">
+                      Crear cuenta </button>
                   </div>
-                  <div class="form-group first">
-                    <label for="username">Número de contacto</label>
-                    <input type="number" id='conct' onchange="valid8(value)" placeholder="Número de contacto"
-                      class="form-control">
-                  </div>
-                  <div class="form-group first">
-                    <label for="username">Contraseña</label>
-                    <input type="password" id='psw' onchange="valid5(value)" placeholder="Contraseña"
-                      class="form-control">
-                  </div>
-                  <div class="form-group last">
-                    <label for="username">Repetir contraseña</label>
-                    <input type="password" data="" id='rpsw' onchange="valid6(value)" placeholder="Confirmar contraseña"
-                      class="form-control">
-                  </div>
-                  <button class="btn btn-block w3-light-grey" onclick="$('#session2').hide();$('#session1').show();"> <i
-                      class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
-                  <button
-                    onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"
-                    class="btn btn-block btn-primary">
-                    Crear cuenta </button>
                 </div>
             </div>
 
