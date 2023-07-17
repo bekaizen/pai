@@ -53,27 +53,37 @@
                     <h3>Registro de <strong>PAI</strong></h3>
                   </center>
                   <p class="mb-4">Sus datos estan protegidos.</p>
-                  <form action="#" method="post">
+                  <div id="session0">
+                    <h6 class="w3-text-blue-grey w3-col s12 m12 l12 w3-margin-top w3-left"><i
+                        class="fas fa-info-circle"></i> Si tiene un id de referido introdúzcalo</h6>
+                    <div class="form-group">
+                      <label for="username">Referido por</label>
+                      <input ttype="number" id='refid' placeholder="Id de referido (opcional)" class="form-control">
+                    </div>
+                    <button onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary">
+                      Siguiente </button>
+
+                  </div>
+
+
+                  <div id="session1" class="w3-animate-left" style="display:none">
                     <div class="form-group first">
                       <label for="username">Usuario</label>
-                      <input type="text" class="form-control" placeholder="Email o usuario" id='user_name'>
+                      <input ttype="number" id='refid' placeholder="Id de referido (opcional)" class="form-control">
                     </div>
-                    <div class="form-group last mb-3">
-                      <label for="password">Contraseña</label>
-                      <input type="password" class="form-control" placeholder="Tu contraseña" id='psw'>
-                    </div>
+                  </div>
 
-                    <div class="d-flex mb-5 align-items-center">
-                      <label class="control control--checkbox mb-0"><span class="caption">Recordar sesion</span>
-                        <input type="checkbox" checked="checked" />
-                        <div class="control__indicator"></div>
-                      </label>
-                      <span class="ml-auto"><a href="#" class="forgot-pass">Olvidaste la contraseña?</a></span>
-                    </div>
+                  <div class="d-flex mb-5 align-items-center">
+                    <label class="control control--checkbox mb-0"><span class="caption">Recordar sesion</span>
+                      <input type="checkbox" checked="checked" />
+                      <div class="control__indicator"></div>
+                    </label>
+                    <span class="ml-auto"><a href="#" class="forgot-pass">Olvidaste la contraseña?</a></span>
+                  </div>
 
-                    <input type="submit" value="Acceder"
-                      onclick="enter($('#user_name').val(),$('#psw').val());return false"
-                      class="btn btn-block btn-primary">
+                  <input type="submit" value="Acceder"
+                    onclick="enter($('#user_name').val(),$('#psw').val());return false"
+                    class="btn btn-block btn-primary">
                 </div>
 
                 <div id="2farea" style="display: none;">
@@ -92,13 +102,12 @@
                     class="btn btn-block btn-primary">
 
                 </div>
-              </form>
 
-              <br><br><br>
+                <br><br><br>
 
-              <center>
-                Aun no tienes una cuenta? <a href="">Registrate.</a>
-              </center>
+                <center>
+                  Aun no tienes una cuenta? <a href="">Registrate.</a>
+                </center>
 
             </div>
 
