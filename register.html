@@ -58,7 +58,7 @@
                       class="fas fa-info-circle"></i> Si tiene un id de referido introdúzcalo</h6>
                     <div class="form-group first last mb-5">
                       <label for="username">Referido por</label>
-                      <input ttype="number" id='refid' placeholder="Id de referido (opcional)" class="form-control">
+                      <input type="number" id='refid' placeholder="Id de referido (opcional)" class="form-control">
                     </div>
                     <button onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary">
                       Siguiente </button>
@@ -70,9 +70,21 @@
                       <label for="username">Usuario</label>
                       <input type="text" id='nombr' onchange="valid1(value)" placeholder="Nombre" class="form-control">
                     </div>
+                    <div class="form-group first">
+                      <label for="username">Usuario</label>
+                      <input type="text" id='apellid' onchange="valid2(value)" placeholder="Apellido" class="form-control">
+                    </div>
+                    <div class="form-group first">
+                      <label for="username">Usuario</label>
+                      <input type="email" id='email' onchange="valid4(value)" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group last">
+                      <label for="username">Usuario</label>
+                      <input type="text" id='usr' onblur="valid3(value)" placeholder="Usuario" class="form-control">
+                    </div>
                   </div>
-
-                  
+                  <button onclick="sigt()" class="btn btn-block btn-primary">
+                    Siguiente </button>
                 </div>
 
 
