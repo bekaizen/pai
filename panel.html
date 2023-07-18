@@ -505,7 +505,8 @@
                 window.location.href = "login.html";
             }
             else {
-
+                
+                areaActual = id;
                 $("#contenido").load(id + ".html", function (responseTxt, statusTxt, xhr) {
 
                     if (statusTxt == "success") {
@@ -521,7 +522,6 @@
 
 
                         $("#titname").html(id);
-                        areaActual = id;
                         //history.pushState(id, id, id);
                         window.scrollTo(0, 0);
 
@@ -901,10 +901,11 @@
                             NotifiAlert('Hay un problema con la conexión al servidor', 'w3-red', 6000);
                         }
                         else {
+
+                            areaActual(titulo);
                             $("#contenido").html(response);
                             $("#titname").html(titulo);
                             //history.pushState(titulo, titulo, titulo);
-                            areaActual(titulo);
                             window.scrollTo(0, 0);
                         }
 
