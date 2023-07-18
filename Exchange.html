@@ -494,7 +494,7 @@
 
                         if ($('#' + mercado + 'listadopares').html() == '') {
                             fuunctocl = "cambiarPares('" + index + "','" + mercado + "')";
-                            precios += '<div  onclick="' + fuunctocl + '" style="cursor:pointer" class="w3-col l12 m12 s12 w3-hover-light-grey"><section class="w3-col l5 m5 s5 w3-padding-top w3-text-grey"><b>' + index + '</b><span class="w3-text-grey">/' + mercado + '</span></section>';
+                            precios += '<div  onclick="' + fuunctocl + '" style="cursor:pointer" class="w3-col l12 m12 s12 w3-hover-light-grey"><section class="w3-col l5 m5 s5 w3-padding-top w3-text-grey"><b>' + index + '</b><span class="w3-text-grey"><!--/' + mercado + '--></span></section>';
                             precios += '<section class="w3-col l2 m2 s2 w3-padding-top"><span id="volmpar' + index + mercado + '">' + items[index]['volumen'] + '</span></section>';
                             precios += '<section class="w3-col l5 m5 s5 w3-padding-top"><span class="w3-right w3-text-' + Trcolor + '" id="precpar' + index + mercado + '">' + formatNumber(items[index]['precio'], GPrecDeciml[index]['precioDecimal']) + '</span></section></div>';
                         }
