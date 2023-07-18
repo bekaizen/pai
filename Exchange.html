@@ -33,23 +33,40 @@
             class="w3-col l1 s3 w3-border w3-border-light-blue w3-hover-light-grey w3-round w3-container w3-padding-8 w3-center"
             style="cursor:pointer">
             <span class="w3-col l12 s12"><b>BTCUSDT</b></span><small class="w3-text-green w3-col s12 l12 m12"
-                id="precspr">_ _</small>
+                id="cuadriculaBTCUSDT">_ _</small>
         </h6>
 
         <h6 onclick="cambiarPares('LTC','USDT')"
             class="w3-col l1 s3 w3-border w3-border-light-grey w3-light-grey w3-round w3-container w3-padding-8 w3-center w3-margin-left w3-margin-right"
             style="cursor:pointer">
-            <span class="w3-col l12 s12"><b>LTCUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12">_ _</small>
+            <span class="w3-col l12 s12"><b>LTCUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12"
+                id="cuadriculaLTCUSDT">_ _</small>
         </h6>
 
         <h6 onclick="cambiarPares('TRX','USDT')"
             class="w3-col l1 s3 w3-border w3-border-light-grey w3-light-grey w3-round w3-container w3-padding-8 w3-left w3-center"
             style="cursor:pointer">
-            <span class="w3-col l12 s12"><b>TRXUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12">_ _</small>
+            <span class="w3-col l12 s12"><b>TRXUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12"
+                id="cuadriculaTRXUSDT">_ _</small>
+        </h6>
+
+        <h6 class="w3-hide-small" onclick="cambiarPares('ETH','USDT')"
+            class="w3-col l1 s3 w3-border w3-border-light-grey w3-light-grey w3-round w3-container w3-padding-8 w3-left w3-center"
+            style="cursor:pointer">
+            <span class="w3-col l12 s12"><b>ETHUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12"
+                id="cuadriculaETHUSDT">_ _</small>
+        </h6>
+
+        <h6 class="w3-hide-small" onclick="cambiarPares('PEPE','USDT')"
+            class="w3-col l1 s3 w3-border w3-border-light-grey w3-light-grey w3-round w3-container w3-padding-8 w3-left w3-center"
+            style="cursor:pointer">
+            <span class="w3-col l12 s12"><b>PEPEUSDT</b></span><small class="w3-text-grey w3-col s12 l12 m12"
+                id="cuadriculaPEPEUSDT">_ _</small>
         </h6>
 
         <h6 class="w3-col l4 s4 w3-center w3-padding-8"><small class="w3-col l12 s12 m12 w3-text-grey">Volumen
-                24H</small><span id="volumen"></span></h6>
+                24H</small><span id="volumen"></span>
+        </h6>
 
         <div class="w3-col l4 s8  w3-container w3-right">
             <div class="w3-right w3-margin-top w3-padding-top w3-padding-bottom">
@@ -64,8 +81,7 @@
     <div class="w3-container w3-col l8 s12">
 
         <div class="w3-center w3-white w3-text-blue-grey w3-col l12">
-            <iframe id="grafico" src="" height="350px" width="100%" frameborder="0"
-                scrolling="no"></iframe>
+            <iframe id="grafico" src="" height="350px" width="100%" frameborder="0" scrolling="no"></iframe>
         </div>
 
         <div class="w3-margin-top w3-white w3-text-blue-grey w3-col l12 s12" style="">
@@ -119,7 +135,9 @@
 
 
             <div class="w3-margin-top w3-margin-bottom">
-                <div class="w3-container" style="display: flex; flex-direction: column; justify-content: flex-end;height:269px;overflow-y:scroll" id="Areaventas">
+                <div class="w3-container"
+                    style="display: flex; flex-direction: column; justify-content: flex-end;height:269px;overflow-y:scroll"
+                    id="Areaventas">
 
                 </div>
 
@@ -490,6 +508,9 @@
                                 $('#24hcambio').attr('class', '').addClass('w3-text-grey').html('0%');
                             }
                         }
+
+                        //lista de mercados en cuadricula
+                        $('#cuadricula' + index + mercado).html(formatNumber(items[index]['precio'], GPrecDeciml[index]['precioDecimal']));
 
 
                         if ($('#' + mercado + 'listadopares').html() == '') {
