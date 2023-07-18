@@ -1,36 +1,39 @@
 <div class="noselect">
-<div class="w3-container w3-white">
+  <div class="w3-container w3-white">
 
-<h5 class="noselect w3-margin-top w3-margin-bottom" style="display:none" id="cuetsb">Listado de cuentas <span class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-light-grey" onclick="$('#AddpayMeth').show()">+Agregar cuenta bancaria</span></h5>
-<div class="" id="contd"></div>
+    <h5 class="noselect w3-margin-top w3-margin-bottom" style="display:none" id="cuetsb">Listado de cuentas <span
+        class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-light-grey"
+        onclick="$('#AddpayMeth').show()">+Agregar cuenta bancaria</span></h5>
+    <div class="" id="contd"></div>
 
-  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
+    <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
       <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
       <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
-  </div>
+    </div>
 
-</div>
+  </div>
 </div>
 
 <script>
 
-     EstatusBarColor('1565c0');
+  EstatusBarColor('1565c0');
      //MenuAccion('fa fa-plus',"$('#AddpayMeth').show()");
      //$("#menusup").show();
 </script>
 <!-- Agregar metodo-->
 <div id="AddpayMeth" class="w3-modal noselect">
   <div class="w3-display-middle w3-col s10 l4 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-<div class=" w3-container"> 
+    <div class=" w3-container">
 
-<div class="w3-col s12  w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-globe-americas w3-text-grey w3-xlarge w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10 l4">
-<select class="w3-select w3-white w3-border-bottom" id="pais" style="outline:none" onchange="paisMoneda(value)">
-<option value="" selected disabled>Seleccione el país</option>
-<!--<option value="AF">Afganistán</option>
+      <div class="w3-col s12  w3-margin-top">
+        <div class="w3-col s2">
+          <i class="fas fa-globe-americas w3-text-grey w3-xlarge w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10">
+          <select class="w3-select w3-white w3-border-bottom" id="pais" style="outline:none"
+            onchange="paisMoneda(value)">
+            <option value="" selected disabled>Seleccione el país</option>
+            <!--<option value="AF">Afganistán</option>
 <option value="AL">Albania</option>
 <option value="DE">Alemania</option>
 <option value="AD">Andorra</option>
@@ -212,8 +215,9 @@
 <option value="CF">República Centroafricana</option>
 <option value="CZ">República Checa</option>
 <option value="ZA">República de Sudáfrica</option>
---><option value="DO">República Dominicana</option>
-<!--
+-->
+            <option value="DO">República Dominicana</option>
+            <!--
 <option value="SK">República Eslovaca</option>
 <option value="RE">Reunión</option>
 <option value="RW">Ruanda</option>
@@ -265,70 +269,75 @@
 <option value="YU">Yugoslavia</option>
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabue</option>-->
-</select>
+          </select>
 
-  </div>
-</div>  
+        </div>
+      </div>
 
-<div class="w3-col s12 w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-file-invoice-dollar w3-text-grey w3-xlarge  w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10">
-    <select class="w3-input w3-white w3-border-bottom" id="banco" style="outline:none" onchange="importeinfor(value)">
-        <option value="" disabled selected>Seleccione el método de pago</option>
-    </select>
-    <small id="bhdalert" class="w3-text-red"></small>
-  </div>
-</div>  
-
-
-<div class="w3-col s12 w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-poll w3-text-grey w3-xlarge w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10">
-    <input class="w3-input w3-white w3-border-bottom" type="number" placeholder="Cuenta" id="cuenta" style="outline:none">
-  </div>
-</div> 
+      <div class="w3-col s12 w3-margin-top">
+        <div class="w3-col s2">
+          <i class="fas fa-file-invoice-dollar w3-text-grey w3-xlarge  w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10">
+          <select class="w3-input w3-white w3-border-bottom" id="banco" style="outline:none"
+            onchange="importeinfor(value)">
+            <option value="" disabled selected>Seleccione el método de pago</option>
+          </select>
+          <small id="bhdalert" class="w3-text-red"></small>
+        </div>
+      </div>
 
 
+      <div class="w3-col s12 w3-margin-top">
+        <div class="w3-col s2">
+          <i class="fas fa-poll w3-text-grey w3-xlarge w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10">
+          <input class="w3-input w3-white w3-border-bottom" type="number" placeholder="Cuenta" id="cuenta"
+            style="outline:none">
+        </div>
+      </div>
 
-<div class="w3-col s12 w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-user-tie w3-text-grey w3-xlarge  w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10">
-    <input class="w3-input w3-white w3-border-bottom" disabled value="" type="text" placeholder="Titular de la cuenta" id="titular" style="outline:none">
-  </div>
-</div> 
 
-<div class="w3-col s12 w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-coins w3-text-grey w3-xlarge  w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10 w3-margin-bottom">
-     <select class="w3-select w3-white w3-border-bottom" id="moneda" style="outline:none">
-       <option value="" disabled selected>Moneda</option>
-     </select>
-  </div>
-</div>  
 
-<div class="w3-col s12 w3-margin-bottom">
-  <div class="w3-col s2">
-     <i class="far fa-list-alt w3-text-grey w3-xlarge  w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10 w3-margin-bottom">
-     <select class="w3-select w3-white w3-border-bottom" id="tipo" style="outline:none">
-       <option value="" disabled selected>Tipo de cuenta</option>
-       <option value="ahorro">Ahorro</option>
-       <option value="corriente">Corriente</option>
-     </select>
-  </div>
-</div>  
-</div>  
-<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#AddpayMeth').hide();">Ocultar</div>
-<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='prcedt' style="cursor:pointer" onclick="proceesMetod()">Procesar</div>
+      <div class="w3-col s12 w3-margin-top">
+        <div class="w3-col s2">
+          <i class="fas fa-user-tie w3-text-grey w3-xlarge  w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10">
+          <input class="w3-input w3-white w3-border-bottom" disabled value="" type="text"
+            placeholder="Titular de la cuenta" id="titular" style="outline:none">
+        </div>
+      </div>
+
+      <div class="w3-col s12 w3-margin-top">
+        <div class="w3-col s2">
+          <i class="fas fa-coins w3-text-grey w3-xlarge  w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10 w3-margin-bottom">
+          <select class="w3-select w3-white w3-border-bottom" id="moneda" style="outline:none">
+            <option value="" disabled selected>Moneda</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="w3-col s12 w3-margin-bottom">
+        <div class="w3-col s2">
+          <i class="far fa-list-alt w3-text-grey w3-xlarge  w3-padding-top"></i>
+        </div>
+        <div class="w3-col s10 w3-margin-bottom">
+          <select class="w3-select w3-white w3-border-bottom" id="tipo" style="outline:none">
+            <option value="" disabled selected>Tipo de cuenta</option>
+            <option value="ahorro">Ahorro</option>
+            <option value="corriente">Corriente</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey"
+      style="cursor:pointer" onclick="$('#AddpayMeth').hide();">Ocultar</div>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey"
+      id='prcedt' style="cursor:pointer" onclick="proceesMetod()">Procesar</div>
 
 
 
@@ -341,11 +350,14 @@
 <!-- Eliminar metodo-->
 <div id="DelpayMeth" class="w3-modal noselect">
   <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-      <p class="w3-padding-16 w3-center w3-container">¿Realmente desea eliminar la cuenta bancaria <b><span id='cuentdel'></span></b>?</p>
-      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#DelpayMeth').hide();">No</div>
-     <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='deloptiosi' style="cursor:pointer" onclick="">Si</div>
+    <p class="w3-padding-16 w3-center w3-container">¿Realmente desea eliminar la cuenta bancaria <b><span
+          id='cuentdel'></span></b>?</p>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey"
+      style="cursor:pointer" onclick="$('#DelpayMeth').hide();">No</div>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey"
+      id='deloptiosi' style="cursor:pointer" onclick="">Si</div>
   </div>
-</div>      
+</div>
 <!-- Eliminar metodo de pago-->
 
 
@@ -354,21 +366,24 @@
 <!-- Factor verificacion-->
 <div id="factorMdl" class="w3-modal noselect">
   <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-               <div class="w3-padding-16 w3-center w3-container">
-                 <i class="fab fa-google fa-3x w3-text-dark-grey w3-margin-bottom w3-col s12 l12 m12"></i>
-                 <span>Ingrese el código de doble factor</span>
-                           
-                 <div class="w3-margin-bottom w3-margin-top">
-                  <div class="w3-col s3 l3 m3">&nbsp;</div>
-                    <input class="w3-input w3-white w3-col s6 w3-border-bottom w3-margin-bottom" type="number" placeholder="Código" id="codfactor" style="outline:none; text-align: center">
-                  <div class="w3-col s3 l3 m3">&nbsp;</div>
-                 </div>
-               </div>
-    
-      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#factorMdl').hide();">Regresar</div>
-     <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='factoratrr' style="cursor:pointer" onclick="">Enviar</div>
+    <div class="w3-padding-16 w3-center w3-container">
+      <i class="fab fa-google fa-3x w3-text-dark-grey w3-margin-bottom w3-col s12 l12 m12"></i>
+      <span>Ingrese el código de doble factor</span>
+
+      <div class="w3-margin-bottom w3-margin-top">
+        <div class="w3-col s3 l3 m3">&nbsp;</div>
+        <input class="w3-input w3-white w3-col s6 w3-border-bottom w3-margin-bottom" type="number" placeholder="Código"
+          id="codfactor" style="outline:none; text-align: center">
+        <div class="w3-col s3 l3 m3">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey"
+      style="cursor:pointer" onclick="$('#factorMdl').hide();">Regresar</div>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey"
+      id='factoratrr' style="cursor:pointer" onclick="">Enviar</div>
   </div>
-</div>      
+</div>
 <!-- Factor verificacion-->
 
 
@@ -378,377 +393,328 @@
 <!-- Email verificacion-->
 <div id="emailMdl" class="w3-modal noselect">
   <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-               <div class="w3-padding-16 w3-center w3-container">
-                 <i class="fas fa-envelope-open-text fa-3x w3-text-yellow w3-margin-bottom w3-col s12 l12 m12"></i>
-                 <span>Ingrese el código recibido en su correo electrónico</span>
-                           
-                 <div class="w3-margin-bottom w3-margin-top">
-                  <div class="w3-col s1 l1 m1">&nbsp;</div>
-                    <input class="w3-input w3-white w3-col s10 w3-border-bottom w3-margin-bottom" type="text" placeholder="Código" id="codemailv" style="outline:none; text-align: center; ">
-                  <div class="w3-col s1 l1 m1">&nbsp;</div>
-                 </div>
-               </div>
-    
-      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#emailMdl').hide();">Regresar</div>
-     <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='emailattr' style="cursor:pointer" onclick="addpago($('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codemailv').val())">Enviar</div>
+    <div class="w3-padding-16 w3-center w3-container">
+      <i class="fas fa-envelope-open-text fa-3x w3-text-yellow w3-margin-bottom w3-col s12 l12 m12"></i>
+      <span>Ingrese el código recibido en su correo electrónico</span>
+
+      <div class="w3-margin-bottom w3-margin-top">
+        <div class="w3-col s1 l1 m1">&nbsp;</div>
+        <input class="w3-input w3-white w3-col s10 w3-border-bottom w3-margin-bottom" type="text" placeholder="Código"
+          id="codemailv" style="outline:none; text-align: center; ">
+        <div class="w3-col s1 l1 m1">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey"
+      style="cursor:pointer" onclick="$('#emailMdl').hide();">Regresar</div>
+    <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey"
+      id='emailattr' style="cursor:pointer"
+      onclick="addpago($('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codemailv').val())">
+      Enviar</div>
   </div>
-</div>    
+</div>
 <!-- Email verificacion-->
 <script>
-function importeinfor(banco)
-{
-    if(banco=='Banco BHD Leon')
-    {
-        $('#bhdalert').html('*Si es una <b>Cuenta Móvil</b> BHD no es aceptada.');
+  function importeinfor(banco) {
+    if (banco == 'Banco BHD Leon') {
+      $('#bhdalert').html('*Si es una <b>Cuenta Móvil</b> BHD no es aceptada.');
     }
-    else
-    {
-        $('#bhdalert').html(''); 
+    else {
+      $('#bhdalert').html('');
     }
-}    
+  }    
 </script>
 <script>
-objt='';
-listMonedas=JSON.parse('{"BS":"BSD","AL":"ALL","MM":"MMK","BI":"BIF","KH":"KHR","DZ":"DZD","CA":"CAD","CV":"CVE","KY":"KYD","LK":"LKR","CL":"CLP","CN":"CNY","CO":"COP","KM":"KMF","CR":"CRC","HR":"HRK","CY":"EUR","BJ":"XOF","GR":"EUR","EE":"EUR","DM":"XCD","EC":"USD","GQ":"XAF","ET":"ETB","FO":"FOK","FK":"FKP","GS":"FKP","PF":"XPF","GE":"GEL","GH":"GHS","AR":"ARS","GU":"USD","GT":"GTQ","GN":"GNF","GY":"GYD","HM":"AUD","HN":"HNL","HU":"INR","IS":"ISK","HK":"HKD","NA":"NAD","GI":"GIP","HT":"HTG","AU":"AUD","CC":"AUD","CX":"AUD","NU":"NZD","IN":"INR","ID":"IDR","IR":"IRR","IE":"EUR","CI":"XOF","JM":"JMD","JP":"JPY","GM":"GMD","KZ":"KZT","JO":"JOD","KE":"KES","KP":"KPW","KR":"KRW","KW":"KWD","KG":"KGS","LA":"LAK","LB":"LBP","LV":"EUR","LR":"LRD","LU":"EUR","MG":"MGA","MW":"MWK","MY":"MYR","BH":"BHD","MR":"MRU","MU":"MUR","MC":"EUR","MN":"MNT","BD":"BDT","MS":"XCD","SD":"SDG","AM":"AMD","MZ":"MZN","OM":"OMR","BB":"BBD","NR":"AUD","AW":"AWG","NL":"EUR","CW":"ANG","NC":"XPF","NG":"NGN","PH":"PHP","NZ":"NZD","VU":"VUV","TK":"NZD","CK":"NZD","NE":"XOF","SR":"SRD","NF":"AUD","PW":"USD","PK":"PKR","PA":"PAB","BM":"BMD","PG":"PGK","PY":"PYG","PE":"PEN","PR":"USD","BT":"BTN","RO":"RON","RU":"RUB","BL":"EUR","BO":"BOB","ST":"STN","RS":"RSD","SC":"SCR","SL":"SLL","SK":"EUR","SI":"EUR","SO":"SOS","BW":"BWP","ES":"EUR","SJ":"NOK","SZ":"SZL","CH":"CHF","LI":"CHF","SE":"SEK","SY":"SYP","TH":"THB","TO":"TOP","TT":"TTD","AE":"AED","TN":"TND","UG":"UGX","MK":"MKD","EG":"EGP","GB":"GBP","TZ":"TZS","BZ":"BZD","US":"USD","VG":"USD","VI":"USD","TC":"USD","MP":"USD","AS":"USD","SX":"ANG","DO":"DOP","GW":"XOF","IO":"USD","NO":"NOK","GP":"EUR","TL":"USD","FM":"USD","MH":"USD","UY":"UYU","UZ":"UZS","WS":"WST","YE":"YER","ZM":"ZMK","SB":"SBD","TW":"TWD","MQ":"EUR","SM":"EUR","TM":"TMT","DE":"EUR","VE":"VEF","SS":"SSP","SN":"XOF","MA":"MAD","AZ":"AZN","RE":"EUR","TR":"TRY","TD":"XAF","CF":"XAF","CM":"XAF","CG":"XAF","DJ":"DJF","SV":"SVC","AI":"XCD","AG":"XCD","KN":"XCD","SH":"SHP","GL":"DKK","ME":"EUR","DK":"DKK","PM":"EUR","BF":"XOF","TG":"XOF","PT":"EUR","IT":"EUR","CZ":"CZK","NI":"NIO","MV":"MVR","SA":"SAR","GF":"EUR","BQ":"USD","WF":"XPF","BN":"BND","EH":"MAD","MO":"MOP","AF":"AFN","TJ":"TJS","AO":"AOA","BY":"BYR","BG":"BGN","CD":"CDF","BA":"BAM","GD":"XCD","LC":"XCD","VC":"XCD","LY":"LYD","ML":"XOF","RW":"RWF","ZW":"ZWL","YT":"EUR","LS":"LSL","ER":"ERN","BE":"EUR","FR":"EUR","MT":"EUR","FI":"EUR","AX":"EUR","LT":"EUR","MD":"MDL","AD":"EUR","AT":"EUR","PL":"PLN","MX":"MXN","CU":"CUP","MF":"EUR","SG":"SGD","FJ":"FJD","KI":"AUD","VN":"VND","IQ":"IQD","PS":"JOD","IL":"ILS","QA":"QAR","NP":"NPR","UA":"UAH","GA":"XAF","PN":"NZD","BR":"BRL","ZA":"ZAR","JE":"JEP","GG":"GGP","IM":"IMP","TV":"TVD"}');
-    function paisMoneda(pais){
-        //return listMonedas.pais;
-        $('#moneda').children('option:not(:first)').remove();
-        $('#moneda').append( '<option value="'+listMonedas[pais]+'">'+listMonedas[pais]+'</option>' );
-        for(i=0;i<objt.monedas.length;i++)
-        {   if(objt.monedas[i].value!==listMonedas[pais])
-            {
-             $('#moneda').append( '<option value="'+objt.monedas[i].value+'">'+objt.monedas[i].value+'</option>' );
+  objt = '';
+  listMonedas = JSON.parse('{"BS":"BSD","AL":"ALL","MM":"MMK","BI":"BIF","KH":"KHR","DZ":"DZD","CA":"CAD","CV":"CVE","KY":"KYD","LK":"LKR","CL":"CLP","CN":"CNY","CO":"COP","KM":"KMF","CR":"CRC","HR":"HRK","CY":"EUR","BJ":"XOF","GR":"EUR","EE":"EUR","DM":"XCD","EC":"USD","GQ":"XAF","ET":"ETB","FO":"FOK","FK":"FKP","GS":"FKP","PF":"XPF","GE":"GEL","GH":"GHS","AR":"ARS","GU":"USD","GT":"GTQ","GN":"GNF","GY":"GYD","HM":"AUD","HN":"HNL","HU":"INR","IS":"ISK","HK":"HKD","NA":"NAD","GI":"GIP","HT":"HTG","AU":"AUD","CC":"AUD","CX":"AUD","NU":"NZD","IN":"INR","ID":"IDR","IR":"IRR","IE":"EUR","CI":"XOF","JM":"JMD","JP":"JPY","GM":"GMD","KZ":"KZT","JO":"JOD","KE":"KES","KP":"KPW","KR":"KRW","KW":"KWD","KG":"KGS","LA":"LAK","LB":"LBP","LV":"EUR","LR":"LRD","LU":"EUR","MG":"MGA","MW":"MWK","MY":"MYR","BH":"BHD","MR":"MRU","MU":"MUR","MC":"EUR","MN":"MNT","BD":"BDT","MS":"XCD","SD":"SDG","AM":"AMD","MZ":"MZN","OM":"OMR","BB":"BBD","NR":"AUD","AW":"AWG","NL":"EUR","CW":"ANG","NC":"XPF","NG":"NGN","PH":"PHP","NZ":"NZD","VU":"VUV","TK":"NZD","CK":"NZD","NE":"XOF","SR":"SRD","NF":"AUD","PW":"USD","PK":"PKR","PA":"PAB","BM":"BMD","PG":"PGK","PY":"PYG","PE":"PEN","PR":"USD","BT":"BTN","RO":"RON","RU":"RUB","BL":"EUR","BO":"BOB","ST":"STN","RS":"RSD","SC":"SCR","SL":"SLL","SK":"EUR","SI":"EUR","SO":"SOS","BW":"BWP","ES":"EUR","SJ":"NOK","SZ":"SZL","CH":"CHF","LI":"CHF","SE":"SEK","SY":"SYP","TH":"THB","TO":"TOP","TT":"TTD","AE":"AED","TN":"TND","UG":"UGX","MK":"MKD","EG":"EGP","GB":"GBP","TZ":"TZS","BZ":"BZD","US":"USD","VG":"USD","VI":"USD","TC":"USD","MP":"USD","AS":"USD","SX":"ANG","DO":"DOP","GW":"XOF","IO":"USD","NO":"NOK","GP":"EUR","TL":"USD","FM":"USD","MH":"USD","UY":"UYU","UZ":"UZS","WS":"WST","YE":"YER","ZM":"ZMK","SB":"SBD","TW":"TWD","MQ":"EUR","SM":"EUR","TM":"TMT","DE":"EUR","VE":"VEF","SS":"SSP","SN":"XOF","MA":"MAD","AZ":"AZN","RE":"EUR","TR":"TRY","TD":"XAF","CF":"XAF","CM":"XAF","CG":"XAF","DJ":"DJF","SV":"SVC","AI":"XCD","AG":"XCD","KN":"XCD","SH":"SHP","GL":"DKK","ME":"EUR","DK":"DKK","PM":"EUR","BF":"XOF","TG":"XOF","PT":"EUR","IT":"EUR","CZ":"CZK","NI":"NIO","MV":"MVR","SA":"SAR","GF":"EUR","BQ":"USD","WF":"XPF","BN":"BND","EH":"MAD","MO":"MOP","AF":"AFN","TJ":"TJS","AO":"AOA","BY":"BYR","BG":"BGN","CD":"CDF","BA":"BAM","GD":"XCD","LC":"XCD","VC":"XCD","LY":"LYD","ML":"XOF","RW":"RWF","ZW":"ZWL","YT":"EUR","LS":"LSL","ER":"ERN","BE":"EUR","FR":"EUR","MT":"EUR","FI":"EUR","AX":"EUR","LT":"EUR","MD":"MDL","AD":"EUR","AT":"EUR","PL":"PLN","MX":"MXN","CU":"CUP","MF":"EUR","SG":"SGD","FJ":"FJD","KI":"AUD","VN":"VND","IQ":"IQD","PS":"JOD","IL":"ILS","QA":"QAR","NP":"NPR","UA":"UAH","GA":"XAF","PN":"NZD","BR":"BRL","ZA":"ZAR","JE":"JEP","GG":"GGP","IM":"IMP","TV":"TVD"}');
+  function paisMoneda(pais) {
+    //return listMonedas.pais;
+    $('#moneda').children('option:not(:first)').remove();
+    $('#moneda').append('<option value="' + listMonedas[pais] + '">' + listMonedas[pais] + '</option>');
+    for (i = 0; i < objt.monedas.length; i++) {
+      if (objt.monedas[i].value !== listMonedas[pais]) {
+        $('#moneda').append('<option value="' + objt.monedas[i].value + '">' + objt.monedas[i].value + '</option>');
+      }
+    }
+
+  }
+</script>
+<script>
+  function ShowDelMeth(cuenta, id) {
+    $('#cuentdel').html(cuenta);
+    $('#deloptiosi').attr('onclick', 'Delpaymeth(' + id + ')');
+    $('#DelpayMeth').show();
+  }
+</script>
+<script>
+  $.ajax({
+    url: 'https://' + UrlAPI + '/AppBancario',
+    type: 'post',
+    beforeSend: function () {
+      //$('#loadergif').show();
+      $('#loaderspin').show();
+    },
+    success: function (response) {
+      $('#loadergif').hide();
+      if (response == '') {
+        NotifiAlert("No se ha obtenido resultados, compruebe su conexión", "w3-red", 6000);
+      }
+      else {
+
+        objt = JSON.parse(response);
+        factor = objt.Factor;
+        if (objt.session == 'true') {
+
+
+          //seleccionar pais por defecto
+          $("#pais option[value='" + objt.pais + "']").attr('selected', 'selected');
+
+          //listado bancos
+          for (i = 0; i < objt.bancos.length; i++) {
+            $('#banco').append('<option value="' + objt.bancos[i].value + '">' + objt.bancos[i].nombre + '</option>');
+          }
+
+          //listado monedas
+          paisMoneda(objt.pais);
+          /*for(i=0;i<objt.monedas.length;i++)
+          { 
+              $('#moneda').append( '<option value="'+objt.monedas[i].value+'">'+objt.monedas[i].nombre+'</option>' );
+          }*/
+
+          //titular de la cuenta //dueno de la cuenta
+          $('#titular').val(objt.titular);
+
+          //transacciones
+          if (objt.content.length > 0) {
+            var contet = '';
+            for (i = 0; i < objt.content.length; i++) {
+              if ((i + 1) == objt.content.length) {
+                borderline = '';
+              }
+              else {
+                borderline = 'w3-border-bottom w3-border-light-grey';
+              }
+              if (objt.content[i].aprobacion == 'si') {
+                iconstd = '<i class="fas fa-check-circle w3-text-green w3-xlarge"></i>';
+              }
+              else {
+                iconstd = '<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
+              }
+
+              contet += '<div class="w3-padding-8 w3-white w3-col s12" id="trst' + (i + 1) + '">';
+              contet += '<div class="w3-col s2 m2 l2 noselect">' + iconstd + ' </div>';
+              contet += '<div class="w3-col m8 l8 s9 ' + borderline + '">';
+              contet += '<div class="w3- col s12 m12 l12"><img width="20px" src="icon/paises/' + objt.content[i].pais + '.png"/> ' + objt.content[i].banco + '</div>';
+              contet += '<div class="w3-col s9 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12">Titular: ' + objt.content[i].titular + ' </div><span> Cuenta: ' + objt.content[i].cuenta + '</span></div>';
+              contet += '<div class="w3-col s3 reajuste"><div class="w3-col s12"><small class="w3-right w3-col s12">' + objt.content[i].tipo + '</small><small class="w3-right w3-col s12 m12 l12">' + objt.content[i].moneda + '</small></div></div>';
+              contet += '</div><div class="w3-col s1 m2 l2 reajuste"><div class="w3-col s12"><i class="fas fa-minus-circle w3-text-red w3-right w3-large w3-padding-top" onclick="ShowDelMeth(' + objt.content[i].cuenta + ',' + objt.content[i].id + ')"></i></div></div></div>';
+
             }
-        }
-
-    }
-</script>
-<script>
-function ShowDelMeth(cuenta,id)
-{
-     $('#cuentdel').html(cuenta);
-     $('#deloptiosi').attr('onclick','Delpaymeth('+id+')');
-     $('#DelpayMeth').show();
-}
-</script>
-<script>
-$.ajax({
-url: 'https://'+UrlAPI+'/AppBancario',
-type: 'post',
-beforeSend: function ()
-{
-   //$('#loadergif').show();
-   $('#loaderspin').show();
-},
-success: function (response)
-{
-  $('#loadergif').hide(); 
-  if(response=='')
-  { 
-    NotifiAlert("No se ha obtenido resultados, compruebe su conexión","w3-red",6000);
-  }
-  else 
-  {
-  
-    objt=JSON.parse(response);
-    factor=objt.Factor;
-    if(objt.session=='true')
-    {
-    
-       
-        //seleccionar pais por defecto
-        $("#pais option[value='"+objt.pais+"']").attr('selected','selected');
-        
-       //listado bancos
-        for(i=0;i<objt.bancos.length;i++)
-        { 
-            $('#banco').append( '<option value="'+objt.bancos[i].value+'">'+objt.bancos[i].nombre+'</option>' );
-        }
-       
-        //listado monedas
-        paisMoneda(objt.pais);
-        /*for(i=0;i<objt.monedas.length;i++)
-        { 
-            $('#moneda').append( '<option value="'+objt.monedas[i].value+'">'+objt.monedas[i].nombre+'</option>' );
-        }*/
-        
-        //titular de la cuenta //dueno de la cuenta
-        $('#titular').val(objt.titular);
-        
-        //transacciones
-        if(objt.content.length>0)
-        {   
-            var contet='';
-            for(i=0;i<objt.content.length;i++)
-            {
-                if((i+1)==objt.content.length)
-                {
-                    borderline='';
-                }
-                else
-                {
-                    borderline='w3-border-bottom w3-border-light-grey';
-                }
-                if(objt.content[i].aprobacion=='si')
-                {
-                    iconstd='<i class="fas fa-check-circle w3-text-green w3-xlarge"></i>';
-                }
-                else
-                {
-                    iconstd='<i class="far fa-clock w3-text-grey w3-xlarge"></i>';
-                }
-               
-                 contet +='<div class="w3-padding-8 w3-white w3-col s12" id="trst'+(i+1)+'">';
-                 contet +='<div class="w3-col s2 m2 l2 noselect">'+iconstd+' </div>';
-                 contet +='<div class="w3-col m8 l8 s9 '+borderline+'">';
-                 contet +='<div class="w3- col s12 m12 l12"><img width="20px" src="icon/paises/'+objt.content[i].pais+'.png"/> '+objt.content[i].banco+'</div>';
-                 contet +='<div class="w3-col s9 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12">Titular: '+objt.content[i].titular+' </div><span> Cuenta: '+objt.content[i].cuenta+'</span></div>';
-                 contet +='<div class="w3-col s3 reajuste"><div class="w3-col s12"><small class="w3-right w3-col s12">'+objt.content[i].tipo+'</small><small class="w3-right w3-col s12 m12 l12">'+objt.content[i].moneda+'</small></div></div>';
-                 contet +='</div><div class="w3-col s1 m2 l2 reajuste"><div class="w3-col s12"><i class="fas fa-minus-circle w3-text-red w3-right w3-large w3-padding-top" onclick="ShowDelMeth('+objt.content[i].cuenta+','+objt.content[i].id+')"></i></div></div></div>';  
-           
-            } 
-              $("#cuetsb").show();
-        }
-        else
-        {
-            var contet='<div class="w3-col s12 m12 l12 w3-padding-32 w3-center">No tiene cuentas bancarias agregadas, haga clic en el símbolo <b>+</b> en la parte de arriba.<div>';
+            $("#cuetsb").show();
+          }
+          else {
+            var contet = '<div class="w3-col s12 m12 l12 w3-padding-32 w3-center">No tiene cuentas bancarias agregadas, haga clic en el símbolo <b>+</b> en la parte de arriba.<div>';
             $("#cuetsb").hide();
+          }
+
+          $('#contd').html(contet);
+          $('#loaderspin').hide();
         }
-          
-        $('#contd').html(contet);
-        $('#loaderspin').hide();
-    }
-    else
-    {
-        CerrarSesion();
-    }
-    
-       
-	    
-  }
-  
-  
-},
+        else {
+          CerrarSesion();
+        }
 
-error: function (response)
-{
-    NotifiAlert("Verifique su conexión a internet","w3-red",6000);
-    $('#loadergif').hide();
-}
 
-});
+
+      }
+
+
+    },
+
+    error: function (response) {
+      NotifiAlert("Verifique su conexión a internet", "w3-red", 6000);
+      $('#loadergif').hide();
+    }
+
+  });
 
 </script>
 <script>
-function proceesMetod()
-{
-    
-if($('#pais').val()=='' || $('#banco').val()=='' || $('#cuenta').val()=='' || $('#titular').val()=='' || $('#tipo').val()=='' || $('#moneda').val()=='')
-{
-     NotifiAlert("Por favor complete todos los campos","w3-red",6000);
-}
-else
-{
-    if(factor=='si')
-    {
-       $('#AddpayMeth').hide();
-       $("#factoratrr").attr("onclick","addpago($('#pais').val(),$('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codfactor').val())");
-       $('#factorMdl').show();
-    }
-    else
-    {
+  function proceesMetod() {
 
-        
-        var datos={'pais': $('#pais').val(),'banco': $('#banco').val(),'cuenta': $('#cuenta').val(),'titular': $('#titular').val(),'tipo': $('#tipo').val(),'moneda': $('#moneda').val()};
+    if ($('#pais').val() == '' || $('#banco').val() == '' || $('#cuenta').val() == '' || $('#titular').val() == '' || $('#tipo').val() == '' || $('#moneda').val() == '') {
+      NotifiAlert("Por favor complete todos los campos", "w3-red", 6000);
+    }
+    else {
+      if (factor == 'si') {
+        $('#AddpayMeth').hide();
+        $("#factoratrr").attr("onclick", "addpago($('#pais').val(),$('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codfactor').val())");
+        $('#factorMdl').show();
+      }
+      else {
+
+
+        var datos = { 'pais': $('#pais').val(), 'banco': $('#banco').val(), 'cuenta': $('#cuenta').val(), 'titular': $('#titular').val(), 'tipo': $('#tipo').val(), 'moneda': $('#moneda').val() };
         $.ajax({
-        data:datos,
-        url: 'https://'+UrlAPI+'/AppPaymentAddMail',
-        type: 'post',
-        beforeSend: function ()
-        {
-           $('#loadergif').show();
-        },
-        success: function (response)
-        { 
-            
-            
-           $('#loadergif').hide(); 
-           if(response=='')
-           { 
-              NotifiAlert("No se ha obtenido resultados, compruebe su conexión","w3-red",6000);
-           }
-           else 
-           {
-  
-               var objt=JSON.parse(response);
-               if(objt.session=='true')
-               {
-    
-                   if(objt.status=='ok')
-                   { 
-                        $('#AddpayMeth').hide();
-                        $("#emailattr").attr("onclick","addpago($('#pais').val(),$('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codemailv').val(),$('#moneda').val())");  
-                        $('#emailMdl').show();
-                   }
-                   else
-                   {
-                        NotifiAlert(objt.result,"w3-red",4000);
-                   }
-      
-          
-               }
-               else
-               {
-                   CerrarSesion();
-               }
-       
-	    
-           }
-  
-  
-        },
+          data: datos,
+          url: 'https://' + UrlAPI + '/AppPaymentAddMail',
+          type: 'post',
+          beforeSend: function () {
+            $('#loadergif').show();
+          },
+          success: function (response) {
 
-        error: function (response)
-        { 
-            NotifiAlert("Verifique su conexión a internet","w3-red",6000);
+
             $('#loadergif').hide();
+            if (response == '') {
+              NotifiAlert("No se ha obtenido resultados, compruebe su conexión", "w3-red", 6000);
+            }
+            else {
+
+              var objt = JSON.parse(response);
+              if (objt.session == 'true') {
+
+                if (objt.status == 'ok') {
+                  $('#AddpayMeth').hide();
+                  $("#emailattr").attr("onclick", "addpago($('#pais').val(),$('#banco').val(),$('#cuenta').val(),$('#titular').val(),$('#tipo').val(),$('#codemailv').val(),$('#moneda').val())");
+                  $('#emailMdl').show();
+                }
+                else {
+                  NotifiAlert(objt.result, "w3-red", 4000);
+                }
+
+
+              }
+              else {
+                CerrarSesion();
+              }
+
+
+            }
+
+
+          },
+
+          error: function (response) {
+            NotifiAlert("Verifique su conexión a internet", "w3-red", 6000);
+            $('#loadergif').hide();
+          }
+
+        });
+
+
+      }
+    }
+  }
+</script>
+<script>
+  function addpago(pais, banco, cuenta, titular, tipo, codigo, moneda) {
+    var param = {
+      'banco': banco,
+      'cuenta': cuenta,
+      'titular': titular,
+      'tipo': tipo,
+      'codigo': codigo,
+      'moneda': moneda,
+      'pais': pais
+
+    };
+
+    $.ajax({
+      data: param,
+      url: 'https://' + UrlAPI + '/AppMetodoDePago',
+      type: 'post',
+      beforeSend: function () {
+        $('#loadergif').show();
+      },
+      success: function (response) {
+        $('#loadergif').hide();
+        if (response == '') {
+          NotifiAlert("No se ha obtenido resultados, compruebe su conexión", "w3-red", 6000);
+        }
+        else {
+
+
+          var objt = JSON.parse(response);
+          if (objt.session == 'true') {
+
+            if (objt.estado == 'ok') {
+              NotifiAlert(objt.mensaje, "w3-green", 4000);
+              OpenOtherOption('submenu/config/Metodo de pago', 'Metodo de pago');
+            }
+            else {
+              NotifiAlert(objt.mensaje, "w3-red", 4000);
+            }
+
+
+          }
+          else {
+            CerrarSesion();
+          }
+
+
         }
 
-       });
 
-        
-    }
-} 
-}
+      },
+
+      error: function (response) {
+        NotifiAlert("Verifique su conexión a internet", "w3-red", 6000);
+        $('#loadergif').hide();
+      }
+
+    });
+  }
 </script>
 <script>
-function addpago(pais,banco,cuenta,titular,tipo,codigo,moneda)
-{
-var param={
-'banco': banco,
-'cuenta': cuenta,
-'titular': titular,
-'tipo': tipo,
-'codigo': codigo,
-'moneda': moneda,
-'pais': pais
+  function Delpaymeth(id) {
+    var param = {
+      'id': id
+    };
 
-};
+    $.ajax({
+      data: param,
+      url: 'https://' + UrlAPI + '/AppDelCuentBank',
+      type: 'post',
+      beforeSend: function () {
+        $('#loadergif').show();
+      },
+      success: function (response) {
+        $('#loadergif').hide();
+        if (response == '') {
+          NotifiAlert("No se ha obtenido resultados, compruebe su conexión", "w3-red", 6000);
+        }
+        else {
 
-$.ajax({
-data:param,
-url: 'https://'+UrlAPI+'/AppMetodoDePago',
-type: 'post',
-beforeSend: function ()
-{
-   $('#loadergif').show();
-},
-success: function (response)
-{
-  $('#loadergif').hide(); 
-  if(response=='')
-  {  
-     NotifiAlert("No se ha obtenido resultados, compruebe su conexión","w3-red",6000);
+
+          var objt = JSON.parse(response);
+          if (objt.session == 'true') {
+
+            if (objt.estado == 'ok') {
+              NotifiAlert(objt.mensaje, "w3-green", 4000);
+              OpenOtherOption('submenu/config/Metodo de pago', 'Metodo de pago')
+            }
+            else {
+              NotifiAlert(objt.mensaje, "w3-red", 4000);
+            }
+
+
+          }
+          else {
+            CerrarSesion();
+          }
+
+
+        }
+
+
+      },
+
+      error: function (response) {
+        NotifiAlert("Verifique su conexión a internet", "w3-red", 6000);
+        $('#loadergif').hide();
+      }
+
+    });
   }
-  else 
-  {
-  
-   
-    var objt=JSON.parse(response);
-    if(objt.session=='true')
-    {
-    
-       if(objt.estado=='ok')
-       {
-            NotifiAlert(objt.mensaje,"w3-green",4000);
-            OpenOtherOption('submenu/config/Metodo de pago','Metodo de pago');
-       }
-       else
-       {
-             NotifiAlert(objt.mensaje,"w3-red",4000);
-       }
-      
-          
-    }
-    else
-    {
-        CerrarSesion();
-    }
-       
-	    
-  }
-  
-  
-},
-
-error: function (response)
-{
-      NotifiAlert("Verifique su conexión a internet","w3-red",6000);
-      $('#loadergif').hide();
-}
-
-});
-}
-</script>
-<script>
-function Delpaymeth(id)
-{
-var param={
-'id': id
-};
-
-$.ajax({
-data:param,
-url: 'https://'+UrlAPI+'/AppDelCuentBank',
-type: 'post',
-beforeSend: function ()
-{
-   $('#loadergif').show();
-},
-success: function (response)
-{
-  $('#loadergif').hide(); 
-  if(response=='')
-  {  
-     NotifiAlert("No se ha obtenido resultados, compruebe su conexión","w3-red",6000);
-  }
-  else 
-  {
-  
-   
-    var objt=JSON.parse(response);
-    if(objt.session=='true')
-    {
-    
-       if(objt.estado=='ok')
-       {
-            NotifiAlert(objt.mensaje,"w3-green",4000);
-            OpenOtherOption('submenu/config/Metodo de pago','Metodo de pago')
-       }
-       else
-       {
-             NotifiAlert(objt.mensaje,"w3-red",4000);
-       }
-      
-          
-    }
-    else
-    {
-        CerrarSesion();
-    }
-       
-	    
-  }
-  
-  
-},
-
-error: function (response)
-{
-      NotifiAlert("Verifique su conexión a internet","w3-red",6000);
-      $('#loadergif').hide();
-}
-
-});
-}
 </script>
