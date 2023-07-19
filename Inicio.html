@@ -64,9 +64,9 @@
       </div>
 
       <div class="w3-container">
-          <div class="w3-center w3-panel w3-white w3-round-large w3-card-2 w3-padding-16" style="min-height:89.5px">
+          <!-- <div class="w3-center w3-panel w3-white w3-round-large w3-card-2 w3-padding-16" style="min-height:89.5px">
               <div id="listamercados">&nbsp;</div>
-          </div>
+          </div> -->
           
         <!-- <div class="w3-col l12 m12 s12">
           <div class="w3-col s8 m8 l8 w3-white w3-round-large w3-card-2 w3-padding">
@@ -101,7 +101,7 @@
       </div>
       <div style="padding:12px" class="w3-row-padding">
         <div class="w3-col l8">
-          <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+          <div>
             <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Site Traffic</header>
             <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Recent Order Tables
@@ -109,84 +109,10 @@
               <div class="w3-responsive">
                 <table class="w3-table w3-bordered">
                   <tbody><tr>
-                    <th>Photo</th>
-                    <th>Product</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Date</th>
+                    <th>Moneda</th>
+                    <th>Precio</th>
                   </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Headphone GL</td>
-                    <td>$1,840 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-danger"></i> pending </span>
-                    </td>
-                    <td>10 July 2018</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Clasic Shoes</td>
-                    <td>$1,520 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-success"></i> completed </span>
-                    </td>
-                    <td>12 July 2018</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Hand Watch</td>
-                    <td>$1,620 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-warning"></i> delayed </span>
-                    </td>
-                    <td>14 July 2018</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Hand Camera</td>
-                    <td>$2,220 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-info"></i> on schedule </span>
-                    </td>
-                    <td>16 July 2018</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Iphone-X Pro</td>
-                    <td>$9,890 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-success"></i> completed </span>
-                    </td>
-                    <td>17 July 2018</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <i class="fa fa-image w3-opacity w3-margin-left"></i>
-                    </td>
-                    <td>Ladies Purse</td>
-                    <td>$3,420 USD</td>
-                    <td>
-                      <span class="badge-dot">
-                        <i class="w3-danger"></i> pending </span>
-                    </td>
-                    <td>18 July 2018</td>
-                  </tr>
+                  <div id="listamercados">&nbsp;</div>
                 </tbody></table>
               </div>
             </div>
@@ -285,21 +211,32 @@ success: function (response)
           if(i==0){
              MercadoDisplay='display:block';
           }
-          MercadoData+=`<div class="w3-col s12 m12 l12 w3-animate-right" id="listprecios${i}" style="${MercadoDisplay}">`;
-          for (var j = 0; j < 3; j++){
+          // MercadoData+=`<div class="w3-col s12 m12 l12 w3-animate-right" id="listprecios${i}" style="${MercadoDisplay}">`;
+          // for (var j = 0; j < 3; j++){
             
            
            MercadoData+=`
-           <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
-            <div>
-              <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
-              <span>${objt.mercados[i][j]}</span>
-              <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
-            </div>
-           </div>`;
-          }
+            <tr onclick="Parestrading('${objt.mercados[i][j]}')">
+              <td>
+                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
+                <span>${objt.mercados[i][j]}</span>  
+              </td>
+              <td>
+                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+              </td>
+            </tr>`;
+          // }
+
+
+          // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
+          //   <div>
+          //     <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
+          //     <span>${objt.mercados[i][j]}</span>
+          //     <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+          //   </div>
+          //  </div>
           
-          MercadoData+=`</div>`;
+          // MercadoData+=`</div>`;
        }
        $('#listamercados').html(MercadoData);
         
@@ -314,10 +251,10 @@ success: function (response)
               $('#inicPric'+key).html(formatonumero(JsonPrecios[key],decimal)+' USD');
             })
         }
-        if(typeof JsonPrecios==='undefined')
-        { 
-           setTimeout(function(){ InicioPrecios(); }, 500);
-        }
+        // if(typeof JsonPrecios==='undefined')
+        // { 
+        //    setTimeout(function(){ InicioPrecios(); }, 500);
+        // }
         InicioPrecios();
         
     }
