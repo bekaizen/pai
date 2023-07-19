@@ -248,10 +248,10 @@ success: function (response)
               $('#inicPric'+key).html(formatonumero(JsonPrecios[key],decimal)+' USD');
             })
         }
-        if(typeof JsonPrecios==='undefined')
-        { 
-           setTimeout(function(){ InicioPrecios(); }, 500);
-        }
+        // if(typeof JsonPrecios==='undefined')
+        // { 
+        //    setTimeout(function(){ InicioPrecios(); }, 500);
+        // }
         InicioPrecios();
         
     }
