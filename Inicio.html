@@ -210,20 +210,18 @@ success: function (response)
           if(i==0){
              MercadoDisplay='display:block';
           }
-          // MercadoData+=`<div class="w3-col s12 m12 l12 w3-animate-right" id="listprecios${i}" style="${MercadoDisplay}">`;
+          MercadoData+=`<tr id="listprecios${i}" onclick="Parestrading('${objt.mercados[i][j]}')" style="${MercadoDisplay}">`;
           for (var j = 0; j < 3; j++){
             
            
            MercadoData+=`
-            <tr onclick="Parestrading('${objt.mercados[i][j]}')">
               <td>
                 <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
                 <span>${objt.mercados[i][j]}</span>  
               </td>
               <td>
                 <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
-              </td>
-            </tr>`;
+              </td>`;
           }
 
 
@@ -235,7 +233,7 @@ success: function (response)
           //   </div>
           //  </div>
           
-          // MercadoData+=`</div>`;
+          MercadoData+=`</tr>`;
        }
        $('#listamercados').html(MercadoData);
         
