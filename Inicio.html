@@ -90,12 +90,12 @@
               </div>
           </div> -->
           
-          <div onclick="OpenOtherOption('submenu/servicios/header','Servicios')" class="w3-col s4 m4 l4 w3-padding-left">
+          <!-- <div onclick="OpenOtherOption('submenu/servicios/header','Servicios')" class="w3-col s4 m4 l4 w3-padding-left">
             <div class="w3-col l12 m12 s12 w3-card-2 w3-white w3-round-large w3-padding-8 w3-container w3-center">
               <i class="fa-solid fa-shop w3-xxlarge w3-text-blue"></i>
               <small class="w3-col s12 m12 l12 w3-padding-top w3-text-grey">Pagos y servicios</small>
             </div>
-          </div> 
+          </div>  -->
         </div> 
         
       </div>
@@ -195,11 +195,11 @@
 
         <div class="w3-col l4">
           <div class="w3-padding-8">
-            <button class="w3-btn w3-blue w3-center-align"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
+            <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
           </div>
           <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-            <div class="w3-padding-8">
-              <span style="margin:0;padding:0;"><b>Tasa de venta</b></span>
+            <div class="w3-padding">
+              <span><b>Tasa de venta</b></span>
               <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
               <b class="w3-col s12 m12 l12" ><span id="tasacompra"> </span> </b>
             </div>
