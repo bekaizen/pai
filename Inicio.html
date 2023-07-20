@@ -1,16 +1,17 @@
 <script>
-  $('#menusup').hide();  
+  $('#menusup').hide();
   EstatusBarColor('1565c0');
 </script>
 
-<div class="w3-blue" style="background-color:#333;  min-height: 43px; max-height:43px; color:#575757; font-weight: 700; font-size:14px; display:flex; align-items:center;">
+<div class="w3-blue"
+  style="background-color:#333;  min-height: 43px; max-height:43px; color:#575757; font-weight: 700; font-size:14px; display:flex; align-items:center;">
   <marquee id="msjrapido" behavior="" direction="left"></marquee>
-</div> 
+</div>
 <div class="">
   <div>
-      <div class="w3-blue w3-col l12">
-          <div class="w3-container w3-padding-8 w3-blue">
-              <!-- <div class="w3-col s12 m12 l12">
+    <div class="w3-blue w3-col l12">
+      <div class="w3-container w3-padding-8 w3-blue">
+        <!-- <div class="w3-col s12 m12 l12">
                   <div class="w3-col s2 m2 l2">
                      <i onclick="OpenOtherOption('submenu/Inicio/Perfil','Perfil')"  class="fa-solid fa-circle-user w3-xlarge w3-text-white"></i>
                   </div>
@@ -22,13 +23,13 @@
                       <i onclick="OpenOtherOption('submenu/Inicio/Configuracion','Configuracion')" class="fa-solid fa-gear w3-right w3-xlarge w3-text-white w3-col s4 m4 l4"></i>
                   </div>
               </div> -->
-              
-            <div style="min-height:auto; padding:16px 0;" id="imgCarrousel"></div>
-            
-          </div>
-      </div>
 
-      <!-- <div class="w3-container" style="margin-top:0px">
+        <div style="min-height:auto; padding:16px 0;" id="imgCarrousel"></div>
+
+      </div>
+    </div>
+
+    <!-- <div class="w3-container" style="margin-top:0px">
           <div class="w3-panel w3-white w3-round-large w3-card-2 w3-padding-16">
               <div class="w3-col s12 m12 l12">
                   <div class="w3-col s3 m3 l3 w3-center" style="text-align:  center;">
@@ -59,16 +60,16 @@
           </div>
       </div> -->
 
-      <!-- <div class="w3-container">
+    <!-- <div class="w3-container">
           <b>MERCADOS</b>
       </div> -->
 
-      <div class="w3-container">
-          <!-- <div class="w3-center w3-panel w3-white w3-round-large w3-card-2 w3-padding-16" style="min-height:89.5px">
+    <div class="w3-container">
+      <!-- <div class="w3-center w3-panel w3-white w3-round-large w3-card-2 w3-padding-16" style="min-height:89.5px">
               <div id="listamercados">&nbsp;</div>
           </div> -->
-          
-        <!-- <div class="w3-col l12 m12 s12">
+
+      <!-- <div class="w3-col l12 m12 s12">
           <div class="w3-col s8 m8 l8 w3-white w3-round-large w3-card-2 w3-padding">
               <div class="w3-col s7 m7 l7">
                   <span style="margin:0;padding:0;"><b>Tasa de venta</b></span>
@@ -89,177 +90,175 @@
                   </h3>
               </div>
           </div> -->
-          
-          <!-- <div onclick="OpenOtherOption('submenu/servicios/header','Servicios')" class="w3-col s4 m4 l4 w3-padding-left">
+
+      <!-- <div onclick="OpenOtherOption('submenu/servicios/header','Servicios')" class="w3-col s4 m4 l4 w3-padding-left">
             <div class="w3-col l12 m12 s12 w3-card-2 w3-white w3-round-large w3-padding-8 w3-container w3-center">
               <i class="fa-solid fa-shop w3-xxlarge w3-text-blue"></i>
               <small class="w3-col s12 m12 l12 w3-padding-top w3-text-grey">Pagos y servicios</small>
             </div>
           </div>  -->
-        </div> 
-        
-      </div>
-      <div style="padding:8px" class="w3-row-padding">
-
-        <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-          <div class="w3-row">
-            <div class="w3-col l3 w3-container w3-border-right" onclick="OpenOtherOption('submenu/Inicio/Afiliados','Afiliados')">
-              <div class="w3-padding">
-                <h5><i class="fa-solid fa-people-group w3-xlarge"></i> <span class="w3-right">Afiliados</span></h5>
-                <div class="progress w3-light" style="height:3px;">
-                  <div class="progress-bar w3-info" style="width:55%;height:3px;"></div>
-                </div>
-                <p>Total de afiliados <span class="w3-right">0 ↑</span></p>
-              </div>
-            </div>
-            <div class="w3-col l3 w3-container w3-border-right" onclick="OpenOtherOption('submenu/nft/header','header')">
-              <div class="w3-padding">
-                <h5><i class="fa-regular fa-image"></i> <span class="w3-right">NFT</span></h5>
-                <div class="progress w3-light" style="height:3px;">
-                  <div class="progress-bar w3-success" style="width:55%;height:3px;"></div>
-                </div>
-                <p>Total invertidos <span class="w3-right">0 ↑</span></p>
-              </div>
-            </div>
-            <div class="w3-col l3 w3-container w3-border-right" onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')">
-              <div class="w3-padding">
-                <h5><i class="w3-xlarge fa-solid fa-square-poll-vertical fa-beat-fade"></i> <span class="w3-right">Inversiones</span></h5>
-                <div class="progress w3-light" style="height:3px;">
-                  <div class="progress-bar w3-warning" style="width:55%;height:3px;"></div>
-                </div>
-                <p>Total en inversion <span class="w3-right">0 ↑</span></p>
-              </div>
-            </div>
-            <div class="w3-col l3 w3-container" onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')">
-              <div class="w3-padding">
-                <h5><i class="fa-solid fa-people-arrows w3-xlarge"></i> <span class="w3-right">Envios</span></h5>
-                <div class="progress w3-light" style="height:3px;">
-                  <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
-                </div>
-                <p>Total de envios <span class="w3-right">0 ↑</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="w3-col l8">
-          <div>
-            <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-              <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Inicio
-              </header>
-              <div class="w3-responsive">
-                <table class="w3-table w3-bordered">
-                  <tbody id="listamercados">
-                      
-                </tbody></table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="w3-col l4">
-          <!-- <div class="w3-padding-8">
-            <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
-          </div> -->
-          <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-            <div class="w3-padding">
-              <span><b>Tasa de venta</b></span>
-              <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
-              <b class="w3-col s12 m12 l12" ><span id="tasacompra"> </span> </b>
-            </div>
-            <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-              <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
-            </div> -->
-            <table class="w3-table w3-bordered w3-border-top">
-              <tbody><tr>
-                <td>Venta Minima</td>
-                <td><b><span id="ventaMinima"></span> USD</b></td>
-              </tr>
-              <tr>
-                <td>Venta Maxima</td>
-                <td><b><span id="ventaMax"></span> USD</b></td>
-              </tr>
-            </tbody></table>
-          </div>
-        </div>
-      </div>
+    </div>
 
   </div>
+  <div style="padding:8px" class="w3-row-padding">
+
+    <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+      <div class="w3-row">
+        <div class="w3-col l3 w3-container w3-border-right"
+          onclick="OpenOtherOption('submenu/Inicio/Afiliados','Afiliados')">
+          <div class="w3-padding">
+            <h5><i class="fa-solid fa-people-group w3-xlarge"></i> <span class="w3-right">Afiliados</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-info" style="width:55%;height:3px;"></div>
+            </div>
+            <p>Total de afiliados <span class="w3-right">0 ↑</span></p>
+          </div>
+        </div>
+        <div class="w3-col l3 w3-container w3-border-right" onclick="OpenOtherOption('submenu/nft/header','header')">
+          <div class="w3-padding">
+            <h5><i class="fa-regular fa-image"></i> <span class="w3-right">NFT</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-success" style="width:55%;height:3px;"></div>
+            </div>
+            <p>Total invertidos <span class="w3-right">0 ↑</span></p>
+          </div>
+        </div>
+        <div class="w3-col l3 w3-container w3-border-right"
+          onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')">
+          <div class="w3-padding">
+            <h5><i class="w3-xlarge fa-solid fa-square-poll-vertical fa-beat-fade"></i> <span
+                class="w3-right">Inversiones</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-warning" style="width:55%;height:3px;"></div>
+            </div>
+            <p>Total en inversion <span class="w3-right">0 ↑</span></p>
+          </div>
+        </div>
+        <div class="w3-col l3 w3-container" onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')">
+          <div class="w3-padding">
+            <h5><i class="fa-solid fa-people-arrows w3-xlarge"></i> <span class="w3-right">Envios</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
+            </div>
+            <p>Total de envios <span class="w3-right">0 ↑</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-col l8">
+      <div>
+        <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+          <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Inicio
+          </header>
+          <div class="w3-responsive">
+            <table class="w3-table w3-bordered">
+              <tbody id="listamercados">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-col l4">
+      <!-- <div class="w3-padding-8">
+            <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
+          </div> -->
+      <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+        <div class="w3-padding">
+          <span><b>Tasa de venta</b></span>
+          <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
+          <b class="w3-col s12 m12 l12"><span id="tasacompra"> </span> </b>
+        </div>
+        <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+              <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
+            </div> -->
+        <table class="w3-table w3-bordered w3-border-top">
+          <tbody>
+            <tr>
+              <td>Venta Minima</td>
+              <td><b><span id="ventaMinima"></span> USD</b></td>
+            </tr>
+            <tr>
+              <td>Venta Maxima</td>
+              <td><b><span id="ventaMax"></span> USD</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 <script>
-$.ajax({
-url: 'https://'+UrlAPI+'/AppDatosDeInicio',
-type: 'post',
-beforeSend: function ()
-{
-   //$('#loadergif').show(); 
-   $('#loaderspin').show();
-},
-success: function (response)
-{
-  $('#loadergif').hide(); 
-  $('#loaderspin').hide();
-  
-  if(response=='')
-  { 
-     NotifiAlert('Problemas con el servidor','w3-red',6000); 
-  }
-  else 
-  {
-  
-    var objt=JSON.parse(response);
-    if(objt.session=='true')
-    {
-    
-        //balance usuario
-        $('#iniciobalance').html(formatonumero(objt.balance,2));
-        $('#msjrapido').html(objt.msjrapido); //marque
+  $.ajax({
+    url: 'https://' + UrlAPI + '/AppDatosDeInicio',
+    type: 'post',
+    beforeSend: function () {
+      //$('#loadergif').show(); 
+      $('#loaderspin').show();
+    },
+    success: function (response) {
+      $('#loadergif').hide();
+      $('#loaderspin').hide();
 
-        
-        $('#ventaMinima').html(formatonumero(objt.tasas.ventaMinima));
-        $('#ventaMax').html(formatonumero(objt.tasas.ventaMax));
-        $('#tasacompra').html(formatonumero(objt.tasas.tasacompra-3,2)+' a '+formatonumero(objt.tasas.tasacompra,2));
+      if (response == '') {
+        NotifiAlert('Problemas con el servidor', 'w3-red', 6000);
+      }
+      else {
 
-        imgCarrousel='';
-        carrouseldiplay='block';
-        for(i=0;i<objt.imagenes2.length;i++)
-        {
-            if(i>0){
-              carrouseldiplay='none';  
+        var objt = JSON.parse(response);
+        if (objt.session == 'true') {
+
+          //balance usuario
+          $('#iniciobalance').html(formatonumero(objt.balance, 2));
+          $('#msjrapido').html(objt.msjrapido); //marque
+
+
+          $('#ventaMinima').html(formatonumero(objt.tasas.ventaMinima));
+          $('#ventaMax').html(formatonumero(objt.tasas.ventaMax));
+          $('#tasacompra').html(formatonumero(objt.tasas.tasacompra - 3, 2) + ' a ' + formatonumero(objt.tasas.tasacompra, 2));
+
+          imgCarrousel = '';
+          carrouseldiplay = 'block';
+          for (i = 0; i < objt.imagenes2.length; i++) {
+            if (i > 0) {
+              carrouseldiplay = 'none';
             }
-            imgCarrousel+=`<img id="img`+i+`" style="display:`+carrouseldiplay+`" onclick="abrirEnlaceExterno('`+objt.imagenes2[i].enlace+`')" class="mySlides w3-round-xlarge w3-animate-right" width="100%" height="200px" src="`+objt.imagenes2[i].img+`">`;
-            
-        }
-        $('#imgCarrousel').html(imgCarrousel);
-        
-        //activar carrousel
-        if(typeof myInterval !== 'undefined')
-        {
-          clearInterval(myInterval);
-        }
-        myInterval=setInterval(function () {carousel(objt.imagenes.length);InicioPrecios()} , 10000);
-        
-        
-        
-       //lista de mercados
-       MercadoData=`
+            imgCarrousel += `<img id="img` + i + `" style="display:` + carrouseldiplay + `" onclick="abrirEnlaceExterno('` + objt.imagenes2[i].enlace + `')" class="mySlides w3-round-xlarge w3-animate-right" width="100%" height="200px" src="` + objt.imagenes2[i].img + `">`;
+
+          }
+          $('#imgCarrousel').html(imgCarrousel);
+
+          //activar carrousel
+          if (typeof myInterval !== 'undefined') {
+            clearInterval(myInterval);
+          }
+          myInterval = setInterval(function () { carousel(objt.imagenes.length); InicioPrecios() }, 10000);
+
+
+
+          //lista de mercados
+          MercadoData = `
        
        <tr>
                       <th>Moneda</th>
                       <th>Precio</th>
                       <th>Accion</th>
                     </tr>`;
-       for (var i = 0; i < objt.mercados.length; i++)
-       {  
-          // MercadoDisplay='display:none';
-          // if(i==0){
-          //    MercadoDisplay='display:block';
-          // }
-          MercadoData+=`<tr>`;
-          // for (var j = 0; j < 3; j++){
-            
-           
-           MercadoData+=`
+          for (var i = 0; i < objt.mercados.length; i++) {
+            // MercadoDisplay='display:none';
+            // if(i==0){
+            //    MercadoDisplay='display:block';
+            // }
+            MercadoData += `<tr>`;
+            // for (var j = 0; j < 3; j++){
+
+
+            MercadoData += `
               <td>
                 <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i]}.png'" src="icon/${objt.mercados[i]}.png" width="30px">
                 <span>${objt.mercados[i]}</span>  
@@ -270,111 +269,98 @@ success: function (response)
               <td>
                 <a onclick="Parestrading('${objt.mercados[i]}')">Tradear</a>
               </td>`;
-          // }
+            // }
 
 
-          // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
-          //   <div>
-          //     <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
-          //     <span>${objt.mercados[i][j]}</span>
-          //     <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
-          //   </div>
-          //  </div>
-          
-          MercadoData+=`</tr>`;
-       }
-       $('#listamercados').html(MercadoData);
-        
-        //precios de los mercados
-        function InicioPrecios()
-        {
-            Object.keys(JsonPrecios).forEach(function(key)
-            {
-              if(key=='USDC' || key=='USDT'  || key=='BUSD' || key=='DOGE' || key=='TRX'){ var decimal=6; } else { var decimal=2; }
-              if(key=='BTT'|| key=='SHIB' || key=='PEPE'){ decimal=8; }
-              if(key=='SFP'){decimal=4;}
-              $('#inicPric'+key).html(formatonumero(JsonPrecios[key],decimal)+' USD');
+            // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
+            //   <div>
+            //     <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
+            //     <span>${objt.mercados[i][j]}</span>
+            //     <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+            //   </div>
+            //  </div>
+
+            MercadoData += `</tr>`;
+          }
+          $('#listamercados').html(MercadoData);
+
+          //precios de los mercados
+          function InicioPrecios() {
+            Object.keys(JsonPrecios).forEach(function (key) {
+              if (key == 'USDC' || key == 'USDT' || key == 'BUSD' || key == 'DOGE' || key == 'TRX') { var decimal = 6; } else { var decimal = 2; }
+              if (key == 'BTT' || key == 'SHIB' || key == 'PEPE') { decimal = 8; }
+              if (key == 'SFP') { decimal = 4; }
+              $('#inicPric' + key).html(formatonumero(JsonPrecios[key], decimal) + ' USD');
             })
+          }
+          // if(typeof JsonPrecios==='undefined')
+          // { 
+          //    setTimeout(function(){ InicioPrecios(); }, 500);
+          // }
+          InicioPrecios();
+
         }
-        // if(typeof JsonPrecios==='undefined')
-        // { 
-        //    setTimeout(function(){ InicioPrecios(); }, 500);
-        // }
-        InicioPrecios();
-        
-    }
-    else
-    {
-        CerrarSesion();
-    }
-    
-       
-	    
-  }
-  
-  
-},
+        else {
+          CerrarSesion();
+        }
 
-error: function (response)
-{
-   NotifiAlert('Error de comunicacion','w3-red',6000); 
-   $('#loadergif').hide();
-}
 
-});
+
+      }
+
+
+    },
+
+    error: function (response) {
+      NotifiAlert('Error de comunicacion', 'w3-red', 6000);
+      $('#loadergif').hide();
+    }
+
+  });
 </script>
 <script>
-conteo=0;
-function carousel(total) 
-{ 
-  for(i=0;i<total;i++){
-   if($('#img'+i).attr('style')=='display:block')
-   {
-    $('#img'+i).attr('style','display:none');  
-   }    
+  conteo = 0;
+  function carousel(total) {
+    for (i = 0; i < total; i++) {
+      if ($('#img' + i).attr('style') == 'display:block') {
+        $('#img' + i).attr('style', 'display:none');
+      }
+    }
+    $('#img' + conteo).attr('style', 'display:block');
+    if (conteo == (total - 1)) {
+      conteo = -1;
+    }
+    conteo++;
   }
-  $('#img'+conteo).attr('style','display:block'); 
-  if(conteo==(total-1))
-  {
-    conteo=-1;  
-  }
-  conteo++;
-}
 </script>
 <script>
-//pagina de inicio
-list=-1;
-function listaprecios()
-{
- list=parseFloat(list)+parseFloat(1);   
- //$('#listprecios'+list).show();
- if(list=='0')
- {
-    $('#listprecios1,#listprecios2,#listprecios3').hide();
-    $('#listprecios0').show();
- }
- else if(list=='1')
- {
-    $('#listprecios2,#listprecios0,#listprecios3').hide();
-    $('#listprecios1').show();
- }
- else if(list=='2')
- {
-    $('#listprecios0,#listprecios1,#listprecios3').hide();
-    $('#listprecios2').show(); 
- }
- else
- {
-    $('#listprecios2,#listprecios0,#listprecios1').hide();
-    $('#listprecios3').show();
-    list=-1;
- }
- 
-}
+  //pagina de inicio
+  list = -1;
+  function listaprecios() {
+    list = parseFloat(list) + parseFloat(1);
+    //$('#listprecios'+list).show();
+    if (list == '0') {
+      $('#listprecios1,#listprecios2,#listprecios3').hide();
+      $('#listprecios0').show();
+    }
+    else if (list == '1') {
+      $('#listprecios2,#listprecios0,#listprecios3').hide();
+      $('#listprecios1').show();
+    }
+    else if (list == '2') {
+      $('#listprecios0,#listprecios1,#listprecios3').hide();
+      $('#listprecios2').show();
+    }
+    else {
+      $('#listprecios2,#listprecios0,#listprecios1').hide();
+      $('#listprecios3').show();
+      list = -1;
+    }
 
-if(typeof OtroIntervalo !== 'undefined')
-{
-  clearInterval(OtroIntervalo);
-}
-OtroIntervalo= setInterval(listaprecios, 5500);   
+  }
+
+  if (typeof OtroIntervalo !== 'undefined') {
+    clearInterval(OtroIntervalo);
+  }
+  OtroIntervalo = setInterval(listaprecios, 5500);   
 </script>
