@@ -101,64 +101,63 @@
               <small class="w3-col s12 m12 l12 w3-padding-top w3-text-grey">Pagos y servicios</small>
             </div>
           </div>  -->
-    <!-- </div> -->
+      <!-- </div> -->
 
-  </div>
-  <div style="padding:12px" class="w3-row-padding">
-    <div class="w3-col l8">
-      <div>
-        <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-          <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Mercados
-          </header>
-          <div class="w3-row">
-            <div class="w3-col s4 w3-left">
-              <p>Moneda</p>
+    </div>
+    <div style="padding:12px" class="w3-row-padding">
+      <div class="w3-col l8">
+        <div>
+          <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+            <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Mercados
+            </header>
+            <div class="w3-row">
+              <div class="w3-col s4 w3-left">
+                <p>Moneda</p>
+              </div>
+              <div class="w3-col s4 w3-left">
+                <p>Precio</p>
+              </div>
+              <div class="w3-col s4 w3-left">
+                <p>Accion</p>
+              </div>
             </div>
-            <div class="w3-col s4 w3-left">
-              <p>Precio</p>
-            </div>
-            <div class="w3-col s4 w3-left">
-              <p>Accion</p>
-            </div>
+            <div id="listamercados">&nbsp;</div>
           </div>
-          <div id="listamercados">&nbsp;</div>
+        </div>
+      </div>
+
+      <div class="w3-col l4">
+        <div class="w3-padding-8">
+          <button class="w3-btn w3-blue w3-center-align"
+            onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y
+            servicios</button>
+        </div>
+        <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
+          <div class="w3-padding">
+            <span><b>Tasa de venta</b></span>
+            <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
+            <b class="w3-col s12 m12 l12"><span id="tasacompra"> </span> </b>
+          </div>
+          <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+              <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
+            </div> -->
+          <table class="w3-table w3-bordered w3-border-top">
+            <tbody>
+              <tr>
+                <td>Venta Minima</td>
+                <td><b><span id="ventaMinima"></span> USD</b></td>
+              </tr>
+              <tr>
+                <td>Venta Maxima</td>
+                <td><b><span id="ventaMax"></span> USD</b></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="w3-col l4">
-    <div class="w3-padding-8">
-      <button class="w3-btn w3-blue w3-center-align"
-        onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y
-        servicios</button>
-    </div>
-    <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-      <div class="w3-padding">
-        <span><b>Tasa de venta</b></span>
-        <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
-        <b class="w3-col s12 m12 l12"><span id="tasacompra"> </span> </b>
-      </div>
-      <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-              <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
-            </div> -->
-      <table class="w3-table w3-bordered w3-border-top">
-        <tbody>
-          <tr>
-            <td>Venta Minima</td>
-            <td><b><span id="ventaMinima"></span> USD</b></td>
-          </tr>
-          <tr>
-            <td>Venta Maxima</td>
-            <td><b><span id="ventaMax"></span> USD</b></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
-</div>
-
-</div>
 </div>
 <script>
   $.ajax({
