@@ -105,7 +105,7 @@
             <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Recent Order Tables
               </header>
-              <div class="w3-responsive">
+              <div class="w3-responsive w3-cell-row">
                 <div class="w3-container w3-cell">
                   <p>Moneda</p>
                 </div>
@@ -213,7 +213,7 @@ success: function (response)
           // if(i==0){
           //    MercadoDisplay='display:block';
           // }
-          MercadoData+=`<tr id="listprecios${i}">`;
+          MercadoData+=`<div class="w3-cell-row" id="listprecios${i}">`;
           for (var j = 0; j < 3; j++){
             
            
@@ -239,7 +239,7 @@ success: function (response)
           //   </div>
           //  </div>
           
-          MercadoData+=`</tr>`;
+          MercadoData+=`</div>`;
        }
        $('#listamercados').html(MercadoData);
         
