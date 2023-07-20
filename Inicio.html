@@ -107,12 +107,8 @@
               </header>
               <div class="w3-responsive">
                 <table class="w3-table w3-bordered">
-                  <tbody><tr>
-                    <th>Moneda</th>
-                    <th>Precio</th>
-                    <th>Accion</th>
-                  </tr>
-                  <div id="listamercados">&nbsp;</div>
+                  <tbody id="listamercados">
+                    &nbsp;  
                 </tbody></table>
               </div>
             </div>
@@ -211,7 +207,12 @@ success: function (response)
           // if(i==0){
           //    MercadoDisplay='display:block';
           // }
-          MercadoData+=`<tr id="listprecios${i}">`;
+          MercadoData+=`<tr id="listprecios${i}">
+            <tr>
+                    <th>Moneda</th>
+                    <th>Precio</th>
+                    <th>Accion</th>
+                  </tr>`;
           for (var j = 0; j < 3; j++){
             
            
