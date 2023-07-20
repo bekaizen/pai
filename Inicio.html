@@ -220,14 +220,14 @@
 
               MercadoData += `
                   <div class="w3-col s4 w3-left">
-                    <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i]}.png'" src="icon/${objt.mercados[i]}.png" width="30px">
-                    <span>${objt.mercados[i]}</span>  </div>
+                    <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][i]}.png'" src="icon/${objt.mercados[i][i]}.png" width="30px">
+                    <span>${objt.mercados[i][i]}</span>  </div>
                   <div class="w3-col s4 w3-left">
-                    <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i]}">&nbsp;</small>
+                    <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][i]}">&nbsp;</small>
                   </div>
                   <div class="w3-col s4 w3-left">
                     <a href="javascript:void(0)" onclick="OpenOption('Transferir')" style="cursor:pointer">Convertir</a>
-                    <a href="javascript:void(0)" onclick="Parestrading('${objt.mercados[i]}')" style="cursor:pointer">Tradear</a>
+                    <a href="javascript:void(0)" onclick="Parestrading('${objt.mercados[i][i]}')" style="cursor:pointer">Tradear</a>
                   </div>`;
             // }
 
