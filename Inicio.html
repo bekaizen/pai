@@ -164,7 +164,7 @@
             <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
           </div> -->
       <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-        <div style="min-height:auto; padding:16px 0;" id="imgCarrousel"></div>
+        <div style="min-height:auto; padding:16px; box-sizing: border-box;" id="imgCarrousel"></div>
         <div class="w3-padding">
           <span><b>Tasa de venta</b></span>
           <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
@@ -226,7 +226,7 @@
             if (i > 0) {
               carrouseldiplay = 'none';
             }
-            imgCarrousel += `<img id="img` + i + `" style="display:` + carrouseldiplay + `" onclick="abrirEnlaceExterno('` + objt.imagenes2[i].enlace + `')" class="w3-round-xlarge w3-animate-right" width="50%" height="400px" src="` + objt.imagenes2[i].img + `">`;
+            imgCarrousel += `<img id="img` + i + `" style="display:` + carrouseldiplay + `" onclick="abrirEnlaceExterno('` + objt.imagenes2[i].enlace + `')" class="w3-round-xlarge w3-animate-right" width="100%" height="300px" src="` + objt.imagenes2[i].img + `">`;
 
           }
           $('#imgCarrousel').html(imgCarrousel);
