@@ -103,15 +103,16 @@
         <div class="w3-col l8">
           <div>
             <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-              <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Mercados
+              <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Recent Order Tables
               </header>
               <div class="w3-responsive">
                 <table class="w3-table w3-bordered">
-                  <tbody id="listamercados">
-                    <tr>
-                      <th>Moneda</th>
-                      <th>Precio</th>
-                    </tr>
+                  <tbody><tr>
+                    <th>Moneda</th>
+                    <th>Precio</th>
+                    <th>Accion</th>
+                  </tr>
+                  <div id="listamercados">&nbsp;</div>
                 </tbody></table>
               </div>
             </div>
@@ -206,12 +207,12 @@ success: function (response)
        MercadoData='';
        for (var i = 0; i < objt.mercados.length; i++)
        {  
-          MercadoDisplay='display:none';
-          if(i==0){
-             MercadoDisplay='display:block';
-          }
-          MercadoData+=`<tr onclick="Parestrading('${objt.mercados[i][j]}')" >`;
-          // for (var j = 0; j < 3; j++){
+          // MercadoDisplay='display:none';
+          // if(i==0){
+          //    MercadoDisplay='display:block';
+          // }
+          MercadoData+=`<tr id="listprecios${i}" style="${MercadoDisplay}">`;
+          for (var j = 0; j < 3; j++){
             
            
            MercadoData+=`
@@ -221,8 +222,11 @@ success: function (response)
               </td>
               <td>
                 <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+              </td>
+              <td>
+                <a onclick="Parestrading('${objt.mercados[i][j]}')">Tradear</a>
               </td>`;
-          // }
+          }
 
 
           // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
