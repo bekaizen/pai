@@ -106,16 +106,16 @@
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Recent Order Tables
               </header>
               <div class="w3-responsive">
-                <table class="w3-table w3-bordered">
-                  <tbody id="listamercados">
-                    <tr>
-                      <th>Moneda</th>
-                      <th>Precio</th>
-                      <th>Accion</th>
-                    </tr>
-                    &nbsp;
-                      
-                </tbody></table>
+                <div class="w3-container w3-red w3-cell">
+                  <p>Moneda</p>
+                </div>
+                <div class="w3-container w3-green w3-cell">
+                  <p>Precio</p>
+                </div>
+                <div class="w3-container w3-blue w3-cell">
+                  <p>Accion</p>
+                </div>
+                <div id="listamercados">&nbsp;</div>
               </div>
             </div>
           </div>
@@ -214,21 +214,21 @@ success: function (response)
           //    MercadoDisplay='display:block';
           // }
           MercadoData+=`<tr id="listprecios${i}">`;
-          // for (var j = 0; j < 3; j++){
+          for (var j = 0; j < 6; j++){
             
            
            MercadoData+=`
-              <td>
-                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][i]}.png'" src="icon/${objt.mercados[i][i]}.png" width="30px">
-                <span>${objt.mercados[i][i]}</span>  
-              </td>
-              <td>
-                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][i]}">&nbsp;</small>
-              </td>
-              <td>
-                <a onclick="Parestrading('${objt.mercados[i][i]}')">Tradear</a>
-              </td>`;
-          // }
+              <div class="w3-container w3-red w3-cell w3-mobile">
+                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
+                <span>${objt.mercados[i][j]}</span>  
+              </div>
+              <div class="w3-container w3-green w3-cell w3-mobile">
+                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+              </div>
+              <div class="w3-container w3-blue w3-cell w3-mobile">
+                <a onclick="Parestrading('${objt.mercados[i][j]}')">Tradear</a>
+              </div>`;
+          }
 
 
           // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
