@@ -214,22 +214,22 @@
             // if(i==0){
             //    MercadoDisplay='display:block';
             // }
-            MercadoData += `<div class="w3-row" id="listprecios${i}">`;
-            for (var j = 0; j < 1; j++) {
+            MercadoData += `<div class="w3-row">`;
+            // for (var j = 0; j < 1; j++) {
 
 
               MercadoData += `
                   <div class="w3-col s4 w3-left">
-                    <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
-                    <span>${objt.mercados[i][j]}</span>  </div>
+                    <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i]}.png'" src="icon/${objt.mercados[i]}.png" width="30px">
+                    <span>${objt.mercados[i]}</span>  </div>
                   <div class="w3-col s4 w3-left">
-                    <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+                    <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i]}">&nbsp;</small>
                   </div>
                   <div class="w3-col s4 w3-left">
                     <a href="javascript:void(0)" onclick="OpenOption('Transferir')" style="cursor:pointer">Convertir</a>
-                    <a href="javascript:void(0)" onclick="Parestrading('${objt.mercados[i][j]}')" style="cursor:pointer">Tradear</a>
+                    <a href="javascript:void(0)" onclick="Parestrading('${objt.mercados[i]}')" style="cursor:pointer">Tradear</a>
                   </div>`;
-            }
+            // }
 
 
             // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
