@@ -105,15 +105,10 @@
             <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Recent Order Tables
               </header>
-              <div class="w3-cell-row">
-                <div class="w3-container w3-cell">
-                  <p>Moneda</p>
-                </div>
-                <div class="w3-container w3-cell">
-                  <p>Precio</p>
-                </div>
-                <div class="w3-container w3-cell">
-                  <p>Accion</p>
+                <div class="w3-row">
+                  <div class="w3-col l7 m6 s4 w3-left"><p>Moneda</p></div>
+                  <div class="w3-col l3 m3 s4 w3-left"><p>Precio</p></div>
+                  <div class="w3-col l6 m3 s4 w3-left"><p>Accion</p></div>
                 </div>
                 <div id="listamercados">&nbsp;</div>
               </div>
@@ -213,21 +208,20 @@ success: function (response)
           // if(i==0){
           //    MercadoDisplay='display:block';
           // }
-          MercadoData+=`<div class="w3-cell-row" id="listprecios${i}">`;
+          MercadoData+=`<div class="w3-row" id="listprecios${i}">`;
           for (var j = 0; j < 3; j++){
             
            
            MercadoData+=`
-              <div class="w3-container w3-cell">
-                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
-                <span>${objt.mercados[i][j]}</span>  
-              </div>
-              <div class="w3-container w3-cell">
-                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
-              </div>
-              <div class="w3-container w3-cell">
-                <a onclick="Parestrading('${objt.mercados[i][j]}')" style="cursor:pointer">Tradear</a>
-              </div>`;
+                  <div class="w3-col l7 m6 s4 w3-left">
+                    <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
+                    <span>${objt.mercados[i][j]}</span>  </div>
+                  <div class="w3-col l3 m3 s4 w3-left">
+                    <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
+                  </div>
+                  <div class="w3-col l6 m3 s4 w3-left">
+                    <a onclick="Parestrading('${objt.mercados[i][j]}')" style="cursor:pointer">Tradear</a>
+                  </div>`;
           }
 
 
