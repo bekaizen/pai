@@ -96,7 +96,7 @@
                     <input type="range" class="w3-margin-top w3-margin-bottom w3-col l12" id="vol"
                         oninput="$('#equivcompr').html(formatNumber(value,2));$('#comprcant').val(validpg(value/$('#precompr').val()*1.0000,GPrecDeciml[Gmoneda]['montoDecimal']))"
                         value="0" min="0.00" step="0.01" max="">
-                    <div class="w3-margin-top">Equivalente: <span id="equivcompr">0</span></div>
+                    <div class="w3-margin-top">Equivalente: <span id="equivcompr">0</span> <span id="mercadoAqiv"></span></div>
 
                     <button class="w3-btn w3-green w3-col l12 w3-margin-top w3-round"
                         onclick="Trade('compra',$('#precompr').val(),$('#comprcant').val())">Comprar</button>
@@ -115,7 +115,7 @@
                     <input type="range" class="w3-margin-top w3-margin-bottom w3-col l12" id="volvent"
                         oninput="$('#equivvent').html(formatNumber(validpg(value*$('#prevent').val()*1.0000,2),2));$('#ventcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))"
                         value="0.00000000" min="0" step="0.00000001" max="">
-                    <div class="w3-margin-top">Equivalente: <span id="equivvent">0</span></div>
+                    <div class="w3-margin-top">Equivalente: <span id="equivvent">0</span> <span id="mercadoEquivVent"></span></div>
 
                     <button class="w3-btn w3-red w3-col l12 w3-margin-top w3-round"
                         onclick="Trade('venta',$('#prevent').val(),$('#ventcant').val())">Vender</button>
