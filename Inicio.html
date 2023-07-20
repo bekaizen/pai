@@ -116,9 +116,9 @@
         </div>
 
         <div class="w3-col l4">
-          <div class="w3-padding-8">
+          <!-- <div class="w3-padding-8">
             <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
-          </div>
+          </div> -->
           <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
             <div class="w3-padding">
               <span><b>Tasa de venta</b></span>
@@ -219,14 +219,14 @@ success: function (response)
            
            MercadoData+=`
               <td>
-                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][i]}.png'" src="icon/${objt.mercados[i][i]}.png" width="30px">
-                <span>${objt.mercados[i][i]}</span>  
+                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i]}.png'" src="icon/${objt.mercados[i]}.png" width="30px">
+                <span>${objt.mercados[i]}</span>  
               </td>
               <td>
-                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][i]}">&nbsp;</small>
+                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i]}">&nbsp;</small>
               </td>
               <td>
-                <a onclick="Parestrading('${objt.mercados[i][i]}')">Tradear</a>
+                <a onclick="Parestrading('${objt.mercados[i]}')">Tradear</a>
               </td>`;
           // }
 
