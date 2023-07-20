@@ -106,9 +106,9 @@
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Mercados
               </header>
                 <div class="w3-row w3-padding-8">
-                  <div class="w3-col m6 s4 w3-left"><p>Moneda</p></div>
-                  <div class="w3-col m3 s4 w3-left"><p>Precio</p></div>
-                  <div class="w3-col m3 s4 w3-left"><p>Accion</p></div>
+                  <div class="w3-col s4 w3-left"><p>Moneda</p></div>
+                  <div class="w3-col s4 w3-left"><p>Precio</p></div>
+                  <div class="w3-col s4 w3-left"><p>Accion</p></div>
                 </div>
                 <div id="listamercados">&nbsp;</div>
               </div>
@@ -213,13 +213,13 @@ success: function (response)
             
            
            MercadoData+=`
-                  <div class="w3-col m6 s4 w3-left">
+                  <div class="w3-col s4 w3-left">
                     <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
                     <span>${objt.mercados[i][j]}</span>  </div>
-                  <div class="w3-col m3 s4 w3-left">
+                  <div class="w3-col s4 w3-left">
                     <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
                   </div>
-                  <div class="w3-col m3 s4 w3-left">
+                  <div class="w3-col s4 w3-left">
                     <a onclick="Parestrading('${objt.mercados[i][j]}')" style="cursor:pointer">Tradear</a>
                   </div>`;
           }
