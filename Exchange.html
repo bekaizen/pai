@@ -107,9 +107,12 @@
                 <div class="w3-col l6 m6 s6 w3-margin-top w3-margin-bottom w3-container">
                     <small class="w3-margin-bottom">&nbsp; Balance <span><b id="balcripto">0.00000000</b> <span
                                 id="balancTag"></span></span></small>
-                    <input type="number"
-                        oninput="$('#equivvent').html(formatNumber(value*$('#ventcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}"
-                        class="w3-input w3-margin-top w3-border" placeholder="Precio" id="prevent">
+                    <div style="position: relative">
+                        <input type="number"
+                            oninput="$('#equivvent').html(formatNumber(value*$('#ventcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}"
+                            class="w3-input w3-margin-top w3-border" placeholder="Precio" id="prevent">
+                        <label for="prevent" style="position: absolute; right:0; top:30px; color:#454545">USDT</label>
+                    </div>
                     <input type="number" class="w3-input w3-margin-top w3-border" placeholder="BTC" id="ventcant"
                         oninput="if(validadecimales(value,GPrecDeciml[Gmoneda]['montoDecimal'])){$('#ventcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))};$('#equivvent').html(formatNumber(validpg(value*$('#prevent').val()*1.0000,2),2));$('#volvent').val(validpg(value,8))">
                     <input type="range" class="w3-margin-top w3-margin-bottom w3-col l12" id="volvent"
