@@ -172,6 +172,7 @@
           <h2>
             <b class="w3-col s12 m12 l12"><span id="tasacompra"> </span> </b>
           </h2>
+          <p>Montos inferiores a 100 se calcularan a una tasa de <span id="tasaMinima"></span></p>
         </div>
         <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
               <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
@@ -189,7 +190,9 @@
           </tbody>
         </table>
 
-        <button class="w3-btn">Vender</button>
+        <a href="javascript:void(0)" onclick="OpenOption('Vender')"
+                    class="w3-btn w3-block w3-blue">
+                    <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
       </div>
     </div>
   </div>
@@ -223,7 +226,8 @@
 
           $('#ventaMinima').html(formatonumero(objt.tasas.ventaMinima));
           $('#ventaMax').html(formatonumero(objt.tasas.ventaMax));
-          $('#tasacompra').html(formatonumero(objt.tasas.tasacompra - 3, 2) + ' a ' + formatonumero(objt.tasas.tasacompra, 2));
+          $('#tasacompra').html(formatonumero(objt.tasas.tasacompra, 2));
+          $('#tasaMinima').html(formatonumero(objt.tasas.tasacompra - 3, 2));
 
           imgCarrousel = '';
           carrouseldiplay = 'block';
