@@ -64,7 +64,11 @@
    <div id="sectionCompr">
     <div class="w3-col s12 l12 m12 w3-margin-top w3-small w3-light-grey">&nbsp;  Balance <span><b id="balfiat">0.00</b> <span id='mercadoBalnc'></span></span></div>
     
-    <input type="number" oninput="$('#equivcompr').html(formatNumber(value*$('#comprcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Precio" min="0" id="precompr" step="0.01">
+    
+    <div style="position: relative">
+        <input type="number" oninput="$('#equivcompr').html(formatNumber(value*$('#comprcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Precio" min="0" id="precompr" step="0.01">
+        <h3 style="position: absolute;  right:32px; top:30px; z-index: 10; color:#454545">USDT</h3>
+    </div>
     <input type="number" class="w3-input w3-border w3-border-light-grey w3-col s12 l12 m12 w3-margin-top" placeholder="Cantidad" min="0" id="comprcant" oninput="if(validadecimales(value,GPrecDeciml[Gmoneda]['montoDecimal'])){$('#comprcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))};$('#equivcompr').html(formatNumber(validpg(value*$('#precompr').val()*1.0000,2),2));$('#vol').val(validpg(value*$('#precompr').val(),2))">
     <input type="range"  class="w3-light-grey w3-border-light-grey w3-round w3-round-xlarge w3-border w3-col s12 l12 m12 w3-margin-top" id="vol" oninput="$('#equivcompr').html(formatNumber(value,2));$('#comprcant').val(validpg(value/$('#precompr').val()*1.0000,GPrecDeciml[Gmoneda]['montoDecimal']))" value="0" min="0.00" step="0.01" max="">
     <div class="w3-col s12 l12 m12 w3-tiny">
