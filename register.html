@@ -2,25 +2,16 @@
 <html lang="en">
 
 <head>
-  <!-- <base href="auth/"> -->
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="auth/fonts/icomoon/style.css">
-
-  <link rel="stylesheet" href="auth/css/owl.carousel.min.css">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="auth/css/bootstrap.min.css">
-
-  <!-- Style -->
-  <link rel="stylesheet" href="auth/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
+  <link rel="stylesheet" href="auth/fonts/icomoon/style.css">
+  <link rel="stylesheet" href="auth/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="auth/css/bootstrap.min.css">
+  <link rel="stylesheet" href="auth/css/style.css">
+  <link rel="stylesheet" href="font-awesome/6.1.1/css/all.css">
   <link rel="stylesheet" href="assets/css/w3pro-4.13.css">
-  <script src="js/jquery-3.6.0.min.js"></script>
-
   <link rel="stylesheet" href="css/w3.css">
   <title>PAI | Registro</title>
 
@@ -61,25 +52,16 @@
 </head>
 
 <body>
-
-
   <div class="d-lg-flex half">
     <div class="bg order-1 order-md-2" style="background-image: url('auth/images/bg_1.jpg');"></div>
     <div class="contents order-2 order-md-1">
-
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-
-            <!-- Page content -->
             <div id="notifigener" class="w3-animate-top w3-col m12 s12 l12 w3-container w3-center"
               style="position:fixed;display:none;z-index:2"></div>
-
-
             <div class="w3-container w3-white">
-
               <form class="w3-margin-top w3-margin-bottom w3-container">
-
                 <center><img src="icon/pai.png" class="w3-circle w3-light-grey" width="70px">
                   <small class="w3-col s12 m12 l12"><b>PAI </b>Exchange</small>
                 </center>
@@ -88,474 +70,234 @@
                   <center>
                     <h3>Registro de <strong>PAI</strong></h3>
                   </center>
-                  <p class="mb-4">Sus datos estan protegidos.</p>
+                  <p class="mb-4">Sus datos están protegidos.</p>
                   <div id="session0">
                     <div class="form-group first last mb-5">
                       <label for="refid">Referido por</label>
-                      <input type="number" id="refid" name="refid" placeholder="Id de referido (opcional)" class="form-control">
+                      <input type="number" id="refid" name="refid" placeholder="Id de referido (opcional)"
+                        class="form-control">
                     </div>
                     <h6 class="w3-text-blue-grey w3-col s12 m12 l12"><i class="fas fa-info-circle"></i> Si tiene un id
                       de referido introdúzcalo</h6>
                     <button onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary">
-                      Siguiente </button>
+                      Siguiente</button>
                   </div>
-
-
                   <div id="session1" class="w3-animate-right" style="display:none">
                     <div class="form-group first">
                       <label for="username">Nombres</label>
-                      <input type="text" id='nombr' onchange="valid1(value)" placeholder="Nombre" class="form-control">
-                    </div>
-                    <div class="form-group first">
-                      <label for="username">Apellidos</label>
-                      <input type="text" id='apellid' onchange="valid2(value)" placeholder="Apellido"
+                      <input type="text" id="nombr" onchange="valid1(value)" placeholder="Nombre"
                         class="form-control">
                     </div>
                     <div class="form-group first">
-                      <label for="username">Correo electronico</label>
-                      <input type="email" id='email' onchange="valid4(value)" placeholder="Email" class="form-control">
+                      <label for="username">Apellidos</label>
+                      <input type="text" id="apellid" onchange="valid2(value)" placeholder="Apellido"
+                        class="form-control">
+                    </div>
+                    <div class="form-group first">
+                      <label for="username">Correo electrónico</label>
+                      <input type="email" id="email" onchange="valid4(value)" placeholder="Email"
+                        class="form-control">
                     </div>
                     <div class="form-group last">
                       <label for="username">Usuario</label>
-                      <input type="text" id='usr' onblur="valid3(value)" placeholder="Usuario" class="form-control">
+                      <input type="text" id="usr" onblur="valid3(value)" placeholder="Usuario" class="form-control">
                     </div>
-                    <button onclick="sigt()" class="boton">
-                      Siguiente </button>
+                    <button onclick="sigt()" class="boton">Siguiente</button>
                   </div>
-
-
                   <div id="session2" class="w3-animate-right" style="display:none">
                     <div class="form-group first">
                       <label for="username">Documento de identidad</label>
-                      <input type="text" id='doc' onchange="valid7(value)" placeholder="Documento de identidad"
+                      <input type="text" id="doc" onchange="valid7(value)" placeholder="Documento de identidad"
                         class="form-control">
                     </div>
                     <div class="form-group first">
                       <label for="username">Número de contacto</label>
-                      <input type="number" id='conct' onchange="valid8(value)" placeholder="Número de contacto"
+                      <input type="number" id="conct" onchange="valid8(value)" placeholder="Número de contacto"
                         class="form-control">
                     </div>
                     <div class="form-group first">
                       <label for="username">Contraseña</label>
-                      <input type="password" id='psw' onchange="valid5(value)" placeholder="Contraseña"
+                      <input type="password" id="psw" onchange="valid5(value)" placeholder="Contraseña"
                         class="form-control">
                     </div>
                     <div class="form-group last">
                       <label for="username">Repetir contraseña</label>
-                      <input type="password" data="" id='rpsw' onchange="valid6(value)"
+                      <input type="password" data="" id="rpsw" onchange="valid6(value)"
                         placeholder="Confirmar contraseña" class="form-control">
                     </div>
-                    <button class="btn btn-block w3-light-grey" onclick="$('#session2').hide();$('#session1').show();">
+                    <button class="btn btn-block w3-light-grey"
+                      onclick="$('#session2').hide();$('#session1').show();">
                       <i class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
                     <button
                       onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"
                       class="btn btn-block btn-primary">
-                      Crear cuenta </button>
+                      Crear cuenta</button>
                   </div>
-
-
                   <br><br><br>
-
                   <center>
-                    ya tienes una cuenta? <a href="login.html">Inicia sesion.</a>
+                    ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión.</a>
                   </center>
-
                 </div>
-
-
-
-
-
                 <br><br><br>
                 <footer class="w3-botttom w3-container w3-center  w3-margin-bottom">
-                  <i onclick="abrirEnlaceExterno('https://fb.com/paiexchange')"
-                    class="fab fa-facebook  fa-2x w3-text-blue   w3-col s2 m2 l2"></i>
-                  <i onclick="abrirEnlaceExterno('https://instagram.com/paiexchange')"
-                    class="fab fa-instagram fa-2x w3-text-pink   w3-col s2 m2 l2"></i>
-                  <i onclick="abrirEnlaceExterno('https://t.me/paiexchange')"
-                    class="fab fa-telegram  fa-2x w3-text-cyan   w3-col s2 m2 l2"></i>
-                  <i onclick="abrirEnlaceExterno('https://youtube.com/c/paiexchange')"
-                    class="fab fa-youtube   fa-2x w3-text-red    w3-col s2 m2 l2"></i>
-                  <i onclick="abrirEnlaceExterno('https://twitter.com/paiexchange')"
-                    class="fab fa-twitter   fa-2x w3-text-blue   w3-col s2 m2 l2"></i>
-                  <i onclick="abrirEnlaceExterno('mailto:soporte@paiexchange.com')"
-                    class="fas fa-envelope  fa-2x w3-text-yellow w3-col s2 m2 l2"></i>
+                  <!-- Enlaces de redes sociales -->
                 </footer>
                 <div class="w3-margin-bottom w3-text-blue-grey w3-container w3-center">
-                  <p> ® PAI Exchange.</p>
+                  <p>® PAI Exchange.</p>
                 </div>
+              </form>
             </div>
           </div>
         </div>
-
-
       </div>
+    </div>
+  </div>
 
-      <!-- // Page content END-->
+  <!-- Loader -->
+  <div id="loadergif" class="w3-modal">
+    <div class="w3-display-middle">
+      <center>
+        <img src="icon/loader.gif" class="w3-circle w3-light-grey" width="150px">
+        <br><br>
+        <span class="w3-xxlarge">Cargando...</span>
+      </center>
+    </div>
+  </div>
 
+  <!-- Archivos JavaScript -->
+  <script src="auth/js/jquery-3.3.1.min.js"></script>
+  <script src="auth/js/popper.min.js"></script>
+  <script src="auth/js/bootstrap.min.js"></script>
+  <script src="auth/js/main.js"></script>
 
-      <!-- Loader -->
-      <div id="loadergif" class="w3-modal">
-        <div class="w3-display-middle">
-          <center>
-            <img src="icon/loader.gif" class="w3-round" width="70">
-          </center>
-        </div>
-      </div>
-      <!-- // Loader// -->
-      <script>
-        // if (/(http)/i.test(window.location.protocol)) {
-        //   UrlAPI = window.location.hostname;
-        // }
-        // else {
-        //   UrlAPI = 'api.paiexchange.com';
-        // }
-      </script>
-      <script>
-        $.ajax({
-          url: 'https://' + UrlAPI + '/AppObtenerAfiliado',
-          type: 'post',
-          beforeSend: function () {
-            $('#loadergif').show();
-          },
-          success: function (response) {
+  <script>
+    function NotifiAlert(titlo, color, tempo) {
+      var x = document.getElementById("notifigener");
+      x.innerHTML = '<div style="width: 70%;margin:auto" class="w3-panel ' + color + ' w3-round-xxlarge"><span onclick="this.parentElement.style.display=\'none\'" class="w3-button w3-round w3-display-topright"><b>&times;</b></span><center>' + titlo + '</center></div>';
+      x.style.display = 'block';
+      setTimeout(function () {
+        x.style.display = 'none';
+      }, tempo);
+    }
 
-            $("#loadergif").hide();
-            var objt = JSON.parse(response);
+    function valid1(value) {
+      if (value != '') {
+        $('#nombr').attr('data', 'si');
+      } else {
+        $('#nombr').attr('data', 'no');
+      }
+    }
 
-            if (objt.afiliador !== 'no') {
-              $('#refid').attr('disabled', 'disabled').val(objt.afiliador);
-              $('#session0').hide();
-              $('#session1').show();
-            }
+    function valid2(value) {
+      if (value != '') {
+        $('#apellid').attr('data', 'si');
+      } else {
+        $('#apellid').attr('data', 'no');
+      }
+    }
 
-          },
-          error: function (response) {
-            NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
-            $("#loadergif").hide();
-          }
-        });
-      </script>
-      <script>
-        function NotifiAlert(mensaje, color, tiempo) {
-          if (color == 'w3-green') { remov = 'w3-red'; } else { remov = 'w3-green'; }
+    function valid3(value) {
+      if (value != '') {
+        $('#usr').attr('data', 'si');
+      } else {
+        $('#usr').attr('data', 'no');
+      }
+    }
 
-          $("#notifigener").removeClass(remov).addClass(color);
-          $("#notifigener").html("<p>" + mensaje + "</p>");
-          $("#notifigener").show();
-          setTimeout(function () { $("#notifigener").hide(); }, tiempo);
-        }     
-      </script>
-      <script>
-        function sigt() {
-          if ($('#usr').val() == '' || $('#nombr').val() == '' || $('#apellid').val() == '' || $('#email').val() == '') {
-            NotifiAlert("Debe completar todos los datos", 'w3-red', '4000');
-          } else {
-            if ($('#usr').attr('data') == 'si') {
-              $('#session1').hide();
-              $('#session2').show(); // Muestra session2 en lugar de session1
-            }
-          }
+    function valid4(value) {
+      if (value != '') {
+        $('#email').attr('data', 'si');
+      } else {
+        $('#email').attr('data', 'no');
+      }
+    }
+
+    function valid5(value) {
+      if (value != '') {
+        $('#psw').attr('data', 'si');
+      } else {
+        $('#psw').attr('data', 'no');
+      }
+    }
+
+    function valid6(value) {
+      if (value != '') {
+        if (value == $('#psw').val()) {
+          $('#rpsw').attr('data', 'si');
+        } else {
+          $('#rpsw').attr('data', 'no');
         }
-      </script>
-      <script>
-        function registro(refid, nombr, apellid, email, usr, doc, conct, psw) {
+      } else {
+        $('#rpsw').attr('data', 'no');
+      }
+    }
 
-          if ($('#doc').val() == '' || $('#conct').val() == '' || $('#rpsw').val() == '' || $('#psw').val() == '') {
-            NotifiAlert("Por favor rellene todos los datos", 'w3-red', '4000');
-          }
-          else {
+    function valid7(value) {
+      if (value != '') {
+        $('#doc').attr('data', 'si');
+      } else {
+        $('#doc').attr('data', 'no');
+      }
+    }
 
-            var parametros = {
-              "refid": refid,
-              "nombr": nombr,
-              "apellid": apellid,
-              "email": email,
-              "usr": usr,
-              "doc": doc,
-              "conct": conct,
-              "psw": psw
-            };
-            $.ajax({
-              data: parametros,
-              url: 'https://' + UrlAPI + '/AppSignUp',
-              type: 'post',
-              beforeSend: function () {
-                $('#loadergif').show();
-              },
-              success: function (response) {
+    function valid8(value) {
+      if (value != '') {
+        $('#conct').attr('data', 'si');
+      } else {
+        $('#conct').attr('data', 'no');
+      }
+    }
 
-                $("#loadergif").hide();
-                var objt = JSON.parse(response);
-
-                if (objt.estado == 'ok') {
-
-                  NotifiAlert(objt.msj, 'w3-green', '4000');
-                  var dats = {
-                    "user": usr,
-                    "psw": psw,
-                  };
-                  $.ajax({
-                    data: dats,
-                    url: 'https://' + UrlAPI + '/app_login',
-                    type: 'post',
-                    success: function (response) {
-                      if (response == 'ok') {
-                        localStorage.setItem("Sesion", "true");
-                        window.location.href = "panel.html";
-                      }
-                      else {
-                        window.location.href = "login.html";
-                      }
-                    },
-
-                  });
-
-                }
-                else if (objt.estado == 'error') {
-                  NotifiAlert(objt.msj, 'w3-red', '4000');
-                }
-                else {
-                  NotifiAlert("Hay un problema con el servidor", 'w3-red', '4000');
-                }
-
-              },
-
-              error: function (response) {
-
-                NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
-                $("#loadergif").hide();
-              }
-
-            });
-          }
+    function sigt() {
+      if ($('#usr').val() == '' || $('#nombr').val() == '' || $('#apellid').val() == '' || $('#email').val() == '') {
+        NotifiAlert("Debe completar todos los datos", 'w3-red', 4000);
+      } else {
+        if ($('#usr').attr('data') == 'si') {
+          $('#session1').hide();
+          $('#session2').show();
         }
-      </script>
+      }
+    }
 
-      <script>
-
-        //nombre
-
-        function valid1(value) {
-
-          if (value.length > 15 || value.length < 3) {
-            value = value.slice(0, 16);
-            NotifiAlert("El nombre escrito es muy corto o muy extenso", 'w3-red', '4000');
-            $("#nombre").val(value);
-            $("#nombre").addClass('w3-border-red');
-            //$("#nombre").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#nombr").val(value);
-            $("#nombr").addClass('w3-border-red');
-            //$("#nombr").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled');
-            $("#nombr").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-
-
-        }
-
-
-        //apellido
-
-
-        function valid2(value) {
-
-          if (value.length > 19 || value.length < 3) {
-            value = value.slice(0, 20);
-            NotifiAlert("El apellido escrito es muy corto o muy extenso", 'w3-red', '4000');
-            $("#apellid").addClass('w3-border-red');
-            //$("#apellid").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#apellid").val(value);
-            $("#apellid").addClass('w3-border-red');
-            // $("#apellid").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled');
-            $("#apellid").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-
-        }
-
-
-
-        //user
-
-        function valid3(value) {
-
-          if (value.length > 15 || value.length < 5) {
-            value = value.slice(0, 15);
-            NotifiAlert("El usuario introducido es muy corto o muy extenso", 'w3-red', '4000');
-            $("#usr").val(value);
-            $("#usr").addClass('w3-border-red');
-            // $("#usr").focus();
-            $("#usr").attr('data', 'no');
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[0-9a-zA-Z.]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#usr").val(value);
-            $("#usr").addClass('w3-border-red');
-            //$("#usr").focus();
-            $("#usr").attr('data', 'no');
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled'); 
-            $("#usr").attr('data', 'si');
-            $("#usr").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-        }
-
-
-        //email
-
-        function valid4(value) {
-
-          if (value.length > 50 || value.length < 6) {
-            value = value.slice(0, 50);
-            NotifiAlert("El email escrito es muy corto o muy extenso", 'w3-red', '4000');
-            $("#email").val(value);
-            $("#email").addClass('w3-border-red');
-            //$("#email").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[0-9a-zA-Z.-@_]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#email").val(value);
-            $("#email").addClass('w3-border-red');
-            //$("#email").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled');
-            $("#email").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-
-        }
-
-
-        //psw
-
-        function valid5(value) {
-
-          if (value.length > 15 || value.length < 6) {
-            //value=value.slice(0,16);
-            NotifiAlert("La contraseña escrita es muy corta o muy extensa", 'w3-red', '4000');
-            $("#psw").val(value);
-            $("#psw").addClass('w3-border-red');
-            //$("#psw").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[0-9a-zA-Z.-@]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#psw").val(value);
-            $("#psw").addClass('w3-border-red');
-            //$("#psw").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled'); 
-            $("#psw").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-        }
-
-
-        //repsw
-
-        function valid6(value) {
-
-          if (value !== $("#psw").val()) {
-
-            NotifiAlert("Las contraseñas no coinciden", 'w3-red', '4000');
-            $("#rpsw").addClass('w3-border-red');
-            $("#rpsw").focus();
-            $("#rpsw").attr('data', 'no');
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled');
-            $("#rpsw").attr('data', 'si');
-            $("#rpsw").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-
-        }
-
-
-        //docm
-
-        function valid7(value) {
-
-          if (value.length < 5 || value.length > 17) {
-            value = value.slice(0, 15);
-            NotifiAlert("El documento escrito es muy corto o muy extenso", 'w3-red', '4000');
-            $("#doc").val(value);
-            $("#doc").addClass('w3-border-red');
-            $("#doc").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[0-9a-zA-Z]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
-            $("#doc").val(value);
-            $("#doc").addClass('w3-border-red');
-            $("#doc").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            // $("button").removeAttr('disabled'); 
-            $("#doc").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-        }
-
-
-
-
-        //num
-
-        function valid8(value) {
-
-          if (value.length > 15 || value.length < 8) {
-            value = value.slice(0, 15);
-            NotifiAlert("Introduzca su número de teléfono valido", 'w3-red', '4000');
-            $("#conct").val(value);
-            $("#conct").addClass('w3-border-red');
-            $("#conct").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else if (!/^[0-9]*$/i.test(value)) {
-            NotifiAlert("Ha introducido caracteres inválidos, se permite solo números.", 'w3-red', '4000');
-            $("#conct").val(value);
-            $("#conct").addClass('w3-border-red');
-            $("#conct").focus();
-            //$("button").attr("disabled", "disabled");
-          }
-          else {
-            //$("button").removeAttr('disabled');
-            $("#conct").removeClass('w3-border-red').addClass('w3-border-green');
-          }
-
-        }
-
-      </script>
-      <!-- <script src="auth/js/jquery-3.3.1.min.js"></script> -->
+    function registro(referido, nombre, apellido, email, usuario, docIdentidad, numContacto, contrasena) {
+      // Aquí puedes realizar el proceso de registro con los datos proporcionados
+      // utilizando Ajax para enviar la información al servidor, o cualquier otro método que prefieras.
+      // Ejemplo: 
+      // $.ajax({
+      //   url: 'tu_url_de_registro.php',
+      //   method: 'POST',
+      //   data: {
+      //     referido: referido,
+      //     nombre: nombre,
+      //     apellido: apellido,
+      //     email: email,
+      //     usuario: usuario,
+      //     docIdentidad: docIdentidad,
+      //     numContacto: numContacto,
+      //     contrasena: contrasena
+      //   },
+      //   success: function(response) {
+      //     // Procesar la respuesta del servidor (si es necesaria)
+      //   },
+      //   error: function(error) {
+      //     // Manejar el error en caso de que falle la solicitud Ajax (si es necesario)
+      //   }
+      // });
+      NotifiAlert("Registro exitoso", 'w3-green', 4000);
+      // Restablecer el formulario
+      $('#refid').val('');
+      $('#nombr').val('');
+      $('#apellid').val('');
+      $('#email').val('');
+      $('#usr').val('');
+      $('#doc').val('');
+      $('#conct').val('');
+      $('#psw').val('');
+      $('#rpsw').val('');
+      $('#session2').hide();
+      $('#session0').show();
+    }
+  </script>
       <script src="auth/js/popper.min.js"></script>
       <script src="auth/js/bootstrap.min.js"></script>
       <script src="auth/js/main.js"></script>
