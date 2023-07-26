@@ -96,8 +96,7 @@
                     </div>
                     <h6 class="w3-text-blue-grey w3-col s12 m12 l12"><i class="fas fa-info-circle"></i> Si tiene un id
                       de referido introdúzcalo</h6>
-                    <button onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary">
-                      Siguiente </button>
+                    <input onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary" value="Siguiente">
                   </div>
 
 
@@ -119,8 +118,7 @@
                       <label for="username">Usuario</label>
                       <input type="text" id='usr' onblur="valid3(value)" placeholder="Usuario" class="form-control">
                     </div>
-                    <button onclick="sigt()" class="boton">
-                      Siguiente </button>
+                    <button onclick="sigt()" class="btn btn-block btn-primary" value="Siguiente">
                   </div>
 
 
@@ -147,10 +145,9 @@
                     </div>
                     <button class="btn btn-block w3-light-grey" onclick="$('#session2').hide();$('#session1').show();">
                       <i class="fa-solid fa-arrow-left-long"></i> Ir atrás</button>
-                    <button
+                    <input
                       onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"
-                      class="btn btn-block btn-primary">
-                      Crear cuenta </button>
+                      class="btn btn-block btn-primary" value="Crear cuenta">
                   </div>
 
 
