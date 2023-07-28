@@ -123,7 +123,7 @@
                     <div class="w3-col s4 w3-padding-0">
                       <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
                           src="icon/${objt.content[i].moneda}.png"
-                          style="width:40px">
+                          style="width:40px; margin-right:12px;">
                           <b>${objt.content[i].moneda}</b>
                           <span class="w3-text-gray">${objt.monedas[objt.content[i].moneda].nombre}</span>
                     </div>
@@ -348,8 +348,11 @@
   <div class="w3-col s4 w3-padding">
     <h5>Mas servicios</h5>
     <div class="w3-panel w3-border w3-round-large">
-      <p>London is the most populous city in the United Kingdom,
-      with a metropolitan area of over 9 million inhabitants.</p>
+      <div class="w3-row">
+        <div class="w3-col s2">
+          <i class="w3-xlarge fa-solid fa-square-poll-vertical"></i>
+        </div>
+      </div>
     </div>
   </div>
 </div>
