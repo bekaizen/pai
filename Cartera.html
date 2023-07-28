@@ -117,35 +117,29 @@
               decimalesUSD = objt.monedas[objt.content[i].moneda].decimalesUSD;
 
               var contenido = `
-    <div class="w3-padding w3-row w3-border-bottom w3-border-light-grey w3-white w3-col s12 m12 l12"
-         id="cuentanum${i + 1}">
-        <div class="w3-col s2 m2 l2 w3-pading-top">
-            <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
-                 src="icon/${objt.content[i].moneda}.png"
-                 style="width:40px">
-        </div>
-        <div class="w3-col s10 m10 l10 w3-pading-top w3-text-grey">
-            <div class="w3-col s6 m6 l6">
-                ${objt.monedas[objt.content[i].moneda].nombre}
-                <div class="w3-col s12 m12 l12 w3-padding-0 w3-small">
-                    <i class="fa-solid fa-chart-simple" id="${objt.content[i].id}iconprice"></i>
-                    <span id="${objt.content[i].id}price"></span> USD
-                </div>
-            </div>
-            <div class="w3-col s3 m3 l3">
-                <div class="">
-                    ${objt.balances[objt.content[i].moneda] ? formatonumero(objt.balances[objt.content[i].moneda], decimalesCrypto) : formatonumero(0, decimalesCrypto)}
-                </div> 
-                <div class="w3-col s12 m12 l12">
-                    <span class="w3-small">${objt.content[i].moneda}</span>
-                </div>    
-            </div>
 
-            <div class="w3-col s3 m3 l3">
+        <li>
+          <div class="w3-row">
+            <div class="w3-col s4">
+              <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
+                   src="icon/${objt.content[i].moneda}.png"
+                   style="width:40px">
+              <div class="w3-col s6 m6 l6">
+                  ${objt.monedas[objt.content[i].moneda].nombre}
+                  <div class="w3-col s12 m12 l12 w3-padding-0 w3-small">
+                      <i class="fa-solid fa-chart-simple" id="${objt.content[i].id}iconprice"></i>
+                      <span id="${objt.content[i].id}price"></span> USD
+                  </div>
+            </div>
+            <div class="w3-col s4">
+              ${objt.balances[objt.content[i].moneda] ? formatonumero(objt.balances[objt.content[i].moneda], decimalesCrypto) : formatonumero(0, decimalesCrypto)}
+            </div>
+            <div class="w3-col s4 w3-right">
               <span class="pointer w3-right w3-text-blue" onclick="seleccionarMoneda(${datos})"> Depositar</span>
-            </div>  
-        </div>
-    </div>`;
+            </div>
+          </div>
+        </li>
+    `;
 
 
 
@@ -294,7 +288,35 @@
 </style>
 
 
+<!-- <div class="w3-padding w3-row w3-border-bottom w3-border-light-grey w3-white w3-col s12 m12 l12"
+         id="cuentanum${i + 1}">
+        <div class="w3-col s2 m2 l2 w3-pading-top">
+            <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
+                 src="icon/${objt.content[i].moneda}.png"
+                 style="width:40px">
+        </div>
+        <div class="w3-col s10 m10 l10 w3-pading-top w3-text-grey">
+            <div class="w3-col s6 m6 l6">
+                ${objt.monedas[objt.content[i].moneda].nombre}
+                <div class="w3-col s12 m12 l12 w3-padding-0 w3-small">
+                    <i class="fa-solid fa-chart-simple" id="${objt.content[i].id}iconprice"></i>
+                    <span id="${objt.content[i].id}price"></span> USD
+                </div>
+            </div>
+            <div class="w3-col s3 m3 l3">
+                <div class="">
+                    ${objt.balances[objt.content[i].moneda] ? formatonumero(objt.balances[objt.content[i].moneda], decimalesCrypto) : formatonumero(0, decimalesCrypto)}
+                </div> 
+                <div class="w3-col s12 m12 l12">
+                    <span class="w3-small">${objt.content[i].moneda}</span>
+                </div>    
+            </div>
 
+            <div class="w3-col s3 m3 l3">
+              <span class="pointer w3-right w3-text-blue" onclick="seleccionarMoneda(${datos})"> Depositar</span>
+            </div>  
+        </div>
+    </div> -->
 
 
 
