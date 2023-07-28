@@ -2,14 +2,14 @@
   $('#menusup').hide();
   EstatusBarColor('1565c0');
 </script>
-<div class="">
+<!-- <div class="">
   <div class="w3-white w3-col l12 w3-text-white">
     <div class="w3-container redondeo" style="background-color:white">
       <div class="w3-margin-top w3-center">
         <div class="w3-center  w3-col s12 l12 m12 w3-small">~ USD <i id="carteraAlerta"
             class="fa-solid fa-clock-rotate-left  w3-right w3-large pointer" onclick="OpenAcount('Historial')"></i>
         </div>
-        <!-- <h1 class="" style="min-height:72px" id="dinerocuent">&nbsp;</h1> -->
+        <h1 class="" style="min-height:72px" id="dinerocuent">&nbsp;</h1>
       </div>
 
 
@@ -30,7 +30,7 @@
 
   <div class="noselect" style="margin-top: 0px">
 
-    <!-- <div id='cuentanum0'></div> -->
+    <div id='cuentanum0'></div>
 
     <div class="w3-container w3-display-middle w3-center" style="position:fixed;display:none" id="loaderspin">
       <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
@@ -38,7 +38,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <!--Modal de deposito-->
 <div id="CarteraDepositos" class="w3-modal noselect w3-col l12" style="display: none;">
@@ -332,9 +332,9 @@
       </div>
       <div class="w3-col s6">
         <div class="w3-panel w3-right">
-          <button class="w3-button w3-2021-marigold w3-text-black w3-padding-6 w3-round">Agregar cartera</button>
-          <button class="w3-button w3-2021-ultimate-gray w3-padding-6 w3-round">Conversion</button>
-          <button class="w3-button w3-2021-ultimate-gray w3-padding-6 w3-round">Vender</button>
+          <button class="w3-button w3-2021-marigold w3-text-black w3-padding-6 w3-round" onclick="OpenAcount('Nueva cuenta')">Agregar cartera</button>
+          <button class="w3-button w3-2021-ultimate-gray w3-padding-6 w3-round" onclick="OpenOption('retirar')">Retirar</button>
+          <button class="w3-button w3-2021-ultimate-gray w3-padding-6 w3-round" onclick="OpenAcount('Historial')">Historial</button>
         </div>
       </div>
     </div>
