@@ -30,7 +30,7 @@
 
   <div class="noselect" style="margin-top: 0px">
 
-    <div id='cuentanum0'></div>
+    <!-- <div id='cuentanum0'></div> -->
 
     <div class="w3-container w3-display-middle w3-center" style="position:fixed;display:none" id="loaderspin">
       <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
@@ -340,27 +340,7 @@
     </div>
     <div class="w3-panel">
       <ul class="w3-ul w3-hoverable">
-        <li>
-          <div class="w3-row">
-            <div class="w3-col s4">
-              <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
-                   src="icon/${objt.content[i].moneda}.png"
-                   style="width:40px">
-              <div class="w3-col s6 m6 l6">
-                  ${objt.monedas[objt.content[i].moneda].nombre}
-                  <div class="w3-col s12 m12 l12 w3-padding-0 w3-small">
-                      <i class="fa-solid fa-chart-simple" id="${objt.content[i].id}iconprice"></i>
-                      <span id="${objt.content[i].id}price"></span> USD
-                  </div>
-            </div>
-            <div class="w3-col s4">
-              ${objt.balances[objt.content[i].moneda] ? formatonumero(objt.balances[objt.content[i].moneda], decimalesCrypto) : formatonumero(0, decimalesCrypto)}
-            </div>
-            <div class="w3-col s4 w3-right">
-              <span class="pointer w3-right w3-text-blue" onclick="seleccionarMoneda(${datos})"> Depositar</span>
-            </div>
-          </div>
-        </li>
+        <li id="cuentanum0"></li>
       </ul>
     </div>
   </div>
