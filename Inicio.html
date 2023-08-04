@@ -164,7 +164,18 @@
             <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
           </div> -->
       <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
-        <div style="min-height:auto; padding:16px; box-sizing: border-box;" id="imgCarrousel"></div>
+        
+        <!-- <div style="min-height:auto; padding:16px; box-sizing: border-box;"></div> -->
+        <div class="w3-content w3-display-container" id="imgCarrousel">
+          <div class="w3-center w3-display-bottommiddle" style="width:100%">
+            <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
+            <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
+            <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
+            <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
+            <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
+          </div>
+        </div>
+
         <div class="w3-padding w3-center-align w3-center">
           <span><b>Tasa de venta</b></span>
           <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
