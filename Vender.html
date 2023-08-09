@@ -9,7 +9,7 @@
     </div>
     
     <small class="w3-col l12 m12 s12">Método de pago</small>
-    <select id="mediopago" class="w3-select w3-small w3-margin-bottom w3-border-light-grey w3-round">
+    <select id="mediopago" class="w3-select w3-small w3-margin-bottom w3-round">
         <option disabled value="" selected>Seleccione una forma de pago</option>
     </select>
 
@@ -110,7 +110,7 @@
 <!-- //Terminos de USO// -->
 
 <div class="w3-container w3-col l6">
-    <p>Historial</p>
+    <h4>Historial</h4>
     <div id="trst0" style="display:none" class="w3-padding-64 w3-center">No hay transacciones disponible</div>
 </div>
 
@@ -337,7 +337,7 @@ success: function (response)
              }
             
             
-            var contanido ='<div class="w3-border-bottom w3-border-light-grey w3-padding-8  w3-white w3-col s12"  id="trst'+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
+            var contanido ='<div class="w3-border-bottom w3-border-light-grey w3-padding-8  w3-col s12"  id="trst'+((parseFloat(pagina)*parseFloat(paglimite))+parseFloat(i)+parseFloat(1))+'">';
                 contanido +='<div class="w3-col s2 noselect w3-padding-top">'+estado+'</div>';
                  contanido +='<div class="w3-col m10 l10 s10"><div class="w3-col s6 m6 l6 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12">'+objt.content[i].banco+'</div><span> '+objt.content[i].cuenta+'</span></div>';
                  contanido +='<div class="w3-col s6 m6 l6 reajuste"><div class="w3-col m12 l12 s12"><span class="w3-right w3-padding-right">'+formatonumero(objt.content[i].monto*objt.content[i].tasa,0)+'.00 DOP</span></div><div class="w3-col m12 l12 s12"><small class="w3-right w3-padding-right">'+objt.content[i].fecha+'</small></div></div>';
