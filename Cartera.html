@@ -354,85 +354,8 @@
       </ul>
     </div>
   </div>
-
-  <div class="w3-col s4 w3-padding">
-    <h5>Mas servicios</h5>
-    <style>
-      .fa-chevron-right {
-        display:none;
-      }
-      .w3-panel { cursor: pointer; }
-      .w3-panel:hover .fa-chevron-right {
-        display:block;
-        transition: .2s ease-in-out;
-      }
-    </style>
-    <div class="w3-panel w3-border w3-round-large" style="height:90px; width:100%; position:relative; box-sizing: border-box;">
-      <div class="w3-row" style="display:flex; align-items:center; position:absolute; width: inherit; height:100%;">
-        <div class="w3-col s1">
-          <i class="w3-xlarge fa-solid fa-square-poll-vertical"></i>
-        </div>
-        <div class="w3-col s9">
-          <div>
-            <b>Vender</b><br>
-            <span class="w3-text-gray">Sacale el maximo provecho a tu dinero</span>
-          </div>
-        </div>
-        <div class="w2-col s2 w3-right">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-panel w3-border w3-round-large" style="height:90px; width:100%; position:relative; box-sizing: border-box;">
-      <div class="w3-row" style="display:flex; align-items:center; position:absolute; width: inherit; height:100%;">
-        <div class="w3-col s1">
-          <i class="w3-xlarge fa-solid fa-square-poll-vertical"></i>
-        </div>
-        <div class="w3-col s9">
-          <div>
-            <b>Inversiones</b><br>
-            <span class="w3-text-gray">Sacale el maximo provecho a tu dinero</span>
-          </div>
-        </div>
-        <div class="w2-col s2 w3-right">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-panel w3-border w3-round-large" style="height:90px; width:100%; position:relative; box-sizing: border-box;">
-      <div class="w3-row" style="display:flex; align-items:center; position:absolute; width: inherit; height:100%;">
-        <div class="w3-col s1">
-          <i class="w3-xlarge fa-solid fa-square-poll-vertical"></i>
-        </div>
-        <div class="w3-col s9">
-          <div>
-            <b>Pago de servicios</b><br>
-            <span class="w3-text-gray">Sacale el maximo provecho a tu dinero</span>
-          </div>
-        </div>
-        <div class="w2-col s2 w3-right">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-panel w3-border w3-round-large" style="height:90px; width:100%; position:relative; box-sizing: border-box;">
-      <div class="w3-row" style="display:flex; align-items:center; position:absolute; width: inherit; height:100%;">
-        <div class="w3-col s1">
-          <i class="w3-xlarge fa-solid fa-square-poll-vertical"></i>
-        </div>
-        <div class="w3-col s9">
-          <div>
-            <b>Transferencias internas</b><br>
-            <span class="w3-text-gray">Sacale el maximo provecho a tu dinero</span>
-          </div>
-        </div>
-        <div class="w2-col s2 w3-right">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-      </div>
-    </div>
-  </div>
+  <script>
+    $(document).on('load', function() { document.querySelector(".menu-lateral").load('submenu/menu-lateral.html') })
+  </script>
+  <div class="menu-lateral"></div>
 </div>
