@@ -42,7 +42,7 @@
 
 <!--Modal de deposito-->
 <div id="CarteraDepositos" class="w3-modal noselect w3-col l12" style="display: none;">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l4 m4 s11">
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-col l4 m4 s11">
       <div class="reajuste" align="justify"> 
           <div class="w3-container" id="DatosCartera">
           </div> 
@@ -56,8 +56,8 @@
 
 <!--Modal de agregar moneda-->
 <div id="AgregarMonedasModal" class="w3-modal noselect w3-col l12" style="display: none;">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l5 m4 s11">
-     <p>Agregar nuevas monedas</p>
+  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l4 m4 s11">
+      <p class="w3-container">Agregar nuevas criptomonedas</p>
       <div class="reajuste w3-container" id="listadosMonedasAgregar">
         <script>
               $(document).ready(function() { $("#listadosMonedasAgregar").load('submenu/cuentas/Nueva%20cuenta.html') })
@@ -74,7 +74,6 @@
 
 
 <script>
-  //MenuAccion('fa fa-plus',"OpenAcount('Nueva cuenta')");
   precioIntervalo = '';
   function formatNumber(num, decimal) {
     num = parseFloat(num).toFixed(decimal);
