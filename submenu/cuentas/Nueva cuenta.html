@@ -14,42 +14,7 @@
 </div>
 <!-- //Confirmacion// -->
 
-<!-- Agregar metodo-->
-<div id="AddpayMeth" class="w3-modal noselect">
-  <div class="w3-display-middle w3-col s10 w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-<div class="w3-container">  
-   <div class="w3-col s12 w3-margin-top">
-        <div class="w3-margin-bottom w3-container">Agregue su cuenta bancaria.</div>
-  <div class="w3-col s2">
-      <img src="icon/Banco.png" id="iconbnk" width="30px">
-  </div>
-  <div class="w3-col s10">
-     <select class="w3-select w3-white w3-border-bottom" id="TipoBanc" onchange="imageBank(value)" style="outline:none">
-       <option value="" disabled selected>Seleccione el banco</option>
-     </select>
-  </div>
-</div>  
 
-
-<div class="w3-col s12 w3-margin-top">
-  <div class="w3-col s2">
-     <i class="fas fa-poll w3-text-grey w3-xlarge w3-padding-top"></i>
-  </div>
-  <div class="w3-col s10 w3-margin-bottom">
-    <input class="w3-input w3-white w3-border-bottom" type="number" placeholder="Cuenta bancaria" id="NumrCuent" style="outline:none">
-  </div>
-</div> 
-
-</div>  
-<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-top w3-border-right w3-border-light-grey" style="cursor:pointer" onclick="$('#AddpayMeth').hide();">Ocultar</div>
-<div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-text-blue w3-border-top w3-border-light-grey" id='prcedt' style="cursor:pointer" onclick="AgregarNuevCuent($('#TipoBanc').val(),$('#NumrCuent').val(),'bancario')">Procesar</div>
-
-
-
-
-  </div>
-</div>
-<!-- //Agregar metodo// -->
 
 
 <!-- Agregar mobusi-->
@@ -162,7 +127,7 @@ success: function (response)
              var contanido ='<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey  w3-white w3-col s12" id="subcuentanum'+(i+1)+'">';
                  contanido +='<div class="w3-col s2"><img src="icon/'+objt.content[i].moneda+'.png" style="width:40px"></div>';
                  contanido +='<div class="w3-col s7" id="titl'+i+'"><h5>'+objt.content[i].tipo+' ('+objt.content[i].moneda+')</h5></div>';
-                 contanido +='<div class="w3-col s3 w3-right w3-padding-top" id="hid'+i+'"><span class="w3-padding-top w3-text-grey w3-right w3-margin-right" id="add'+i+'" onclick="'+add+'"><i class="fas fa-plus w3-large"></i></span></div>';
+                 contanido +='<div class="w3-col s3 w3-right w3-padding-top" id="hid'+i+'"><span class="w3-padding-top w3-text-grey w3-right w3-margin-right pointer" id="add'+i+'" onclick="'+add+'"><i class="fas fa-plus w3-large"></i></span></div>';
              
              $("#subcuentanum"+i).after(contanido);
            }
