@@ -1,4 +1,4 @@
-<div class="w3-col w3-padding l8 w3-white">
+<div class="w3-col l8 w3-padding w3-white">
   <div class="w3-col l12" id="datsl">
     <h5>Vender</h5>
 
@@ -12,23 +12,23 @@
     </div>
 
     <small class="w3-col l12 m12 s12">Método de pago</small>
-    <select id="mediopago" class="w3-select w3-padding-16 w3-margin-bottom w3-round">
+    <select id="mediopago" class="w3-select w3-padding-16 w3-margin-bottom w3-round w3-border">
       <option disabled value="" selected>Seleccione una forma de pago</option>
     </select>
 
     <div class="w3-col s12 m12 l12 w3-margin-bottom">
       <div class="w3-col s5 m5 l5">
         <small class="w3-col s12 l12 m12">Valor de la venta</small>
-        <input type="number" min="1" step="1" class="w3-input w3-padding-16 w3-round w3-col s10 l10 m10" id="Vcantidad"
+        <input type="number" min="1" step="1" class="w3-input w3-padding-16 w3-round  w3-border w3-col s10 l10 m10" id="Vcantidad"
           oninput="calcularVenta(value)" placeholder="USD$0.00">
       </div>
       <div class="w3-col s7 m7 l7">
-        <div class="w3-col s5 m5 l5">
+        <div class="w3-col s5 m5 l5 w3-border">
           <small class="w3-col s12 l12 m12">Mínimo</small>
           <label class="w3-btn w3-dark-grey w3-col s12 l12 m12 w3-round w3-padding-16" onclick="montorapido('Vmin')"
             id="Vmin">&nbsp;</label>
         </div>
-        <div class="w3-col s7 m7 l7 w3-padding-left">
+        <div class="w3-col s7 m7 l7 w3-padding-left w3-border">
           <small class="w3-col s12 l12 m12">Máximo</small>
           <label class="w3-btn w3-dark-grey w3-col s12 l12 m12 w3-round w3-padding-16" onclick="montorapido('Vmax')"
             id="Vmax">&nbsp;</label>
@@ -37,7 +37,7 @@
     </div>
 
     <div
-      class="w3-col m12 l12 s12 w3-container w3-margin-bottom w3-dark-grey w3-round w3-round-large w3-small">
+      class="w3-col m12 l12 s12 w3-container w3-margin-bottom w3-border w3-round w3-round-large w3-small">
       <div class="w3-col s7 m7 l7 w3-container">Tasa/Precio variable:</div>
       <div class="w3-col s5 m5 l5 w3-container"><span id="Vtasa">&nbsp;</span> DOP x USD</div>
 
@@ -64,7 +64,7 @@
 <div class="menu-lateral w3-col l4 w3-hide-small w3-hide-medium"></div>
 
 
-<div class="w3-container w3-col l12 w3-white">
+<div class="w3-container w3-col l12 w3-white w3-padding">
   <h4>Historial</h4>
   <div id="trst0" style="display:none" class="w3-padding-64 w3-center">No hay transacciones disponible</div>
 </div>
