@@ -185,29 +185,10 @@
 
     <!--//Chat Soporte // -->
 
-    <!-- App actualizacion -->
-    <div id="AppUpdate" class="w3-modal noselect w3-col l5">
-        <div
-            class="w3-display-middle  w3-col s8 m8  w3-container w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2">
-            <div class="w3-right"><i onclick="$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')"
-                    class="fas fa-times-circle w3-text-grey w3-margin-top w3-large"></i></div>
-            <center>
-                <p>Nueva actualización desponible</p>
-                <b id='appvers'></b>
-                <small class="w3-col l12 m12 s12" id='appcambios'></small>
-                <div><a target="_blank"
-                        class="w3-btn w3-col s12 w3-blue w3-block w3-round-xlarge w3-margin-top w3-margin-bottom w3-text-white"
-                        id="actlink"
-                        onclick="cordova.InAppBrowser.open('https://app.pagosalinstante.com', '_system');$('#AppUpdate').hide();sessionStorage.setItem('updateapp', 'true')">Actualizar</a>
-                </div>
-            </center>
-        </div>
-    </div>
-    <!-- //App actualizacion// -->
 
 
     <!-- App Avisos -->
-    <div id="Appinfos" class="w3-modal noselect w3-col l5" style="display:none">
+    <div id="Appinfos" class="w3-modal noselect w3-col l12" style="display:none">
         <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m11 s11">
             <span style="cursor:pointer" class="w3-display-topright w3-container"
                 onclick="$('#Appinfos').hide();localStorage.setItem('avisos', $('#msjj').attr('data'));"><i
@@ -294,11 +275,11 @@
                         placeholder="Enter keywords">
                 </div>-->
                 <div class="w3-right">
-                    <button onclick="AbrirSoporte()"  type="button" class="w3-button w3-large w3-opacity-min"><i
+                    <button onclick="AbrirSoporte()" type="button" class="w3-button w3-large w3-opacity-min"><i
                             class="fa-solid fa-headset"></i></button>
                     <!--<button type="button" class="w3-button w3-large w3-opacity-min"><i class="fa fa-bell"></i></button>-->
 
-                    
+
 
                 </div>
                 <div class="text-right">
@@ -350,19 +331,19 @@
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-users"></i>&nbsp; Afiliados </a>
 
-                    <a href="javascript:void(0)"  onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')"
+                <a href="javascript:void(0)" onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-square-poll-vertical fa-beat-fade"></i>&nbsp; Inversiones </a>
-                   
-                    <a href="javascript:void(0)"  onclick="OpenOtherOption('submenu/servicios/header','Servicios')"
+
+                <a href="javascript:void(0)" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-shop"></i>&nbsp; Servicios </a>
 
-                    <a href="javascript:void(0)"  onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')"
+                <a href="javascript:void(0)" onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')"
                     class="w3-bar-item w3-button w3-padding-large w3-hover-text-primary">
                     <i class="fa-solid fa-people-arrows"></i>&nbsp; Envios a clientes </a>
 
-                    
+
 
                 <span class="w3-bar-item w3-padding w3-small w3-opacity"> OTRAS OPCIONES </span>
 
@@ -514,7 +495,7 @@
                 window.location.href = "login.html";
             }
             else {
-                
+
                 areaActual = id;
                 $("#contenido").load(id + ".html", function (responseTxt, statusTxt, xhr) {
 
@@ -615,15 +596,7 @@
 
 
 
-                    if ((objto.actualizaciones.version.replace(/[^0-9]/g, '')) > (version.replace(/[^0-9]/g, ''))) {
 
-                        if (sessionStorage.getItem("updateapp") !== 'true') {
-                            $("#appvers").html('Versión ' + objto.actualizaciones.version);
-                            $("#appcambios").html(objto.actualizaciones.cambios);
-                            $("#actlink").attr('href', objto['actualizaciones'][dispositivo]);
-                            $("#AppUpdate").show();
-                        }
-                    }
 
                     if (objto.avisos !== null) {
                         if (localStorage.getItem('avisos') !== objto.avisos.id && objto.avisos.estado == 'activo' && $("#Appinfos").attr('style') !== 'display: block;') {
@@ -911,7 +884,7 @@
                         }
                         else {
 
-                            areaActual=titulo;
+                            areaActual = titulo;
                             $("#contenido").html(response);
                             $("#titname").html(titulo);
                             //history.pushState(titulo, titulo, titulo);
