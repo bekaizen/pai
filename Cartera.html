@@ -100,7 +100,7 @@
               decimalesUSD = objt.monedas[objt.content[i].moneda].decimalesUSD;
 
               var contenido = `
-                <li id="cuentanum${i + 1}" style="vertical-align:middle; align-items:center; height:70px; line-height:50px;">
+                <div id="cuentanum${i + 1}">
                   <div class="w3-row">
                     <div class="w3-col s4 w3-padding-0">
                       <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.content[i].moneda}.png'"
@@ -120,7 +120,7 @@
                       <span class="pointer w3-right w3-text-blue" onclick="seleccionarMoneda(${datos})"> Depositar</span>
                     </div>
                   </div>
-                </li>
+                </div>
             `;
 
 
@@ -322,18 +322,18 @@
     </div>
     <div class="w3-panel w3-padding-0">
       <h5>Carteras</h5>
-      <ul class="w3-ul">
+      <div class="w3-ul">
 
-        <li style="vertical-align:middle; align-items:center; height:70px; line-height:50px;">
+        <div style="vertical-align:middle; align-items:center; height:70px; line-height:50px;">
           <div class="w3-row">
             <div class="w3-col s4 w3-text-gray" style="margin-bottom:-30px">Moneda</div>
             <div class="w3-col s3 w3-text-gray" style="margin-bottom:-30px">Precio de mercado</div>
             <div class="w3-col s3 w3-text-gray" style="margin-bottom:-30px">Balance</div>
             <div class="w3-col s2 w3-right"></div>
           </div>
-        </li>
-        <li id="cuentanum0" style="display:none;"></li>
-      </ul>
+        </div>
+        <div id="cuentanum0" style="display:none;"></div>
+      </div>
     </div>
   </div>
   <script>
