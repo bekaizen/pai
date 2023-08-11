@@ -1,9 +1,10 @@
 <div class="w3-col l8">
   <div class="w3-container w3-white">
 
-    <h5 class="noselect w3-margin-top w3-margin-bottom" style="display:none" id="cuetsb">Listado de cuentas <span
-        class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-blue"
-        onclick="$('#AddpayMeth').show()">+Agregar cuenta bancaria</span></h5>
+    <h5 class="noselect w3-margin-top w3-margin-bottom" style="display:none" id="cuetsb">Listado de cuentas</h5>
+    <span class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-blue"
+      onclick="$('#AddpayMeth').show()">+Agregar cuenta bancaria</span>
+
     <div class="" id="contd"></div>
 
     <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
@@ -423,7 +424,7 @@
 <script>
   function importeinfor(banco) {
     if (banco == 'Banco BHD Leon') {
-      $('#bhdalert').html('*Si es una <b>Cuenta Móvil</b> BHD no es aceptada.');
+      $('#bhdalert').html('*Si es una <b>Cuenta Billet</b> no es aceptada.');
     }
     else {
       $('#bhdalert').html('');
