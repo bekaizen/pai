@@ -132,7 +132,7 @@
   <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade  w3-col l5 m11 s11">
 
     <p class="reajuste w3-container w3-large w3-center">Seleccione una moneda de la lista</p>
-    <div class="w3-center reajuste w3-border-top w3-border-lightgrey" style="overflow-y:scroll;max-height:40vh">
+    <div class="w3-center reajuste w3-border-top w3-border-light-grey" style="overflow-y:scroll;max-height:40vh">
       <div id="optio0"></div>
     </div>
 
@@ -626,10 +626,10 @@
 
                 var contanido = '<div class="w3-padding-8 w3-container w3-white w3-col s12" onclick="' + msdr + '" id="trst' + ((parseFloat(pagina) * parseFloat(paglimite)) + parseFloat(i) + parseFloat(1)) + '">';
                 contanido += '<div class="w3-col s2 noselect">' + estado + '</div>';
-                contanido += '<div class="w3-col m10 l10 s10 ' + borderline + '"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><span><img width="15px" src="icon/' + objt.content[i].moneda + '.png"> ' + objt.content[i].nombre + '</span></div><span> Para: ' + objt.content[i].direccion.substring(0, 7) + '...' + objt.content[i].direccion.substring(objt.content[i].direccion.length - 7, objt.content[i].direccion.length) + '</span></div>';
+                contanido += '<div class="w3-col m10 l10 s10 ' + borderline + '"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><span><img width="15px" src="icon/' + objt.content[i].moneda + '.png"> ' + objt.content[i].nombre + '</span></div><span> Para: ' + objt.content[i].direccion + '</span></div>';
                 contanido += '<div class="w3-col s5 reajuste"><div class="w3-col m12 l12 s12"><span class="w3-right w3-padding-right" id="chmnd' + (pagina * paglimite + i) + '">' + montoCry + '</span></div><div class="w3-col m12 l12 s12"><small class="w3-right w3-padding-right">' + objt.content[i].fecha + '</small></div></div>';
 
-                contanido += '<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: none;" id="tx' + (pagina * paglimite + i) + '"><small></small>';
+                contanido += '<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: block;" id="tx' + (pagina * paglimite + i) + '"><small></small>';
 
                 for (e = 0; e < objt.content[i].txid.split(',').length; e++) {
                   txid = objt.content[i].txid.split(',');
