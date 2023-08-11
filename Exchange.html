@@ -90,7 +90,7 @@
                 <div class="w3-col l6 m6 s6 w3-margin-top w3-margin-bottom w3-container">
                     <small class="w3-margin-bottom">Balance <span><b id="balfiat">0.00</b> <span
                                 id='mercadoBalnc'></span></span></small>
-                        <small class="w3-col l12 m12 s12">Precio de compra</small>
+                        <small class="w3-col l12 m12 s12 w3-margin-top">Precio de compra</small>
                                 <input
                         oninput="$('#equivcompr').html(formatNumber(value*$('#comprcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}"
                         type="number" class="w3-input w3-margin-top w3-border" placeholder="Precio" id="precompr">
@@ -113,7 +113,7 @@
                 <div class="w3-col l6 m6 s6 w3-margin-top w3-margin-bottom w3-container">
                     <small class="w3-margin-bottom">Balance <span><b id="balcripto">0.00000000</b> <span
                                 id="balancTag"></span></span></small>
-                    <small class="w3-col l12 m12 s12">Precio de venta</small>
+                    <small class="w3-col l12 m12 s12 w3-margin-top">Precio de venta</small>
                     <input type="number"
                         oninput="$('#equivvent').html(formatNumber(value*$('#ventcant').val(),2));if(validadecimales(value,GPrecDeciml[Gmoneda]['precioDecimal'])){$(this).val(validpg(value,GPrecDeciml[Gmoneda]['precioDecimal']))}"
                         class="w3-input w3-margin-top w3-border" placeholder="Precio" id="prevent">
