@@ -1,4 +1,4 @@
-<div class="w3-col l12">
+<div class="w3-col l8">
 <div class="w3-animate-left noselect">
 
 <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12">
@@ -34,8 +34,12 @@
 </div>
 
 <script>
- EstatusBarColor('ffffff');
+     $(document).ready(function() { $(".menu-lateral").load('submenu/menu-lateral.html') })
+   </script>
+   <div class="menu-lateral w3-col l4 w3-hide-small w3-hide-medium"></div>
 
+<script>
+ EstatusBarColor('ffffff');
 $.ajax({
 url: 'https://'+UrlAPI+'/AppPerfil',
 type: 'post',
