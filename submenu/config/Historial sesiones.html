@@ -1,174 +1,159 @@
-<div class="w3-white w3-padding-16 w3-container noselect w3-col s12 m12 l12">
-    <h5 class="" id="histr">Historial <span class="w3-right" id="totalhist"></span></h5> 
-</div>
-
-<div class="" id="datsl">
-<div class="w3-col s12 w3-white noselect w3-padding-top">
- <div class="w3-center w3-container"  style="display:none" id="trst0">
-  <h5>Sesiones</h5>
-   <p>No hay sesiones</p>
- </div>
-</div>
-
-  <div class="w3-container w3-display-middle w3-center" style="position:fixed;diplay:none" id="loaderspin">
-      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
-      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+<div class="w3-col l8">
+  <div class="w3-white w3-padding-16 w3-container noselect w3-col s12 m12 l12">
+    <h5 class="" id="histr">Historial <span class="w3-right" id="totalhist"></span></h5>
   </div>
 
+  <div class="" id="datsl">
+    <div class="w3-col s12 w3-white noselect w3-padding-top">
+      <div class="w3-center w3-container" style="display:none" id="trst0">
+        <h5>Sesiones</h5>
+        <p>No hay sesiones</p>
+      </div>
+    </div>
+
+    <div class="w3-container w3-display-middle w3-center" style="position:fixed;display:none" id="loaderspin">
+      <i class="fas fa-spinner w3-spin fa-2x w3-text-grey"></i>
+      <small class="w3-col s12 m12 l12 w3-padding-top">Cargando</small>
+    </div>
+  </div>
 </div>
 
-
-
+<script>
+  $(document).ready(function() { $(".menu-lateral").load('submenu/menu-lateral.html') })
+</script>
+<div class="menu-lateral w3-col l4 w3-hide-small w3-hide-medium"></div>
 
 
 
 <script>
-EstatusBarColor('ffffff');
-$('#menusup').hide();
+  EstatusBarColor('ffffff');
+  $('#menusup').hide();
 
-function historialSesiones(pagina)
-{
-var datos= {
-'pagina':pagina
-}
-
-$.ajax({
-data: datos,
-url: 'https://'+UrlAPI+'/AppHistorialSesiones',
-type: 'post',
-beforeSend: function ()
-{
-   //$('#loadergif').show();
-},
-success: function (response)
-{
-  $('#loadergif').hide(); 
-  if(response=='')
-  { 
-
-     NotifiAlert("No se ha obtenido resultados, compruebe su conexión",'w3-red',5000);
-  }
-  else 
-  {
-  
-    var objt=JSON.parse(response);
-    if(objt.session=='true')
-    {
-    
-          
-      
-        //transacciones
-        if(objt.content.length>0)
-        {   
-        
-                     
-           //paginacion
-           pagtotal=objt.paginas.total;
-           paglimite=objt.paginas.maximo;
-           pagina=pagina-1;
-         
-           $('#datsl').attr('pagtotal',pagtotal);
-           $('#datsl').attr('paglimite',paglimite);
-           $('#datsl').attr('pagina',pagina+1);
-           
-           $('#totalhist').html('Total: '+pagtotal);
-            
-           for(i=0;i<objt.content.length;i++)
-           {
-           
-             
-             
-            
-             if(objt.content[i].agente=='Android')
-             {
-               var estado='<i class="fa-solid fa-mobile-screen w3-text-grey w3-xlarge"></i>';
-             }
-             else if(objt.content[i].agente=='iPhone')
-             {
-               var estado='<i class="fa-solid fa-mobile w3-text-grey w3-xlarge"></i>';
-             }
-             else if(objt.content[i].agente=='Mac')
-             {
-               var estado='<i class="fa-solid fa-desktop w3-text-grey w3-xlarge"></i>';
-             }
-             else if(objt.content[i].agente=='Windows')
-             {
-               var estado='<i class="fa-solid fa-laptop w3-text-grey w3-xlarge"></i>';
-             }
-             else
-             {
-               var estado='<i class="fa-solid fa-laptop-file w3-text-grey w3-xlarge"></i>';
-             }
-     
-           
-                 
-            var contanido ='<div class="w3-padding-8 w3-container w3-white w3-col s12" id="trst'+(pagina*paglimite+i+1)+'">';
-                contanido +='<div class="w3-col s2 noselect">'+estado+'</div>';
-                 contanido +='<div class="w3-col m10 l10 s10"><small class="w3-col s12 m12 l12">IP: <b>'+objt.content[i].ip+'</b></small></div>';
-                 contanido +='<div class="w3-col s12 w3-border-bottom w3-border-light-grey w3-text-grey w3-padding-8"><small>'+objt.content[i].agente+'</small><small class="w3-right">'+objt.content[i].fecha+'</small></div>';
-
-             $("#trst"+(pagina*paglimite+i)).after(contanido);
-           }
-             $("#trst0").remove();
-             $('#loaderspin').hide();
-             //$('#histr').show();
-                       
-         }
-         else
-         {
-             $('#loaderspin').hide();
-             $("#trst0").show();
-         } 
+  function historialSesiones(pagina) {
+    var datos = {
+      'pagina': pagina
     }
-    else
-    {
-        CerrarSesion();
-    }
-    
-       
-	    
-  }
-  
-  
-},
-error: function (response)
-{
-   $("#notifigener").removeClass('w3-green').addClass('w3-red');
-   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
-   $("#notifigener").show();
-   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
-   $('#loadergif').hide();
-}
 
-});
-}
-historialSesiones(1);
+    $.ajax({
+      data: datos,
+      url: 'https://' + UrlAPI + '/AppHistorialSesiones',
+      type: 'post',
+      beforeSend: function () {
+        //$('#loadergif').show();
+      },
+      success: function (response) {
+        $('#loadergif').hide();
+        if (response == '') {
+
+          NotifiAlert("No se ha obtenido resultados, compruebe su conexión", 'w3-red', 5000);
+        }
+        else {
+
+          var objt = JSON.parse(response);
+          if (objt.session == 'true') {
+
+
+
+            //transacciones
+            if (objt.content.length > 0) {
+
+
+              //paginacion
+              pagtotal = objt.paginas.total;
+              paglimite = objt.paginas.maximo;
+              pagina = pagina - 1;
+
+              $('#datsl').attr('pagtotal', pagtotal);
+              $('#datsl').attr('paglimite', paglimite);
+              $('#datsl').attr('pagina', pagina + 1);
+
+              $('#totalhist').html('Total: ' + pagtotal);
+
+              for (i = 0; i < objt.content.length; i++) {
+
+
+
+
+                if (objt.content[i].agente == 'Android') {
+                  var estado = '<i class="fa-solid fa-mobile-screen w3-text-grey w3-xlarge"></i>';
+                }
+                else if (objt.content[i].agente == 'iPhone') {
+                  var estado = '<i class="fa-solid fa-mobile w3-text-grey w3-xlarge"></i>';
+                }
+                else if (objt.content[i].agente == 'Mac') {
+                  var estado = '<i class="fa-solid fa-desktop w3-text-grey w3-xlarge"></i>';
+                }
+                else if (objt.content[i].agente == 'Windows') {
+                  var estado = '<i class="fa-solid fa-laptop w3-text-grey w3-xlarge"></i>';
+                }
+                else {
+                  var estado = '<i class="fa-solid fa-laptop-file w3-text-grey w3-xlarge"></i>';
+                }
+
+
+
+                var contanido = '<div class="w3-padding-8 w3-container w3-white w3-col s12" id="trst' + (pagina * paglimite + i + 1) + '">';
+                contanido += '<div class="w3-col s2 noselect">' + estado + '</div>';
+                contanido += '<div class="w3-col m10 l10 s10"><small class="w3-col s12 m12 l12">IP: <b>' + objt.content[i].ip + '</b></small></div>';
+                contanido += '<div class="w3-col s12 w3-border-bottom w3-border-light-grey w3-text-grey w3-padding-8"><small>' + objt.content[i].agente + '</small><small class="w3-right">' + objt.content[i].fecha + '</small></div>';
+
+                $("#trst" + (pagina * paglimite + i)).after(contanido);
+              }
+              $("#trst0").remove();
+              $('#loaderspin').hide();
+              //$('#histr').show();
+
+            }
+            else {
+              $('#loaderspin').hide();
+              $("#trst0").show();
+            }
+          }
+          else {
+            CerrarSesion();
+          }
+
+
+
+        }
+
+
+      },
+      error: function (response) {
+        $("#notifigener").removeClass('w3-green').addClass('w3-red');
+        $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+        $("#notifigener").show();
+        setTimeout(function () { $("#notifigener").hide(); }, 6000);
+        $('#loadergif').hide();
+      }
+
+    });
+  }
+  historialSesiones(1);
 </script>
 
 <script>
-$(document).ready(function(){
- evitardupl=0;
+  $(document).ready(function () {
+    evitardupl = 0;
 
- $(window).scroll(function(){
-if(verarea()=='Historial%20sesiones')
-{
-  if($(window).scrollTop()+$(window).height()+76 >= $(document).height()){
-   var pagactual = Number($('#datsl').attr('pagina'));
-   var totalpag = Number($('#datsl').attr('pagtotal'));
-   var maximoporpag = Number($('#datsl').attr('paglimite'));
-   
-if(pagactual>evitardupl)
-{
-   if(pagactual < (totalpag/maximoporpag)){
-      historialSesiones(pagactual+1);
-      $('#loadergif').show();
-      evitardupl=pagactual; 
-   }
-    
-}
-  }
-}
- });
+    $(window).scroll(function () {
+      if (verarea() == 'Historial%20sesiones') {
+        if ($(window).scrollTop() + $(window).height() + 76 >= $(document).height()) {
+          var pagactual = Number($('#datsl').attr('pagina'));
+          var totalpag = Number($('#datsl').attr('pagtotal'));
+          var maximoporpag = Number($('#datsl').attr('paglimite'));
 
-});
+          if (pagactual > evitardupl) {
+            if (pagactual < (totalpag / maximoporpag)) {
+              historialSesiones(pagactual + 1);
+              $('#loadergif').show();
+              evitardupl = pagactual;
+            }
+
+          }
+        }
+      }
+    });
+
+  });
 </script>
