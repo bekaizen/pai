@@ -1,18 +1,25 @@
 <script>$('#menusup').hide();
-EstatusBarColor('eb4034');
+  EstatusBarColor('eb4034');
 </script>
-
-<div class="w3-col l12 m12 s12 w3-container w3-padding-16" style="background-color:#404e9d">
- <div class="w3-col s12 m12 l12  w3-margin-bottom">
-    <span onclick="AreaServicios('servicios')" class="w3-text-white"><i class="fa-solid fa-shop"></i> Servicios</span> <i onclick="AreaServicios('historial')" class="fa-sharp fa-solid fa-clock-rotate-left w3-large w3-right"></i>
- </div>
+<div class="w3-col l8">
+  <div class="w3-col l12 m12 s12 w3-container w3-padding-16">
+    <div class="w3-col s12 m12 l12  w3-margin-bottom">
+      <span onclick="AreaServicios('servicios')" class=""><i class="fa-solid fa-shop"></i> Servicios</span>
+      <i onclick="AreaServicios('historial')" class="fa-sharp fa-solid fa-clock-rotate-left w3-large w3-right"></i>
+    </div>
+  </div>
+  <div id="nftdata"></div>
 </div>
-<div id="nftdata"></div>
 
 <script>
-function AreaServicios(area)
-{
-  $("#nftdata").load("submenu/servicios/"+area+".html");
-}
- AreaServicios('servicios')
+  $(document).ready(function () { $(".menu-lateral").load('submenu/menu-lateral.html') })
+</script>
+<div class="w3-col l4 w3-hide-small w3-hide-medium">
+  <div class="menu-lateral"></div>
+</div>
+<script>
+  function AreaServicios(area) {
+    $("#nftdata").load("submenu/servicios/" + area + ".html");
+  }
+  AreaServicios('servicios')
 </script>
