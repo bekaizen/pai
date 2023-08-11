@@ -1,8 +1,8 @@
-<div class="noselect">
+<div class="w3-col l8">
   <div class="w3-container w3-white">
 
     <h5 class="noselect w3-margin-top w3-margin-bottom" style="display:none" id="cuetsb">Listado de cuentas <span
-        class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-light-grey"
+        class="w3-container w3-right pointer w3-padding-8 w3-border w3-round w3-blue"
         onclick="$('#AddpayMeth').show()">+Agregar cuenta bancaria</span></h5>
     <div class="" id="contd"></div>
 
@@ -14,6 +14,12 @@
   </div>
 </div>
 
+<script>
+  $(document).ready(function () { $(".menu-lateral").load('submenu/menu-lateral.html') })
+</script>
+<div class="w3-col l4 w3-hide-small w3-hide-medium">
+  <div class="menu-lateral"></div>
+</div>
 <script>
 
   EstatusBarColor('1565c0');
