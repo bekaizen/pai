@@ -70,8 +70,10 @@
 
         <div class="w3-col l3 s8  w3-container w3-right">
             <div class="w3-right w3-margin-top w3-padding-top w3-padding-bottom w3-col l12 m12 s12">
-                <button onclick="$('#ventanaswap').show()" class="w3-btn w3-white w3-col l5 s5  w3-border w3-border-light-grey w3-round">Transferir</button>
-                <button onclick="OpenOption('retirar')" class="w3-btn w3-white w3-col l5 s5  w3-margin-left w3-border w3-border-light-grey w3-round">Retirar</button>
+                <button onclick="$('#ventanaswap').show()"
+                    class="w3-btn w3-white w3-col l5 s5  w3-border w3-border-light-grey w3-round">Transferir</button>
+                <button onclick="OpenOption('retirar')"
+                    class="w3-btn w3-white w3-col l5 s5  w3-margin-left w3-border w3-border-light-grey w3-round">Retirar</button>
             </div>
         </div>
     </div>
@@ -96,7 +98,8 @@
                     <input type="range" class="w3-margin-top w3-margin-bottom w3-col l12" id="vol"
                         oninput="$('#equivcompr').html(formatNumber(value,2));$('#comprcant').val(validpg(value/$('#precompr').val()*1.0000,GPrecDeciml[Gmoneda]['montoDecimal']))"
                         value="0" min="0.00" step="0.01" max="">
-                    <div class="w3-margin-top">Equivalente: <span id="equivcompr">0</span> <span id="mercadoAqiv"></span></div>
+                    <div class="w3-margin-top">Equivalente: <span id="equivcompr">0</span> <span
+                            id="mercadoAqiv"></span></div>
 
                     <button class="w3-btn w3-green w3-col l12 w3-margin-top w3-round"
                         onclick="Trade('compra',$('#precompr').val(),$('#comprcant').val())">Comprar</button>
@@ -115,7 +118,8 @@
                     <input type="range" class="w3-margin-top w3-margin-bottom w3-col l12" id="volvent"
                         oninput="$('#equivvent').html(formatNumber(validpg(value*$('#prevent').val()*1.0000,2),2));$('#ventcant').val(validpg(value,GPrecDeciml[Gmoneda]['montoDecimal']))"
                         value="0.00000000" min="0" step="0.00000001" max="">
-                    <div class="w3-margin-top">Equivalente: <span id="equivvent">0</span> <span id="mercadoEquivVent"></span></div>
+                    <div class="w3-margin-top">Equivalente: <span id="equivvent">0</span> <span
+                            id="mercadoEquivVent"></span></div>
 
                     <button class="w3-btn w3-red w3-col l12 w3-margin-top w3-round"
                         onclick="Trade('venta',$('#prevent').val(),$('#ventcant').val())">Vender</button>
@@ -213,49 +217,59 @@
 <!-- Swap fiat a usd-->
 <div id="ventanaswap" class="w3-modal noselect" style="display: none;">
     <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l5 m11 s11">
-     <div class="w3-margin-bottom w3-container w3-margin-top">
-         <b>Conversor de monedas</b>
-          <div class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2 w3-margin-top">
-           <small class="w3-col s12 m12 l12">Seleccione el origen</small>
-            <div class="w3-col s2 m2 l2"><img src="icon/USD.png" style="width:30px"  id="SwapMoned"></div> 
-            <div class="w3-col w3-col s5 m5 l5">
-              <select class="w3-select w3-border-0 w3-round w3-round-large" id="swapDesde" onchange="OrganizarSwap(value,'desde')" style="outline:none">
-               <option>USD</option>
-               <option>USDT</option>
-              </select>
-              <small class="w3-col s12 m12 l12 w3-text-blue" id="origenSaldo"></small>
-             </div>
-            
-            <input type="number" oninput="CalculadoraSwap()" id="montoDesde" style="text-align:right;outline:none" class="w3-input w3-border-0 w3-round w3-round-large w3-col s5 m5 l5 w3-light-grey" placeholder="0.00">
-          </div>
- 
-         <div class="w3-col s12 m12 l12 w3-margin-top w3-margin-bottom w3-center">
-            <div  class="w3-center w3-card-2" style="border-radius: 100px; color:#fff; width:50px; margin:0 auto; height:50px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
-             <i class="fa-solid fa-retweet w3-xlarge"></i>
-            </div>        
-         </div>
-         
-         <div class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2">
-           <small class="w3-col s12 m12 l12">Seleccione destino</small>
-            <div class="w3-col s2 m2 l2"><img src="icon/USDT.png" style="width:30px"  id="SwapMoned2"></div> 
-            <select class="w3-select w3-col w3-border-0  w3-padding-top w3-round w3-round-large w3-col s10 m10 l10" id="swapHasta" style="outline:none">
-               <option>USDT</option>
-             </select> 
-         </div>
-         
-         <div class="w3-container w3-light-grey w3-margin-top w3-col s12 m12 l12 w3-padding-16 w3-round w3-round-large w3-margin-bottom">
-             <div class="w3-col s12 m12 l12">Precio: <span class="w3-right" id="tasaSwap"></span></div>
-            <div class="w3-col s12 m12 l12">Recibe: <span class="w3-right"  id="resultadoSwap"></span></div>
-         </div>
-         
-     <div class="w3-margin-top">    
-         <bottom class="w3-btn w3-blue w3-center w3-col l12 m12 s12 w3-margin-bottom w3-round" onclick="HacerSwap($('#montoDesde').val(),$('#swapDesde').val(),$('#swapHasta').val())">Convertir</bottom>
-         <bottom class="w3-btn w3-light-grey w3-center w3-col l12 m12 s12 w3-round" onclick="$('#ventanaswap').hide()">Atrás</bottom>
-     </div>
-     </div>
-   </div>
-   </div>
- <!-- Swap fiat a usd-->
+        <div class="w3-margin-bottom w3-container w3-margin-top">
+            <b>Conversor de monedas</b>
+            <div
+                class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2 w3-margin-top">
+                <small class="w3-col s12 m12 l12">Seleccione el origen</small>
+                <div class="w3-col s2 m2 l2"><img src="icon/USD.png" style="width:30px" id="SwapMoned"></div>
+                <div class="w3-col w3-col s5 m5 l5">
+                    <select class="w3-select w3-border-0 w3-round w3-round-large" id="swapDesde"
+                        onchange="OrganizarSwap(value,'desde')" style="outline:none">
+                        <option>USD</option>
+                        <option>USDT</option>
+                    </select>
+                    <small class="w3-col s12 m12 l12 w3-text-blue" id="origenSaldo"></small>
+                </div>
+
+                <input type="number" oninput="CalculadoraSwap()" id="montoDesde" style="text-align:right;outline:none"
+                    class="w3-input w3-border-0 w3-round w3-round-large w3-col s5 m5 l5 w3-light-grey"
+                    placeholder="0.00">
+            </div>
+
+            <div class="w3-col s12 m12 l12 w3-margin-top w3-margin-bottom w3-center">
+                <div class="w3-center w3-card-2"
+                    style="border-radius: 100px; color:#fff; width:50px; margin:0 auto; height:50px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
+                    <i class="fa-solid fa-retweet w3-xlarge"></i>
+                </div>
+            </div>
+
+            <div class="w3-col s12 m12 l12 w3-container w3-white w3-round w3-round-large w3-padding w3-card-2">
+                <small class="w3-col s12 m12 l12">Seleccione destino</small>
+                <div class="w3-col s2 m2 l2"><img src="icon/USDT.png" style="width:30px" id="SwapMoned2"></div>
+                <select class="w3-select w3-col w3-border-0  w3-padding-top w3-round w3-round-large w3-col s10 m10 l10"
+                    id="swapHasta" style="outline:none">
+                    <option>USDT</option>
+                </select>
+            </div>
+
+            <div
+                class="w3-container w3-light-grey w3-margin-top w3-col s12 m12 l12 w3-padding-16 w3-round w3-round-large w3-margin-bottom">
+                <div class="w3-col s12 m12 l12">Precio: <span class="w3-right" id="tasaSwap"></span></div>
+                <div class="w3-col s12 m12 l12">Recibe: <span class="w3-right" id="resultadoSwap"></span></div>
+            </div>
+
+            <div class="w3-margin-top">
+                <bottom class="w3-btn w3-blue w3-center w3-col l12 m12 s12 w3-margin-bottom w3-round"
+                    onclick="HacerSwap($('#montoDesde').val(),$('#swapDesde').val(),$('#swapHasta').val())">Convertir
+                </bottom>
+                <bottom class="w3-btn w3-light-grey w3-center w3-col l12 m12 s12 w3-round"
+                    onclick="$('#ventanaswap').hide()">Atrás</bottom>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Swap fiat a usd-->
 
 <script>
     function CalculadoraSwap() {
@@ -608,38 +622,37 @@
 
 
 
-                //ordenes realizadas
                 ordenesRealiz = '';
+
                 for (i = 0; i < obj.operaciones.realizadas.length; i++) {
-                    if (obj.operaciones.realizadas[i].tipo == 'compra') {
-                        Trcolor = 'green';
-                        MonedaComision = Gmoneda;
-                    }
-                    else {
-                        Trcolor = 'red';
-                        MonedaComision = obj.operaciones.realizadas[i].mercado;
-                    }
+                    const operacion = obj.operaciones.realizadas[i];
+                    const tipo = operacion.tipo;
 
-                    ordenesRealiz += '<div class="w3-col s12 m12 l12 w3-round w3-round-large w3-container w3-light-grey w3-margin-bottom">';
-                    ordenesRealiz += '<div class="w3-col s12 m12 l12 w3-padding-top"><div class="w3-col s7 m7 l7"><span class="w3-round w3-' + Trcolor + ' w3-small">&nbsp; ' + obj.operaciones.realizadas[i].tipo + ' ' + Gmoneda + '&nbsp;</span></div> <small clas="w3-col s5 m5 l5">' + obj.operaciones.realizadas[i].fecha + '</small>  </div>';
+                    const Trcolor = tipo === 'compra' ? 'green' : 'red';
+                    const MonedaComision = tipo === 'compra' ? Gmoneda : operacion.mercado;
 
-                    ordenesRealiz += '<div class="w3-col s12 m12 l12 w3-small w3-text-grey w3-padding-top"><span>Monto <b>' + formatNumber(obj.operaciones.realizadas[i].monto, 2) + ' ' + obj.operaciones.realizadas[i].mercado + '</b></span></div>';
-
-                    ordenesRealiz += '<div class="w3-col s12 m12 l12 w3-small w3-padding-top w3-padding-bottom">';
-                    ordenesRealiz += '<div class="w3-col s4 m4 l4 w3-text-grey">Precio</div> <div class="w3-col s4 m4 l4 w3-text-grey">Cantidad</div><div class="w3-col s4 m4 l4 w3-text-grey">Comisión</div>';
-                    ordenesRealiz += '<div class="w3-col s4 m4 l4">' + formatNumber(obj.operaciones.realizadas[i].precio, GPrecDeciml[Gmoneda]['precioDecimal']) + '</div>';
-                    ordenesRealiz += '<div class="w3-col s4 m4 l4">' + formatNumber(obj.operaciones.realizadas[i].valor, GPrecDeciml[Gmoneda]['montoDecimal']) + '</div>';
-                    ordenesRealiz += '<div class="w3-col s4 m4 l4">-' + formatonumero(obj.operaciones.realizadas[i].comision, GPrecDeciml[MonedaComision]['montoDecimal']) + ' ' + MonedaComision + '</div>';
-                    ordenesRealiz += '</div></div>';
-
-
+                    ordenesRealiz += `
+        <tr class="w3-${Trcolor}">
+            <td>${tipo}</td>
+            <td>${Gmoneda}</td>
+            <td>${operacion.fecha}</td>
+            <td>${formatNumber(operacion.monto, 2)} ${operacion.mercado}</td>
+            <td>${formatNumber(operacion.precio, GPrecDeciml[Gmoneda]['precioDecimal'])}</td>
+            <td>${formatNumber(operacion.valor, GPrecDeciml[Gmoneda]['montoDecimal'])}</td>
+            <td>-${formatNumber(operacion.comision, GPrecDeciml[MonedaComision]['montoDecimal'])} ${MonedaComision}</td>
+        </tr>`;
                 }
 
-                if (ordenesRealiz == '') {
-                    ordenesRealiz = '<div class="w3-padding-64 w3-text-grey w3-center">';
-                    ordenesRealiz += '<i class="fas fa-search fa-4x w3-margin-bottom"></i>';
-                    ordenesRealiz += '<div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">No hay transacciones</div></div>';
+                if (ordenesRealiz === '') {
+                    ordenesRealiz = `
+        <tr>
+            <td colspan="7" class="w3-text-grey w3-center">
+                <i class="fas fa-search fa-4x w3-margin-bottom"></i><br>
+                No hay transacciones
+            </td>
+        </tr>`;
                 }
+
                 $('#ordeneslist').html(ordenesRealiz);
 
 
