@@ -629,7 +629,7 @@
                 contanido += '<div class="w3-col m10 l10 s10 ' + borderline + '"><div class="w3-col s7 noselect w3-small w3-padding-bottom"><div class="w3-col s12 m12 l12"><span><img width="15px" src="icon/' + objt.content[i].moneda + '.png"> ' + objt.content[i].nombre + '</span></div><span> Para: ' + objt.content[i].direccion + '</span></div>';
                 contanido += '<div class="w3-col s5 reajuste"><div class="w3-col m12 l12 s12"><span class="w3-right w3-padding-right" id="chmnd' + (pagina * paglimite + i) + '">' + montoCry + '</span></div><div class="w3-col m12 l12 s12"><small class="w3-right w3-padding-right">' + objt.content[i].fecha + '</small></div></div>';
 
-                contanido += '<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: block;" id="tx' + (pagina * paglimite + i) + '"><small></small>';
+                contanido += '<div class="w3-col s12 w3-border-top w3-border-light-grey w3-text-grey w3-padding-8" style="display: none;" id="tx' + (pagina * paglimite + i) + '"><small></small>';
 
                 for (e = 0; e < objt.content[i].txid.split(',').length; e++) {
                   txid = objt.content[i].txid.split(',');
