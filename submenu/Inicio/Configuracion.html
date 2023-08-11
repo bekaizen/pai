@@ -1,29 +1,34 @@
 <div class="">
-<div class="w3-animate-right noselect">
+  <div class="w3-animate-right noselect">
     <div class=" w3-container w3-padding-16 w3-white w3-col l12">Opciones y configuración</div>
-<style>
- .mlarge
- {
-   font-size:20px;
- } 
-</style>
-<!--<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="alert('Esta área estara disponible próximamente, nos encontramos realizando terminaciones para su lanzamiento.')">
+    <style>
+      .mlarge {
+        font-size: 20px;
+      }
+    </style>
+    <!--<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="alert('Esta área estara disponible próximamente, nos encontramos realizando terminaciones para su lanzamiento.')">
       <h6><i class="w3-padding-right fas fa-donate mlarge w3-text-grey"></i> Método de pago <i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
 </div> 
  -->
 
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenConfig('kyc');">
-     <h6><i class="w3-padding-right fas fa-shield-alt mlarge w3-text-grey"></i> Verificación de cuenta<i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
-</div>
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="OpenConfig('kyc');">
+      <h6><i class="w3-padding-right fas fa-shield-alt mlarge w3-text-grey"></i> Verificación de cuenta<i
+          class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
+    </div>
 
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenConfig('2fa')" id='2fa'>
-     <h6><span id=""><i class="w3-padding-right fas fa-user-lock mlarge w3-text-grey"></i> Doble Factor</span> <i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
-</div>
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenConfig('Historial sesiones')">
-     <h6><span id=""><i class="w3-padding-right fa-brands fa-expeditedssl mlarge w3-text-grey"></i> Historial de sesiones</span> <i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
-</div>
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="OpenConfig('2fa')" id='2fa'>
+      <h6><span id=""><i class="w3-padding-right fas fa-user-lock mlarge w3-text-grey"></i> Doble Factor</span> <i
+          class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
+    </div>
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="OpenConfig('Historial sesiones')">
+      <h6><span id=""><i class="w3-padding-right fa-brands fa-expeditedssl mlarge w3-text-grey"></i> Historial de
+          sesiones</span> <i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
+    </div>
 
-<!--<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenConfig('Pin')" id='pin' style="display:none">
+    <!--<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenConfig('Pin')" id='pin' style="display:none">
      <h6><span id="pintext"><i class="w3-padding-right fas fa-sort-numeric-down mlarge w3-text-grey"></i> Activar código pin</span> <i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
 </div>
 <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick='HuellaDactilar("Desbloqueo con huella dactilar","PAI Exchange")' style="display:none" id="huella">
@@ -32,214 +37,233 @@
 <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick='HuellaDactilar("Desbloqueo con FaceID","PAI Exchange")' style="display:none" id="face">
      <h6><span id="pintext"><i class="w3-padding-right far fa-eye mlarge w3-text-grey"></i> <span id="fcidtext">Activar FaceID</span>  </span> </h6>
 </div>-->
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="$('#TipsSeguridad').show();">
-     <h6><span id="pintext"><i class="w3-padding-right fa-solid fa-building-shield mlarge w3-text-grey"></i> <span>Consejos de seguridad</span>  </span> </h6>
-</div>
-<!--
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="$('#TipsSeguridad').show();">
+      <h6><span id="pintext"><i class="w3-padding-right fa-solid fa-building-shield mlarge w3-text-grey"></i>
+          <span>Consejos de seguridad</span> </span> </h6>
+    </div>
+    <!--
 <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12 w3-margin-top" onclick="OpenConfig('Notificaciones');">
      <h6><i class="w3-padding-right fas fa-bell mlarge w3-text-grey"></i> Notificaciones<i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6> 
 </div>
---> 
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="OpenOtherOption('submenu/Inicio/Ayuda','Ayuda')">
-     <h6><i class="w3-padding-right fas fa-question-circle mlarge w3-text-grey"></i> Ayuda<i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6> 
-</div>
+-->
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="OpenOtherOption('submenu/Inicio/Ayuda','Ayuda')">
+      <h6><i class="w3-padding-right fas fa-question-circle mlarge w3-text-grey"></i> Ayuda<i
+          class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
+    </div>
 
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12" onclick="AbrirSoporte();$('#chatchg').show();">
-     <h6><i class="w3-padding-right fa-solid fa-headset mlarge w3-text-grey"></i> Soporte<i class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6> 
-</div>
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12"
+      onclick="AbrirSoporte();$('#chatchg').show();">
+      <h6><i class="w3-padding-right fa-solid fa-headset mlarge w3-text-grey"></i> Soporte<i
+          class="fa fa-chevron-right w3-right w3-text-blue-grey w3-padding-top"></i></h6>
+    </div>
 
-<div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12 w3-text-red" onclick="$('#SesionClose').show();">
-     <h6>Cerrar sesión <i class="fas fa-sign-out-alt w3-right w3-padding-top"></i></h6> 
-</div>
+    <div class="w3-padding w3-row  w3-container w3-border-bottom w3-border-light-grey w3-white w3-col s12 w3-text-red"
+      onclick="$('#SesionClose').show();">
+      <h6>Cerrar sesión <i class="fas fa-sign-out-alt w3-right w3-padding-top"></i></h6>
+    </div>
 
 
-</div>
-</div>
-<!-- Cerrar Sesion-->
-<div id="SesionClose" class="w3-modal noselect w3-col l5">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
-      
+  </div>
+
+  <!-- Cerrar Sesion-->
+  <div id="SesionClose" class="w3-modal noselect w3-col l12">
+    <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l4 m10 s10">
+
       <p class="w3-padding-32 w3-center">¿Está seguro que desea cerrar la sesión?</p>
-      
-      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey" style="cursor:pointer" onclick="$('#SesionClose').hide();">No</div>
-      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey" style="cursor:pointer" onclick="CerrarSesion()">Si</div>
-  </div>
-</div>
-<!-- //Cerrar Sesion// -->
 
-<!-- hella dactilar-->
-<div id="HuellClose" class="w3-modal noselect w3-col l5">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
-      
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center w3-border-right w3-border-top w3-border-light-grey"
+        style="cursor:pointer" onclick="$('#SesionClose').hide();">No</div>
+      <div class="w3-col s6 m6 l6 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-light-grey"
+        style="cursor:pointer" onclick="CerrarSesion()">Si</div>
+    </div>
+  </div>
+  <!-- //Cerrar Sesion// -->
+
+  <!-- hella dactilar-->
+  <div id="HuellClose" class="w3-modal noselect w3-col l5">
+    <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
+
       <p class="w3-padding-32 w3-center" id="hueltext"></p>
-    
-      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-lightgrey" style="cursor:pointer" onclick="$('#HuellClose').hide();">Aceptar</div>
+
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center  w3-border-top w3-text-blue w3-border-lightgrey"
+        style="cursor:pointer" onclick="$('#HuellClose').hide();">Aceptar</div>
+    </div>
   </div>
-</div>
-<!-- //huella dactilar// -->
+  <!-- //huella dactilar// -->
 
 
-<!-- Tips seguridad -->
-<div id="TipsSeguridad" class="w3-modal noselect w3-col l5">
-  <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
-      
-        <center class="w3-container w3-margin-top">
-          <p><b class="w3-text-grey w3-large">Tips de seguridad y protección.</b></p>
-           <div class="w3-margin-bottom w3-text-grey" align="left">
-               Consejos de seguridad para manejar cripto activos digitales.<br><br>
-         <div style="overflow-y:scroll;max-height:350px">
+  <!-- Tips seguridad -->
+  <div id="TipsSeguridad" class="w3-modal noselect w3-col l5">
+    <div class="w3-display-middle  w3-white w3-round w3-round-xlarge w3-animate-fade w3-card-2 w3-col l10 m10 s10">
 
-1)- Habilite la autenticación de dos factores en su cuenta para aumentar la seguridad y protección.<br><br>
-2)- Configure un código Pin o Huella dactilar para evitar que otra persona  utilice su teléfono móvil o acceda a sus aplicaciones.<br><br>
-3)- Debe mantener seguro y protegido su correo electrónico con autenticación de doble factor y un pin o huella dactilar en caso de que su teléfono sea robado.<br><br>
-4)- No utilice el mismo correo y contraseña en todas las páginas  que accede. Tampoco use la misma contraseña de su correo en los sitios web y aplicaciones que usa.<br><br>
-5)- No introduzca su usuario o contraseña en ningún enlace recibido por correo electrónico que parezca provenir de PAI o de ningún otro servicio de criptomonedas. Siempre es mejor que acceda directamente al sitio web o aplicación oficial.<br><br>
-6)- No acceda desde ningún otro dispositivo a su cuenta, siempre use su móvil de confianza.<br><br>
-7)- Al recibir correos electrónicos o mensajes de texto o contacto por cualquier vía, nunca haga clic en ningún enlace a menos que esté esperando exactamente la información desde la fuente oficial.<br><br>
-8)- Compruebe con regularidad los accesos desde donde su cuenta es accedida y verifique que no haya ningún inicio de sesión desconocido. <br><br>
-9)- Al configurar el doble factor asegúrese de guardar la clave privada para poder configurarla en otro dispositivo en caso de pérdida.<br><br>
-10)- No almacene su contraseña en las claves guardadas del navegador, es un método inseguro y se expone a ataques de robo de datos.<br><br>
-11)- Al enviar cualquier criptomoneda asegúrese de que luego de haber copiado y pegado la dirección, no haya cambiado: Existen diversos programas para móvil y computadoras que cambian las direcciones de criptomonedas que el cliente ha copiado. Al confirmar el correo primero revise la dirección.<br><br>
-12)-  No guarde sus contraseñas en ningún medio digital en línea con acceso a internet, el método más seguro es en una hoja de papel. <br><br>
-13)- Tenga especial cuidado con las extensiones integradas en los navegadores de internet como Safari, Chrome, Opera y otros: estas de dedican a reemplazar las direcciones de criptomonedas que el usuario visualiza con el fin de que el usuario copie y envíe fondos a una dirección de criptomoneda fraudulenta. Siempre asegúrese de confirmar las direcciones de criptomonedas y memorizar las palabras iniciales y finales para evitar enviar fondos a una dirección equivocada.<br><br>
-14)- Tenga mucho cuidado con las aplicaciones y juegos que instala en su dispositivo móvil, muchas de ellas vienen infectadas con malwares y diversos virus que tienen permisos para leer los SMS y copiar las contraseñas que instroduce en las aplicaciones. <br><br>
-15)- Cuidado con el fishing: esta es una practica utilizada para suplantar la identidad de los sitios web y aplicaciones y crear copias identicas con el fin de que el usuario use una aplicación o sitio web falso para robar sus contraseñas. Nunca acceda a su cuenta desde ningun enlace, siempre hagalo desde la aplicación o sitio web oficial. 
-</div>
+      <center class="w3-container w3-margin-top">
+        <p><b class="w3-text-grey w3-large">Tips de seguridad y protección.</b></p>
+        <div class="w3-margin-bottom w3-text-grey" align="left">
+          Consejos de seguridad para manejar cripto activos digitales.<br><br>
+          <div style="overflow-y:scroll;max-height:350px">
 
-               
-           </div>
-        </center>  
-      
-      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-lightgrey w3-text-blue" style="cursor:pointer" onclick="$('#TipsSeguridad').hide();">Ocultar</div>
+            1)- Habilite la autenticación de dos factores en su cuenta para aumentar la seguridad y protección.<br><br>
+            2)- Configure un código Pin o Huella dactilar para evitar que otra persona utilice su teléfono móvil o
+            acceda a sus aplicaciones.<br><br>
+            3)- Debe mantener seguro y protegido su correo electrónico con autenticación de doble factor y un pin o
+            huella dactilar en caso de que su teléfono sea robado.<br><br>
+            4)- No utilice el mismo correo y contraseña en todas las páginas que accede. Tampoco use la misma contraseña
+            de su correo en los sitios web y aplicaciones que usa.<br><br>
+            5)- No introduzca su usuario o contraseña en ningún enlace recibido por correo electrónico que parezca
+            provenir de PAI o de ningún otro servicio de criptomonedas. Siempre es mejor que acceda directamente al
+            sitio web o aplicación oficial.<br><br>
+            6)- No acceda desde ningún otro dispositivo a su cuenta, siempre use su móvil de confianza.<br><br>
+            7)- Al recibir correos electrónicos o mensajes de texto o contacto por cualquier vía, nunca haga clic en
+            ningún enlace a menos que esté esperando exactamente la información desde la fuente oficial.<br><br>
+            8)- Compruebe con regularidad los accesos desde donde su cuenta es accedida y verifique que no haya ningún
+            inicio de sesión desconocido. <br><br>
+            9)- Al configurar el doble factor asegúrese de guardar la clave privada para poder configurarla en otro
+            dispositivo en caso de pérdida.<br><br>
+            10)- No almacene su contraseña en las claves guardadas del navegador, es un método inseguro y se expone a
+            ataques de robo de datos.<br><br>
+            11)- Al enviar cualquier criptomoneda asegúrese de que luego de haber copiado y pegado la dirección, no haya
+            cambiado: Existen diversos programas para móvil y computadoras que cambian las direcciones de criptomonedas
+            que el cliente ha copiado. Al confirmar el correo primero revise la dirección.<br><br>
+            12)- No guarde sus contraseñas en ningún medio digital en línea con acceso a internet, el método más seguro
+            es en una hoja de papel. <br><br>
+            13)- Tenga especial cuidado con las extensiones integradas en los navegadores de internet como Safari,
+            Chrome, Opera y otros: estas de dedican a reemplazar las direcciones de criptomonedas que el usuario
+            visualiza con el fin de que el usuario copie y envíe fondos a una dirección de criptomoneda fraudulenta.
+            Siempre asegúrese de confirmar las direcciones de criptomonedas y memorizar las palabras iniciales y finales
+            para evitar enviar fondos a una dirección equivocada.<br><br>
+            14)- Tenga mucho cuidado con las aplicaciones y juegos que instala en su dispositivo móvil, muchas de ellas
+            vienen infectadas con malwares y diversos virus que tienen permisos para leer los SMS y copiar las
+            contraseñas que instroduce en las aplicaciones. <br><br>
+            15)- Cuidado con el fishing: esta es una practica utilizada para suplantar la identidad de los sitios web y
+            aplicaciones y crear copias identicas con el fin de que el usuario use una aplicación o sitio web falso para
+            robar sus contraseñas. Nunca acceda a su cuenta desde ningun enlace, siempre hagalo desde la aplicación o
+            sitio web oficial.
+          </div>
+
+
+        </div>
+      </center>
+
+      <div class="w3-col s12 m12 l12 w3-large w3-padding-16 w3-center w3-border-top w3-border-lightgrey w3-text-blue"
+        style="cursor:pointer" onclick="$('#TipsSeguridad').hide();">Ocultar</div>
+    </div>
   </div>
+  <!-- //Tips Seguridad// -->
 </div>
-<!-- //Tips Seguridad// -->
+<script>
+  $(document).ready(function () { $(".menu-lateral").load('submenu/menu-lateral.html') })
+</script>
+<div class="menu-lateral w3-col l4 w3-hide-small w3-hide-medium"></div>
 
 <script>
-EstatusBarColor('ffffff');
-Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
-function isAvailableSuccess(result) 
-{
-    
-    if(result=='face')
-    {    
-        if(localStorage.getItem('Huella')!==null)
-        { 
-          $('#hellaction').html('Desactivar FaceID'); 
-        }
-        $('#face').show();
+  EstatusBarColor('ffffff');
+  Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
+  function isAvailableSuccess(result) {
+
+    if (result == 'face') {
+      if (localStorage.getItem('Huella') !== null) {
+        $('#hellaction').html('Desactivar FaceID');
+      }
+      $('#face').show();
     }
-    else
-    {
-        if(localStorage.getItem('Huella')!==null)
-        { 
-          $('#hellaction').html('Desactivar huella dactilar'); 
-        }
-        $('#huella').show();
+    else {
+      if (localStorage.getItem('Huella') !== null) {
+        $('#hellaction').html('Desactivar huella dactilar');
+      }
+      $('#huella').show();
     }
-    
-      
-}
- 
-function isAvailableError(error)
-{
-     $('#pin').show();
-}
 
 
-function HuellaDactilar(descripcion,titulo)
-{
-      Fingerprint.show({
+  }
+
+  function isAvailableError(error) {
+    $('#pin').show();
+  }
+
+
+  function HuellaDactilar(descripcion, titulo) {
+    Fingerprint.show({
       description: descripcion,
       title: titulo
     }, successCallback, errorCallback);
-} 
- 
- 
-function successCallback()
-{
-    if(localStorage.getItem('Huella')==null)
-    {
-      
-      localStorage.setItem('Huella','true');    
+  }
+
+
+  function successCallback() {
+    if (localStorage.getItem('Huella') == null) {
+
+      localStorage.setItem('Huella', 'true');
       $('#hueltext').html('Ha sido activada');
       $('#HuellClose').show();
       $('#fcidtext').html('Desactivar FaceID');
       $('#hellaction').html('Desactivar huella dactilar');
-      
+
     }
-    else
-    {
-    
-      localStorage.removeItem('Huella');    
+    else {
+
+      localStorage.removeItem('Huella');
       $('#hueltext').html('Ha sido desactivada');
       $('#HuellClose').show();
       $('#fcidtext').html('Activar FaceID');
       $('#hellaction').html('Activar huella dactilar');
-      
+
     }
-}
- 
-function errorCallback(error){
-     
-}
+  }
+
+  function errorCallback(error) {
+
+  }
 </script>
 <script>$('#menu').show();</script>
-<script>if(localStorage.getItem('PinAcceso')!==null){ $('#pintext').html('<i class="w3-padding-right fas fa-unlock mlarge w3-text-grey"></i> Desactivar código pin');}</script>
+<script>if (localStorage.getItem('PinAcceso') !== null) { $('#pintext').html('<i class="w3-padding-right fas fa-unlock mlarge w3-text-grey"></i> Desactivar código pin'); }</script>
 <script>
-if($('#face').attr('style')=='display:none' &&	 $('#huella').attr('style')=='display:none')
-{
-    $('#pin').show();   
-}
+  if ($('#face').attr('style') == 'display:none' && $('#huella').attr('style') == 'display:none') {
+    $('#pin').show();
+  }
 </script>
 <script>
-function OpenConfig(id){
-$.ajax({
-url: 'submenu/config/'+id+'.html',
-type: 'post',
-beforeSend: function ()
-{
-  //$("#loadergif").show();
-},
-success: function (response)
-{
-  $("#loadergif").hide();
-  if(id=='Cuentas')
-  {
-    $('#addcuenta').show();
-  }
-  else
-  {
-    $('#addcuenta').hide();
-  }
-  
-  if(response=='')
-  { 
-  
-     $("#notifigener").removeClass('w3-green').addClass('w3-red');
-     $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
-     $("#notifigener").show();
-     setTimeout(function(){ $("#notifigener").hide(); }, 6000);
-  }
-  else 
-  {
-    $("#contenido").html(response);
-    $("#titname").html(id);
-    history.pushState(id,id,id); 
-  }
-  
-  
-},
+  function OpenConfig(id) {
+    $.ajax({
+      url: 'submenu/config/' + id + '.html',
+      type: 'post',
+      beforeSend: function () {
+        //$("#loadergif").show();
+      },
+      success: function (response) {
+        $("#loadergif").hide();
+        if (id == 'Cuentas') {
+          $('#addcuenta').show();
+        }
+        else {
+          $('#addcuenta').hide();
+        }
 
-error: function (response)
-{
-   $("#notifigener").removeClass('w3-green').addClass('w3-red');
-   $("#notifigener").html("<p>Verifique su conexión a internet</p>");
-   $("#notifigener").show();
-   setTimeout(function(){ $("#notifigener").hide(); }, 6000);
-   $("#loadergif").hide();
-}
+        if (response == '') {
 
-});
-}
+          $("#notifigener").removeClass('w3-green').addClass('w3-red');
+          $("#notifigener").html("<p>No se ha obtenido resultados, compruebe su conexión</p>");
+          $("#notifigener").show();
+          setTimeout(function () { $("#notifigener").hide(); }, 6000);
+        }
+        else {
+          $("#contenido").html(response);
+          $("#titname").html(id);
+          history.pushState(id, id, id);
+        }
+
+
+      },
+
+      error: function (response) {
+        $("#notifigener").removeClass('w3-green').addClass('w3-red');
+        $("#notifigener").html("<p>Verifique su conexión a internet</p>");
+        $("#notifigener").show();
+        setTimeout(function () { $("#notifigener").hide(); }, 6000);
+        $("#loadergif").hide();
+      }
+
+    });
+  }
 </script>
