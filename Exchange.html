@@ -632,8 +632,8 @@
                     const MonedaComision = tipo === 'compra' ? Gmoneda : operacion.mercado;
 
                     ordenesRealiz += `
-        <tr class="w3-${Trcolor}">
-            <td>${tipo}</td>
+        <tr>
+            <td class="w3-text-${Trcolor}">${tipo}</td>
             <td>${Gmoneda}</td>
             <td>${operacion.fecha}</td>
             <td>${formatNumber(operacion.monto, 2)} ${operacion.mercado}</td>
