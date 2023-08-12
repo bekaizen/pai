@@ -386,7 +386,6 @@
     }
   
     .msger-inputarea {
-      display: flex;
       border-top: var(--border);
       /* background: #eee; */
       display:grid;
@@ -397,7 +396,6 @@
   
     .msger-inputarea * {
       border: none;
-      border-radius: 28px;
       font-size: 1em;
       height:50px;
       border:none;
@@ -414,6 +412,8 @@
       font-weight: bold;
       cursor: pointer;
       transition: background 0.23s;
+      display:flex;align-items: center; justify-content: space-around;
+      font-size: 24px;
     }
   
     .msger-send-btn:hover {
