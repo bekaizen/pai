@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <base href="auth/">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../font-awesome/6.1.1/css/all.css">
+    <link rel="stylesheet" href="../assets/css/w3pro-4.13.css">
+
+    <link rel="stylesheet" href="../css/w3.css">
+    <title>PAI | Recuperación</title>
+</head>
+
+<body>
+
+
+    <div class="d-lg-flex half">
+        <div class="bg order-1 order-md-2" style="background-image: url('images/bg_1.jpg');"></div>
+        <div class="contents order-2 order-md-1">
+
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-7">
+
+                        <!-- Page content -->
+                        <div id="notifigener" class="w3-animate-top w3-col m12 s12 l12 w3-container w3-center"
+                            style="position:fixed;display:none;z-index:2"></div>
+
+
+                        <div class="w3-container w3-white">
+
+                            <form class="w3-margin-top w3-margin-bottom w3-container">
+                                <center>
+                                    <img src="../icon/pai.png" class="w3-circle w3-light-grey" width="70px">
+                                    <small class="w3-col s12 m12 l12"><b>PAI </b>Exchange</small>
+                                </center>
+                                <center>
+                                    <h3>Recuperación de contraseña <strong>PAI</strong></h3>
+                                </center>
+                                <br><br>
+                                <div id="loginarea">
+
+                                    <div id="session0">
+                                        <div class="w3-margin-bottom  w3-margin-top">
+                                            <input
+                                                class="w3-input w3-col s10 m10 l10 w3-border-bottom w3-large w3-margin-bottom w3-white w3-margin-top"
+                                                type="email" id='email' placeholder="Email de su cuenta"
+                                                style="outline:none">
+
+                                            <h6 class="w3-text-blue-grey w3-col s12 m12 l12 w3-margin-top w3-left"><i
+                                                    class="fas fa-info-circle"></i>
+                                                Introduzca el correo electrónico asociado a su cuenta.</h6>
+                                        </div>
+
+                                        <input
+                                            class="btn btn-block btn-primary"
+                                            onclick="enviarCodigo($('#email').val())" value="Siguiente">
+                                    </div>
+
+
+                                    <div id="session1" class="w3-animate-left" style="display:none">
+
+                                        <div class="w3-margin-bottom  w3-margin-top">
+                                            <input
+                                                class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                                                type="text" id='cod' placeholder="Código de confirmación"
+                                                style="outline:none;text-align:center">
+                                        </div>
+                                        
+                                        <div class="form-group last mb-3">
+                                            <label for="password">Contraseña</label>
+                                            <input type="text" id='cod' placeholder="Código de confirmación">
+                                        </div>
+
+                                        <h6 class="w3-text-blue-grey w3-col s12 m12 l12 w3-margin-top w3-left"><i
+                                                class="fas fa-info-circle"></i>
+                                            Pegue el código recibido en su correo electrónico.</h6>
+
+                                        <input
+                                            class="btn btn-block btn-primary"
+                                            onclick="if($('#cod').val().length>4){ $('#session1').hide();$('#session2').show()}" value="Siguiente">
+                                            
+
+                                    </div>
+
+                                    <div id="session2" class="w3-animate-left" style="display:none">
+
+                                        <div class="form-group last mb-3">
+                                            <label for="password">Contraseña</label>
+                                            <input type="password" id='nueva' onchange="valid5(value)"
+                                            placeholder="Contraseña nueva">
+                                        </div>
+
+                                        <div class="w3-margin-bottom  w3-margin-top">
+                                            <input
+                                                class="w3-input w3-col s12 w3-border-bottom w3-large w3-margin-bottom w3-white"
+                                                type="password" id='confirmar' onchange="valid8(value)"
+                                                placeholder="Confirmar contraseña" style="outline:none">
+                                        </div>
+
+
+
+                                        <div class="w3-margin-bottom w3-margin-top">
+                                            <input id="sigtfinal"
+                                                class="btn btn-block btn-primary"
+                                                onclick="Restablecer($('#cod').val(),$('#nueva').val(),$('#confirmar').val())" value="Cambiar contraseña">
+                                        </div>
+
+
+                                    </div>
+
+                                    <div id="session3" class="w3-animate-left" style="display:none">
+                                        <center>
+                                            <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+                                            <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+                                            <i class="far fa-check-circle w3-xxxlarge w3-text-green"></i>
+                                            <p>Cambio exitoso</p>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+
+
+
+
+                        <br><br><br>
+                        <footer class="w3-botttom w3-container w3-center  w3-margin-bottom">
+                            <i onclick="abrirEnlaceExterno('https://fb.com/paiexchange')"
+                                class="fab fa-facebook  fa-2x w3-text-blue   w3-col s2 m2 l2"></i>
+                            <i onclick="abrirEnlaceExterno('https://instagram.com/paiexchange')"
+                                class="fab fa-instagram fa-2x w3-text-pink   w3-col s2 m2 l2"></i>
+                            <i onclick="abrirEnlaceExterno('https://t.me/paiexchange')"
+                                class="fab fa-telegram  fa-2x w3-text-cyan   w3-col s2 m2 l2"></i>
+                            <i onclick="abrirEnlaceExterno('https://youtube.com/c/paiexchange')"
+                                class="fab fa-youtube   fa-2x w3-text-red    w3-col s2 m2 l2"></i>
+                            <i onclick="abrirEnlaceExterno('https://twitter.com/paiexchange')"
+                                class="fab fa-twitter   fa-2x w3-text-blue   w3-col s2 m2 l2"></i>
+                            <i onclick="abrirEnlaceExterno('mailto:soporte@paiexchange.com')"
+                                class="fas fa-envelope  fa-2x w3-text-yellow w3-col s2 m2 l2"></i>
+                        </footer>
+                        <div class="w3-margin-bottom w3-text-blue-grey w3-container w3-center">
+                            <p> ® PAI Exchange.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- // Page content END-->
+
+
+        <!-- Loader -->
+        <div id="loadergif" class="w3-modal">
+            <div class="w3-display-middle">
+                <center>
+                    <img src="icon/loader.gif" class="w3-round" width="70">
+                </center>
+            </div>
+        </div>
+        <!-- // Loader// -->
+
+        <script>
+            if (/(http)/i.test(window.location.protocol)) {
+                UrlAPI = window.location.hostname;
+            }
+            else {
+                UrlAPI = 'api.paiexchange.com';
+            }
+        </script>
+        <script>
+            function NotifiAlert(mensaje, color, tiempo) {
+                if (color == 'w3-green') { remov = 'w3-red'; } else { remov = 'w3-green'; }
+
+                $("#notifigener").removeClass(remov).addClass(color);
+                $("#notifigener").html("<p>" + mensaje + "</p>");
+                $("#notifigener").show();
+                setTimeout(function () { $("#notifigener").hide(); }, tiempo);
+            }     
+        </script>
+
+        <script>
+            function enviarCodigo(email) {
+
+                if (email == '') {
+                    NotifiAlert("Debe completar todos los datos", 'w3-red', '4000');
+                }
+                else {
+
+
+                    var parametros = {
+                        "email": email
+                    };
+                    $.ajax({
+                        data: parametros,
+                        url: 'https://' + UrlAPI + '/AppRestablecerSendcode',
+                        type: 'post',
+                        beforeSend: function () {
+                            $('#loadergif').show();
+                        },
+                        success: function (response) {
+
+                            $("#loadergif").hide();
+                            var objt = JSON.parse(response);
+
+                            if (objt.status == 'ok') {
+                                $('#session0').hide();
+                                $('#session1').show();
+                            }
+                            else if (objt.status == 'error') {
+                                NotifiAlert(objt.result, 'w3-red', '4000');
+                            }
+                            else {
+                                NotifiAlert("Hay un problema con el servidor", 'w3-red', '4000');
+                            }
+
+                        },
+
+                        error: function (response) {
+
+                            NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
+                            $("#loadergif").hide();
+                        }
+
+                    });
+
+                }
+            }
+        </script>
+        <script>
+            function Restablecer(codigo, nueva, confirmar) {
+
+                if (codigo == '' || nueva == '' || confirmar == '') {
+                    NotifiAlert("Por favor rellene todos los datos", 'w3-red', '4000');
+                }
+                else if (nueva !== confirmar) {
+                    NotifiAlert("Las contraseñas no coinciden", 'w3-red', '4000');
+                }
+                else {
+
+                    var parametros = {
+                        "codigo": codigo,
+                        "nueva": nueva,
+                        "confirmar": confirmar
+                    };
+                    $.ajax({
+                        data: parametros,
+                        url: 'https://' + UrlAPI + '/AppRestablecerCuenta',
+                        type: 'post',
+                        beforeSend: function () {
+                            $('#loadergif').show();
+                        },
+                        success: function (response) {
+
+                            $("#loadergif").hide();
+                            var objt = JSON.parse(response);
+
+                            if (objt.estado == 'ok') {
+
+                                $('#session2').hide();
+                                $('#session3').show();
+
+                            }
+                            else if (objt.estado == 'code') {
+                                NotifiAlert(objt.msj, 'w3-red', '4000');
+                                $('#session2').hide();
+                                $('#session1').show();
+                            }
+                            else {
+                                NotifiAlert(objt.msj, 'w3-red', '4000');
+                            }
+
+                        },
+
+                        error: function (response) {
+
+                            NotifiAlert("Favor verifique su conexión a internet", 'w3-red', '4000');
+                            $("#loadergif").hide();
+                        }
+
+                    });
+                }
+            }
+        </script>
+
+        <script>
+            //psw
+
+            function valid5(value) {
+
+                if (value.length > 15 || value.length < 6) {
+                    //value=value.slice(0,16);
+                    NotifiAlert("La contraseña escrita es muy corta o muy extensa", 'w3-red', '4000');
+                    $("#nueva").val(value);
+                    $("#nueva").addClass('w3-border-red');
+                    //$("#psw").focus();
+                    $("button").attr("disabled", "disabled");
+                }
+                else if (!/^[0-9a-zA-Z.-@]*$/i.test(value)) {
+                    NotifiAlert("Ha introducido caracteres inválidos", 'w3-red', '4000');
+                    $("#nueva").val(value);
+                    $("#nueva").addClass('w3-border-red');
+                    //$("#psw").focus();
+                    $("button").attr("disabled", "disabled");
+                }
+                else {
+                    $("button").removeAttr('disabled');
+                    $("#nueva").removeClass('w3-border-red').addClass('w3-border-green');
+                }
+
+            }
+        </script>
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+</body>
+
+</html>
