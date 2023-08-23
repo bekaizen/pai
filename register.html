@@ -99,7 +99,7 @@
 
                       <br />
                       
-                      <input onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary cursor" value="Siguiente">
+                      <input onclick="$('#session0').hide();$('#session1').show()" class="btn btn-block btn-primary cursor" style="cursor: pointer;" value="Siguiente">
                   </div>
 
 
@@ -124,7 +124,7 @@
 
                     <br />
                     
-                    <input onclick="sigt()" class="btn btn-block btn-primary cursor" value="Siguiente">
+                    <input onclick="sigt()" style="cursor: pointer;" class="btn btn-block btn-primary cursor" value="Siguiente">
                   </div>
 
 
@@ -154,10 +154,9 @@
                     
                     <input
                       onclick="if($('#rpsw').attr('data')=='si'){registro($('#refid').val(),$('#nombr').val(),$('#apellid').val(),$('#email').val(),$('#usr').val(),$('#doc').val(),$('#conct').val(),$('#psw').val(),$('#rpsw').val())}"
-                      class="btn btn-block btn-primary cursor" value="Crear cuenta">
+                      class="btn btn-block btn-primary cursor" style="cursor: pointer;" value="Crear cuenta">
 
-                      <input class="btn btn-block w3-light-grey" onclick="$('#session2').hide();$('#session1').show();">
-                      <i class="fa-solid fa-arrow-left-long"></i> Ir atrás</input>
+                      <input class="btn btn-block w3-light-grey" style="cursor: pointer;" onclick="$('#session2').hide();$('#session1').show();" value="Ir atrás">
                   </div>
 
 
