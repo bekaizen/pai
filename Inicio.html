@@ -3,779 +3,144 @@
   EstatusBarColor('1565c0');
 </script>
 
-<div class="w3-blue"
-  style="background-color:#333;  min-height: 43px; max-height:43px; color:#575757; font-weight: 700; font-size:14px; display:flex; align-items:center;">
-  <marquee id="msjrapido" behavior="" direction="left"></marquee>
-</div>
-<div class="">
-  <div>
-    <div class="w3-blue w3-col l12">
-      <div class="w3-container w3-padding-8 w3-blue">
-        <!-- <div class="w3-col s12 m12 l12">
-                  <div class="w3-col s2 m2 l2">
-                     <i onclick="OpenOtherOption('submenu/Inicio/Perfil','Perfil')"  class="fa-solid fa-circle-user w3-xlarge w3-text-white"></i>
-                  </div>
-                  <div class="w3-col s7 m7 l7 w3-center w3-text-white w3-margin-bottom">
-                      &nbsp;<div class="w3-col s12 m12 l12 w3-hide"><span class="w3-center"><span id="iniciobalance"></span> USD</span></div>
-                  </div>
-                  <div class="w3-col s3 m3 l3">
-                      <i onclick="OpenOtherOption('submenu/Inicio/Ayuda','Ayuda')" class="fa-solid fa-circle-question w3-xlarge w3-text-white w3-col s8 m8 l8"></i>
-                      <i onclick="OpenOtherOption('submenu/Inicio/Configuracion','Configuracion')" class="fa-solid fa-gear w3-right w3-xlarge w3-text-white w3-col s4 m4 l4"></i>
-                  </div>
-              </div> -->
+
+<div class="w3-col l8">
+  <!--seccion de balances -->
+  <div class="w3-col l12">
+
+
+    <div class="w3-col l12">
+
+      <div class="w3-col l3 pointer" onclick="Parestrading('TRX')">
+        <div class="w3-padding w3-round w3-round-xlarge w3-white w3-margin">
+          <h5><img src="icon/TRX.png" width="30px"> <span class="w3-right">TRX</span></h5>
+          <div class="progress w3-light" style="height:3px;">
+            <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
+          </div>
+          <p>&nbsp; <span class="w3-left" id="TRXwallets">- -</span></p>
+        </div>
+      </div>
+
+      <div class="w3-col l3 pointer" onclick="Parestrading('BTC')">
+        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+          <h5><img src="icon/BTC.png" width="30px"> <span class="w3-right">BTC</span></h5>
+          <div class="progress w3-light" style="height:3px;">
+            <div class="progress-bar w3-orange" style="width:55%;height:3px;"></div>
+          </div>
+          <p>&nbsp; <span class="w3-left" id="BTCwallets">- -</span></p>
+        </div>
+      </div>
+
+      <div class="w3-col l3 pointer" onclick="Parestrading('LTC')">
+        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+          <h5><img src="icon/LTC.png" width="30px"> <span class="w3-right">LTC</span></h5>
+          <div class="progress w3-light" style="height:3px;">
+            <div class="progress-bar" style="width:55%;height:3px;background-color:#cac6cc"></div>
+          </div>
+          <p>&nbsp; <span class="w3-left" id="LTCwallets">- -</span></p>
+        </div>
+      </div>
+
+      <div class="w3-col l3 pointer" onclick="Parestrading('MATIC')">
+        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+          <h5><img src="icon/MATIC.png" width="30px"> <span class="w3-right">MATIC</span></h5>
+          <div class="progress w3-light" style="height:3px;">
+            <div class="progress-bar" style="width:55%;height:3px;background-color:#8533b8"></div>
+          </div>
+          <p>&nbsp; <span class="w3-left" id="MATICwallets">- -</span></p>
+        </div>
       </div>
     </div>
 
-    <!-- <div class="w3-container" style="margin-top:0px">
-          <div class="w3-panel w3-white w3-round-large w3-card-2 w3-padding-16">
-              <div class="w3-col s12 m12 l12">
-                  <div class="w3-col s3 m3 l3 w3-center" style="text-align:  center;">
-                      <div onclick="OpenOtherOption('submenu/Inicio/Afiliados','Afiliados')" class="" style="border-radius: 100px; color:#fff; width:60px; margin:0 auto; height:60px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
-                         <i class="fa-solid fa-people-group w3-xlarge"></i>                      
-                      </div>
-                      <small class="w3-margin-top w3-col l12 m12 s12">Afiliados</small>
-                  </div>
-                  <div class="w3-col s3 m3 l3 w3-center">
-                      <div onclick="OpenOtherOption('submenu/nft/header','header')" class="" style="border-radius: 100px; color:#fff; width:60px; margin:0 auto; height:60px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
-                          <div class="w3-large">NFT</div>
-                      </div>
-                      <small class="w3-margin-top w3-col l12 m12 s12">NFT Inversión</small>
-                  </div>
-                  <div class="w3-col s3 m3 l3 " style="text-align:  center;">
-                      <div onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')" class="" style="border-radius: 100px; color:#fff; width:60px; margin:0 auto; height:60px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
-                        <i class="w3-xlarge fa-solid fa-square-poll-vertical fa-beat-fade"></i>
-                      </div>
-                      <small class="w3-margin-top w3-col l12 m12 s12">Inversiones</small>
-                  </div>
-                  <div class="w3-col s3 m3 l3 " style="text-align:  center;">
-                      <div onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')" class="" style="border-radius: 100px; color:#fff; width:60px; margin:0 auto; height:60px; background-color:#2177E8; text-align: center; display:flex; align-items:center; justify-content: space-around;">
-                          <i class="fa-solid fa-people-arrows w3-xlarge"></i>
-                      </div>
-                      <small class="w3-margin-top w3-col l12 m12 s12">Envíos</small>
-                  </div>
-              </div>
-          </div>
-      </div> -->
 
-    <!-- <div class="w3-container">
-          <b>MERCADOS</b>
-      </div> -->
 
-    <div class="w3-container">
-      <!-- <div class="w3-center w3-panel w3-white w3-round-large w3-card-2 w3-padding-16" style="min-height:89.5px">
-              <div id="listamercados">&nbsp;</div>
-          </div> -->
-
-      <!-- <div class="w3-col l12 m12 s12">
-          <div class="w3-col s8 m8 l8 w3-white w3-round-large w3-card-2 w3-padding">
-              <div class="w3-col s7 m7 l7">
-                  <span style="margin:0;padding:0;"><b>Tasa de venta</b></span>
-                  <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
-                  <span style="margin:0;padding:0;">
-                      <b class="w3-col s12 m12 l12" ><span id="tasacompra"> </span> </b>
-                  </span>
-              </div>
-              
-              <div class="w3-col s5 m5 l5">
-                  <b style="font-size:0.55rem;margin:0;padding:0;">VENTA MÍNIMA</b>
-                  <h3 style="margin:0;padding:0; font-size:0.89rem;">
-                      <b><span id="ventaMinima"></span> USD</b>
-                  </h3>
-                  <b style="font-size:0.55rem;margin:0;padding:0;">VENTA MÁXIMA</b>
-                  <h3 style="margin:0;padding:0; font-size:0.89rem;">
-                      <b><span id="ventaMax"></span> USD</b>
-                  </h3>
-              </div>
-          </div> -->
-
-      <!-- <div onclick="OpenOtherOption('submenu/servicios/header','Servicios')" class="w3-col s4 m4 l4 w3-padding-left">
-            <div class="w3-col l12 m12 s12 w3-card-2 w3-white w3-round-large w3-padding-8 w3-container w3-center">
-              <i class="fa-solid fa-shop w3-xxlarge w3-text-blue"></i>
-              <small class="w3-col s12 m12 l12 w3-padding-top w3-text-grey">Pagos y servicios</small>
-            </div>
-          </div>  -->
-    </div>
 
   </div>
-  <div class="">
+  <!--// seccion de balancesl -->
 
-    <div class="w3-round">
-      <div class="w3-padding">
-        <div class="w3-col l3 w3-container w3-border-right w3-white"
-          onclick="OpenOtherOption('submenu/Inicio/Afiliados','Afiliados')">
-          <div class="w3-padding">
-            <h5><i class="fa-solid fa-money-bills w3-xlarge"></i> <span class="w3-right">USD</span></h5>
-            <div class="progress w3-light" style="height:3px;">
-              <div class="progress-bar w3-info" style="width:55%;height:3px;"></div>
-            </div>
-            <p>Total balance <span class="w3-right" id="iniciobalance">- -</span></p>
-          </div>
+  <!-- Mercados trading -->
+  <div class="w3-col l7 w3-padding">
+    <div>
+      <div class="w3-round w3-round-xlarge w3-container w3-white w3-margin-bottom">
+        <div class="w3-padding-large w3-large" style="font-weight: 500"><i
+            class="fa-solid fa-chart-column w3-large w3-text-secondary"></i> Mercados de trading populares
         </div>
-        <div class="w3-col l3 w3-container w3-border-right w3-white" onclick="OpenOtherOption('submenu/nft/header','header')">
-          <div class="w3-padding">
-            <h5><i class="fa-regular fa-image"></i> <span class="w3-right">NFT</span></h5>
-            <div class="progress w3-light" style="height:3px;">
-              <div class="progress-bar w3-success" style="width:55%;height:3px;"></div>
-            </div>
-            <p>Total invertidos <span class="w3-right">0 ↑</span></p>
-          </div>
-        </div>
-        <div class="w3-col l3 w3-container w3-border-right w3-white"
-          onclick="OpenOtherOption('submenu/inversiones/Inversiones','Inversiones')">
-          <div class="w3-padding">
-            <h5><i class="w3-xlarge fa-solid fa-square-poll-vertical fa-beat-fade"></i> <span
-                class="w3-right">Inversiones</span></h5>
-            <div class="progress w3-light" style="height:3px;">
-              <div class="progress-bar w3-warning" style="width:55%;height:3px;"></div>
-            </div>
-            <p>Total en inversion <span class="w3-right">0 ↑</span></p>
-          </div>
-        </div>
-        <div class="w3-col l3 w3-container w3-white" onclick="OpenOtherOption('submenu/Inicio/Envios','Envios')">
-          <div class="w3-padding">
-            <h5><i class="fa-solid fa-people-arrows w3-xlarge"></i> <span class="w3-right">Envios</span></h5>
-            <div class="progress w3-light" style="height:3px;">
-              <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
-            </div>
-            <p>Total de envios <span class="w3-right">0 ↑</span></p>
-          </div>
+        <div class="w3-responsive">
+          <table class="w3-table">
+            <tbody id="listamercados">
+
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
+  <!-- //Mercados trading -->
 
-    <div class="w3-col l8 w3-padding">
-      <div>
-        <div class="w3-white w3-round w3-margin-bottom">
-          <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">Inicio
-          </header>
-          <div class="w3-responsive">
-            <table class="w3-table">
-              <tbody id="listamercados">
+  <!--menu lateral -->
+  <div class="w3-col l5 w3-hide-small w3-hide-medium">
+    <div class="menu-lateral"></div>
+  </div>
+  <!--menu lateral -->
 
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
 
-    <div class="w3-col l4 w3-padding">
-      <!-- <div class="w3-padding-8">
-            <button class="w3-btn w3-blue w3-center-align" onclick="OpenOtherOption('submenu/servicios/header','Servicios')"><i class="fa-solid fa-store"></i> Pagos y servicios</button>
-          </div> -->
-      <div class="w3-white w3-round w3-margin-bottom">
-        
-        <!-- <div style="min-height:auto; padding:16px; box-sizing: border-box;"></div> -->
-        <div class="w3-content w3-display-container" id="imgCarrousel">
-          <div class="w3-center w3-display-bottommiddle" style="width:100%">
+<!-- Seccion tasas | vender -->
+<div class="w3-col l4 w3-padding">
+  <div class="w3-white w3-round w3-margin-bottom w3-container w3-round w3-round-xlarge">
+
+    <!-- <div style="min-height:auto; padding:16px; box-sizing: border-box;"></div> -->
+    <div class="w3-margin-top" id="imgCarrousel">
+      <!--<div class="w3-center w3-display-bottommiddle" style="width:100%">
             <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
             <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
             <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
             <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
             <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
-          </div>
-        </div>
+          </div>-->
+    </div>
+    <div class="w3-margin-top">
+      <marquee id="msjrapido" behavior="" style="color:#404e9d" direction="left"></marquee>
+    </div>
 
-        <div class="w3-padding w3-center-align w3-center">
-          <span><b>Tasa de venta</b></span>
-          <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
-          <br>
-          <h2>
-            <b class="w3-col s12 m12 l12"><span id="tasacompra"> </span> </b>
-          </h2>
-          <p>Montos inferiores a 100 USD se calcularan a una tasa de <span id="tasaMinima"></span></p>
-        </div>
-        <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+    <div class="w3-padding w3-center-align w3-center w3-border-top">
+      <span><b>Tasa de venta</b></span>
+      <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
+      <br>
+      <h2>
+        <b class="w3-col s12 m12 l12 w3-text-blue"><span id="tasacompra"> </span> </b>
+      </h2>
+      <p class="w3-text-primary">*Ventas inferiores a 100 USD se calcularan a una tasa de <span id="tasaMinima"></span>
+      </p>
+    </div>
+    <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
               <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
             </div> -->
-        <table class="w3-table w3-bordered w3-border-top">
-          <tbody>
-            <tr>
-              <td>Venta Minima</td>
-              <td><b><span id="ventaMinima"></span> USD</b></td>
-            </tr>
-            <tr>
-              <td>Venta Maxima</td>
-              <td><b><span id="ventaMax"></span> USD</b></td>
-            </tr>
-          </tbody>
-        </table>
+    <table class="w3-table w3-bordered w3-border-top">
+      <tbody>
+        <tr>
+          <td>Venta Minima</td>
+          <td><b><span id="ventaMinima"></span> USD</b></td>
+        </tr>
+        <tr>
+          <td>Venta Maxima</td>
+          <td><b><span id="ventaMax"></span> USD</b></td>
+        </tr>
+      </tbody>
+    </table>
 
-        <a href="javascript:void(0)" onclick="OpenOption('Vender')"
-                    class="w3-btn w3-block" style=" background-color:#404e9d; color: white; font-size: 1.2rem;">
-                    <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
-      </div>
-    </div>
+    <a href="javascript:void(0)" onclick="OpenOption('Vender')"
+      class="w3-btn w3-block w3-margin-bottom w3-margin-top w3-round w3-round-large"
+      style="background-color:#404e9d; color: white; font-size: 1.2rem;">
+      <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
   </div>
-
-
-  <!-- @BEGING CHAT -->
-
-  <div class="ba-we-love-subscribers-wrap">
-    <div class="ba-we-love-subscribers popup-ani">
-      <section class="msger">
-        <header class="msger-header">
-          <div class="msger-header-title">
-            <i class="fas fa-comment-alt"></i> Soporte
-          </div>
-          <div class="msger-header-options">
-            <span><i class="fas fa-cog"></i></span>
-          </div>
-        </header>
-      
-        <main class="msger-chat">
-          <div class="msg left-msg">
-            <div
-             class="msg-img"
-             style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
-            ></div>
-      
-            <div class="msg-bubble">
-              <div class="msg-info">
-                <div class="msg-info-name">BOT</div>
-                <div class="msg-info-time">12:45</div>
-              </div>
-      
-              <div class="msg-text">
-                Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
-              </div>
-            </div>
-          </div>
-      
-          <div class="msg right-msg">
-            <div
-             class="msg-img"
-             style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
-            ></div>
-      
-            <div class="msg-bubble">
-              <div class="msg-info">
-                <div class="msg-info-name">Sajad</div>
-                <div class="msg-info-time">12:46</div>
-              </div>
-      
-              <div class="msg-text">
-                You can change your name in JS section!
-              </div>
-            </div>
-          </div>
-        </main>
-      
-        <form class="msger-inputarea">
-          <input type="text" class="msger-input" placeholder="Enter your message...">
-          <button type="submit" class="msger-send-btn"><i class="fa fa-paper-plane" style="position:relative" aria-hidden="true"></i></button>
-        </form>
-      </section>
-    </div>
-    <div class="ba-we-love-subscribers-fab">
-      <div class="wrap">
-        <div class="img-fab img"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- @beging chat styles -->
-  <style>
-    :root {
-      --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      --msger-bg: #fff;
-      --border: 2px solid #ddd;
-      --left-msg-bg: #ececec;
-      --right-msg-bg: #579ffb;
-    }
-  
-    .msger {
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: space-between;
-      width: 100%;
-      min-height: 550px;
-      background: var(--msger-bg);
-    }
-  
-    .msger-header {
-      display: flex;
-      height:50px;
-      line-height: 40px;
-      justify-content: space-between;
-      padding: 10px;
-      box-sizing: border-box;
-      color: #666;
-    }
-  
-    .msger-chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      max-height:450px;
-    }
-  
-    .msger-chat::-webkit-scrollbar {
-      width: 6px;
-    }
-  
-    .msger-chat::-webkit-scrollbar-track {
-      background: #ddd;
-    }
-  
-    .msger-chat::-webkit-scrollbar-thumb {
-      background: #bdbdbd;
-    }
-  
-    .msg {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 10px;
-    }
-  
-    .msg:last-of-type {
-      margin: 0;
-    }
-  
-    .msg-img {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-      background: #ddd;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      border-radius: 50px;
-    }
-  
-    .msg-bubble {
-      max-width: 430px;
-      padding-bottom: 36px;
-      padding: 15px;
-      border-radius: 15px;
-      background: var(--left-msg-bg);
-    }
-  
-    .msg-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-  
-    .msg-info-name {
-      margin-right: 10px;
-      font-weight: bold;
-    }
-  
-    .msg-info-time {
-      font-size: 0.85em;
-    }
-  
-    .left-msg .msg-bubble {
-      border-bottom-left-radius: 0;
-    }
-  
-    .right-msg {
-      flex-direction: row-reverse;
-    }
-  
-    .right-msg .msg-bubble {
-      background: var(--right-msg-bg);
-      color: #fff;
-      border-bottom-right-radius: 0;
-    }
-  
-    .right-msg .msg-img {
-      margin: 0 0 0 10px;
-    }
-  
-    .msger-inputarea {
-      border-top: var(--border);
-      /* background: #eee; */
-      display:grid;
-      grid-template-columns: 1fr 60px;
-      max-height: 70px;
-      position: relative;
-    }
-  
-    .msger-inputarea * {
-      font-size: 1em;
-      height:570px;
-      border:none;
-    }
-  
-    .msger-input {
-      /* margin-top: -36px; */
-      position: absolute;
-      width: 100%;
-      height:70px;
-      top:-50px;
-      padding-right:76px;
-      box-sizing: border-box;
-    }
-  
-    .msger-send-btn {
-      background: rgb(0, 196, 65);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.23s;
-      font-size: 18px;
-      border:none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      text-align: center;
-      line-height: calc(50px - 9px);
-      top:-40px;
-      right:16px;
-    }
-  
-    .msger-send-btn:hover {
-      background: rgb(0, 180, 50);
-    }
-  
-    .msger-chat {
-      background-color: #fcfcfe;
-      background-size: 150%;
-      background-position: center;
-      background-repeat: no-repeat;
-      /* background-image: url("https://thumbs.dreamstime.com/z/seamless-pattern-sign-bitcoin-black-white-background-seamless-pattern-sign-bitcoin-black-white-background-vector-112139354.jpg"); */
-    }
-  
-  
-
-    /* BUTTON ACTION DEPLOY */
-  
-    @import url('https://fonts.googleapis.com/css?family=Roboto');
-  
-    .ba-we-love-subscribers {
-      width: 390px;
-      min-height: 550px;
-      max-height: 650px;
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0px 12px 45px rgba(0, 0, 0, .15);
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-      margin: 0 0 10px 0;
-      overflow: hidden;
-      opacity: 0;
-    }
-  
-    .ba-we-love-subscribers.open {
-      height: 270px;
-      opacity: 1;
-    }
-  
-    .ba-we-love-subscribers.popup-ani {
-      -webkit-transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-  
-    .ba-we-love-subscribers h1 {
-      font-size: 20px;
-      color: #757575;
-      padding: 25px 0;
-      margin: 0;
-      font-weight: 400;
-      font-family: 'Roboto', sans-serif;
-  
-    }
-  
-    .ba-we-love-subscribers .love {
-      width: 20px;
-      height: 20px;
-      background-position: 35px 84px;
-      display: inline-block;
-      margin: 0 6px;
-      background-size: 62px;
-    }
-  
-    .ba-we-love-subscribers .ba-logo {
-      width: 65px;
-      height: 25px;
-      background-position: 0px;
-      margin: 0 auto;
-      opacity: .5;
-      cursor: pointer;
-    }
-  
-    .ba-we-love-subscribers .ba-logo:hover {
-      opacity: 1;
-    }
-  
-    .logo-ani {
-      transition: 0.5s linear;
-      -webkit-transition: 0.5s linear;
-    }
-  
-    .ba-we-love-subscribers input {
-      font-size: 14px;
-      padding: 12px 15px;
-      border-radius: 15px;
-      border: 0;
-      outline: none;
-      margin: 8px 0;
-      width: 100%;
-      box-sizing: border-box;
-      line-height: normal;
-      /*Bootstrap Overide*/
-      font-family: sans-serif;
-      /*Bootstrap Overide*/
-    }
-  
-    .ba-we-love-subscribers form {
-      padding: 5px 30px 0;
-      margin-bottom: 15px;
-    }
-  
-    .ba-we-love-subscribers input[name="email"] {
-      background-color: #eee;
-    }
-  
-    .ba-we-love-subscribers input[name="submit"] {
-      background-color: #00aeef;
-      cursor: pointer;
-      color: #fff;
-    }
-  
-    .ba-we-love-subscribers input[name="submit"]:hover {
-      background-color: #26baf1;
-    }
-  
-    .ba-we-love-subscribers .img {
-      background-image: url("https://4.bp.blogspot.com/-1J75Et4_5vc/WAYhWRVuMiI/AAAAAAAAArE/gwa-mdtq0NIqOrlVvpLAqdPTV4VAahMsQCPcB/s1600/barrel-we-love-subscribers-img.png");
-    }
-  
-    .ba-we-love-subscribers-fab {
-      width: 65px;
-      height: 65px;
-      background-color: #00aeef;
-      border-radius: 30px;
-      float: right;
-      box-shadow: 0px 12px 45px rgba(0, 0, 0, .3);
-      z-index: 5;
-      position: relative;
-    }
-  
-    .ba-we-love-subscribers-fab .img-fab {
-      height: 30px;
-      width: 30px;
-      margin: 15px auto;
-      background-image: url("https://4.bp.blogspot.com/-1J75Et4_5vc/WAYhWRVuMiI/AAAAAAAAArE/gwa-mdtq0NIqOrlVvpLAqdPTV4VAahMsQCPcB/s1600/barrel-we-love-subscribers-img.png");
-      background-position: -1px -53px;
-    }
-  
-    .ba-we-love-subscribers-fab .wrap {
-      transform: rotate(0deg);
-      -webkit-transition: all .15s cubic-bezier(0.15, 0.87, 0.45, 1.23);
-      transition: all .15s cubic-bezier(0.15, 0.87, 0.45, 1.23);
-    }
-  
-    .ba-we-love-subscribers-fab .ani {
-      transform: rotate(45deg);
-      -webkit-transition: all .15s cubic-bezier(0.15, 0.87, 0.45, 1.23);
-      transition: all .15s cubic-bezier(0.15, 0.87, 0.45, 1.23);
-    }
-  
-    .ba-we-love-subscribers-fab .close {
-      background-position: -2px 1px;
-      transform: rotate(-45deg);
-      float: none;
-      /*Bootstrap Overide*/
-      opacity: 1;
-      /*Bootstrap Overide*/
-    }
-  
-    .ba-we-love-subscribers-wrap {
-      position: fixed;
-      right: 25px;
-      bottom: 25px;
-      z-index: 1000;
-    }
-  
-    .ba-settings {
-      position: absolute;
-      top: -25px;
-      right: 0px;
-      padding: 10px 20px;
-      background-color: #555;
-      border-radius: 5px;
-      color: #fff;
-    }
-  </style>
-  <!-- @end chat styles -->
-
-
-  <!-- @beging chat script -->
-  <script>
-    $(".ba-we-love-subscribers-fab").click(function() {
-      $('.ba-we-love-subscribers-fab .wrap').toggleClass("ani");
-      $('.ba-we-love-subscribers').toggleClass("open");
-      $('.img-fab.img').toggleClass("close");
-    });
-
-
-
-    const msgerForm = get(".msger-inputarea");
-    const msgerInput = get(".msger-input");
-    const msgerChat = get(".msger-chat");
-
-    const BOT_MSGS = [
-      "Hi, how are you?",
-      "Ohh... I can't understand what you trying to say. Sorry!",
-      "I like to play games... But I don't know how to play!",
-      "Sorry if my answers are not relevant. :))",
-      "I feel sleepy! :("
-    ];
-
-    // Icons made by Freepik from www.flaticon.com
-    const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
-    const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
-    const BOT_NAME = "BOT";
-    const PERSON_NAME = "Sajad";
-
-    msgerForm.addEventListener("submit", event => {
-      event.preventDefault();
-
-      const msgText = msgerInput.value;
-      if (!msgText) return;
-
-      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-      msgerInput.value = "";
-
-      botResponse();
-    });
-
-    function appendMessage(name, img, side, text) {
-      //   Simple solution for small apps
-      const msgHTML = `
-        <div class="msg ${side}-msg">
-          <div class="msg-img" style="background-image: url(${img})"></div>
-
-          <div class="msg-bubble">
-            <div class="msg-info">
-              <div class="msg-info-name">${name}</div>
-              <div class="msg-info-time">${formatDate(new Date())}</div>
-            </div>
-
-            <div class="msg-text">${text}</div>
-          </div>
-        </div>
-      `;
-
-      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
-      msgerChat.scrollTop += 500;
-    }
-
-    function botResponse() {
-      const r = random(0, BOT_MSGS.length - 1);
-      const msgText = BOT_MSGS[r];
-      const delay = msgText.split(" ").length * 100;
-
-      setTimeout(() => {
-        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
-      }, delay);
-    }
-
-    // Utils
-    function get(selector, root = document) {
-      return root.querySelector(selector);
-    }
-
-    function formatDate(date) {
-      const h = "0" + date.getHours();
-      const m = "0" + date.getMinutes();
-
-      return `${h.slice(-2)}:${m.slice(-2)}`;
-    }
-
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min) + min);
-    }
-    // const msgerForm = get(".msger-inputarea");
-    // const msgerInput = get(".msger-input");
-    // const msgerChat = get(".msger-chat");
-
-    // const BOT_MSGS = [
-    //   "Hi, how are you?",
-    //   "Ohh... I can't understand what you trying to say. Sorry!",
-    //   "I like to play games... But I don't know how to play!",
-    //   "Sorry if my answers are not relevant. :))",
-    //   "I feel sleepy! :("
-    // ];
-
-    // Icons made by Freepik from www.flaticon.com
-    // const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
-    // const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
-    // const BOT_NAME = "BOT";
-    // const PERSON_NAME = "Sajad";
-
-    msgerForm.addEventListener("submit", event => {
-      event.preventDefault();
-
-      const msgText = msgerInput.value;
-      if (!msgText) return;
-
-      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-      msgerInput.value = "";
-
-      botResponse();
-    });
-
-    function appendMessage(name, img, side, text) {
-      //   Simple solution for small apps
-      const msgHTML = `
-        <div class="msg ${side}-msg">
-          <div class="msg-img" style="background-image: url(${img})"></div>
-
-          <div class="msg-bubble">
-            <div class="msg-info">
-              <div class="msg-info-name">${name}</div>
-              <div class="msg-info-time">${formatDate(new Date())}</div>
-            </div>
-
-            <div class="msg-text">${text}</div>
-          </div>
-        </div>
-      `;
-
-      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
-      msgerChat.scrollTop += 500;
-    }
-
-    function botResponse() {
-      const r = random(0, BOT_MSGS.length - 1);
-      const msgText = BOT_MSGS[r];
-      const delay = msgText.split(" ").length * 100;
-
-      setTimeout(() => {
-        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
-      }, delay);
-    }
-
-    // Utils
-    function get(selector, root = document) {
-      return root.querySelector(selector);
-    }
-
-    function formatDate(date) {
-      const h = "0" + date.getHours();
-      const m = "0" + date.getMinutes();
-
-      return `${h.slice(-2)}:${m.slice(-2)}`;
-    }
-
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min) + min);
-    }
-
-  </script>
-  <!-- @end chat script -->
-
-  <!-- @END CHAT -->
-
 </div>
-</div>
+<!-- // Seccion tasas | vender -->
+
+<script>
+  $(document).ready(function () { $(".menu-lateral").load('submenu/menu-lateral.html') })
+</script>
+
 <script>
   $.ajax({
     url: 'https://' + UrlAPI + '/AppDatosDeInicio',
@@ -800,6 +165,11 @@
           $('#iniciobalance').html(formatonumero(objt.balance, 2));
           $('#msjrapido').html(objt.msjrapido); //marque
 
+          //saldos wallets
+          $('#BTCwallets').html(objt.WalletsSaldos['BTC']);
+          $('#LTCwallets').html(objt.WalletsSaldos['LTC']);
+          $('#MATICwallets').html(objt.WalletsSaldos['MATIC']);
+          $('#TRXwallets').html(objt.WalletsSaldos['TRX']);
 
           $('#ventaMinima').html(formatonumero(objt.tasas.ventaMinima));
           $('#ventaMax').html(formatonumero(objt.tasas.ventaMax));
@@ -812,7 +182,7 @@
             if (i > 0) {
               carrouseldiplay = 'none';
             }
-            imgCarrousel += `<img id="img` + i + `" style="display:` + carrouseldiplay + `" onclick="abrirEnlaceExterno('` + objt.imagenes2[i].enlace + `')" class="w3-round-xlarge w3-animate-right" width="100%" src="` + objt.imagenes2[i].img + `">`;
+            imgCarrousel += `<img id="img` + i + `" style="display:` + carrouseldiplay + `" onclick="abrirEnlaceExterno('` + objt.imagenes2[i].enlace + `')" class="w3-round-xlarge pointer" width="100%" src="` + objt.imagenes2[i].img + `">`;
 
           }
           $('#imgCarrousel').html(imgCarrousel);
@@ -821,7 +191,7 @@
           if (typeof myInterval !== 'undefined') {
             clearInterval(myInterval);
           }
-          myInterval = setInterval(function () { carousel(objt.imagenes.length); InicioPrecios() }, 10000);
+          myInterval = setInterval(function () { carousel(objt.imagenes2.length); InicioPrecios() }, 10000);
 
 
 
@@ -831,38 +201,29 @@
        <tr>
                       <th>Moneda</th>
                       <th>Precio</th>
-                      <th>Accion</th>
+                      <th>Volumen 24h</th>
+                      <th>Operar</th>
                     </tr>`;
-          for (var i = 0; i < objt.mercados.length; i++) {
-            // MercadoDisplay='display:none';
-            // if(i==0){
-            //    MercadoDisplay='display:block';
-            // }
+          for (var i = 0; i < objt.mercadosWeb.length; i++) {
+
             MercadoData += `<tr>`;
-            // for (var j = 0; j < 3; j++){
 
 
             MercadoData += `
               <td>
-                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i]}.png'" src="icon/${objt.mercados[i]}.png" width="30px">
-                <span>${objt.mercados[i]}</span>  
+                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercadosWeb[i]}.png'" src="icon/${objt.mercadosWeb[i]}.png" width="30px">
+                <span>${objt.mercadosWeb[i]}</span>  
               </td>
               <td>
-                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i]}">&nbsp;</small>
+                <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercadosWeb[i]}">&nbsp;</small>
               </td>
               <td>
-                <a onclick="Parestrading('${objt.mercados[i]}')" style="cursor:pointer">Tradear</a>
+                <small class="w3-col s12 m12 l12 w3-padding-top">0.00</small>
+              </td>
+              <td>
+                <a onclick="Parestrading('${objt.mercadosWeb[i]}')" style="cursor:pointer">Tradear</a>
               </td>`;
-            // }
 
-
-            // <div class="w3-col m4 s4 l4 pointer" onclick="Parestrading('${objt.mercados[i][j]}')">
-            //   <div>
-            //     <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercados[i][j]}.png'" src="icon/${objt.mercados[i][j]}.png" width="30px">
-            //     <span>${objt.mercados[i][j]}</span>
-            //     <small class="w3-col s12 m12 l12 w3-padding-top" id="inicPric${objt.mercados[i][j]}">&nbsp;</small>
-            //   </div>
-            //  </div>
 
             MercadoData += `</tr>`;
           }
