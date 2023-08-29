@@ -5,140 +5,140 @@
 
 
 <div class="w3-col l8">
-  <!--seccion de balances -->
-  <div class="w3-col l12">
-
-
+    <!--seccion de balances -->
     <div class="w3-col l12">
 
-      <div class="w3-col l6 pointer" onclick="Parestrading('TRX')">
-        <div class="w3-padding w3-round w3-round-xlarge w3-white w3-margin">
-          <h5><img src="icon/TRX.png" width="30px"> <span class="w3-right">TRX</span></h5>
-          <div class="progress w3-light" style="height:3px;">
-            <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
+   
+      <div class="w3-col l12">
+          
+        <div class="w3-col l3 pointer"
+          onclick="Parestrading('TRX')">
+          <div class="w3-padding w3-round w3-round-xlarge w3-white w3-margin">
+            <h5><img src="icon/TRX.png" width="30px"> <span class="w3-right">TRX</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-danger" style="width:55%;height:3px;"></div>
+            </div>
+            <p>&nbsp; <span class="w3-left" id="TRXwallets">- -</span></p>
           </div>
-          <p>&nbsp; <span class="w3-left" id="TRXwallets">- -</span></p>
+        </div>
+        
+        <div class="w3-col l3 pointer" onclick="Parestrading('BTC')">
+          <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+            <h5><img src="icon/BTC.png" width="30px"> <span class="w3-right">BTC</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar w3-orange" style="width:55%;height:3px;"></div>
+            </div>
+            <p>&nbsp; <span class="w3-left" id="BTCwallets">- -</span></p>
+          </div>
+        </div>
+        
+        <div class="w3-col l3 pointer"
+          onclick="Parestrading('LTC')">
+          <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+            <h5><img src="icon/LTC.png" width="30px">  <span
+                class="w3-right">LTC</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar" style="width:55%;height:3px;background-color:#cac6cc"></div>
+            </div>
+            <p>&nbsp; <span class="w3-left" id="LTCwallets">- -</span></p>
+          </div>
+        </div>
+        
+        <div class="w3-col l3 pointer" onclick="Parestrading('MATIC')">
+          <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
+            <h5><img src="icon/MATIC.png" width="30px">  <span class="w3-right">MATIC</span></h5>
+            <div class="progress w3-light" style="height:3px;">
+              <div class="progress-bar" style="width:55%;height:3px;background-color:#8533b8"></div>
+            </div>
+            <p>&nbsp; <span class="w3-left" id="MATICwallets">- -</span></p>
+          </div>
         </div>
       </div>
+     
 
-      <div class="w3-col l6 pointer" onclick="Parestrading('BTC')">
-        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
-          <h5><img src="icon/BTC.png" width="30px"> <span class="w3-right">BTC</span></h5>
-          <div class="progress w3-light" style="height:3px;">
-            <div class="progress-bar w3-orange" style="width:55%;height:3px;"></div>
-          </div>
-          <p>&nbsp; <span class="w3-left" id="BTCwallets">- -</span></p>
-        </div>
-      </div>
-
-      <!-- <div class="w3-col l3 pointer" onclick="Parestrading('LTC')">
-        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
-          <h5><img src="icon/LTC.png" width="30px"> <span class="w3-right">LTC</span></h5>
-          <div class="progress w3-light" style="height:3px;">
-            <div class="progress-bar" style="width:55%;height:3px;background-color:#cac6cc"></div>
-          </div>
-          <p>&nbsp; <span class="w3-left" id="LTCwallets">- -</span></p>
-        </div>
-      </div>
-
-      <div class="w3-col l3 pointer" onclick="Parestrading('MATIC')">
-        <div class="w3-padding w3-white w3-margin w3-round w3-round-xlarge">
-          <h5><img src="icon/MATIC.png" width="30px"> <span class="w3-right">MATIC</span></h5>
-          <div class="progress w3-light" style="height:3px;">
-            <div class="progress-bar" style="width:55%;height:3px;background-color:#8533b8"></div>
-          </div>
-          <p>&nbsp; <span class="w3-left" id="MATICwallets">- -</span></p>
-        </div>
-      </div> -->
+   
+    
     </div>
+    <!--// seccion de balancesl -->
+    
+    <!-- Mercados trading -->
+    <div class="w3-col l7 w3-padding">
+      <div>
+        <div class="w3-round w3-round-xlarge w3-container w3-white w3-margin-bottom">
+          <div class="w3-padding-large w3-large" style="font-weight: 500"><i class="fa-solid fa-chart-column w3-large w3-text-secondary"></i> Mercados de trading populares
+          </div>
+          <div class="w3-responsive">
+            <table class="w3-table">
+              <tbody id="listamercados">
 
-
-
-
-  </div>
-  <!--// seccion de balancesl -->
-
-  <!-- Mercados trading -->
-  <div class="w3-col l7 w3-padding">
-    <div>
-      <div class="w3-round w3-round-xlarge w3-container w3-white w3-margin-bottom">
-        <div class="w3-padding-large w3-large" style="font-weight: 500"><i
-            class="fa-solid fa-chart-column w3-large w3-text-secondary"></i> Mercados de trading populares
-        </div>
-        <div class="w3-responsive">
-          <table class="w3-table">
-            <tbody id="listamercados">
-
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- //Mercados trading -->
-
-  <!--menu lateral -->
-  <!-- <div class="w3-col l5 w3-hide-small w3-hide-medium">
-    <div class="menu-lateral"></div>
-  </div> -->
-  <!--menu lateral -->
-
+    <!-- //Mercados trading -->
+   
+    <!--menu lateral -->
+    <div class="w3-col l5 w3-hide-small w3-hide-medium">
+       <div class="menu-lateral"></div>
+    </div>
+    <!--menu lateral -->
+    
 </div>
 
 <!-- Seccion tasas | vender -->
-<div class="w3-col l4 w3-padding">
-  <div class="w3-white w3-round w3-margin-bottom w3-container w3-round w3-round-xlarge">
-
-    <!-- <div style="min-height:auto; padding:16px; box-sizing: border-box;"></div> -->
-    <div class="w3-margin-top" id="imgCarrousel">
-      <!--<div class="w3-center w3-display-bottommiddle" style="width:100%">
+    <div class="w3-col l4 w3-padding">
+      <div class="w3-white w3-round w3-margin-bottom w3-container w3-round w3-round-xlarge">
+        
+        <!-- <div style="min-height:auto; padding:16px; box-sizing: border-box;"></div> -->
+        <div class="w3-margin-top" id="imgCarrousel">
+          <!--<div class="w3-center w3-display-bottommiddle" style="width:100%">
             <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
             <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
             <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
             <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
             <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
           </div>-->
-    </div>
-    <div class="w3-margin-top">
-      <marquee id="msjrapido" behavior="" style="color:#404e9d" direction="left"></marquee>
-    </div>
+        </div>
+        <div class="w3-margin-top">
+          <marquee id="msjrapido" behavior="" style="color:#404e9d" direction="left"></marquee>
+        </div>
 
-    <div class="w3-padding w3-center-align w3-center w3-border-top">
-      <span><b>Tasa de venta</b></span>
-      <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
-      <br>
-      <h2>
-        <b class="w3-col s12 m12 l12 w3-text-blue"><span id="tasacompra"> </span> </b>
-      </h2>
-      <p class="w3-text-primary">*Ventas inferiores a 100 USD se calcularan a una tasa de <span id="tasaMinima"></span>
-      </p>
-    </div>
-    <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+        <div class="w3-padding w3-center-align w3-center w3-border-top">
+          <span><b>Tasa de venta</b></span>
+          <span style="font-size:12px; color:#444" class="w3-col s12 m12 l12">Pesos por dolar</span>
+          <br>
+          <h2>
+            <b class="w3-col s12 m12 l12 w3-text-blue"><span id="tasacompra"> </span> </b>
+          </h2>
+          <p class="w3-text-primary">*Ventas inferiores a 100 USD se calcularan a una tasa de <span id="tasaMinima"></span></p>
+        </div>
+        <!-- <div class="w3-padding-large" style="height: 188px;position:relative"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
               <canvas id="chart2" width="300" height="164" style="display: block; width: 300px; height: 164px;" class="chartjs-render-monitor"></canvas>
             </div> -->
-    <table class="w3-table w3-bordered w3-border-top">
-      <tbody>
-        <tr>
-          <td>Venta Minima</td>
-          <td><b><span id="ventaMinima"></span> USD</b></td>
-        </tr>
-        <tr>
-          <td>Venta Maxima</td>
-          <td><b><span id="ventaMax"></span> USD</b></td>
-        </tr>
-      </tbody>
-    </table>
+        <table class="w3-table w3-bordered w3-border-top">
+          <tbody>
+            <tr>
+              <td>Venta Minima</td>
+              <td><b><span id="ventaMinima"></span> USD</b></td>
+            </tr>
+            <tr>
+              <td>Venta Maxima</td>
+              <td><b><span id="ventaMax"></span> USD</b></td>
+            </tr>
+          </tbody>
+        </table>
 
-    <a href="javascript:void(0)" onclick="OpenOption('Vender')"
-      class="w3-btn w3-block w3-margin-bottom w3-margin-top w3-round w3-round-large"
-      style="background-color:#404e9d; color: white; font-size: 1.2rem;">
-      <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
-  </div>
-</div>
+        <a href="javascript:void(0)" onclick="OpenOption('Vender')"
+                    class="w3-btn w3-block w3-margin-bottom w3-margin-top w3-round w3-round-large" style="background-color:#404e9d; color: white; font-size: 1.2rem;">
+                    <i class="fa-solid fa-sack-dollar"></i>&nbsp; Vender </a>
+      </div>
+    </div>
 <!-- // Seccion tasas | vender -->
 
 <script>
-  $(document).ready(function () { $(".menu-lateral").load('submenu/menu-lateral.html') })
+  $(document).ready(function() { $(".menu-lateral").load('submenu/menu-lateral.html') })
 </script>
 
 <script>
@@ -164,7 +164,7 @@
           //balance usuario
           $('#iniciobalance').html(formatonumero(objt.balance, 2));
           $('#msjrapido').html(objt.msjrapido); //marque
-
+          
           //saldos wallets
           $('#BTCwallets').html(objt.WalletsSaldos['BTC']);
           $('#LTCwallets').html(objt.WalletsSaldos['LTC']);
@@ -205,13 +205,13 @@
                       <th>Operar</th>
                     </tr>`;
           for (var i = 0; i < objt.mercadosWeb.length; i++) {
-
+           
             MercadoData += `<tr>`;
 
 
             MercadoData += `
               <td>
-                <img onerror="this.onerror=null;this.src='https://probar.pagosalinstante.com/appweb/icon/${objt.mercadosWeb[i]}.png'" src="icon/${objt.mercadosWeb[i]}.png" width="30px">
+                <img onerror="this.onerror=null;this.src='https://paiexchange.com/appweb/icon/${objt.mercadosWeb[i]}.png'" src="icon/${objt.mercadosWeb[i]}.png" width="30px">
                 <span>${objt.mercadosWeb[i]}</span>  
               </td>
               <td>
@@ -223,7 +223,7 @@
               <td>
                 <a onclick="Parestrading('${objt.mercadosWeb[i]}')" style="cursor:pointer">Tradear</a>
               </td>`;
-
+       
 
             MercadoData += `</tr>`;
           }
